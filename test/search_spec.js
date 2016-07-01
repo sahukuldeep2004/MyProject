@@ -1,32 +1,26 @@
-import { search } from '../lib/words';
-import { each }	from 'underscore';
-import assert from 'assert';
-import fs from 'fs';
+var supertest = require("supertest");
+var should = require("should");
 
-const dictionary = JSON.parse(
-  fs.readFileSync('./lib/dictionary.json')
-).dictionary;
+// This agent refers to PORT where the program is running.
 
-describe('matching underscore', () => {
-  it('matches _h', () => {
-    const find = '_h';
-    const result = search(find, dictionary).result;
+var server = supertest.agent("http://localhost:4000");
 
-    assert.equal(result.length, 7);
+// UNIT test begin
 
-    each(result, (match) => {
-      assert.equal(match.length, 2);
-      assert.equal(match.indexOf('H'), 1);
-    }, result);
-  });
+ describe("SAMPLE unit test",function(){
 
-  it('matches h_', () => {
-    const find = 'h_';
-    const result = search(find, dictionary).result;
+   // #1 should return home page
+  it("should return home page",function(done){
+     // calling home page
+    server
+    .get("/")
+   .expect("Content-type",/text/)
+     .expect(200) // THis is HTTP response
+     .end(function(err,res){
+       // HTTP status should be 200
+       res.status.should.equal(200);
+       done();
+     });
+   });
 
-    each(result, (match) => {
-      assert.equal(match.length, 2);
-      assert.equal(match.indexOf('H'), 0);
-    }, result);
-  });
 });
