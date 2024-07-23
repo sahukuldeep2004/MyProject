@@ -1,0 +1,156 @@
+DML command: INSERT, UPDATE, DELETE,SELECT.
+DDL command: create table, alter table.
+
+// return 3rd highested salary.
+SELECT DISTINCT salary FROM employee ORDER BY salary DESC LIMIT 2, 1;
+> LIMIT 2, 1 means 2 rows skipped and 1 row returned.
+> we use distinct so that same row does not come for LIMIT 2,1
+
+============
+GROUP BY:
+The GROUP BY clause is a SQL command that is used to group rows that have the same values.
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+SELECT `gender` FROM `members` ;
+
+Suppose we want to get the unique values for genders. We can use a following query -
+SELECT `gender` FROM `members` GROUP BY `gender`;
+
+It show only two row for 
+Gender
+male
+female
+
+The HAVING clause is used to restrict the results returned by the GROUP BY clause.
+eg. SELECT * FROM `movies` GROUP BY `category_id`,`year_released` HAVING `category_id` = 8;
+**********************************************************************************************
+Constraints:
+Constraints are the rules that we can apply on the type of data in a table. That is, we can specify the limit on the type of data that can be stored in a particular column in a table using constraints.
+The available constraints in SQL are
+1. NOT NULL
+2. UNIQUE
+3. PRIMARY KEY
+4. FOREIGN KEY
+5. CHECK
+6. Default
+We can specify constraints at the time of creating the table using CREATE TABLE statement. We can also specify the constraints
+after creating a table using ALTER TABLE statement.
+*************************************************************************************************
+SQL | Join (Inner, Left, Right and Full Joins)
+A SQL Join statement is used to combine data or rows from two or more tables based on a common field between them. 
+Different types of Joins are:
+
+INNER JOIN
+LEFT JOIN || LEFT OUTER JOIN
+RIGHT JOIN || RIGHT OUTER JOIN
+FULL JOIN
+CROSS JOIN || CARTESIAN JOIN
+
+The INNER JOIN keyword selects all rows from both the tables as long as the condition satisfies. This keyword will create the 
+result-set by combining all rows from both the tables where the condition satisfies i.e value of the common field will be same.
+SELECT table1.column1,table1.column2,table2.column1,....
+FROM table1 
+INNER JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+LEFT JOIN: This join returns all the rows of the table on the left side of the join and matching rows for the table on the right 
+side of join. The rows for which there is no matching row on right side, the result-set will contain null. LEFT JOIN is also 
+known as LEFT OUTER JOIN.
+SELECT table1.column1,table1.column2,table2.column1,....
+FROM table1 
+LEFT JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+RIGHT JOIN: RIGHT JOIN is similar to LEFT JOIN. This join returns all the rows of the table on the right side of the join and matching rows for the table on the left side of join. The rows for which there is no matching row on left side, the result-set will contain null. RIGHT JOIN is also known as RIGHT OUTER JOIN
+
+FULL JOIN: FULL JOIN creates the result-set by combining result of both LEFT JOIN and RIGHT JOIN. The result-set will contain all 
+the rows from both the tables. The rows for which there is no matching, the result-set will contain NULL values.
+
+CARTESIAN JOIN: The CARTESIAN JOIN is also known as CROSS JOIN. In a CARTESIAN JOIN there is a join for each row of 
+one table to every row of another table. This usually happens when the matching column or WHERE condition is not specified.
+
+SELF JOIN: As the name signifies, in SELF JOIN a table is joined to itself. That is, each row of the table is joined
+with itself and all other rows depending on some conditions. In other words we can say that it is a join between two copies 
+of the same table.
+
+***********************************************************************************************
+The Union Clause is used to combine two separate select statements and produce the result set as a union of both the select statements.
+The fields to be used in both the selet statements must be in same order, same number and same data type.
+The Union clause produces distinct values in the result set, to fetch the duplicate values too UNION ALL must be used instead of just UNION.
+
+UNION select distinct value where UnionAll select duplicate value as well.
+********************************************************************************************************
+Primary key will not accept NULL values whereas Unique key can accept one NULL value.
+A table can have only primary key whereas there can be multiple unique key on a table.
+A Clustered index automatically created when a primary key is defined whereas Unique key generates the non-clustered index.
+******************************************************
+The PL/SQL Function is very similar to PL/SQL Procedure. The main difference between procedure and a function is, a function must 
+always return a value, and on the other hand a procedure may or may not return a value.
+
+PL/SQL Cursor
+When an SQL statement is processed, Oracle creates a memory area known as context area. A cursor is a pointer to this context area.
+It contains all information needed for processing the statement. In PL/SQL, the context area is controlled by Cursor. A cursor 
+contains information on a select statement and the rows of data accessed by it.
+A cursor is used to referred to a program to fetch and process the rows returned by the SQL statement, 
+one at a time. There are two types of cursors:
+
+Implicit Cursors
+Explicit Cursors
+
+Implicit Cursors:
+The implicit cursors are automatically generated by Oracle while an SQL statement is executed, if you don?t use an explicit cursor for the statement.
+These are created by default to process the statements when DML statements like INSERT, UPDATE, DELETE etc. are executed.
+
+Declare the cursor to initialize in the memory. ---CURSOR name IS  SELECT statement;  
+Open the cursor to allocate memory. ---OPEN cursor_name;  
+Fetch the cursor to retrieve data. ---FETCH cursor_name INTO variable_list; 
+Close the cursor to release allocated memory. ---Close cursor_name;  
+****************************************************************************
+What is Exception: An error occurs during the program execution is called Exception in PL/SQL.
+DECLARE  
+   c_id customers.id%type := 5;  
+   c_name  customers.name%type;  
+   c_addr customers.address%type;  
+BEGIN  
+   SELECT  name, address INTO  c_name, c_addr  
+   FROM customers  
+   WHERE id = c_id;  
+DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+ DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);  
+EXCEPTION  
+   WHEN no_data_found THEN  
+      dbms_output.put_line('No such customer!');  
+   WHEN others THEN  
+      dbms_output.put_line('Error!');  
+END;  
+**********************************************************************************
+Index: An index is an performance optimization technique that speeds up the data retrieval process.
+The index can also be a UNIQUE index, which means that you cannot have duplicate values in that column, or a 
+PRIMARY KEY which in some storage engines defines where in the database file the value is stored.
+
+
+*******************************************
+View: View in SQL are kind of virtual tables. A view alos has rows and columns as they are in a reale table in the databse.
+We can create a view by selecting feilds from one or more tables present in the database.
+CREATE VIEW  view_name AS SELECT column1, column2....
+from table_name 
+where condition.
+
+********************************************************************************
+Foreign key :A Foreign key is a field which can uniquely identify each row in another table. And this constraint is used to specify a field as Foreign key. That is, this field points to primary key of another table. This usually creates a kind of link between the two tables.
+
+***********************************************************************************************
+Find the second highest salary?
+SELECT name, MAX(salary) AS salary
+  FROM employee  WHERE salary < (SELECT MAX(salary) FROM employee); 
+*******************************************************************
+A procedure is a group of PL/SQL statements .
+
+CREATE OR REPLACE PROCEDURE UpdateCource(name in VARCHAR2)
+IS
+BEGIN
+
+EXCEPTION 
+WHEN OTHERS THEN
+raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
+
+END;
