@@ -1,0 +1,198 @@
+Kafka is a distributed publish-subscribe messaging system and a robust queue that can handle a high volume of data and enables you to pass messages from one end-point to another.
+Two types of messaging patterns are available − one is point to point and the other is publish-subscribe (pub-sub) messaging system. Most of the messaging patterns follow pub-sub.
+Kafka is very fast, performs 2 million writes/sec.
+Main terminologies such as topics, brokers, producers and consumers.
+Need for Kafka : Kafka supports low latency message delivery and gives guarantee for fault tolerance in the presence of machine failures. It has the ability to handle a large number of diverse consumers. Kafka is very fast, performs 2 million writes/sec.
+
+
+Producer: An application that send data/message to Kafka.
+Consumer: An application data reads data from Kafka.
+Broker: It is a kafka serevr. It acts as a broker between producer and server. Both producer and consumer do  not interct directly. They use broker or agent to exchanges the messages.
+Cluster: A group of computers sharing workload for a common purpose.
+
+Topic: It is a category/feed or logical name which messages are stored and published. Like sales data, purchase data, account data like.
+Topic Partition:  Kafka topics are divided into a number of partitions, which allows you to split data across multiple brokers.
+Replica: A replica of a partition is a "backup" of a partition. Replicas never read or write data. They are used to prevent data loss.
+Offset:The offset is a unique identifier of a record within a partition. It denotes the position of the consumer in the partition.
+Node: A node is a single computer in the Apache Kafka cluster.
+Cluster: A group of nodes.
+Consumer Group: It contain multiple Consumer so that work can be divided. Each Consumer is assocaited with One Partioned. It is not allowed to read same consumer to read data from same partiioned.
+key: It is used to decide the right partiioned. If key is s not available then default will use and equally assig message to partioned using Round Robin algo.
+same message key will use the same partioned.
+KafkaAvroSerilizer/KafkaAvroDeSerilizer : It is use to serilize/deserilize the data with help of shema registery. Serilizer will add Id with message so that at consumer end it will extarct the same id and verify from avro formate from schema registry to deserilize it.
+
+Producer: 
+To create messages, we first need to configure a ProducerFactory. This sets the strategy for creating Kafka Producer instances.
+Then we need a KafkaTemplate, which wraps a Producer instance and provides convenience methods for sending messages to Kafka topics.
+
+Producer config value:
+1.key.serializer
+2.value.serializer
+3.acks= acks=0 If set to zero then the producer will not wait for any acknowledgment from the server at all.acks=1 This will mean the leader will write the record to its local log but will respond without awaiting full acknowledgement from all followers.acks=all This means the leader will wait for the full set of in-sync replicas to acknowledge the record. This guarantees that the record will not be lost as long as at least one in-sync replica remains alive. This is the strongest available guarantee. This is equivalent to the acks=-1 setting.
+4.bootstrap.servers=
+5.batch.size
+6.delivery.timeout.ms=An upper bound on the time to report success or failure after a call to send() returns.120000 (2 minutes)
+7. The linger.ms= setting adds a delay to wait for more records to build up, so larger batches get sent.
+8. retry.backoff.ms=The amount of time to wait before attempting to retry a failed request to a given topic partition. This avoids repeatedly sending requests in a tight loop under some failure scenarios.
+9. max.in.flight.request.per.connection=1  //how many request are allow which are still not acknowledge?
+
+10. flush.size : max no. of message to be send to target
+
+Consumer config value::
+key.deserializer
+value.deserializer
+bootstrap.servers
+group.id=A unique string that identifies the consumer group this consumer belongs to.
+enable.auto.commit=If true the consumer's offset will be periodically committed in the background.
+max.poll.records=The maximum number of records returned in a single call to poll()
+
+1. We need to configure bean with method which have detail of oot starp server, SCHEMA_REGISTRY_URL,ProducerConfig.ACKS_CONFIG=all,KEY_SERIALIZER_CLASS_CONFIG,
+VALUE_SERIALIZER_CLASS_CONFIG and many other.
+ProducerFactory is responsible for creating Kafka Producer instances.
+2. create PRoducerFactory bean which return DefaultKafkaProducerFactory.
+3. Create kafkaTemplate bean which take the ProducerFactory bean,
+4. Now create the ProducerService class whoch use the kafkaTemplate bean to push the message topic with help of send() method.
+5. send() method retun the future object.
+sample code : 
+@Configuration
+public class KafkaProducerConfig {
+
+    @Bean
+    public ProducerFactory<String, String> producerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(
+          ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, 
+          bootstrapAddress);
+        configProps.put(
+          ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, 
+          StringSerializer.class);
+        configProps.put(
+          ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, 
+          StringSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+}
+
+We can send messages using the KafkaTemplate class.
+@Autowired
+private KafkaTemplate<String, String> kafkaTemplate;
+
+public void sendMessage(String msg) {
+    kafkaTemplate.send(topicName, msg);
+}
+
+The send API returns a ListenableFuture object.
+ListenableFuture<SendResult<String, Guest>> future = this.kafkaTemplate.send(avroTopic, guest);
+
+		future.addCallback(new ListenableFutureCallback<SendResult<String, Guest>>() {
+			@Override
+			public void onSuccess(SendResult<String, Guest> result) {
+				final RecordMetadata metaData;
+				metaData = result.getRecordMetadata();
+				logger.info("Profile created: {}  with offset: {},partioned : {}, topic : {} ", profile,
+						metaData.offset(), metaData.partition(), metaData.topic());
+			}
+
+			@Override
+			public void onFailure(Throwable ex) {
+				logger.error("Failed to produce to kafka : {}", profile, ex);
+			}
+		});
+
+Consumer :-
+For consuming messages, we need to configure a ConsumerFactory and a KafkaListenerContainerFactory. Once these beans are available in the Spring bean factory, POJO-based consumers can be configured using @KafkaListener annotation.
+@EnableKafka annotation is required on the configuration class to enable detection of @KafkaListener annotation on spring-managed beans:
+@EnableKafka
+@Configuration
+public class KafkaConsumerConfig {
+
+    @Bean
+    public ConsumerFactory<String, String> consumerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(
+          ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, 
+          bootstrapAddress);
+        props.put(
+          ConsumerConfig.GROUP_ID_CONFIG, 
+          groupId);
+        props.put(
+          ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, 
+          StringDeserializer.class);
+        props.put(
+          ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, 
+          StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> 
+      kafkaListenerContainerFactory() {
+   
+        ConcurrentKafkaListenerContainerFactory<String, String> factory =
+          new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+@KafkaListener(topics = "topicName", groupId = "foo")
+public void listenGroupFoo(String message) {
+    System.out.println("Received Message in group foo: " + message);
+}
+Consuming the mesaging from specific partition.For a topic with multiple partitions, however, a @KafkaListener can explicitly subscribe to a particular partition of a topic with an initial offset:
+KafkaListener(
+  topicPartitions = @TopicPartition(topic = "topicName",
+  partitionOffsets = {
+    @PartitionOffset(partition = "0", initialOffset = "0"), 
+    @PartitionOffset(partition = "3", initialOffset = "0")}),
+  containerFactory = "partitionsKafkaListenerContainerFactory")
+public void listenToPartition(
+  @Payload String message, 
+  @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+      System.out.println(
+        "Received Message: " + message"
+        + "from partition: " + partition);
+}
+
+Workflow in Kafka:
+1.Producers send message to a topic at regular intervals.
+2. Kafka broker stores all messages in the partitions configured for that particular topic. It ensures the messages are equally 
+shared between partitions. If the producer sends two messages and there are two partitions, Kafka will store one message in the 
+first partition and the second message in the second partition.
+3.Consumer subscribes to a specific topic.
+4. Once the consumer subscribes to a topic, Kafka will provide the current offset of the topic to the consumer and also saves the offset 
+in the Zookeeper 
+ensemble.
+5. Consumer will request the Kafka in a regular interval (like 100 Ms) for new messages.
+6. Once Kafka receives the messages from producers, it forwards these messages to the consumers.
+7. Consumer will receive the message and process it.
+8. Once the messages are processed, consumer will send an acknowledgement to the Kafka broker.
+9. Once Kafka receives an acknowledgement, it changes the offset to the new value and updates it in the Zookeeper. Since offsets 
+are maintained in the Zookeeper, the consumer can read next message correctly even during server outrages.
+10. This above flow will repeat until the consumer stops the request.
+11. Consumer has the option to rewind/skip to the desired offset of a topic at any time and read all the subsequent messages.
+
+kafka uses as below
+
+A:) kafka is much more than mesaging system which is publish suscribe messaging system.
+B: )web site tarcking: to rebuild a user activity tracking pipeline as a set of real-time publish-subscribe feeds.site activity refers to page views, searches, or other actions users may take.
+C:) Kafka log aggregation :In order to collect logs from multiple services and make them available in a standard format to multiple
+consumers.
+
+Diffrence Between Rabbit MQ, Kafka and Active MQ
+Ans: RabbitMQ is an excellent choice for low-latency messaging and flexible routing, Kafka is suitable for high-throughput and real-time stream processing, and ActiveMQ is a versatile option with support for multiple protocols and enterprise features. By understanding the differences between RabbitMQ, Kafka, and ActiveMQ, you can make an informed decision that best suits your project's needs.
+
+Rabbit MQ provide the priority on message but Kafka does not provide.
+MQ does not provide order guranty but Kakfa provide the order message guranty from partition.
+MQ work on push based mechanism and Kafka work on pull based.
+In MQ, once message is consumed by consumer it is gone but in Kafka message will be stay for retention period.
+
+Diffeence betwen JMS and IBM MQ?
+Ans: JMS is Java Messaging service which is the Enterprise Java standard for messaging.
+ JMS is a specification and IBM MQ is an implementation of that specification with other extra services.
+MQ employs a push-based communication mechanism.
+IBM MQ has multiple modes of operation, including point-to-point, publish/subscribe, file transfer, and enterprise-grade messaging features.
+===========================================
