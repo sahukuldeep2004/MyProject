@@ -1,0 +1,143 @@
+sudo yum update -y
+sudo yum install docker -y
+sudo service docker status
+sudo service docker start
+sudo docker -v
+sudo docker images (show all images)
+docker build -f Dockerfile -t sampleweb .
+sudo docker run -p sampleweb 
+
+Sample DockerFile:
+FROM adoptopenjdk/openjdk11:ubi     // // installng the base image for java
+RUN mkdir /opt/app                    // Running the cmd to to crate dir
+COPY japp.jar /opt/app                 // copying the jar to /opt/app path
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/opt/app/japp.jar"]
+
+
+Que: Life Cycle of Docker contaier?
+Ans:  Creating the container. Running the Docker container with the necessary images and commands. 
+Pausing the processes that are running inside the container.
+
+
+https://www.quora.com/What-are-10-Awesome-Algorithm-interview-Questions
+
+Why we need docker?
+Ans: when we work on appplication, we use multiple softare and lib and some time they are not compatiale. It work in your system but does not work in other system. 
+To resole such kind of problem docker came into picture. Where we prepare the complete isloated system in one package and ship it to anyhere and other can use it directly.
+
+Que: What is a Dockerfile and why you’d want to use one?
+Ans: A Dockerfile is a text file that defines a Docker image. You’ll use a Dockerfile to create your own custom Docker image, in other words to define your custom environment to be used in a Docker container.
+The Dockerfile contains a list of instructions that Docker will execute when you issue the docker build command.
+
+Docker:
+Docker is a tool/computer program designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
+We use Dockerfile which include all the dependency, library, ports no, jar name, deployment command.
+
+Docekr compose: Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. 
+Then, with a single command, you create and start all the services from your configuration.
+docker-compose.yml
+
+Diffrence between docker and vm?
+Ans: Docker is install on HW and it use the same OS  and crate the multiple container where VM is installed on HW and creating the VM it use seprate OS for evert VM.
+Que: What is Docker Image?
+Ans: AN Image is template or package . It is used to crate one or more containers.
+The Docker image help to create Docker containers. You can create the Docker image with the build command. Due to this, it creates a container that starts when it begins to run. Every docker images are stored in the Docker registry.
+
+Architecture of Docker:
+It has hardware then top of it, it has host OS then we have container engine and then we have container. Container conatin lib and set of binaries file and the application code.
+
+With help of docker image , we can create multiple container.
+First need to install the docker in system and prepare the docker image. Either we can pull the image from docker hub or we can write our self.
+
+What is Containerization : 
+Application containerization is an OS-level virtualization method used to deploy and run distributed applications without launching an entire virtual machine (VM) for each app. Multiple isolated applications or services run on a single host and access the same OS kernel.
+
+Que: How to satrt to work on Docker?
+Ans: We can install Docker on your system with help of some command.
+Que: What are the commands for Docekr?
+Ans: 1. Docker run       > It start a contaier form an image.
+eg. docker run nginx               >It will download the nginx image from dockerhub fro first time.
+2. docker ps  -> list all contaier
+3. docker stop "name of contaier"
+4. docker rm "name of container" -> remove a container permanantely
+5. docker images  -> show all the images in host present on system.
+6. docker start – Starts one or more stopped containers.
+7. docker build – Builds an image form a Docker file
+8. docker pull – Pulls an image or a repository from a registry
+9. docker push – Pushes an image or a repository to a registry
+
+Que:How to crate my own image?
+Ans:create dockerfile and list the set of commnad which you want to run for preparing the containers like. download Uantu OS, install Java, copy srs code.
+use the below cmd -> docker build dockerfile -t testapp/my-testapp 
+The above command will crate an image with tag name as testapp.
+
+docker push testapp/my-testapp  ->it will push the image to repository.
+Docker image contain argumen and instaruction formate. RUN, FROM, COPY, ENTRYPOINT are instruction.
+
+Que: KEDA(Kubernates Event Driven Autoscaling)
+Ans: KEDA is a kubernates based event driven auto scaler. With KEDA, you can drive the scaling of any container in Kubernates based on the number of events needing to be processed.
+
+Why Kubernates?
+Ans: how to cordinate & schedule multiple container 2. How do container communicate ?3. How to scale container instance? Howw to deal with failed contaier.
+
+What is Kubernetes?
+https://www.toptal.com/kubernetes/what-is-kubernetes
+Kubernetes is an open-source system which allows you to run containers, manage them, automate deploys, scale deployments, create and configure ingresses,deploy stateless or stateful applications, and many other things.
+i.e K8s is container management tool.
+managment means running, deploying, scheduling, scaling, load balancing.
+Running containers across many different machines.
+Scaling up or down by adding or removing containers when demand changes.
+Keeping storage consistent with multiple instances of an application.
+Distributing load between the containers.
+Launching new containers on different machines if something fails.
+
+What is Orchastartion in K8s?
+ In Kubernetes, orchestration is the process of coordinating and managing the deployment, scaling, and organization of containerized applications. 
+ It involves defining and enforcing desired application states, automating the deployment and scaling of containers, and providing a consistent and reliable environment for applications to run. 
+ Kubernetes uses a declarative API and provides various resources, such as pods, services, deploys, and replicasets, to help achieve orchestration and automation of containerized applications.  
+
+Que: K8S component ?
+
+Node: A Kubernetes cluster consists of a set of worker machines, called nodes, that run containerized applications. Every cluster has at least one worker node.
+The control plane manages the worker nodes and the Pods in the cluster.
+Ans: POD, NODE, CLUSTER, 
+REPLICATION CONTROLLER REPLICA SET : When any pod goes down then K8s immeditely back new replica up), 
+SERVICE : to communicate with one pod to another pod we use service name instead of IP address sothat if any pod goes down then new IP will come but pod will talk via service name),
+DEPLOYMENT: These are K8s object that are used for managing objects.You can scale your application by increasing the number of running pods or updating pods(can update CPU, memmory etc)
+SECRET :, CONFIG, MAP, ETCD: It is uses as a key valaue database store.It store the configuration of the K8s cluster in etcd.
+
+
+A pod is a group of containers deployed together on the same host. If the pod has one container, you can generally replace the word "pod" with "container" and accurately understand the concept.
+
+Que; How to deploye app on Kuernates?
+Ans: We have to create the kubernates manifesto file (.yml) whch have the servces name, pod details, images details etc. With the help of this file we can deplye the app on POD.
+ 
+EKS: Amazon Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy for you to run Kubernetes on AWS and on-premises.
+EKS automatically manages the availability and scalability of the Kubernetes control plane nodes that are responsible scheduling containers, managing 
+the availability of applications, storing cluster data.
+Amazon EKS automatically detects and replaces unhealthy control plane instances, and it provides automated version upgrades and patching for them.
+
+EKS workflow: 1. Provision of EKS cluster 2. One or more worker nodes. 3. Connect to EKS services usiing Kubectl 4. Deploye on Pod
+How to set up EKS:
+1. Create new IAM role for EKS to use.
+2. Create a new VPC using CloudFormation. Use this Amazon S3 template URL.
+3. Install new AWS CLI
+4. Create your EKS cluster with the AWS CLI
+5. Install kubectl.
+6. This tool (kubectl) is how you manage kubernetes clusters.
+7. Install Amazon’s authenticator for kubectl and IAM.
+8. Wait until the EKS cluster status is “ACTIVE”
+9. Update your ~/.kube/config using AWS CLI.
+10. Launch worker nodes into your EKS cluster.
+https://www.youtube.com/watch?v=O4h69KMm2tE
+Commands:
+1. kubectls getnodes
+
+Deploymnet.yml: A deploymnet is used to keep a set of pods running by creating pods from a template.
+Service.yml : A service is used to allow network access to a set of pods.
+
+ECS (Elastic Container Service):-
+The Elastic Container Service is an AWS-opinionated, fully managed container orchestration service. ECS is built with simplicity in mind without sacrificing management features. It easily integrates with AWS services such as AWS Application/Network load balancers and CloudWatch.
+
+EKS(Elastic Kubernates Services):-The Elastic Kubernetes Service is essentially a fully managed Kubernetes Cluster.
