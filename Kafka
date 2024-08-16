@@ -196,3 +196,5 @@ Ans: JMS is Java Messaging service which is the Enterprise Java standard for mes
 MQ employs a push-based communication mechanism.
 IBM MQ has multiple modes of operation, including point-to-point, publish/subscribe, file transfer, and enterprise-grade messaging features.
 ===========================================
+Kafka theory short cut
+https://codingnconcepts.com/post/apache-kafka-ccdak-exam-notes/
