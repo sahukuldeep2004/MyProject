@@ -190,6 +190,10 @@ MQ does not provide order guranty but Kakfa provide the order message guranty fr
 MQ work on push based mechanism and Kafka work on pull based.
 In MQ, once message is consumed by consumer it is gone but in Kafka message will be stay for retention period.
 
+Diffrence between Queue and Kafka ?
+Queues are meant to scale to millions of consumers and to delete messages once processed. 
+In Kafka data is not deleted once processed and consumers cannot scale beyond the number of partitions in a topic.
+
 Diffeence betwen JMS and IBM MQ?
 Ans: JMS is Java Messaging service which is the Enterprise Java standard for messaging.
  JMS is a specification and IBM MQ is an implementation of that specification with other extra services.
