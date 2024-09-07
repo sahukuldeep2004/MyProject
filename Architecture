@@ -136,21 +136,57 @@ An architectural pattern serves as a broad and reusable solution to common archi
 
 
 1. What thing we need to consider while migrating the application java 8 to java 17?
+Feature and API Changes: Leverage new features and address deprecated/removed APIs.
+Code Compatibility: Refactor code and update libraries for compatibility.
+Module System: Consider modularization and module compatibility.
+Performance and Behavior: Test performance and review garbage collection settings.
+Testing and Validation: Conduct thorough testing and ensure backward compatibility.
+Build and Deployment: Update build tools and CI/CD pipelines.
+Security: Implement new security features and best practices.
+Documentation and Training: Update documentation and provide developer training.
+Tooling and IDE Support: Ensure IDE and tools support Java 17.
+Legal and Licensing: Review licensing terms and compliance.
+
 2 If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
-3 If we have one API call which needs to update DB A and then DB B , if DB B call is failed then how to rollback the transation?
+Architecture Design: Decompose into microservices, define service boundaries.
+Data Migration: Map schemas, use migration tools, ensure data integrity.
+Database Differences: Adjust SQL syntax, optimize performance, handle transactions.
+Code Migration: Rewrite code, switch ORM frameworks, adjust APIs.
+Microservices Implementation: Manage service communication, discovery, and configuration.
+Testing: Perform unit, integration, and performance testing.
+Deployment and DevOps: Set up CI/CD pipelines, consider containerization, implement monitoring.
+Security: Implement security measures, ensure data protection.
+User Training and Documentation: Update documentation, provide training.
+Migration Strategy: Plan phased migration, prepare rollback options.
+
+3 If we have one API call that needs to update DB A and then DB B, if the DB B call fails then how to roll back the transaction?
 Ans: Use SAGA just like all or nothing
-4. If we have 2 node microservice application and before node we have LB, if request is failed in node A due to system issue thenhow to switch the request to node B. Which design pattern we need to use?
-Ans: use Circuit design pattern
-5. If have 10gb data in table and we want to delete 9GB data from table then what would be impact on table space.
+
+4. If we have 2 node microservice application and before node we have LB, if the request fails in node A due to system issue then how to switch the request to node B. Which design pattern we need to use?
+Ans: Use circuit design pattern.
+
+5. If have 10 GB data in the table and we want to delete 9GB data from the table then what would be the impact on table space?
 Ans: It can have several impacts on the table space and database performance.
-Table Size and Disk Space:-Initially, the table size might not immediately shrink after deleting the data.
+Table Size and Disk Space: Initially, the table size might not immediately shrink after deleting the data.
 Transaction Log Growth:-The deletion operation itself will generate transaction log entries
-Index Maintenance:-If the table has indexes, deleting a large portion of the data may require index maintenance.
+Index Maintenance: the table has indexes, deleting a large portion of the data may require index maintenance.
 Performance Considerations:-During the deletion process, the database might experience increased I/O activity and locking, especially if the table being modified is heavily accessed concurrently.
 
-6. What are the thing we need to consider while reviwing the code?
-7. Event driven architecture component ?
-Que: We have DB weher our SQL qury is reading the data, noow it taking 20 min comparing to 2 min? How to trobleshhot.what could be reason
+6. What are the things we need to consider while revising the code?
+Functionality: Correctness, edge cases.
+Quality: Readability, consistency, modularity.
+Performance: Efficiency, scalability.
+Maintainability: Code duplication, complexity.
+Security: Vulnerabilities, validation.
+Testing: Coverage, reliability.
+Documentation: Comments, code documentation.
+Error Handling: Exceptions, logging.
+Dependencies: Library versions, unused dependencies.
+Compliance: Coding standards, legal issues.
+Code Review Practices: Peer review, checklists.
+
+7. Event-driven architecture component?
+Que: We have DB where our SQL query is reading the data, now it takes 20 min compared to 2 min. How to troubleshoot. What could be reason
 Ans: Analyze the Query Execution Plan
 Check for Index Utilization
 Review Query Statistics and Performance Metrics
