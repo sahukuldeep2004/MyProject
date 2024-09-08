@@ -827,7 +827,12 @@ Que: AOP, Aspect Oriented Programming?
 Ans: A cross-cutting concern such as transaction management, authentication, logging, security etc is a concern that could affect the whole application and should be 
 centralized in one location in code as much as possible for security and modularity purposes.
 Que: What is join point?
-Ans: A point during the execution of a program, such as the execution of a method or the handling of an exception. In Spring AOP, a join point always represents a method execution.
+https://stackoverflow.com/questions/15447397/spring-aop-whats-the-difference-between-joinpoint-and-pointcut
+Ans: A point during the execution of a program, such as the execution of a method or the handling of an exception. 
+In Spring AOP, a join point always represents a method execution.
+eg.: A method in Employe calss like geName() or getDepartmentname().
+this regular expression is what defines Pointcut. e.g.
+* * mypackage.Employee.get*(*)
 
 Que: What is an advice? Explain its types in spring?
 Ans: An advice is the implementation of cross-cutting concern can be applied on other modules of the spring application. 
