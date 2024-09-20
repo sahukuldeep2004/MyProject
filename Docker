@@ -18,7 +18,28 @@ ENTRYPOINT ["java", "-jar", "/opt/app/japp.jar"]
 Que: Life Cycle of Docker contaier?
 Ans:  Creating the container. Running the Docker container with the necessary images and commands. 
 Pausing the processes that are running inside the container.
+Que: What is a container?
+Containers are deployed applications bundled with all necessary dependencies and configuration files. All of the elements 
+share the same OS kernel. Since the container isn’t tied to any one IT infrastructure, it can run on a different system or 
+the cloud.
+Que: Show how you would create a container from an image.
+To create a container, you pull an image from the Docker 
+repository and run it using the following command: $ docker run -it -d <image_name>
 
+Que: How about a command to stop the container?
+Use the following command: $ sudo docker stop container name
+Que: How do Docker daemon and the Docker client communicate with each other?
+You use a combination of Rest API, socket.IO, and TCP to facilitate communication.
+
+CMD vs ENTRYPOINT
+CMD is used for setting default commands and arguments that will be executed at the start of runtime of the containers. It is oftenly overridden by providing command-line arguments during container startup.
+ENTRYPOINT configures a container to run as an executable, defining the command that has to be executed when the container starts. It is more strict than CMD and is oftenly used when the container should have to behave like an executable.
+
+Where are Docker Volumes Stored in Docker
+Docker volumes will be stored on the host machine in the directory /var/lib/docker/volumes . This ensures persistance of the data storage even if the container is removed.
+
+Que: Can you lose data stored in a container?
+Any data stored in a container remains there unless you delete the container.
 
 https://www.quora.com/What-are-10-Awesome-Algorithm-interview-Questions
 
