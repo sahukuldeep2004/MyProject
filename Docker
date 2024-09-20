@@ -113,6 +113,10 @@ Keeping storage consistent with multiple instances of an application.
 Distributing load between the containers.
 Launching new containers on different machines if something fails.
 
+Que: How to checks logs in K8S?
+ If pod have single container then kubectl logs POD_NAME
+=> If pod have multiple containers then kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE
+
 What is Orchastartion in K8s?
  In Kubernetes, orchestration is the process of coordinating and managing the deployment, scaling, and organization of containerized applications. 
  It involves defining and enforcing desired application states, automating the deployment and scaling of containers, and providing a consistent and reliable environment for applications to run. 
