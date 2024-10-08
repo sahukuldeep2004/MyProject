@@ -97,10 +97,14 @@ COR
 MVC
 DAO
 Builder
+Adapter
 
 Que: Builder Design pattern ?
+Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to 
+produce different types and representations of an object using the same construction code.
 https://www.geeksforgeeks.org/difference-between-builder-design-pattern-and-factory-design-pattern/
 https://www.youtube.com/watch?v=7x8iQUv5lcM
+https://www.youtube.com/watch?v=qOLRxN5eVC0 --Shreyansh
 
 
 Que: Write a Singleton class with all consider scenario?
@@ -274,6 +278,8 @@ https://levelup.gitconnected.com/system-design-interview-basics-difference-betwe
 Que: What is decorator design pattern ?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
 Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
+It use the HAS A and IS A relationship.
+why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
 
 Que: Observar desig pattern ?
 Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. An observable is an object which notifies observers about the changes in its state. For example, a news agency can notify channels when it receives news.
