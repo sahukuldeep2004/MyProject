@@ -303,6 +303,8 @@ public class FactoryPatternDemo {
 	  
 Que What is strategy desig pattern?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
+It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes t
+hem interchangeable. It lets the client algorithm vary independently from the objects that use it. 
 
 pulic interface Startegy{
  pulic int doOperation(int a, int b);
