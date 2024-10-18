@@ -87,17 +87,19 @@ Structural Design Pattern: Structural patterns provide different ways to create 
 
 Behavioral Design Pattern: Behavioral patterns provide solution for the better interaction between objects and how to provide lose coupling and flexibility to extend easily.
 
-Singleton
-Facade
-Factory
-Strategy
-Decorator
-Observar
-COR
+Singleton -Creational
+Factory -Creational
+Builder -Creational
+Facade -Structure
+Adapter -Structure
+Decorator -Structure
+Observar - Behaviour
+Strategy -Behaviour
+COR  -Behaviour
 MVC
 DAO
-Builder
-Adapter
+
+
 
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
