@@ -1,3 +1,42 @@
+Kafka binary protocol,
+Kafka clinet lib is required.
+
+
+Where did you deploye the Kafka.
+How to check the logs in Kafka.
+Did you use conenctor/KSQL in Kafka
+How to decrease the partitions ?
+How to reset the offset ? or Once consumer commit the message and want to receive same message then how he can get it again?
+What is replica?
+how you have created the topic in all env ?
+How message will in go multiple partitions ?
+What is ISR?
+If we have set replica is 2 and one of the broker is down then what will heppen to message.
+How to commit message. 
+How to reply the message in topic, did you have any tool ?
+what value is set for ack for producer?
+what is in fligh request value ?
+How to validate the request ?
+What was the request formate ?
+Did you use any conector ?
+What is mean by offset are lagging?
+Intoductuction: open source, developed in linked in., developeed in java and scala.
+it is a Messaging system, same  as other messaging system as entreprise queue.
+When needed: data integarion in large enterprise system.
+Role Zookeper: 
+we can say that Zookeeper acts a Kafka cluster coordinator that manages cluster membership of brokers, producers, and consumers participating in message transfers via Kafka. It also helps in leader election for a Kafka topic.
+--mananage broker
+--help to electing topic leader for partions
+-- send notification to kafka in case of changes (new topic,broker die,broker comes up, topic delete)
+--Kafka 2.x can't work without zookeper and 3.x can work without zookeper.
+--kafka 4.x not have an zookeper
+--Zookepr always have oddno of server 1,3,5..
+--Zookeper has leader r and follwer
+
+Work: Kafka uses Zookeeper to manage service discovery for Kafka Brokers that form the cluster. Zookeeper sends changes of the topology to Kafka, so each node in the cluster knows when a new broker joined, a Broker died, a topic was removed or a topic was added, etc
+
+https://codingnconcepts.com/post/apache-kafka-ccdak-exam-notes/
+
 Kafka is a distributed publish-subscribe messaging system and a robust queue that can handle a high volume of data and enables you to pass messages from one end-point to another.
 Two types of messaging patterns are available − one is point to point and the other is publish-subscribe (pub-sub) messaging system. Most of the messaging patterns follow pub-sub.
 Kafka is very fast, performs 2 million writes/sec.
