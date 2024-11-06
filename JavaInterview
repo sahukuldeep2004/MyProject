@@ -72,7 +72,9 @@ Ans:Fault tolerance:(How much system can tolerate the fault) User does not see a
 Fault Resilience:(How many fault can system tolrate and bounce back) Failue is observed in seome services but rest of the system continue to function normall.
 Que: NFR category ?
 Ans:1. browser/general compatibilty 2.Uasbility(who are you end user) 3. Security
-==================================java 8 =============================================================================================================
+==================================java 8 ==== Programming=========================================================================================================
+https://javaconceptoftheday.com/java-8-interview-sample-coding-questions/
+
 Map<String, String> map = Map.of("A", "Alex", "B", "Brian", "C", "Charles");
 map.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
 
