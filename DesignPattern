@@ -1,29 +1,22 @@
-Que: WHat is Architectural style, Architectural pattern and design pattern?
-An Architectural Style is the application design at the highest level of abstraction; 
-An Architectural Pattern is a way to implement an Architectural Style; 
-A Design Pattern is a way to solve a localised problem.
-18
-
-Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
-
-Category	Architecture styles
-Communication	SOA, ROA, Message Bus
-Deployment	Client/Server
-Domain	Domain Driven Design,Monolithic, Mocroservice
-Structure	Component-Based, Object-Oriented, Layered, Plug-ins
-Other	REST, Peer-to-peer, Cloud computing, Internet of Things, Blockchain...
-
+Que: Difference Between Architectural Style, Architectural Patterns and Design Patterns?
+Ans: An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem of separating the UI from the model. Sensor-Controller-Actuator, is a pattern that will help you with the problem of actuating in face of several input senses.
 An Architectural Pattern is a specific, reusable solution to a common problem or design issue in software architecture.
 For example: 3-tier, N-tier, MVC, Model View ViewModel, Publish-subscribe,Sensor-controller-actuator...
-An architectural style is a blueprint of the system's overall structure, while an architectural pattern is a blueprint of a specific part of the system
 
-A Design pattern is a general reusable solution to a commonly occurring problem in object-oriented software design. 
-It provide a blueprint for how to solve a specific problem or design issue at the level of individual classes and objects, 
-rather than the overall structure of a system.
+Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
+Category	            Architecture styles
+Communication	        SOA, ROA, Message Bus
+Deployment	            Client/Server
+Domain	                Domain Driven Design,Monolithic, Mocroservice
+Structure	            Component-Based, Object-Oriented, Layered, Plug-ins
+Other	                REST, Peer-to-peer, Cloud computing, Internet of Things, Blockchain...
+
+A Design pattern is a general reusable solution to a commonly occurring problem in object-oriented software design. It provide a blueprint for how to solve a specific problem or design issue at the level of individual classes and objects, rather than the overall structure of a system.
 For example: Factory, Singleton, Prototype.
+How to instantiate an object when we only know what type needs to be instantiated at run time (maybe a Factory Class?);
+How to make an object behave differently according to its state (maybe a state machine, or a Strategy Pattern?).
 
 https://refactoring.guru/design-patterns/adapter
-
 Microservices architecture (often shortened to microservices) refers to an architectural style for developing applications. Microservices allow a large application to be separated into smaller independent parts, with each part having its own realm of responsibility.
 
 What is CAP theoram ?
