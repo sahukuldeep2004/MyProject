@@ -91,7 +91,12 @@ SOLID refers to five design principles in object-oriented programming, designed 
 The SOLID principles help the user develop less coupled code. If code is tightly coupled, a group of classes are dependent on one another.
 1.Single responsbilty:- Everything in the class should be related to that single purpose. It does not mean that your classes should only contain one method or property.
 2.Open-Close Principal:-The Open-Closed Principle (OCP) states that classes should be open for extension but closed for modification. “Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated. “Closed for modification” means that once you have developed a class you should never modify it, except to correct bugs.
-3.Liskove Substitution Pricipal:- All subclasses must, therefore, operate in the same manner as their base classes. The specific functionality of the subclass may be different but must to the expected behavior of the base class. To be a true behavioral subtype, the subclass must not only implement the base class’s methods and properties, but also conform to its implied behavior.
+3.Liskove Substitution Pricipal:- it states that an object of a superclass should be replaceable by objects of its subclasses 
+without causing issues in the application. Therefore, a child class should never change the characteristics of its 
+parent class (such as the argument list and return types). Basically, derived classes should never do less than their base 
+class. Eg. if class A is a subtype of class B, then we should be able to replace objects of B with objects of A 
+(i.e., objects of type A may substitute objects of type B) without changing the behavior (correctness, functionality, etc.) 
+of our program.
 4.Interface segregation Principal:-Clients should not be forced to implement unnecessary methods which they will not use.
 5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on abstractions.Abstractions should not depend on details. 
 6.Details should depend upon abstractions.
