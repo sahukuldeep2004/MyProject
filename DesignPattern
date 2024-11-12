@@ -1,5 +1,7 @@
 Que: Difference Between Architectural Style, Architectural Patterns and Design Patterns?
-Ans: An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem of separating the UI from the model. Sensor-Controller-Actuator, is a pattern that will help you with the problem of actuating in face of several input senses.
+Ans: An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem 
+of separating the UI from the model. Sensor-Controller-Actuator, is a pattern that will help you with the problem of 
+actuating in face of several input senses.
 An Architectural Pattern is a specific, reusable solution to a common problem or design issue in software architecture.
 For example: 3-tier, N-tier, MVC, Model View ViewModel, Publish-subscribe,Sensor-controller-actuator...
 
@@ -11,13 +13,51 @@ Domain	                Domain Driven Design,Monolithic, Mocroservice
 Structure	            Component-Based, Object-Oriented, Layered, Plug-ins
 Other	                REST, Peer-to-peer, Cloud computing, Internet of Things, Blockchain...
 
-A Design pattern is a general reusable solution to a commonly occurring problem in object-oriented software design. It provide a blueprint for how to solve a specific problem or design issue at the level of individual classes and objects, rather than the overall structure of a system.
+A Design pattern is a general reusable solution to a commonly occurring problem in object-oriented software design. 
+It provide a blueprint for how to solve a specific problem or design issue at the level of individual classes and objects, 
+rather than the overall structure of a system.
 For example: Factory, Singleton, Prototype.
 How to instantiate an object when we only know what type needs to be instantiated at run time (maybe a Factory Class?);
 How to make an object behave differently according to its state (maybe a state machine, or a Strategy Pattern?).
 
+Top  7 Architectural Patterns
+An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in 
+software design. It offers a highlevel conceptual framework for structuring and organizing software systems to 
+effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
+
+1.Microservices Architecture:
+ Approach: The application is divided into small, independent services with welldefined APIs.
+ Example: Netflix separates user management, content streaming, and recommendations into distinct services.
+
+2. Layered Architecture:
+ Approach: The application is structured into layers (presentation, logic, data) to compartmentalize specific functions.
+ Example: JavaEE applications have distinct layers for UI, business logic, and data access.
+
+3. EventDriven Architecture:
+ Approach: Components communicate through events to achieve loose coupling.
+ Example: Airbnb uses Apache Kafka for realtime event processing, such as handling booking requests.
+
+4. ModelViewController (MVC) Architecture:
+ Approach: The application is divided into Model (data), View (UI), and Controller (logic) components.
+ Example: Ruby on Rails applications separate data, user interface, and user input handling.
+
+5. MasterSlave Architecture:
+ Approach: One master coordinates tasks among multiple slaves.
+ Example: Database replication, where the master handles writes, and slaves serve reads, widely seen in various systems.
+
+6. Monolithic Architecture:
+ Approach: The entire application is bundled together as a single unit.
+ Example: Traditional enterprise software often integrates all features into a single executable.
+
+7. ServiceOriented Architecture (SOA):
+ Approach: The application is composed of loosely coupled, reusable services.
+ Example: Salesforce integrates or offers sales, support, and marketing services as integrated or standalone components.
+======================================================================================================================
+
 https://refactoring.guru/design-patterns/adapter
-Microservices architecture (often shortened to microservices) refers to an architectural style for developing applications. Microservices allow a large application to be separated into smaller independent parts, with each part having its own realm of responsibility.
+Microservices architecture (often shortened to microservices) refers to an architectural style for developing applications.
+Microservices allow a large application to be separated into smaller independent parts, with each part having its own realm 
+of responsibility.
 
 What is CAP theoram ?
 Ans:https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
