@@ -147,11 +147,13 @@ Ans: 1.Codebase :Your codebase should be tracked in a central version control sy
 
 Code.De.Con-Back.Bu--PP-CDD--LR
 Design Pattern: - A design pattern is a well-described solution to a common software problem.
-Creational Design Pattern: Creational design patterns provide solution to instantiate a object in the best possible way for specific situations.
-
-Structural Design Pattern: Structural patterns provide different ways to create a class structure.Structural design patterns are concerned with how classes and objects can be composed, to form larger structures. for example using inheritance and composition to create a large object from small objects.
-
-Behavioral Design Pattern: Behavioral patterns provide solution for the better interaction between objects and how to provide lose coupling and flexibility to extend easily.
+Creational Design Pattern: Creational design patterns provide solution to instantiate a object in the best possible way for 
+specific situations.
+Structural Design Pattern: Structural patterns provide different ways to create a class structure.Structural design patterns
+are concerned with how classes and objects can be composed, to form larger structures. for example using inheritance and 
+composition to create a large object from small objects.
+Behavioral Design Pattern: Behavioral patterns provide solution for the better interaction between objects and how to 
+provide lose coupling and flexibility to extend easily.
 
 Singleton -Creational
 Factory -Creational
@@ -164,8 +166,6 @@ Strategy -Behaviour
 COR  -Behaviour
 MVC
 DAO
-
-
 
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
