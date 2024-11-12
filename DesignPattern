@@ -234,6 +234,13 @@ public class FactoryPatternDemo {
       shape3.draw();
    }
 }
+Que: Abstarct Factory Pattern ?
+Ans: Abstract Factory pattern creates an object of several families of classes. It lets us produce families of related 
+objects without specifying their concrete classes. While a Factory Method can produce only one type of object 
+(only icecreams -valinal, choklet, straberry), an Abstract Factory can produce a family of different kinds of objects (multi-course and multi-cuisine meals).
+One generalized factory can consist of multiple specialized factories, each producing a different kind of object.
+https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
+
 
 Que: Builder Design pattern ?
 Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to 
