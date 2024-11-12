@@ -74,6 +74,10 @@ Partition Tolerance:-The system continues to operate despite network failures (i
 In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed database experiences a network failure, you can provide either consistency or availability.
 In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with network partitions. 
 Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
+What is mean by Partion :
+A partition is a communications break within a distributed system—a lost or temporarily delayed connection between two nodes. 
+Partition tolerance means that the cluster must continue to work despite any number of communication breakdowns between 
+nodes in the system.
 
 Que: Strong consistency vs weak consistency?
 Ans: Strong consistency: The data in all nodes is the same at any time. At the same time, you should get the value of key1 in node A and the value of key1 in node B.
