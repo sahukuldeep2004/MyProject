@@ -342,7 +342,7 @@ public class SingletonTest {
         return INSTANCE;
     }
 }
-Que: What is Facade design pattern?
+Que: What is Facade design pattern(Structural pattren)?
 Ans: It is a example of Orchastarion layer in our project.Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern.
 This pattern involves a single class which provides simplified methods required by client and delegates calls to methods of existing system classes.
 1. Create an Interface
@@ -440,7 +440,7 @@ public class FactoryPatternDemo {
       //call draw method of square
       shape3.draw();
 	  
-Que What is strategy desig pattern?
+Que What is strategy desig pattern(Behaviral design pattern)?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
 It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes t
 hem interchangeable. It lets the client algorithm vary independently from the objects that use it. 
@@ -484,13 +484,13 @@ API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Cachin
 Load balancer:  Traffic distribution, load balancing, Failover, Content based routing.
 https://levelup.gitconnected.com/system-design-interview-basics-difference-between-api-gateway-and-load-balancer-60260b568121
 
-Que: What is decorator design pattern ?
+Que: What is decorator design pattern (Structural Design)?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
 Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
 It use the HAS A and IS A relationship.
 why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
 
-Que: Observar desig pattern ?
+Que: Observar desig pattern (Behaviral design) ?
 Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. An observable is an object which notifies observers about the changes in its state. For example, a news agency can notify channels when it receives news.
 
 
