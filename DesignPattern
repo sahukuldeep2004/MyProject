@@ -398,6 +398,7 @@ It is a behavioral design pattern in Java that defines a family of algorithms, e
 them interchangeable. It lets the client algorithm vary independently from the objects that use it. 
 For our example, we will try to implement a simple Shopping Cart where we have two payment strategies - using Credit Card 
 or using PayPal.
+https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial
 
 pulic interface Startegy{
  pulic int doOperation(int a, int b);
@@ -432,6 +433,11 @@ public class StrategyPatternDemo {
       System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
    }
 }
+
+Que: What is adpter design pattern ?
+Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
+work together. The object that joins these unrelated interface is called an Adapter.
+https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
 =============
 Diffrence between API Gateway and Load balancer ?
 API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
