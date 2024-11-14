@@ -343,8 +343,11 @@ public class SingletonTest {
     }
 }
 Que: What is Facade design pattern(Structural pattren)?
-Ans: It is a example of Orchastarion layer in our project.Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern.
-This pattern involves a single class which provides simplified methods required by client and delegates calls to methods of existing system classes.
+Ans: It is a example of Orchastarion layer in our project.Facade pattern hides the complexities of the system and 
+provides an interface to the client using which the client can access the system. This type of design pattern comes
+under structural pattern.
+This pattern involves a single class which provides simplified methods required by client and delegates calls to 
+methods of existing system classes.
 1. Create an Interface
 public interface Shape {
    void draw();
@@ -389,61 +392,12 @@ public class FacadePatternDemo {
       shapeMaker.drawSquare();		
    }
 }
-
-Que: What is Factory Design Pattern?
-Ans: This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.
-In Factory pattern, we create object without exposing the creation logic to the client and refer to newly created object using a common interface.
-It also defines an interface for creating objects but lets subclasses decide which class to instantiate.
-1. Create an Interface
-public interface Shape {
-   void draw();
-}
-2.Create concrete classes implementing the same interface.
-public class Rectangle implements Shape {
-   @Override
-   public void draw() {
-      System.out.println("Rectangle::draw()");
-   }
-}
-public class Square implements Shape {
-   @Override
-   public void draw() {
-      System.out.println("Square::draw()");
-   }
-}
-3. Create a Factory to generate object of concrete class based on given information.
-
-public class ShapeFactory{
-public Shape getShapInstance( String obj){
-if(obj == null)
-return null;
-if (obj.equalIgnoreCase(""Rectangle)){
-  return new Rectangle();}
-if (obj.equalIgnoreCase(""Square)){
-  return new Square();
-  }}}
- 4. Use the Factory to get object of concrete class by passing an information such as type
-public class FactoryPatternDemo {
-
-   public static void main(String[] args) {
-      ShapeFactory shapeFactory = new ShapeFactory();
-
-      //get an object of Rectangle and call its draw method.
-      Shape shape2 = shapeFactory.getShapInstance("RECTANGLE");
-
-      //call draw method of Rectangle
-      shape2.draw();
-
-      //get an object of Square and call its draw method.
-      Shape shape3 = shapeFactory.getShapInstance("SQUARE");
-
-      //call draw method of square
-      shape3.draw();
-	  
-Que What is strategy desig pattern(Behaviral design pattern)?
+Que What is strategy design or Policy pattern(Behaviral design pattern)?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
-It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes t
-hem interchangeable. It lets the client algorithm vary independently from the objects that use it. 
+It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes 
+them interchangeable. It lets the client algorithm vary independently from the objects that use it. 
+For our example, we will try to implement a simple Shopping Cart where we have two payment strategies - using Credit Card 
+or using PayPal.
 
 pulic interface Startegy{
  pulic int doOperation(int a, int b);
