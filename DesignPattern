@@ -438,11 +438,6 @@ Que: What is adpter design pattern ?
 Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
 work together. The object that joins these unrelated interface is called an Adapter.
 https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
-=============
-Diffrence between API Gateway and Load balancer ?
-API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
-Load balancer:  Traffic distribution, load balancing, Failover, Content based routing.
-https://levelup.gitconnected.com/system-design-interview-basics-difference-between-api-gateway-and-load-balancer-60260b568121
 
 Que: What is decorator design pattern (Structural Design)?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
@@ -451,7 +446,15 @@ It use the HAS A and IS A relationship.
 why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
 
 Que: Observar desig pattern (Behaviral design) ?
-Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. An observable is an object which notifies observers about the changes in its state. For example, a news agency can notify channels when it receives news.
+Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. 
+An observable is an object which notifies observers about the changes in its state. For example, a news agency can 
+notify channels when it receives news.
+
+=============
+Diffrence between API Gateway and Load balancer ?
+API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
+Load balancer:  Traffic distribution, load balancing, Failover, Content based routing.
+https://levelup.gitconnected.com/system-design-interview-basics-difference-between-api-gateway-and-load-balancer-60260b568121
 
 
 Que: What IS CAP theoram? https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
