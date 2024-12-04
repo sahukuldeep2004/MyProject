@@ -15,3 +15,22 @@ Scaling Services: Scalability is an essential building block of any robust syste
 what options should be used is critical. From Serverless to ID generators, one must understand the multiple options and how to design them.
 Distributed Search: Search is the core of many system designs. Understating how to build a search system and the core building blocks 
 of a search system, including crawling and indexing, is essential.
+
+Load balancing is the unsung hero of high-performance web applications.
+
+1.] 𝐑𝐨𝐮𝐧𝐝 𝐑𝐨𝐛𝐢𝐧
+➥ Distributes requests sequentially across a list of servers, like taking turns.
+2.] 𝐋𝐞𝐚𝐬𝐭 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐨𝐧𝐬
+➥ Directs requests to the server with the fewest active connections.
+3.] 𝐖𝐞𝐢𝐠𝐡𝐭𝐞𝐝 𝐑𝐨𝐮𝐧𝐝 𝐑𝐨𝐛𝐢𝐧
+➥ Similar to Round Robin but assigns weights to servers based on their capacity, directing more traffic to more powerful servers.
+4.] 𝐖𝐞𝐢𝐠𝐡𝐭𝐞𝐝 𝐋𝐞𝐚𝐬𝐭 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐨𝐧𝐬
+➥ Combines the benefits of Least Connections and Weighted Round Robin, considering both server load and capacity.
+5.] 𝐈𝐏 𝐇𝐚𝐬𝐡
+➥ Uses the client's IP address to consistently direct their requests to the same server.
+6.] 𝐋𝐞𝐚𝐬𝐭 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞 𝐓𝐢𝐦𝐞
+➥ Directs requests to the server with the quickest response time and the lowest number of active connections.
+7.] 𝐑𝐚𝐧𝐝𝐨𝐦
+➥ Assigns requests to servers randomly.
+8.] 𝐋𝐞𝐚𝐬𝐭 𝐁𝐚𝐧𝐝𝐰𝐢𝐝𝐭𝐡
+➥ Sends requests to the server consuming the least amount of network bandwidth.
