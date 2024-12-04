@@ -1,0 +1,17 @@
+DNS: Translates website names to IP address. DNS service works much like a phone directory. Services like Route53 help configure 
+the domain and routing, and one needs to understand common types of resource records like A, CNAME, NS, MX, etc.
+CDN: The content delivery network is a server between the origin and the client. It stores and delivers content to the end users, 
+reducing latency and improving the system's overall performance.
+PUB SUB: Publish-subscribe messaging works asynchronously, involving publishers, topics, subscribers, and messages. It helps to 
+decouple the system, scalability, Durability, etc.
+Load Balancer: Load balancer helps divide and divert traffic across the system. It helps drive the overall system Availability and Performance.
+Distributed Caching: Caching servers store the data in memory and return it to the end users, improving the overall performance and
+end-user experience. A fleet of servers works together to keep and serve the data in a distributed caching system, enhancing availability.
+Observability: It's important to know what is happening in the system. How do we make the system easier to debug and fix? Observability 
+helps the system to drive maintainability, resiliency, and reliability.
+Unstructured Data Storage: Storing photos, videos, audio, and other unstructured data is essential when designing a system since these 
+cannot be stored in traditional databases. One needs to create a highly available, consistent, reliable solution. and efficient.
+Scaling Services: Scalability is an essential building block of any robust system. Understanding various scaling options and 
+what options should be used is critical. From Serverless to ID generators, one must understand the multiple options and how to design them.
+Distributed Search: Search is the core of many system designs. Understating how to build a search system and the core building blocks 
+of a search system, including crawling and indexing, is essential.
