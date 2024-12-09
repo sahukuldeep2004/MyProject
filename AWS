@@ -1,0 +1,6 @@
+In Amazon Web Services (AWS), assuming a role is the process of using temporary security credentials to access resources that might not otherwise be accessible. A role is an entity that grants temporary permissions to perform API calls in an account. 
+Here are some details about roles and assuming roles in AWS:
+Roles :
+Roles are created and assigned specific permissions by AWS Identity and Access Management (IAM). They are both a principal and identity in AWS. Roles have two core aspects: a trust policy and a permission policy. The trust policy determines which entities can assume the role, and the permission policy defines the privileges granted to those entities. 
+Assuming a role :
+To assume a role, you must first create or identify a role to assume. You can then configure your SDK or tool to use the permissions granted by the role
