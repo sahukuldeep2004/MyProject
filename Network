@@ -34,3 +34,10 @@ Load balancing is the unsung hero of high-performance web applications.
 ➥ Assigns requests to servers randomly.
 8.] 𝐋𝐞𝐚𝐬𝐭 𝐁𝐚𝐧𝐝𝐰𝐢𝐝𝐭𝐡
 ➥ Sends requests to the server consuming the least amount of network bandwidth.
+
+ACID transactions are difficult to maintain in distributed systems due to factors such as network latency, consistency, availability, and scalability. To address these challenges, several solutions have been developed, including:
+
+Two-phase commit: This protocol ensures that all nodes in a distributed system agree to commit a transaction before it is committed, ensuring data consistency and agreement on the transaction’s outcome.
+Multi-Version Concurrency Control (MVCC): This technique manages data concurrency in a distributed system by allowing each transaction to access the appropriate data version, enabling multiple versions of the same data to coexist.
+Replication: In a distributed system, replication involves keeping multiple copies of the same data on various nodes, reducing network latency and increasing availability.
+Sharding: This process involves dividing data across multiple nodes in a distributed system, improving performance and scalability but increasing the complexity of maintaining data consistency.
