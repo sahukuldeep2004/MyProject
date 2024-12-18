@@ -1,0 +1,44 @@
+API Architecture - Design Best Practices for REST APIs
+https://blog.wahab2.com/api-architecture-best-practices-for-designing-rest-apis-bf907025f5f
+1. Learn the basics of HTTP
+Although, as far as REST API design is concerned, here is a TLDR of HTTP applied to RESTful Design:
+HTTP has verbs (actions or methods): GET, POST, PUT, PATCH and DELETE are most common.
+REST is resource-oriented and a resource is represented by an URI: /library/
+An endpoint is the combination of a verb and an URI, example: GET: /books/
+An endpoint can be interpreted as an action performed on a resource. Example: POST: /books/ may mean "Create a new book".
+At a high-level, verbs map to CRUD operations: GET means Read, POST means Create, PUT and PATCH mean Update, and DELETE means Delete
+A response’s status is specified by its status code: 1xx for information, 2xx for success, 3xx for redirection, 4xx for client errors and 5xx for server errors.
+
+2. Do not return plain text
+3.Do not use verbs in URIs.
+eg: # Don’t do this POST: /books/createNewBook/
+# Do this           POST: /books/
+# Don’t        GET: /books/:slug/generateBookCover/
+# Do this      GET: /books/:slug/bookCover/
+Use plural nouns for resources
+GET: /books/2/
+POST: /books/
+4. Use plural nouns for resources
+5. Return the error details in the response body.
+{
+    "error": "Invalid payload.",
+    "detail": {
+        "name": "This field is required."
+    }
+}
+6. Make use of the HTTP status code, and only use the response body to provide error details.
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+    "error": "Expected at least three items in the list."
+}
+7. You should use HTTP status codes consistently
+8. Do not nest resources
+Don't : GET: /authors/Cagan/books/
+DO :  GET: /books?author=Cagan
+9. Make use of the querystring for filtering and pagination
+10. Make use of the querystring for filtering and pagination
+11. Know the difference between 401 Unauthorized and 403 Forbidden
+Has the consumer not provided authentication credentials? Was their SSO Token invalid/timed out? 👉 401 Unauthorized.
+Was the consumer correctly authenticated, but they don’t have the required permissions/proper clearance to access the resource? 👉 403 Forbidden
+12. 
