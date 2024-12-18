@@ -479,10 +479,16 @@ Application 1 is connected to a single database instance. Application 2 is conne
 Que: What are resilency design pattren ?
 Ans: 1. Circuit Braker (Polly/Hystrix are lib to use circuit breaker pattern) 2. Retry Design pattern 3. TimeOut design pattern.
 
+Que: what is diffrence between fault tolerance and resilency.
+Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive a fault, while resilience is the ability of a system to recover from a fault and continue operating: 
+Fault tolerance : -The ability of a system to continue operating effectively even when there are faults, such as a server crash or network partition. Fault tolerance minimizes the risk of systems becoming unavailable due to a component error. 
+Resilience : -The ability of a system to recover from failures and continue operating without significant downtime. Resilience focuses on adapting to different conditions and recovering from unexpected events. 
+Fault tolerance and resilience are important for maintaining service reliability and user trust
+
 Que: What is high availability ?
 Ans:High availability systems are designed to provide continuous and uninterrupted service to the end customer by using redundant software performing similar functions.
- In highly available microservices, all the hosts must point to the same storage. So, in case of failure of one host, the workload in one host can failover to another host
- without downtime. The redundant software can be installed in another virtual machine (VM), or Kubernetes clusters in multicloud or hybrid cloud.
+In highly available microservices, all the hosts must point to the same storage. So, in case of failure of one host, the workload in one host can failover to another host
+without downtime. The redundant software can be installed in another virtual machine (VM), or Kubernetes clusters in multicloud or hybrid cloud.
  
 Que:WHat we need to consider for NFR ?
 Ans:Latency:- the application should return result in 10 ms.
