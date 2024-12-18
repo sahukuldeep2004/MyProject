@@ -42,3 +42,20 @@ DO :  GET: /books?author=Cagan
 Has the consumer not provided authentication credentials? Was their SSO Token invalid/timed out? 👉 401 Unauthorized.
 Was the consumer correctly authenticated, but they don’t have the required permissions/proper clearance to access the resource? 👉 403 Forbidden
 12. 
+===========================================================================================================================================================
+Performance Enhancement Tips
+1. Reduce and limit the Payload Size : We can use GZip Compression to reduce our payload size.
+2. Enable caching : If we have requests that frequently give back the same response, then a cached version of that response helps avoid additional service calls/database queries.
+3. Provide sufficient Network speed :
+This can be achieved by leveraging and purchasing sufficient cloud resources and infrastructure (example: in AWS, allocate the proper # of EC2 instances,
+use a Network Load Balancer).
+Also, if you have a large amount of background processes, run those on separate threads to avoid blocking requests. You can also use mirrors, 
+and Content Delivery Networks (CDNs) such as CloudFront to serve requests faster around different parts of the globe.
+4. Prevent accidental calls, slowdowns, and abuse
+rate-limiting helps reduce excessive requests that would slow the API down, helps deal with accidental calls/executions, and proactively monitor and identify possible malicious activity.
+5. Try to use PATCH over PUT
+PUT operations update resources by sending updates to the entire resource. PATCH operations apply partial updates to only the resources 
+that need updating. Resulting inPATCH calls that produce smaller payloads, and improve performance at scale.
+6. Enable Logging, Monitoring, and Alerting
+7. Enable Pagination
+8. 
