@@ -471,6 +471,10 @@ Partition Tolerance: Partition tolerance refers to the ability of a distributed 
 Que: What is fault tolerance ?
 Ans: Fault tolerance refers to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when 
 one or more of its components fail.
+Fault tolerance describes a system’s ability to handle errors and outages without any loss of functionality. 
+It is a critical capability, especially in cloud computing, where reliability and uptime are paramount.
+For example, here’s a simple demonstration of comparative fault tolerance in the database layer. In the diagram below, 
+Application 1 is connected to a single database instance. Application 2 is connected to two database instances — the primary database and a standby replica.
 
 Que: What are resilency design pattren ?
 Ans: 1. Circuit Braker (Polly/Hystrix are lib to use circuit breaker pattern) 2. Retry Design pattern 3. TimeOut design pattern.
