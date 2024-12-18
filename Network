@@ -41,3 +41,9 @@ Two-phase commit: This protocol ensures that all nodes in a distributed system a
 Multi-Version Concurrency Control (MVCC): This technique manages data concurrency in a distributed system by allowing each transaction to access the appropriate data version, enabling multiple versions of the same data to coexist.
 Replication: In a distributed system, replication involves keeping multiple copies of the same data on various nodes, reducing network latency and increasing availability.
 Sharding: This process involves dividing data across multiple nodes in a distributed system, improving performance and scalability but increasing the complexity of maintaining data consistency.
+
+Batch processing vs. stream processing: 7 Differences to know:
+
+While batch processing is about processing large volumes of data at scheduled intervals, stream processing is all 
+about handling data on-the-fly, in real time, or near-real-time. The best choice depends on the specific needs of 
+a project or business requirement
