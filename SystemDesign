@@ -126,3 +126,10 @@ time that the driver spends searching for a particular employee ID value. Consid
 WHERE EMP_id = 'E10001'
 Without an index, the server must search the entire database table to find those rows having an employee ID of E10001.
 By using an index on the emp_id field, however, the server can quickly find those rows.
+
+Proxy:
+Forward proxy :
+Operates between clients and external systems, protecting the client's identity and managing client-side requests
+Forward proxies can hide the device's IP address by assigning one of its IP addresses
+Reverse proxy
+Operates between clients and servers, protecting server-side interests.Reverse proxies can manage load balancing and routing. 
