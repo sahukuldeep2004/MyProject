@@ -113,3 +113,12 @@ Sharding is a method for distributing a single dataset across multiple databases
 machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
 increasing the total storage capacity of the system. Sharding is a form of scaling known as horizontal scaling or 
 scale-out, as additional nodes are brought on to share the load.
+
+Database indexes:
+An index is a database structure that you can use to improve the performance of database activity. A database table can 
+have one or more indexes associated with it.
+A database driver can use indexes to find rows quickly. An index on the emp_id field, for example, greatly reduces the 
+time that the driver spends searching for a particular employee ID value. Consider the following Where clause:
+WHERE EMP_id = 'E10001'
+Without an index, the server must search the entire database table to find those rows having an employee ID of E10001.
+By using an index on the emp_id field, however, the server can quickly find those rows.
