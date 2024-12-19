@@ -117,6 +117,10 @@ scale-out, as additional nodes are brought on to share the load.
 Database indexes:
 An index is a database structure that you can use to improve the performance of database activity. A database table can 
 have one or more indexes associated with it.
+An index is defined by a field expression that you specify when you create the index. Typically, the field expression 
+is a single field name, like emp_id. An index created on the emp_id field, for example, contains a sorted list of 
+the employee ID values in the table. Each value in the list is accompanied by references to the rows that contain 
+that value.
 A database driver can use indexes to find rows quickly. An index on the emp_id field, for example, greatly reduces the 
 time that the driver spends searching for a particular employee ID value. Consider the following Where clause:
 WHERE EMP_id = 'E10001'
