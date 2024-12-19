@@ -179,6 +179,11 @@ Divide the database into smaller, manageable pieces, or shards, to distribute lo
 
 8. Partitioning
 Split large tables into smaller, more manageable pieces to improve query performance and maintenance.
+It is the process of splitting a database table into multiple logical units, or partitions, that are stored separately on disk.
+eg. in table of employee, we can store emp_id 1 to 10,000 in table employee_partition_1 and empId 10,001 to 20,000 in table employee_partition_2.
+There are several types of partitioning, including RANGE, LIST, and KEY. Above example is range one.
+When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. The value for one or more
+columns in a given row is used for this sorting process.
 
 9. Query Optimization
 Rewrite and fine-tune queries to execute more efficiently.
