@@ -105,8 +105,8 @@ Split large tables into smaller, more manageable pieces to improve query perform
 It is the process of splitting a database table into multiple logical units, or partitions, that are stored separately on disk.
 eg. in table of employee, we can store emp_id 1 to 10,000 in table employee_partition_1 and empId 10,001 to 20,000 in table employee_partition_2.
 There are several types of partitioning, including RANGE, LIST, and KEY. Above example is range one.
-When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. The value for one or more
-columns in a given row is used for this sorting process.
+When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. 
+The value for one or more columns in a given row is used for this sorting process.
 
 Sharding :
 Sharding is a method for distributing a single dataset across multiple databases, which can then be stored on multiple 
@@ -133,3 +133,11 @@ Operates between clients and external systems, protecting the client's identity 
 Forward proxies can hide the device's IP address by assigning one of its IP addresses
 Reverse proxy
 Operates between clients and servers, protecting server-side interests.Reverse proxies can manage load balancing and routing. 
+
+Websocket :
+WebSockets is a communication protocol providing full-duplex, bidirectional communication channels over a single, 
+long-lived TCP connection. It enables real-time data exchange between a client (e.g., web browser) and a server with 
+low overhead, reducing latency compared to traditional HTTP-based techniques like polling or long polling. WebSocket 
+connections are established through a WebSocket handshake initiated over HTTP/HTTPS using the ws:// or wss:// URL schemes, 
+then upgraded to the WebSocket protocol. Commonly used in applications like chat, gaming, IoT, and live updates. 
+WebSockets supports both binary and text data formats.
