@@ -1,4 +1,4 @@
-Kafka binary protocol,
+Kafka uses a binary protocol over TCP
 Kafka clinet lib is required.
 
 
