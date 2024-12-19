@@ -141,3 +141,18 @@ low overhead, reducing latency compared to traditional HTTP-based techniques lik
 connections are established through a WebSocket handshake initiated over HTTP/HTTPS using the ws:// or wss:// URL schemes, 
 then upgraded to the WebSocket protocol. Commonly used in applications like chat, gaming, IoT, and live updates. 
 WebSockets supports both binary and text data formats.
+
+API Gateway :
+An API gateway accepts API requests from a client, processes them based on defined policies, directs them to the 
+appropriate services, and combines the responses for a simplified user experience. Typically, it handles a request 
+by invoking multiple microservices and aggregating the results. It can also translate between protocols in legacy 
+deployments.
+For microservices‑based applications, an API gateway acts as a single point of entry into the system. It sits in front 
+of the microservices and simplifies both the client implementations and the microservices app by decoupling the 
+complexity of an app from its clients.
+In a microservices architecture, the API gateway is responsible for request routing, composition, and policy enforcement. 
+It handles some requests by simply routing them to the appropriate backend service, and handles others by invoking 
+multiple backend services and aggregating the results.
+An API gateway might provide other capabilities for microservices such as authentication, authorization, monitoring, 
+load balancing, and response handling, offloading implementation of non-functional requirements to the infrastructure 
+layer and helping developers to focus on core business logic, speeding up app releases.
