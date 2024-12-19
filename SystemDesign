@@ -95,3 +95,21 @@ No matter your programming language, start by understanding the basics of how sy
  • Designing Facebook Messenger
  • Designing WhatsApp Messenger
  • Designing Instagram
+
+Data Replication:
+Data replication also known as database replication, is a method of copying data to ensure that all information stays 
+identical in real-time between all data resources.
+
+Partitioning
+Split large tables into smaller, more manageable pieces to improve query performance and maintenance.
+It is the process of splitting a database table into multiple logical units, or partitions, that are stored separately on disk.
+eg. in table of employee, we can store emp_id 1 to 10,000 in table employee_partition_1 and empId 10,001 to 20,000 in table employee_partition_2.
+There are several types of partitioning, including RANGE, LIST, and KEY. Above example is range one.
+When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. The value for one or more
+columns in a given row is used for this sorting process.
+
+Sharding :
+Sharding is a method for distributing a single dataset across multiple databases, which can then be stored on multiple 
+machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
+increasing the total storage capacity of the system. Sharding is a form of scaling known as horizontal scaling or 
+scale-out, as additional nodes are brought on to share the load.
