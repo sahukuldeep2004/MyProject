@@ -168,3 +168,16 @@ The system functions in the following way:
 2. exchange receives a message and routes it to queues subscribed to it
 3. consumer receives messages from those queues he/she is subscribed to
 One should note that messages are filtered and routed depending on the type of exchange
+
+Caching is a technique used to store and retrieve frequently accessed data or computations to speed up subsequent 
+data requests. By storing data temporarily in a cache, systems can reduce the time and resources required to fetch
+the same data from its original source, leading to improved performance and reduced latency.
+Different types of caching:
+Caching can be broadly categorized into two types: local caching and distributed caching.
+Local caching refers to storing data on a single machine or within a single application. It’s commonly used in 
+scenarios where data retrieval is limited to one machine or where the volume of data is relatively small. Examples 
+of local caching include browser caches or application-level caches.
+Distributed caching involves storing data across multiple machines or nodes, often in a network. This type of caching 
+is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed 
+caching ensures that data is available close to where it’s needed, even if the original data source is remote or under 
+heavy load.
