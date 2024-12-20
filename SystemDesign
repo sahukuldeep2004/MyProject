@@ -181,3 +181,16 @@ Distributed caching involves storing data across multiple machines or nodes, oft
 is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed 
 caching ensures that data is available close to where it’s needed, even if the original data source is remote or under 
 heavy load.
+
+ACID transaction:
+Atomicity :Atomicity in ACID transactions guarantees that a transaction is treated as a single, indivisible unit of work. 
+If any part of the transaction fails, the entire transaction must be rolled back, meaning that any changes made during 
+the transaction are undone.
+Consistency :Consistency ensures that the database remains in a valid state before and after the transaction.
+Isolation :This property ensures that each transaction operates independently of other transactions, which means that a 
+transaction’s effects should only become visible to other transactions after it has been committed. This property prevents 
+interference and conflicts between concurrent transactions.
+Durability :-
+This characteristic makes sure that, even in a system failure, the changes made to the database during a transaction 
+are irreversible. Any changes made after a transaction is committed must persist, even if the system is destroyed or 
+loses power.
