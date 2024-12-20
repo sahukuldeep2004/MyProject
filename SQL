@@ -195,5 +195,19 @@ Select the most efficient data types for each column to save space and speed up 
 Avoid excessive indexing, which can slow down write operations; use indexes judiciously.
 
 12. Archiving Old Data
-Move infrequently accessed data to an archive to keep the active database smaller and faster.
+Move infrequently accessed data to an archive to keep the active database smaller and faster
+
+=====================================================================================================================================
+Relational Databases (RDBMS):
+Relational databases structure data into one or more tables of rows and columns, with a unique key identifying each row. Rows in a table can be linked to rows in other tables through foreign keys, establishing a relationship between them.
+This structure allows relational databases to handle large amounts of structured data, enforce data integrity, and support complex queries and ACID transactions.
+They use Structured Query Language (SQL) for defining, manipulating, and querying data, making them highly versatile and widely used in various applications
+Examples: MySQL, PostgreSQL, Oracle Database
+
+Key-Value Store :
+Key-value stores are NoSQL databases that store data as key-value pairs providing fast retrieval of values based on 
+unique keys.They are primarily used when the data model is based on key-value pairs and requires high scalability, 
+availability and throughput
+Examples: Redis, DynamoDB.
+
 
