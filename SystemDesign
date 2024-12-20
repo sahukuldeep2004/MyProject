@@ -212,6 +212,13 @@ switch to the backup solution and service will continue without interruption.
 Fault tolerance implies zero service interruptions. If there is a failure somewhere the system will instantly switch
 to the backup solution and service will continue without interruption.
 
+The main difference between fault tolerance and fault resilience is that fault tolerance allows a system to continue 
+functioning even when some components fail, while fault resilience allows a system to recover from failures quickly: 
+Fault tolerance :A system is fault tolerant if it can continue to operate effectively even when there are faults. 
+For example, a fault tolerant service might appear to have no downtime even if the machine it's running on crashes. 
+Fault resilience :A system is fault resilient if it can recover from failures quickly and continue operating 
+without significant downtime. Faults may be observed, but only in uncommitted data
+
 High availability
 A system that can minimize service interruptions by ensuring that systems are always accessible and operational. 
 High availability uses techniques like load balancing and clustering to distribute tasks across multiple servers. 
