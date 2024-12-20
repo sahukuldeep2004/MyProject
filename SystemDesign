@@ -203,3 +203,11 @@ and poor application performance. In contrast, a network with high throughput an
 
 To improve latency, you can shorten the propagation between the source and destination. You can improve throughput by 
 increasing the overall network bandwidth.
+
+What is fault tolerance?
+Fault tolerance describes a system’s ability to handle errors and outages without any loss of functionality.
+An example of a fault-tolerant multi-region architecture.
+Fault tolerance implies zero service interruptions. If there is a failure somewhere the system will instantly 
+switch to the backup solution and service will continue without interruption.
+Fault tolerance implies zero service interruptions. If there is a failure somewhere the system will instantly switch
+to the backup solution and service will continue without interruption.
