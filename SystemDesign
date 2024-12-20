@@ -211,3 +211,9 @@ Fault tolerance implies zero service interruptions. If there is a failure somewh
 switch to the backup solution and service will continue without interruption.
 Fault tolerance implies zero service interruptions. If there is a failure somewhere the system will instantly switch
 to the backup solution and service will continue without interruption.
+
+High availability
+A system that can minimize service interruptions by ensuring that systems are always accessible and operational. 
+High availability uses techniques like load balancing and clustering to distribute tasks across multiple servers. 
+High availability systems have a minimal allowed level of service interruption, such as a system with “five nines” 
+availability that is down for approximately 5 minutes per year.
