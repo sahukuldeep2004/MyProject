@@ -75,8 +75,23 @@ An architectural pattern serves as a broad and reusable solution to common archi
  Example: Netflix separates user management, content streaming, and recommendations into distinct services.
 
 2. Layered Architecture:
- Approach: The application is structured into layers (presentation, logic, data) to compartmentalize specific functions.
- Example: JavaEE applications have distinct layers for UI, business logic, and data access.
+Layered Architecture is a design pattern in software development that organizes a system into distinct layers, each with a specific role and responsibility.
+Presentation Layer (User Interface):Handles the interaction between the user and the system.
+Responsibilities: Displaying data to the user,Capturing user inputs and sending them to the underlying layers.
+Examples: Web interfaces, mobile apps, desktop applications.
+Application Layer (Service Layer): Manages the business logic and application workflows.
+Responsibilities: Implements core business rules,Processes inputs from the presentation layer.
+Coordinates data exchange between the presentation and data layers.
+Examples: Services or use cases in a web application.
+Domain Layer (Business Logic Layer): Focuses on the core domain logic and rules.
+Responsibilities:Encapsulates complex business rules and validations, Manages domain entities and aggregates.
+Examples: Business models, domain services.
+Data Access Layer (Persistence Layer): Handles interaction with the data storage mechanisms.
+Responsibilities:Fetches and saves data to databases or other storage systems.
+Abstracts the details of data storage from higher layers.
+Examples: ORMs (Object-Relational Mappers) like Hibernate, raw SQL queries.
+Infrastructure Layer (Optional): Manages technical details such as logging, caching, and messaging.
+Responsibilities:Provides support services to other layers,Handles integrations with external systems like message brokers or third-party APIs.
 
 3. EventDriven Architecture:
  Approach: Components communicate through events to achieve loose coupling.
