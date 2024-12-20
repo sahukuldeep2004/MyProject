@@ -217,3 +217,9 @@ A system that can minimize service interruptions by ensuring that systems are al
 High availability uses techniques like load balancing and clustering to distribute tasks across multiple servers. 
 High availability systems have a minimal allowed level of service interruption, such as a system with “five nines” 
 availability that is down for approximately 5 minutes per year.
+
+Distributed Tracing:
+Distributed Tracing in Microservices explains how to monitor and track requests as they move through different services
+in a microservices architecture. In microservices, a single user request might interact with multiple small services, 
+making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
+helping developers see the flow of data and pinpoint any problems.
