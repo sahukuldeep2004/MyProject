@@ -156,3 +156,15 @@ multiple backend services and aggregating the results.
 An API gateway might provide other capabilities for microservices such as authentication, authorization, monitoring, 
 load balancing, and response handling, offloading implementation of non-functional requirements to the infrastructure 
 layer and helping developers to focus on core business logic, speeding up app releases.
+
+MQ: A message queue is a queue of messages sent between applications. It includes a sequence of work objects that are waiting to be processed.
+RabbitMQ consists of:
+1. producer — the client that creates a message
+2. consumer — receives a message
+3. queue — stores messages
+3. exchange — enables to route messages and send them to queues
+The system functions in the following way:
+1. producer creates a message and sends it to an exchange
+2. exchange receives a message and routes it to queues subscribed to it
+3. consumer receives messages from those queues he/she is subscribed to
+One should note that messages are filtered and routed depending on the type of exchange
