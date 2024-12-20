@@ -194,3 +194,12 @@ Durability :-
 This characteristic makes sure that, even in a system failure, the changes made to the database during a transaction 
 are irreversible. Any changes made after a transaction is committed must persist, even if the system is destroyed or 
 loses power.
+
+Latency & Throughput:
+Latency determines the delay that a user experiences when they send or receive data from the network. 
+Throughput determines the number of users that can access the network at the same time. 
+A network with low throughput and high latency struggles to send and process high data volume, which results in congestion 
+and poor application performance. In contrast, a network with high throughput and low latency is responsive and efficient.
+
+To improve latency, you can shorten the propagation between the source and destination. You can improve throughput by 
+increasing the overall network bandwidth.
