@@ -96,6 +96,12 @@ No matter your programming language, start by understanding the basics of how sy
  • Designing WhatsApp Messenger
  • Designing Instagram
 
+Data Redundancy :
+Data redundancy is when multiple copies of the same information are stored in more than one place at a time.A typical example of this is customer information
+that is replicated across departments’ separate systems (e.g., finance, marketing, sales).
+Data replication is the deliberate process of making multiple copies of data and storing them in different locations to improve accessibility. It encompasses 
+the replication of transactions on an ongoing basis to allow users to share data between systems without any inconsistency.
+
 Data Replication:
 Data replication also known as database replication, is a method of copying data to ensure that all information stays 
 identical in real-time between all data resources.
