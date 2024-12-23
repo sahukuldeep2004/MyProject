@@ -1,0 +1,281 @@
+Requirements
+Functional Requirements:
+Users can submit a long URL and receive a shortened URL.
+Shortened URLs redirect to the original URL.
+Shortened URLs should be unique.
+Optionally, users can customize their short URLs.
+
+Non-Functional Requirements:
+The system should handle high traffic (scalability).
+Redirections should be fast (low latency).
+Data integrity should be ensured (durability).
+The system should be highly available.
+
+System Architecture
+1. Components
+Frontend:
+
+User interface for submitting URLs and viewing shortened URLs.
+Example: A web page or mobile app.
+Backend:
+
+Core logic for generating and storing shortened URLs.
+Handles redirection based on the short URL.
+Database:
+
+Stores mappings of shortened URLs to original URLs.
+Should support high-read/write throughput.
+Cache:
+
+Frequently accessed short-to-long URL mappings stored in a caching layer (e.g., Redis) for faster lookups.
+2. Workflow
+URL Shortening:
+
+User submits a long URL.
+The backend generates a unique short code for the URL (e.g., hash or base62 encoding).
+Store the mapping (short code → long URL) in the database.
+URL Redirection:
+
+When a user accesses the shortened URL, the backend:
+Looks up the short code in the database/cache.
+Redirects the user to the original URL.
+
+High-Level Design
+1. URL Shortening Service API
+Endpoint	Method	Description
+/shorten	POST	Accepts a long URL and returns a short URL.
+/expand/{shortCode}	GET	Returns the original URL for a short code.
+/{shortCode}	GET	Redirects to the original URL.
+2. Database Schema
+Table: URLMapping
+Column	Type	Description
+id	Integer	Auto-increment primary key.
+short_code	String	Unique short code for the URL.
+long_url	String	The original long URL.
+created_at	Timestamp	Timestamp when the entry was created.
+expiry_date	Timestamp	(Optional) Expiry for the short URL.
+3. Short Code Generation
+Base62 Encoding:
+
+Use an integer (e.g., auto-increment ID) and encode it into a base62 string (using digits, uppercase, and lowercase letters).
+Example: 123456 → "1c8" in base62.
+Hashing:
+
+Hash the long URL using a hash function (e.g., SHA-256).
+Take the first 6-8 characters of the hash for the short code.
+Handle collisions by appending a random suffix.
+Custom Codes:
+
+Allow users to specify a custom short code (if unique).
+4. Caching
+Use a caching layer (e.g., Redis) for frequently accessed mappings.
+Cache short-to-long URL mappings to reduce database load.
+5. Scalability
+Database Sharding:
+Partition the database by short code or hash prefix to distribute load.
+Load Balancer:
+Distribute traffic across multiple backend instances.
+CDN:
+Use a Content Delivery Network to serve static assets and reduce latency.
+Distributed Cache:
+Use a distributed caching system like Redis for scaling.
+6. High Availability
+Replicated Databases:
+Use primary-replica architecture to ensure redundancy.
+Stateless Backend:
+Keep the backend stateless and store all session data in an external store (e.g., database, Redis).
+Failover Mechanisms:
+Implement failover strategies for database and cache.
+
+Code Example
+Controller
+java
+Copy code
+@RestController
+@RequestMapping("/api")
+public class UrlShortenerController {
+
+    private final UrlShortenerService urlShortenerService;
+
+    public UrlShortenerController(UrlShortenerService urlShortenerService) {
+        this.urlShortenerService = urlShortenerService;
+    }
+
+    @PostMapping("/shorten")
+    public ResponseEntity<String> shortenUrl(@RequestBody String longUrl) {
+        String shortUrl = urlShortenerService.shortenUrl(longUrl);
+        return ResponseEntity.ok(shortUrl);
+    }
+
+    @GetMapping("/{shortCode}")
+    public ResponseEntity<Void> redirectToLongUrl(@PathVariable String shortCode, HttpServletResponse response) throws IOException {
+        String longUrl = urlShortenerService.expandUrl(shortCode);
+        response.sendRedirect(longUrl);
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).build();
+    }
+}
+Service
+java
+Copy code
+@Service
+public class UrlShortenerService {
+
+    private final UrlMappingRepository repository;
+
+    public UrlShortenerService(UrlMappingRepository repository) {
+        this.repository = repository;
+    }
+
+    public String shortenUrl(String longUrl) {
+        String shortCode = Base62.encode(longUrl.hashCode()); // Example encoding
+        repository.save(new UrlMapping(shortCode, longUrl));
+        return "http://short.ly/" + shortCode;
+    }
+
+    public String expandUrl(String shortCode) {
+        return repository.findByShortCode(shortCode)
+                         .orElseThrow(() -> new RuntimeException("Short URL not found"))
+                         .getLongUrl();
+    }
+}
+Optional Enhancements
+Analytics:
+Track the number of clicks, geographic location, or browser details for each short URL.
+Custom Expiry:
+Allow users to set expiration dates for short URLs.
+Security:
+Add CAPTCHA to prevent bots from abusing the service.
+This design provides a scalable and reliable URL shortening service, suitable for modern use cases.
+
+Capacity planning for a URL shortening service involves estimating the resources required to handle the expected load effectively. Here's how you can approach capacity planning:
+
+1. Understand the Workload
+Traffic Analysis
+Requests per second (RPS): Estimate the average and peak number of requests for:
+URL shortening.
+URL redirection.
+Example:
+Average: 500 RPS for redirection, 50 RPS for shortening.
+Peak: 5000 RPS for redirection, 200 RPS for shortening.
+Data Growth
+New URLs per day: Estimate how many new URLs will be generated daily.
+Example: 1 million new URLs per day.
+Data retention period: Determine how long URLs are stored (e.g., indefinitely or with expiration).
+2. Estimate Storage Requirements
+Storage Per URL
+Each URL mapping consists of:
+
+Short code (e.g., 8 characters): 8 bytes.
+Long URL (e.g., average 200 characters): 200 bytes.
+Metadata (e.g., timestamps, analytics): ~50 bytes.
+Total per URL: ~260 bytes.
+
+Daily Storage Needs
+Daily Storage
+=
+URLs per day
+×
+Storage per URL
+Daily Storage=URLs per day×Storage per URL
+
+Example: 1M URLs/day × 260 bytes = 260 MB/day.
+Long-Term Storage Needs
+Yearly Storage
+=
+Daily Storage
+×
+365
+Yearly Storage=Daily Storage×365
+
+Example: 260 MB/day × 365 = ~95 GB/year.
+3. Estimate Compute Resources
+Read vs. Write Operations
+Read-heavy workload: URL redirection (e.g., 90% reads, 10% writes).
+Write-heavy workload: URL shortening (e.g., during peak user acquisition).
+Compute Estimation
+CPU Usage:
+URL redirection involves simple lookups.
+URL shortening involves generating short codes and database writes.
+Database Queries:
+Measure latency for read and write operations.
+Example:
+Read latency: 1 ms/query.
+Write latency: 5 ms/query.
+Peak Traffic Handling: 
+QPS Required
+=
+Peak RPS
+×
+Query Cost per RPS
+QPS Required=Peak RPS×Query Cost per RPS
+
+Example: For 5000 RPS redirection and 1 ms/query:
+
+QPS = 5000 × 1 = 5000 QPS.
+Scaling Compute Resources
+Use horizontal scaling (e.g., more instances behind a load balancer).
+Leverage auto-scaling groups in cloud platforms (AWS, Azure, GCP).
+4. Optimize Cache Usage
+Caching reduces database load by storing frequently accessed mappings:
+
+Cache Hit Ratio: Aim for >90% for redirection.
+Cache Size Estimate:
+Popular URLs account for 10-20% of requests.
+Example: 1M daily URLs × 20% = 200,000 cached URLs.
+Storage for cache: 200,000 × 260 bytes = ~50 MB.
+Tools:
+Use Redis or Memcached for caching.
+Set expiration for cache entries based on traffic patterns.
+5. Database Sizing
+Sharded Database:
+Partition data by short code or user ID.
+High Throughput:
+Use NoSQL databases like DynamoDB, Cassandra, or MongoDB for high scalability.
+Storage Growth:
+Plan for growth based on daily storage estimates.
+Example: 1 year = 95 GB, so a database cluster should support 200-300 GB/year for safety.
+6. Networking
+Ensure sufficient bandwidth for peak redirection traffic.
+Example:
+Average URL size: 250 bytes.
+Peak RPS: 5000.
+Bandwidth = 5000 × 250 bytes/sec = ~1.25 MB/sec (~10 Mbps).
+7. Scalability Planning
+Load Balancer:
+
+Distribute traffic across multiple application instances.
+Example: AWS Elastic Load Balancer, NGINX.
+Auto-Scaling:
+
+Scale instances based on CPU or memory usage thresholds.
+Example: Increase instances if CPU > 70%.
+Database Scaling:
+
+Use read replicas for high read throughput.
+Implement sharding for large-scale data.
+8. Monitoring and Metrics
+Traffic Metrics:
+Requests per second, peak vs. average.
+Database Metrics:
+Query latency, cache hit ratio.
+System Metrics:
+CPU, memory usage, and disk I/O.
+Tools:
+Monitoring: Prometheus, Grafana, CloudWatch.
+Logging: ELK stack, Datadog.
+Alerting: Set up alerts for latency, errors, and resource usage.
+9. Cost Estimation
+Calculate costs based on:
+
+Compute resources (e.g., instances, scaling).
+Storage (e.g., database, cache).
+Bandwidth (e.g., data transfer for redirections).
+Use cloud provider pricing calculators (e.g., AWS, Azure, GCP).
+
+10. Stress Testing
+Use tools like Apache JMeter, Gatling, or Locust to simulate traffic and validate capacity planning.
+Focus on:
+Redirection latency.
+Database throughput.
+Cache performance.
+By following these steps, you can estimate and plan for the capacity needed to build a scalable and efficient URL shortening service.
