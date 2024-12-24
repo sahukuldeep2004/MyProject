@@ -62,7 +62,8 @@ of responsibility.
 What is CAP theoram ?
 Ans:https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
 https://www.bmc.com/blogs/cap-theorem/#:~:text=The%20CAP%20theorem%20is%20a,or%20availability%E2%80%94but%20not%20both.
-The CAP theorem is a belief from theoretical computer science about distributed data stores that claims, in the event of a network failure on a distributed database,it is possible to provide either consistency or availability—but not both.
+The CAP theorem is a belief from theoretical computer science about distributed data stores that claims, in the event of a network failure on a 
+distributed database,it is possible to provide either consistency or availability—but not both.
 Consistency:- All reads receive the most recent write or an error.Consistency refers to every client having the same view of the data.
 eg. In financial data is good example where we need up to date balance. Mongo DB, Redis.
 Availability:-All reads contain data, but it might not be the most recent.Availability means that each read or write request for a data item will 
