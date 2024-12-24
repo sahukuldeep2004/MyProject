@@ -177,6 +177,10 @@ COR  -Behaviour
 MVC
 DAO
 
+Que: use case of factory design pattern ?
+Ans: The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. 
+This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
+
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
 object and let the subclasses decide which class to instantiate.
