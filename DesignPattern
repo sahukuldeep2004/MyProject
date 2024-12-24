@@ -259,6 +259,8 @@ https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
 Que: Builder Design pattern ?
 Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to 
 produce different types and representations of an object using the same construction code.
+Use the builder pattern to create complex objects that have many optional parameters, as the builder pattern allows you to specify only the parameters 
+that you need, without having to provide values for all possible parameters.
 https://www.geeksforgeeks.org/difference-between-builder-design-pattern-and-factory-design-pattern/
 https://www.youtube.com/watch?v=7x8iQUv5lcM
 https://www.youtube.com/watch?v=qOLRxN5eVC0 --Shreyansh
