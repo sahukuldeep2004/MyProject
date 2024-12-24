@@ -81,17 +81,22 @@ Partition tolerance means that the cluster must continue to work despite any num
 nodes in the system.
 
 Que: Strong consistency vs weak consistency?
-Ans: Strong consistency: The data in all nodes is the same at any time. At the same time, you should get the value of key1 in node A and the value of key1 in node B.
+Ans: Strong consistency: The data in all nodes is the same at any time. At the same time, you should get the value of key1 in node A and the value
+of key1 in node B.
 Weak consistency: There is no guarantee that all nodes have the same data at any time, and there are many different implementations.
 Eventual consistency - allows for temporary inconsistencies in the data store, but eventually, all nodes converge to the same value.
 
 Question: What is SOLID priciple ?
 https://www.jrebel.com/blog/solid-principles-in-java
 Ans: https://howtodoinjava.com/best-practices/5-class-design-principles-solid-in-java/
-SOLID refers to five design principles in object-oriented programming, designed to reduce code rot and improve the value, function, and maintainability of software. 
+SOLID refers to five design principles in object-oriented programming, designed to reduce code rot and improve the value, function, and maintainability
+of software. 
 The SOLID principles help the user develop less coupled code. If code is tightly coupled, a group of classes are dependent on one another.
-1.Single responsbilty:- Everything in the class should be related to that single purpose. It does not mean that your classes should only contain one method or property.
-2.Open-Close Principal:-The Open-Closed Principle (OCP) states that classes should be open for extension but closed for modification. “Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated. “Closed for modification” means that once you have developed a class you should never modify it, except to correct bugs.
+1.Single responsbilty:- Everything in the class should be related to that single purpose. It does not mean that your classes should only contain one method
+or property.
+2.Open-Close Principal:-The Open-Closed Principle (OCP) states that classes should be open for extension but closed for modification. 
+“Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated. 
+“Closed for modification” means that once you have developed a class you should never modify it, except to correct bugs.
 3.Liskove Substitution Pricipal:- it states that an object of a superclass should be replaceable by objects of its subclasses 
 without causing issues in the application. Therefore, a child class should never change the characteristics of its 
 parent class (such as the argument list and return types). Basically, derived classes should never do less than their base 
@@ -99,18 +104,22 @@ class. Eg. if class A is a subtype of class B, then we should be able to replace
 (i.e., objects of type A may substitute objects of type B) without changing the behavior (correctness, functionality, etc.) 
 of our program.
 4.Interface segregation Principal:-Clients should not be forced to implement unnecessary methods which they will not use.
-5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on abstractions.Abstractions should not depend on details. 
+5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on 
+abstractions.Abstractions should not depend on details. 
 6.Details should depend upon abstractions.
 
 Que: What is KISS and DRY, YAGNI design pattern ?
-Ans:DRY:Don't Repeat Yourself (DRY):Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs or can make the code change difficult. This can be fixed by doing code reuse (DRY Principle).
+Ans:DRY:Don't Repeat Yourself (DRY):Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs 
+or can make the code change difficult. This can be fixed by doing code reuse (DRY Principle).
 The DRY principle is stated as "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system".
-Keep It Simple Stupid (KISS): The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, simplicity should be a key goal in design, and unnecessary complexity should be avoided.
+Keep It Simple Stupid (KISS): The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, 
+simplicity should be a key goal in design, and unnecessary complexity should be avoided.
 Simple code has the following benefits:
 less time to write
 less chances of bugs
 easier to understand, debug and modify
-YAGNI -"You Aren't Gonna Need It." This principle is often applied in Agile software development. It means that we should not add features or functionality to our software that we don't currently need.
+YAGNI -"You Aren't Gonna Need It." This principle is often applied in Agile software development. It means that we should not add features or functionality 
+to our software that we don't currently need.
 
 
 12 factor app principles, Zachman or TOGAF etc
