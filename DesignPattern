@@ -670,6 +670,10 @@ ii.) Choreography-Based Saga:In this approach, there is no central orchestrator.
 events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
 Axon Saga – a lightweight framework and widely used with Spring Boot-based microservices.
 
+What is 2PC for Distributed Transaction Management?
+2PC (Two-Phase Commit) is a protocol used to ensure all participants in a distributed transaction either commit or abort, ensuring consistency. 
+In the first phase, the coordinator asks all participants to agree to commit, and in the second phase, participants either vote to commit or abort the 
+transaction.
 
 Aggregator (Apache Camel)
 ==========
