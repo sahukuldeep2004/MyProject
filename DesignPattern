@@ -644,21 +644,29 @@ Slueth is the tool which tarck the every request from one service to another ser
 
 Saga pattern(data consistency)
 =============
-The Saga pattern is one of the microservice design patterns that allow you to manage such transactions(span across multiple microservices) using a sequence of local transactions. Each transaction is followed by an event that triggers the next transaction step.
+The Saga pattern is one of the microservice design patterns that allow you to manage such transactions(span across multiple microservices) using a 
+sequence of local transactions. Each transaction is followed by an event that triggers the next transaction step.
 If one transaction fails, the saga pattern triggers a rollback transaction compensating for the failure.
-example of an eCommerce application that consists of multiple transactions for orders, payment, inventory, shipping, and notifications. Once an order is generated for a specific product, the next transaction for the payment and the inventory update is initialized.If the transaction for inventory update fails, for example, due to unavailability of a product, a rollback is triggered. If the transaction for inventory update is successful further transactions are initialized.
+example of an eCommerce application that consists of multiple transactions for orders, payment, inventory, shipping, and notifications. Once an order 
+is generated for a specific product, the next transaction for the payment and the inventory update is initialized.If the transaction for inventory update 
+fails, for example, due to unavailability of a product, a rollback is triggered. If the transaction for inventory update is successful further transactions 
+are initialized.
 This pattern is suggested for applications where ensuring data consistency is critical without tight coupling.
 
 d. Saga design pattern( 2PC issue is resolved in SAGA)
 https://satyampushkar.medium.com/orchestration-based-saga-pattern-for-microservices-with-camunda-e68c1e81dc05
 This pattern use when a business tarnsation involves data that spans  across multiple microservices.
 The Saga Pattern is as microservices architectural pattern to implement a transaction that spans multiple services.
-A saga is a sequence of local transactions. Each service in a saga performs its own transaction and publishes an event. The other services listen to that event and perform the next local transaction. If one transaction fails for some reason, the saga also executes compensating transactions to undo the impact of the preceding transactions.
+A saga is a sequence of local transactions. Each service in a saga performs its own transaction and publishes an event. The other services listen to that 
+event and perform the next local transaction. If one transaction fails for some reason, the saga also executes compensating transactions to undo the impact 
+of the preceding transactions.
 There are two types of Sagas:
-i.) Orchestration-Based Saga:In this approach, there is a Saga orchestrator that manages all the transactions and directs the participant services to execute local transactions based on events. This orchestrator can also be though of as a Saga Manager.
+i.) Orchestration-Based Saga:In this approach, there is a Saga orchestrator that manages all the transactions and directs the participant services to execute 
+local transactions based on events. This orchestrator can also be though of as a Saga Manager.
 We are using Camunda for Orchestraion. Camunda has work flow & decision model.
 Springboot intergartion dependency archifect "camunda-bpm-spring-boot-starter"
-ii.) Choreography-Based Saga:In this approach, there is no central orchestrator. Each service participating in the Saga performs their transaction and publish events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
+ii.) Choreography-Based Saga:In this approach, there is no central orchestrator. Each service participating in the Saga performs their transaction and publish 
+events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
 Axon Saga – a lightweight framework and widely used with Spring Boot-based microservices.
 
 
@@ -671,22 +679,28 @@ ii) Subsequently, this service makes request to multiple other services
 iii) Combines the result from these multiple services
 iv) Responds to the initial request
 
-This pattern allows you to abstract the business logic from multiple services and aggregate them in a single microservice. So, only one aggregated microservice is exposed to the UI instead of multiple services.
+This pattern allows you to abstract the business logic from multiple services and aggregate them in a single microservice. So, only one aggregated 
+microservice is exposed to the UI instead of multiple services.
 
 CQRS (Command Query Responsibility Segregation)
 ===================================================
 CQRS separates reads and writes into different databases.Commands performs update data, Queries performs read data.
-CQRS is another design pattern used in microservices architecture which will have a separate service, model, and database for insert operations in the database. This acts as a command layer and separate service, model, and database for query data that acts as a query layer.
+CQRS is another design pattern used in microservices architecture which will have a separate service, model, and database for insert operations in the 
+database. This acts as a command layer and separate service, model, and database for query data that acts as a query layer.
 We have to split the database in 2 DB where one is only for read and another is for write and do the synchnorization for write to read database.
 CQRS is often used alongside the EventSourcing pattern.
-The CQRS design pattern is a technique used in microservices architecture to ensure data consistency and improve application performance. It works by separating queries and writes, allowing for scalability and avoided locking issues, with messages being sent between bounded contexts for updates. One example of CQRS in action is online banking, where a query for a customer's account balance might initiate an event to update that balance on another microservice, while a query for the customer's transaction history would still return results from a previous update.
+The CQRS design pattern is a technique used in microservices architecture to ensure data consistency and improve application performance. It works by 
+separating queries and writes, allowing for scalability and avoided locking issues, with messages being sent between bounded contexts for updates. 
+One example of CQRS in action is online banking, where a query for a customer's account balance might initiate an event to update that balance on 
+another microservice, while a query for the customer's transaction history would still return results from a previous update.
 
 
 Circuit pattern
 ================
 It prevents a cascade of failures in a distributed system by monitoring the health of external services and breaking the connection if they are unhealthy.
 Possible states are OPEN, CLOSE and HALF OPEN
-Benefit: improving availability and performance, enhancing user experience, and facilitating recovery and maintenance. By avoiding unnecessary requests to failed or slow services and reducing the impact of network latency and congestion, the circuit breaker pattern can help increase system performance.
+Benefit: improving availability and performance, enhancing user experience, and facilitating recovery and maintenance. By avoiding unnecessary requests to 
+failed or slow services and reducing the impact of network latency and congestion, the circuit breaker pattern can help increase system performance.
 Challenges :you must select the right parameters and logic for your circuit breakers, such as the failure rate threshold and the timeout duration.
 https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
 https://javatechonline.com/fault-tolerance-in-microservices-resilience4j-spring-boot/
@@ -749,10 +763,12 @@ Rest API design best practice
 
 1. Use JSON as the Format for Sending and Receiving Data
 2. Use Nouns Instead of Verbs in Endpoints
-This is because HTTP methods such as GET, POST, PUT, PATCH, and DELETE are already in verb form for performing basic CRUD (Create, Read, Update, Delete) operations.
+This is because HTTP methods such as GET, POST, PUT, PATCH, and DELETE are already in verb form for performing basic CRUD (Create, Read, Update, Delete) 
+operations.
 old :-- https://mysite.com/getPosts or https://mysite.com/createPost
 new :-https://mysite.com/posts
-In short, you should let the HTTP verbs handle what the endpoints do. So GET would retrieve data, POST will create data, PUT will update data, and DELETE will get rid of the data.
+In short, you should let the HTTP verbs handle what the endpoints do. So GET would retrieve data, POST will create data, PUT will update data, and DELETE 
+will get rid of the data.
 3. Name Collections with Plural Nouns.
 So, instead of https://mysite.com/post/123, it should be https://mysite.com/posts/123
 4.Use Status Codes in Error Handling
@@ -762,7 +778,8 @@ So, instead of https://mysite.com/post/123, it should be https://mysite.com/post
 5. Use Filtering, Sorting, and Pagination to Retrieve the Data Requested.
 6. Use SSL for Security
 7. Be Clear with Versioning.
-REST APIs should have different versions, so you don’t force clients (users) to migrate to new versions. This might even break the application if you're not careful.
+REST APIs should have different versions, so you don’t force clients (users) to migrate to new versions. This might even break the application if you're not 
+careful.
 9. Provide accurate API Documentation.
 
 Software application best parctice /principal :
