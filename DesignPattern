@@ -652,6 +652,7 @@ is generated for a specific product, the next transaction for the payment and th
 fails, for example, due to unavailability of a product, a rollback is triggered. If the transaction for inventory update is successful further transactions 
 are initialized.
 This pattern is suggested for applications where ensuring data consistency is critical without tight coupling.
+It is used to manage long-running and distributed transactions, particularly in microservices architecture.
 
 d. Saga design pattern( 2PC issue is resolved in SAGA)
 https://satyampushkar.medium.com/orchestration-based-saga-pattern-for-microservices-with-camunda-e68c1e81dc05
