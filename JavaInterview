@@ -998,6 +998,12 @@ int count = s.chars().filter(c -> c == ch).count();
 List<String> ss = Arrays.asList("Kuldeep", "Kumar", "Kuldeep");
 Map<String, Long> mm=  ss.stream().filter(x->Collections.frequency(ss,x)>1)
   .collect(Collectors.groupingBy(Function.Identity(), Collectors.counting()))
+7. Seprate the odd even no from given arry?
+Map<Boolean, List<Integer>> partitions = ints.stream()
+    .collect(Collectors.partitioningBy(x -> x % 2 == 0));
+List<Integer> evens = partitions.get(true);
+List<Integer> odds = partitions.get(false);
+
 Spring MVC and REST Annotation?
 www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html#at_pco=smlwn-1.0&at_si=5cdbb7194383efff&at_ab=per-2&at_pos=0&at_tot=1
 
