@@ -1,5 +1,8 @@
 Que: If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
 que: If we have one API call which needs to update DB A and then DB B , if DB B call is failed then how to rollback the transation?
+Ans: In a microservices architecture, ensuring data consistency across multiple services—especially when operations span different databases like DB A 
+and DB B—requires careful design. Traditional monolithic transaction mechanisms (like ACID transactions) don't scale well in distributed systems. 
+To handle such scenarios, the Saga Pattern is a widely adopted solution.
 que: If we have 2 node microservice application and before node we have LB, if request is failed in node A due to system issue thenhow to switch the request to node B. Which design pattern we need to use?
 que: If have 10gb data in table and we want to delete 9GB data from table then what would be impact on table space.
 
