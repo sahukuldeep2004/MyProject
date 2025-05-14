@@ -197,6 +197,7 @@ a Lambda expression (or function) is an anonymous function, i.e., a function wit
 5. Stream:  Stream API is used to process collections of objects.
 A new java.util.stream has been added in Java 8 to perform filter/map/reduce like operations with the collection. Stream API will allow sequential as well as parallel execution.
 stream() method is a default method added to the Collection in 1.8 version.
+
 INTERMEDIATE Operations:
 
 1.map: The map method is used to map the items in the collection to other objects according to the Oject passed as argument.
@@ -261,6 +262,8 @@ List number = Arrays.asList(2,3,4,5);
 int even = number.stream().filter(x->x%2==0).reduce(0,(a,b)-> a+b);
 here 0 is intial value .
 
+Terminal short circuit operation
+1.findFirst :-return very first elemnt which is wrapped in Optional object.
 
 6. Java Date/Time API
 LocaDate,LocalTime,LocalDateTime,Instant can be used with now.
