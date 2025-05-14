@@ -4,6 +4,8 @@ Ans: In a microservices architecture, ensuring data consistency across multiple 
 and DB B—requires careful design. Traditional monolithic transaction mechanisms (like ACID transactions) don't scale well in distributed systems. 
 To handle such scenarios, the Saga Pattern is a widely adopted solution.
 que: If we have 2 node microservice application and before node we have LB, if request is failed in node A due to system issue thenhow to switch the request to node B. Which design pattern we need to use?
+Ans: In a microservices architecture with two nodes (Node A and Node B) behind a Load Balancer (LB), ensuring high availability and fault tolerance is crucial.
+If a request to Node A fails due to a system issue, the system should seamlessly reroute the request to Node B. To achieve this we can try Retry Pattern, Circuit pattern.
 que: If have 10gb data in table and we want to delete 9GB data from table then what would be impact on table space.
 
 que: We have DB weher our SQL qury is reading the data, noow it taking 20 min comparing to 2 min? How to trobleshhot.what could be reason?
