@@ -214,7 +214,7 @@ List result = names.stream().sorted().collect(Collectors.toList())
 List number = Arrays.asList(2,3,2,4,5,4);
 List distinctNum = number.stream().distinct().collect(Collectors.toList());
 
-5. limit()
+5. limit() : Give first n element from list.
 List number = Arrays.asList(2,3,2,4,5,4);
 List distinctNum = number.stream().limit(2).collect(Collectors.toList());
 
