@@ -1567,6 +1567,29 @@ server.ssl.key-store = classpath:javatechi.JKS
 server.ssl.key-store-type = JKS
 server.ssl.key-password= test
 We can use PKCS12(.p12) key store which can be used for any parogramming lang.
+
+Que: What is Key Differences: TLS vs OAuth 2.0?
+Ans: 
+| Feature         | TLS (SSL)                      | OAuth 2.0                      |
+| --------------- | ------------------------------ | ------------------------------ |
+| Purpose         | Secure communication           | Secure **authorization**       |
+| What it secures | Transport (network connection) | Application access             |
+| Who provides it | Certificate Authority (CA)     | Identity Provider (Okta, etc.) |
+| Example use     | HTTPS connection               | API access control             |
+| Protects        | Data in transit                | Access to protected resources  |
+| Works at        | Transport layer (TCP)          | Application layer (HTTP/REST)  |
+
+Que: How Oauth & SSL/TLS Work Together?
+✅ You must use both in a secure microservices architecture:
+
+Example: A Request Between Services
+1. TLS Secures the Transport
+    Service A makes a request to Service B over https://service-b.internal.
+    TLS ensures encryption, server identity, and data integrity.
+
+2. OAuth Secures the Request Authorization
+    Service A includes Authorization: Bearer <access_token>.
+    Service B verifies the token (e.g., JWT signed by Okta) and authorizes the action.
 ===========================================================Hibernate=======================================================================
 Que: Why default constructor is reqired in Hiernate ?
 Ans: When Hibernate creates an instance of entities using reflection it uses the Class. newInstance() method, which requires a no-argument constructor to create an 
