@@ -1452,13 +1452,6 @@ Que: Where do we validate the encode password ?
 Ans: PasswordEncoder Interface has method encode(CharSequence password) which encode which we need to implements it. It also has boolean(rawPwd, encodedPwdFromDB) this method 
 validate the password in spring security when we try to verify the pwd from DB.
 
-Que: Diffrence between OAUTH2 and JWT?
-Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
-OAUTH token can be refresh for longer time other wise it can be expired.
-JWT is a protocol. If you just haev simeple app with one to one communication with server return the token and used it for subscuent request for same server.
-
-Que: Which algorithem is used for password encryption?
-Ans: Bcrypt algorithem is used in most of the application.
 
 1. What is CORS issue ?
 Ans: Cross Origen resource sharing occur when two diifrent resource try to communicate. So browser identify this and stop sending request. So we need to enable it by adding the resource server side  by adding the resoucre server name, port no. which type of service like GET, POST,PATCH, etc.
@@ -1510,6 +1503,13 @@ C.AuthenicationManager :Using the Authentication Object created the filter will 
 D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like CasAuthenticationProvider, DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
 E.UserDetailsService - The UserDetailsService is an interface having a single method named loadUserByUsername.
 
+Que: Diffrence between OAUTH2 and JWT?
+Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
+OAUTH token can be refresh for longer time other wise it can be expired.
+JWT is a protocol. If you just haev simeple app with one to one communication with server return the token and used it for subscuent request for same server.
+
+Que: Which algorithem is used for password encryption?
+Ans: Bcrypt algorithem is used in most of the application.
 
 Q: Why OAuth2?
 A: It solve prolem where we share user crediantl over network whener we send request multipe time in common basic authntication.
@@ -1568,9 +1568,6 @@ server.ssl.key-store-type = JKS
 server.ssl.key-password= test
 We can use PKCS12(.p12) key store which can be used for any parogramming lang.
 ===========================================================Hibernate=======================================================================
-ksahu 
-
-
 Que: Why default constructor is reqired in Hiernate ?
 Ans: When Hibernate creates an instance of entities using reflection it uses the Class. newInstance() method, which requires a no-argument constructor to create an 
 instance. It's effectively equivalent to the new Entity().
