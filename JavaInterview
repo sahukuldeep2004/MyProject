@@ -218,7 +218,8 @@ List distinctNum = number.stream().distinct().collect(Collectors.toList());
 List number = Arrays.asList(2,3,2,4,5,4);
 List distinctNum = number.stream().limit(2).collect(Collectors.toList());
 
-6. skip()
+6. skip() : It is almost oppiost of limit. Skip will skip the record on given number. Eg. skip(3) .It will skip first 3 record and share remaning record.
+Eg: Share the employee sarary after 3rd highest saraly. In thi case we need to sort salry in desc order and skip(3) records and share remaning record.
 7. Peek: This method exists mainly to support debugging.it performs the specified operation on each element of the stream and 
 returns a new stream which can be used further. peek() is an intermediate operation.
 empList.stream()
