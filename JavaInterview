@@ -264,6 +264,9 @@ here 0 is intial value .
 
 Terminal short circuit operation
 1.findFirst :-return very first elemnt which is wrapped in Optional object.
+2.findAny :- return any single element from stearm which is wrapped in Optional object.
+Note: For sequentail stream there won't be any diffrence between findFirst & findAny.But for parallel stream findAny will return 'any' 
+element rathne than waiting for first element.
 
 6. Java Date/Time API
 LocaDate,LocalTime,LocalDateTime,Instant can be used with now.
