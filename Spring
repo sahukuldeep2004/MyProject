@@ -1,4 +1,8 @@
 ====================================================SpringFramwork ========================== =============================================================================================
+
+Spring MVC and REST Annotation?
+www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html#at_pco=smlwn-1.0&at_si=5cdbb7194383efff&at_ab=per-2&at_pos=0&at_tot=1
+
 Que: When to use Singleton and prototype bean ?
 Ans: you should use the prototype scope for all stateful beans and the singleton scope for stateless beans.
 
