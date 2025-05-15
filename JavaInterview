@@ -410,35 +410,6 @@ Que: Where we can use the Singleton class?
 Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
 https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
 
-Singleton Class with multithread env.  
-public class SingletonTest {
-  
-    // Step 1: private static variable of INSTANCE variable
-    private static volatile SingletonTest 
-            INSTANCE;
-  
-    // Step 2: private constructor
-    private SingletonTest() {
-  
-    }
-  
-    // Step 3: Provide public static getInstance() method 
-    // returning INSTANCE after checking
-    public static SingletonTest getInstance() {
-  
-        // double-checking lock
-        if(null == INSTANCE){
-  
-            // synchronized block
-            synchronized (SingletonTest.class) {
-                if(null == INSTANCE){
-                    INSTANCE = new SingletonTest();
-                }
-            }
-        }
-        return INSTANCE;
-    }
-}
 
 Que: How to ensure that instance is never garbage collected.?
 Ans: A singleton kind of pattern. There's a static reference to a singleton, so it won't be eligible for garbage collection until the
