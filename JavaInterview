@@ -624,39 +624,6 @@ Question: Can you name few design patterns used in standard JDK library?
 Answer: Singleton design pattern is used for Runtime,Calendar  and various other classes.Factory pattern which is used along with various 
 Immutable classes like Boolean e.g. Boolean.valueOf and observer patternn which is used in Swing.
 
-Question: What is main benefit of using factory pattern ? Where do you use it?
-Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance implementation without any change on client layer.
-
-Que What is Factory Design Pattern ?
-Ans:It is used to create an Object by hiding the creation logic of object. We create an interface and implemented by many subclass. Now let’s use factory class to 
-create and get an object of concrete class by passing some information.
-public class NotificationFactory {
-	public Notification createNotification(String channel)
-	{
-		if (channel == null || channel.isEmpty())
-			return null;
-		if ("SMS".equals(channel)) {
-			return new SMSNotification();
-		}
-		else if ("EMAIL".equals(channel)) {
-			return new EmailNotification();
-		}
-		else if ("PUSH".equals(channel)) {
-			return new PushNotification();
-		}
-		return null;
-	}
-}
-public class NotificationService {
-	public static void main(String[] args)
-	{
-		NotificationFactory notificationFactory = new NotificationFactory();
-		Notification notification = notificationFactory.createNotification("SMS");
-		notification.notifyUser();
-	}
-}
-
-
 Question:Difference between ConcurrentHashMap, Hashtable and Synchronized Map in Java?
 Answer: Hashtable is a legacy class from JDK 1.1 itself, which uses synchronized methods to achieve thread-safety. All methods of Hashtable are synchronized which makes them quite slow due to contention if a number of thread increases.
 The only difference between Hashtable and Synchronized Map is that later is not a legacy and you can wrap any Map to create it's synchronized version by using Collections.synchronizedMap() method.
