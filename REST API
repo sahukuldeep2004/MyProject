@@ -1,3 +1,80 @@
+========================= API =======================
+What is API ?
+Application Programimg Interface act as bridge, allowing distinct software component to communicate and interact. They responsible for data excahnage,function calls and overall integration between software system.
+
+When to choose REST API and SOAP APi ?
+REST : Choose REST when Limited bandwidth,lightweight, low-cost or simple operations,Developing public APIs, REST API is stateless, meaning each request should contain all the information needed to process it.
+
+SOAP : Simple Object Application Protocol , It is messaging protocol specification for exchanging structure information.
+It is used mostly in finacial service and payment gateway project where security, transactional reliablity and formal contracts between client and server is key. It perform Asynchronous operations and stateless.SOAP uses XML as the data format for messages being sent and received by an API client.its support for WS-Security and strongly-typed contracts as Web Service Definition Language (WSDL) to specify the functionalities of an API.
+Envelope: Defining the structure of the message.
+Encoding: Rules for expressing the type of data.
+Requests: How each SOAP API request is structured.
+Responses: How each SOAP API response is structured.
+
+Que: What is REST API ?
+https://blog.postman.com/soap-vs-rest/
+A REST API, also known as a RESTful API, is a simple, uniform interface that is used to make data, content, algorithms, media, and other digital resources available through web URLs.
+APIs that are designed according to REST principles are referred to as “RESTful APIs.
+Statelessness:The server shouldnot need to store any information about the client’s state
+Separation of concerns:-The client and server should be properly decoupled from each other
+Layered architecture:-Software architecture should be split into layers with their own distinct purpose, which helps keep the system modular and maintainable
+Cache support: Responses can be cached on the client to improve an application’s performance and remove the need to re-process repeated requests.
+Consistent interface: HTTP methods like GET, POST, and DELETE help make interactions between clients and servers simple and consistent.
+Emphasis on resources: RESTful APIs are resource-based, rather than method-based or function-based. A resource can be an object, entity, or data within a system. Resources are uniquely identified using a Uniform Resource Identifier (URI), and HTTP methods are used to perform CRUD operations (create, read, update, delete) on them.
+
+
+What are top 6 API architectural Styles ?
+1. SOAP:
+2.RESTFul : It uses Http methods.A client-server communication model centered around resources identified by URIs.
+3.GraphQL : It is also a query language. It allow clients to aks for specific data as they need . No more over fetching or under fetching.
+4.gRPC :A high-performance RPC (Remote Procedure Call) that works with a binary serialization format called Protocol Buffers.
+5.WebSocket : It is all about real time, biderectional and persist connection.It is perfect for live chat and real time gaming wher low latency data exchange is crucial.
+6.Webhook : It is all about event driven, HTTP callback and sysnchronus operation.
+
+Que: How to make my API request as Idempotance ?
+To get to a state of Idempotency, you can add a RequestId to your request and check if the request was done before. This means that you have to save the requestIds in the system and validate them when the API is called.
+
+Q: How many ways we can improve the performance of API ?
+1. Caching
+2. Connection Pool for DB call.
+3. Avoid N+1 problem
+4. Pagination and Sorting 
+5. JSON Serilization
+6. Payload compression
+7. Asysnchronus logging.
+
+Que: Consideration/Best Practice to use RESt API ?
+Ans: 1. resource Naming & plurals 2. Idempotancy 3.Use Versioning 4. Softdelete reocrds, pagination& sorting,Filtering 5. Handle error gracefully and return error code 6. Secure ACcess 7. RateLimiting 8. Documentation.
+Tips for API security
+Ans: Use SSL(Https) B. OAuth2 C.WebAuthn C. Level API Keys (InterService communication) D. Authorization E.Rate Limiting F.API Version. G Allowlisting H. API Gateway I. ErrorHandling J. Input validation
+
+How SSL works?
+It works on Asymmetric key with valid certificat which is issued by any valid issuer company. Server send the public key to client and client verify the public key with help of certiificate authority and exchange the data between client/server. Server decrypt the data using private key.
+ 
+ 
+Que: How to improve java code performance ?
+Ans: 1. always use a StringBuilder rather than the + operator for String manupulation.
+2.Regular expressions are useful, but they come at a price. you must avoid regular expressions at all costs.Use a popular library like Apache Commons Lang instead, for your String manipulation.
+3. avoid recurrsion
+4. Always use entrySet() when you need both keys and values during map iteration.
+5. 
+https://www.geeksforgeeks.org/12-tips-to-optimize-java-code-performance/
+
+1. Avoid Writing Long Methods
+2. Avoid Multiple If-else Statements (may be use switch statemnet)
+3. Avoid Getting the Size of the Collection in the Loop
+4.Avoid Using String Objects For Concatenation
+5.Use Primitive Types Wherever Possible
+6.Avoid Using BigDecimal Class
+7.Avoid Creating Big Objects Often
+8.Use Stored Procedures Instead of Queries
+9.Using PreparedStatement instead of Statement
+10. Use of Unnecessary Log Statements and Incorrect Log Levels
+11. Select Required Columns in a Query
+12. Fetch the Data Using Joins
+
+=====================================================================================================================
 API Architecture - Design Best Practices for REST APIs
 https://blog.wahab2.com/api-architecture-best-practices-for-designing-rest-apis-bf907025f5f
 1. Learn the basics of HTTP
