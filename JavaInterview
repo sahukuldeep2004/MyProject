@@ -809,10 +809,6 @@ Map<Boolean, List<Integer>> partitions = ints.stream()
 List<Integer> evens = partitions.get(true);
 List<Integer> odds = partitions.get(false);
 
-Spring MVC and REST Annotation?
-www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html#at_pco=smlwn-1.0&at_si=5cdbb7194383efff&at_ab=per-2&at_pos=0&at_tot=1
-
-
 ================================================== Micro Services===============================================
 Que: How to get Retry mechanism in Springboot?
 https://howtodoinjava.com/spring-boot2/spring-retry-module/#:~:text=Create%20one%20sample%20Rest%20controller,retry%20module%20will%20automatically%20retry.&text=In%20the%20Rest%20Api%20we,so%20that%20spring%20can%20retry.
