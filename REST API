@@ -190,3 +190,18 @@ http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
     ){
         return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
     }
+=================================
+Microservices Principal:
+1.Highly maintainable and testable 
+2.Loosely coupled
+3.Independently deployable
+4. Organized around business capabilities
+5. Owned by a small team
+6. Database per service
+7. Eventual consistency
+Best Practice
+1.Design for failure
+2.Decentralize everything 3. Use containers 4. Implement Continuous Integration (CI) and Continuous Delivery
+5.Monitor and Log 6.Embrace automation 7. Service Discovery.
+===========================================
+
