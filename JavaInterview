@@ -100,7 +100,7 @@ Que: Fail fast & fails safe iterator ?
 Ans:Fail-Fast systems abort operation as-fast-as-possible exposing failures immediately and stopping the whole operation.
 iterators throw ConcurrentModificationException on a best effort basis.
 Whereas, Fail-Safe systems don't abort an operation in the case of a failure. Such systems try to avoid raising failures as much as possible.
-Eg. ConcurrentHashMap
+Eg. ConcurrentHashMap, CopyOnWriteArrayList
 
 
 Que: What is Java Parallel Streams?
@@ -125,8 +125,10 @@ How to convert String to char.
 Using this method .. toCharArray()
 
 Que: Exception handling rule ?
-Ans: 1. If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception. 
-2. If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+Ans: 1. If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it 
+can declare unchecked exception. 
+2. If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but 
+cannot declare parent exception.
 
 Que: Which collection maintain insertion order?
 Ans:ArrayList ,LinkedList, LinkedHashSet,LinkedHashtMap,CopyOnWriteArrayList
