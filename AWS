@@ -4,3 +4,226 @@ Roles :
 Roles are created and assigned specific permissions by AWS Identity and Access Management (IAM). They are both a principal and identity in AWS. Roles have two core aspects: a trust policy and a permission policy. The trust policy determines which entities can assume the role, and the permission policy defines the privileges granted to those entities. 
 Assuming a role :
 To assume a role, you must first create or identify a role to assume. You can then configure your SDK or tool to use the permissions granted by the role
+
+
+https://www.simplilearn.com/tutorials/aws-tutorial/aws-interview-questions
+
+Que: AWS EB?
+Ans: EB can be invoked by any services and based on schema type/rule. it is going to execure corrospondace lambda function.
+EB can read the message data and based on that it can apply the rule.
+Que: What What is Lambda,?
+Ans: Lambda is serverless compute services which run the code without any server menas we dont need to manage server(internally it run container). We can write code in may 
+languages like java, nodejs, python,C#, Go. It also automatically scale up & down as per need.We only pay when our code is running.
+
+Que: How Lambda run?
+Ans: Lambda can be triigered as a result of events happening from nay services like S3, DynamoDB,CloudWatch etc.
+eg. When we add any image in S3 bucket(PUT event) an event can be happen and Lamda can be trigger. It can be run max duration of 5 min.
+Parallely e can run 100 concurrnt function but we can also increase it with help of AWS support.
+
+Que: Lambda security?
+Ans: Use only One IAM role per Lambda function:For example, if you shared the IAM role of a Lambda function that needed access to an AWS KMS key across multiple Lambda functions,
+ then all of those functions would now have access to the same encryption key.
+Temporary AWS Credentials :-You should not have any long-lived AWS credentials included within your Lambda function code or configuration.
+
+Que: Diffrence b/w application load balancer & network load balancer?
+Ans: NLB:A typical use case would be a near real-time data streaming service (video, stock quotes, etc.) Another typical case is that you would need to use an NLB if your
+ application uses non-HTTP protocols.Its main feature is that it has a very high performance. Also, it uses static IP addresses .
+ALB:Provides the ability to route HTTP and HTTPS traffic based upon rules, host based or path based.
+The network load balancer just forward requests whereas the application load balancer examines the contents of the HTTP request header to determine where to route the request.
+ So, the application load balancer is performing content based routing.
+
+Que: AWS type of encryption for KMS(Key Management Services) services?
+Ans: Symmetric & Asmmetric encryption.
+Symmetric Encryption: It will use same key for encryption & decryption for text data.
+Asymmetric Encryption: It use use diffrent key which is public key for encryption & secrect key for decryption.
+KMS use Symmetric encryption.
+
+Que: How to create a EKS services ?
+Ans: https://www.youtube.com/watch?v=VeC85k6PAY4&t=289s
+
+Que: How u encrypt data in transit in AWS?
+Ans: Store encryption keys and certificates securely and rotate them at appropriate time intervals while applying strict access control; 
+for example, by using a certificate management service, such as AWS Certificate Manager (ACM).
+there are many other way as well.
+We cam alos use KMS key.
+
+Que: What is provisioned concurrency in Lambda?
+Ans: a feature that provides customers greater control over performance of their serverless applications at any scale.Customers only pay for the amount of concurrency that they configure and for the period of time that it is configured.
+
+Que: how to redirect traffic to multiple regions in AWS?
+Ans: We can control the traffic using Route 53.
+ 
+Que: Whare is a Security Group?
+Ans It is used to provided on extra layer security so that traffic can be stopped. Genrally in Secuity group we allow which port no. we need to allow from anywhee or soe 
+custome IPs. like which inboud and outbound are allow. Here inbound means traffic coming to machine and outound means trafic going fro EC2 machine. This security group is
+ used at EC2 intance level.
+
+Que: What is NACL (Network Access Control List)?
+Ans: It is also as security layer to filter the traffic . But it is at subnet level.
+
+Que How to provide access to S3 bucket to particular user?
+Ans: Fisrt need to create a bucket policy. we can use the Policy generator to genearte the policy and add the bucket URN. When policy is ready then 
+we can add the policy to the user.
+
+What are the different types of EC2 instances based on their costs?
+The three types of EC2 instances are:
+On-demand Instance : It is cheap for a short time but not when taken for the long term.
+Spot Instance :It is less expensive than the on-demand instance and can be bought through bidding. 
+Reserved Instance :If you are planning to use an instance for a year or more, then this is the right one for you.
+
+Que: What are the factors to consider while migrating to Amazon Web Services?
+Ans: Operational Costs - These include the cost of infrastructure, ability to match demand and supply, transparency, and others.
+Workforce Productivity 
+Cost avoidance
+Operational resilience
+Business agility
+
+What is the difference between an IAM role and an IAM user?
+Ans: An IAM role is an IAM entity that defines a set of permissions for making AWS service requests, while an IAM user has permanent long-term credentials and is used to interact with the AWS services directly.
+With IAM role we can provide acccess to services using IAM role.
+
+Que:What is AWS CloudTrail?
+AWS CloudTrail records user API activity on your account and allows you to access information about the activity. Using CloudTrail, you can get full details about API actions such as the identity of the caller, time of the call, request parameters, and response elements. 
+
+Que: What is RTO and RPO in AWS?
+Ans: RTO or Recovery Time Objective is the maximum time your business or organization is willing to wait for a recovery to complete in the wake of an outage. 
+On the other hand, RPO or Recovery Point Objective is the maximum amount of data loss your company is willing to accept as measured in time.
+
+Que: How is AWS CloudFormation different from AWS Elastic Beanstalk?
+Ans: AWS CloudFormation helps you provision and describe all of the infrastructure resources that are present in your cloud environment.
+AWS CloudFormation supports the infrastructure needs of various types of applications, like legacy applications and existing enterprise applications.
+On the other hand, AWS Elastic Beanstalk provides an environment that makes it easy to deploy and run applications in the cloud.
+
+VPC: VPC stands for Virtual Private Cloud. It allows you to customize your networking configuration. It is a network which is logically isolated from another network in the cloud. It allows you to have your IP address range,  routing table, internet gateways, subnet and security groups.
+
+S3: S3 stands for Simple Storage Service. You can use S3 interface to store and retrieve any
+amount of data, at any time and from anywhere on the web. For S3, the payment model is “pay as you go".
+
+Que: How many buckets can you create in AWS by default?
+By default, you can create up to 100 buckets in each of your AWS accounts.
+AMI: AMI stands for Amazon Machine Image. It's a template that provides the information (an operating system, an application server, and applications) required to launch an instance, which is a copy of the AMI running as a virtual server in the cloud. You can launch instances from as many different AMIs as you need.
+
+Snowball:- Snowball is a data transport option. It used source appliances to a large amount of data into and out of AWS. With the help of snowball, you can transfer a 
+massive amount of data from one place to another. It helps you to reduce networking costs.
+
+Redshift: Redshift is a big data warehouse product. It is fast and powerful, fully managed data warehouse service in the cloud.
+
+Que:  Explain can you vertically scale an Amazon instance? How?
+Yes, you can vertically scale on Amazon instance. For that
+Spin up a new larger instance than the one you are currently running
+Pause that instance and detach the root webs volume from the server and discard
+Then stop your live instance and detach its root volume
+Note the unique device ID and attach that root volume to your new server
+And start it again
+
+Que: What are key-pairs in AWS?
+Ans: Key-pairs are secure login information for your virtual machines. To connect to the instances you can use key-pairs which contain a public-key and 
+private-key.
+
+What are the roles?
+Roles are used to providing permissions to entities which you can trust within your AWS
+account. Roles are very similar to users. However, with roles, you do not require to create any
+username and password to work with the resources.
+
+Que: Mention what the security best practices for Amazon EC2 are?
+Ans: Use AWS identity and access management to control access to your AWS resources
+Restrict access by allowing only trusted hosts or networks to access ports on your instance.
+Review the rules in your security groups regularly
+Only open up permissions that you require
+Disable password-based login, for example, launched from your AMI
+
+Que: What are the advantages of auto-scaling?
+Ans: Offers fault tolerance, Better availability,Better cost management.
+
+What is auto-scaling?
+Auto-scaling is a function that allows you to provision and launch new instances whenever there is a demand. It allows you to automatically 
+increase or decrease resource capacity in relation to the demand.
+
+Que: What is meant by subnet?
+Ans: A large section of IP Address divided into chunks is known as subnets.
+
+Que: Can you establish a Peering connection to a VPC in a different region?
+Ans: we can establish a peering connection to a VPC in a different region. It is called inter-region VPC peering connection.
+
+Que: What is SNS ?
+Ans: Simple Notification servces. It works on Pulisher/Subscriber model.It work on PUSH based notification services. It use Topic to post the messsage.
+and subscriber like Lambda/SMS/HTTP/EMAL can subscribe that message.
+Que: 29) What is SQS?
+Simple Queue Service also known as SQS. It is distributed queuing service which acts as a mediator for two controllers.
+Thre is 2 type of queqe. Standard & FIFO. FIFO is much more reliable for delivering the message.
+
+30) How many subnets can you have per VPC?
+You can have 200 subnets per VPC.
+
+Que: What is the role of AWS CloudTrail?
+Ans: CloudTrail is a specially designed tool for logging and tracking API calls. It helps to audit all S3 bucket accesses.
+What is AWS Lambda?
+Lambda is an Amazon compute service which allows you to run code in the  AWS Cloud without managing servers. Lambda can run max 5 min to achive the goal.
+Lambda pricing depends on two type , first is resource level choosen,and second is time of execution of lambda function.
+
+Que: What is boot time taken for the instance stored backed AMI?
+The boot time for an Amazon instance store-backend AMI is less than 5 minutes.
+
+Que: Do you need an internet gateway to use peering connections?
+Yes, the Internet gateway is needed to use VPC (virtual private cloud peering) connections.
+
+Que:How to connect EBS volume to multiple instances?
+We can’t be able to connect EBS volume to multiple instances.  Although, you can connect various EBS Volumes to a single instance.
+
+Que: Whare are the key component are ?
+Route 53:A DNS web service
+Simple E-mail Service:It allows sending e-mail using RESTFUL API call or via regular SMTP
+Identity and Access Management:It provides enhanced security and identity management for your AWS account
+Simple Storage Device or (S3):It is a storage device and the most widely used AWS service
+Elastic Compute Cloud (EC2): It provides on-demand computing resources for hosting applications. It is handy in case of unpredictable workloads
+Elastic Block Store (EBS):It offers persistent storage volumes that attach to EC2 to allow you to persist data past the lifespan of a single Amazon EC2 instance
+CloudWatch: To monitor AWS resources, It allows administrators to view and collect key Also, one can set a notification alarm in case of trouble
+
+Que: What services can be used to create a centralized logging solution?
+Ans: The essential services that you can use are Amazon CloudWatch Logs, store them in Amazon S3.
+
+Que: Name some of the AWS services that are not region-specific.
+AWS services that are not region-specific are:
+
+IAM
+Route 53
+Web Application Firewall 
+CloudFront
+
+Que: What are the differences between NAT Gateways and NAT Instances?
+Ans: NAT Gatway is AWS manage servcies which allow an instance to connect to internet from private internet(private IP).
+NAT Instance:You can create your own network address translation AMI and run it on an EC2 instance as NAT instance in a public subnet in your VPC to enable instances in the private subnet to initiate outbound IPv4 traffic to the internet or other AWS services, but prevent the instances from receiving inbound traffic initiated by.
+
+Internet Gateways : It is used to allow resourecs in your VPC to access internet (inbound and outbound).
+
+Que:  What are the different types of EC2 instances based on their costs?
+Ans: On-demand Instance : It is cheap for a short time but not when taken for the long term
+Spot Instance : It is less expensive than the on-demand instance and can be bought through bidding. 
+Reserved Instance : If you are planning to use an instance for a year or more, then this is the right one for you
+
+Que: VPC is not resolving the server through DNS. What might be the issue, and how can you fix it?
+Ans: To fix this problem, you need to enable the DNS hostname resolution, so that the problem resolves itself.
+
+Que: Name and explain some security products and features available in VPC?
+ANs :Security groups - This acts as a firewall for the EC2 instances, controlling inbound and outbound traffic at the instance level.
+Network access control lists - It acts as a firewall for the subnets, controlling inbound and outbound traffic at the subnet level.
+Flow logs - These capture the inbound and outbound traffic from the network interfaces in your VPC.
+
+Que: How do you monitor Amazon VPC?
+ANs: You can monitor VPC by using:
+CloudWatch and CloudWatch logs
+VPC Flow Logs
+
+Que: How to provide control on S3 bucket object?
+Ans: we can control the S3 bucket object based on access control list(ACL) & Bucket policy.
+
+Que: How to provide restriction on S3 bucket on user level means all the user can not access s3 bucket?
+Ans: We can create an IAM policy(in IAM policy we can add the bucket name and folder). We can attach the policy to user or we can crate a group in that group we can add the policy and attahced it to user.
+
+Que: What is the design from ABC.com to get response from EC2?
+Ans: Hit abc.com -> Route53 , ->ELB ->Auto Scaling Group(ASG) -> ec2 (1), ec2(2)
+                              ->ELB ->Auto Scaling Group(ASG) -> ec2 (1), ec2(2)
+
+Que:What is lift and shift in AWS?
+Ans:“Lift and shift,” also known as “rehosting,” is the process of migrating an exact copy of an application or workload, together with its data store and operating system (OS), from IT one environment to another—usually from on-premises to public or private cloud.
+
