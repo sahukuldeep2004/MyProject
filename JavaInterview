@@ -264,10 +264,13 @@ here 0 is intial value .
 
 Terminal short circuit operation
 1.findFirst :-return very first elemnt which is wrapped in Optional object.
+eg. Employee emp = list.stream.filter(e->e.getName('kuldeep')).findFirst().get();
 2.findAny :- return any single element from stearm which is wrapped in Optional object.
+eg. Employee emp = list.stream.filter(e->e.getName('kuldeep')).findAny().get();
 Note: For sequentail stream there won't be any diffrence between findFirst & findAny.But for parallel stream findAny will return 'any' 
 element rathne than waiting for first element.
-
+3. anyMatch :-any element from the stream which meet the predicate condition then it return true value and not going to travese the comlete list.
+Boolean val = list.stream().findMatch(emp->emp.getName.contains('kuldeep'));
 6. Java Date/Time API
 LocaDate,LocalTime,LocalDateTime,Instant can be used with now.
 
