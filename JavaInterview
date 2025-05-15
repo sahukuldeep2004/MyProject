@@ -271,6 +271,10 @@ Note: For sequentail stream there won't be any diffrence between findFirst & fin
 element rathne than waiting for first element.
 3. anyMatch :-any element from the stream which meet the predicate condition then it return true value and not going to travese the comlete list.
 Boolean val = list.stream().findMatch(emp->emp.getName.contains('kuldeep'));
+Note: It is like OR condition.
+4. allMatch : All element should match the provided predicate condition.
+Note: it is kind of && operation wher any single record does not meet with condition then it return false.
+
 6. Java Date/Time API
 LocaDate,LocalTime,LocalDateTime,Instant can be used with now.
 
@@ -326,19 +330,6 @@ reference.
 Function<T,R> is also single argument function but it returns an Object.Here T denotes type of input to the function and R denotes type of Result.
 Supplier is function interface which does not take any parameter but returns the value using get method.
 
-Que Do we have PermGen in Java 8? Are you aware of MetaSpace?
-https://www.baeldung.com/java-permgen-metaspace#:~:text=PermGen%20(Permanent%20Generation)%20is%20a,content%20in%20this%20memory%20section.
-Ans: Until Java 7, JVM used an area called PermGen to store classes. It got removed in Java 8 and replaced by MetaSpace.
-Major advantage of MetaSpace over permgen:
-PermGen was fixed in term of mazimum size and can not grow dynamically but Metaspace can grow dynamically and do not have any size constraint.
-
-Que; What is PermGen  and what it contain?
-Ans: PermGen (Permanent Generation) is a special heap space separated from the main memory heap.
-It loaded class metadata in the PermGen.the JVM stores all the static content in this memory section. This includes all the static methods, primitive variables, and references to the static objects.
-It is removed from java 8 onwards.this native memory region grows automatically by default.with this improvement, JVM reduces the chance to get the OutOfMemory error.
-
-Que: What is MetadataSpace ?
-Ans: It has replaced the older PermGen memory space.
 
 Que: Explain StringJoiner Class in Java 8? How can we achieve joining multiple Strings using StringJoiner Class?
 Ans:  In Java 8, a new class was introduced in the package java.util which was known as StringJoiner. Through this class, we can join multiple strings separated by delimiters along with providing prefix and suffix to them.
@@ -357,6 +348,20 @@ StringJoiner stj = new StringJoiner(",", "(", ")");
 		Op :=  (Saket,John,)
 
 =============================Garbage Collection====================
+Que Do we have PermGen in Java 8? Are you aware of MetaSpace?
+https://www.baeldung.com/java-permgen-metaspace#:~:text=PermGen%20(Permanent%20Generation)%20is%20a,content%20in%20this%20memory%20section.
+Ans: Until Java 7, JVM used an area called PermGen to store classes. It got removed in Java 8 and replaced by MetaSpace.
+Major advantage of MetaSpace over permgen:
+PermGen was fixed in term of mazimum size and can not grow dynamically but Metaspace can grow dynamically and do not have any size constraint.
+
+Que; What is PermGen  and what it contain?
+Ans: PermGen (Permanent Generation) is a special heap space separated from the main memory heap.
+It loaded class metadata in the PermGen.the JVM stores all the static content in this memory section. This includes all the static methods, primitive variables, and references to the static objects.
+It is removed from java 8 onwards.this native memory region grows automatically by default.with this improvement, JVM reduces the chance to get the OutOfMemory error.
+
+Que: What is MetadataSpace ?
+Ans: It has replaced the older PermGen memory space.
+
 Que: What Is Garbage Collection and What Are Its Advantages?
 Ans: Garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
 
