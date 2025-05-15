@@ -181,6 +181,9 @@ Que: use case of factory design pattern ?
 Ans: The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. 
 This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
 
+Question: What is main benefit of using factory pattern ? Where do you use it?
+Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance implementation without any change on client layer.
+
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
 object and let the subclasses decide which class to instantiate.
