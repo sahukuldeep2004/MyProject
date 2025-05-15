@@ -152,3 +152,41 @@ Maintain a pool of reusable database connections instead of creating a new one f
 - Gzip Compression - Reduce response sizes.
 - Content Delivery Network (CDN) - Cache static assets globally for faster delivery.
 - Monitor and Profile - Use tools like New Relic or Datadog to identify bottlenecks. 
+================================================================
+REST API Sample
+
+@PostMapping("/product")
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
+        Product newProduct = productService.saveProduct(product);
+        return ResponseEntity.ok(newProduct);
+    }
+@GetMapping("/products")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+@GetMapping("/products/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Optional<Product> product = productService.getProductById(id);
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+@PutMapping("/products/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        Product updatedProduct = productService.updateProduct(id, product);
+        return ResponseEntity.ok(updatedProduct);
+    }
+@DeleteMapping("/products/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Product deleted successfully");
+    }
+===========================================
+http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
+@GetMapping
+    public PostResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
+    ){
+        return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
+    }
