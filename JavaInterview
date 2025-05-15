@@ -14,8 +14,8 @@ Issue: Deployed the code in PSP having issue with keystore in .p12 certificate b
 
 
 Role: 1. Architect 2. Lead role 3. Indivisual developer.
-How to start work on requirment/design part:
-1. For any new requiremnt, we follow the ATOM process. Where we need to prepare the doc about the high levl solution with pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
+How to start work on requirment/design part:  Discovery,Ideation, Execution
+1. For any new requiremnt, we follow the ATOM(Agile Traget Operating Model) process. Where we need to prepare the doc about the high levl solution with pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
 2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the problem in technical manner.
 3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and provide the story point.
 
