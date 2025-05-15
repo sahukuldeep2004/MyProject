@@ -330,6 +330,9 @@ and you have a similar object already existing. Prototype pattern provides a mec
 new object and then modify it according to our needs. Prototype design pattern uses java cloning to copy the object.
 https://www.digitalocean.com/community/tutorials/prototype-design-pattern-in-java
 
+Que: Where we can use the Singleton class?
+Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
+https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
 Que: Write a Singleton class with all consider scenario?
 Ans: Real java example is Java.lang.Runtime class of Singleton class.
 public class SingletonTest {
