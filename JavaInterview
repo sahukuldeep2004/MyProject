@@ -809,6 +809,28 @@ Map<Boolean, List<Integer>> partitions = ints.stream()
 List<Integer> evens = partitions.get(true);
 List<Integer> odds = partitions.get(false);
 
+8. Sort the emp list by salary
+comparedBySalary = Comparator.comparing(Employee: getSalary)
+list.stream().sort(comparedBySalary).connect(Collectors.toList());
+
+9. write java 8 progme to return the second loweset number from an array
+int[] numbers =[2,6,5,3,1,2]
+int sencodLoweset = Arrays.stream(numbers).distinct().sort().skip(1).findFirst()
+
+10.Finding common elements between two arrays
+array1 =[1,2,3,4,5], arra2 = [4,5,6,7]
+Solu: 
+List<Integer> ll = Arrays.stream(arra1).filter(num1 -> Arrays.stream.anyMatch(num2 ->num2 == num1)).boxed().collect(Collectors.toList);
+
+11. Reversing an array of integers in-place?
+Sol: IntStram.range(0, arr.length/2).forEach(i ->{
+int temp = arr[i];
+arr[i] = arr[arr.length-i-1];
+arr[arr.length-i-1] =temp;}
+);
+12. Finding the length of the longest string in an array
+String[] str1 = {"AAA","BABABA", "BAS", "AA"}
+int maxL = Arrays.stream(str1).maptoInt(str -> str.length).max().orElse(0);
 ================================================== Micro Services===============================================
 Que: How to get Retry mechanism in Springboot?
 https://howtodoinjava.com/spring-boot2/spring-retry-module/#:~:text=Create%20one%20sample%20Rest%20controller,retry%20module%20will%20automatically%20retry.&text=In%20the%20Rest%20Api%20we,so%20that%20spring%20can%20retry.
