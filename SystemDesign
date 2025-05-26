@@ -7,6 +7,14 @@ Scalability is the property of a system to handle a growing amount of load by ad
 Vertical Scaling (Scale up):-This means adding more power to your existing machines by upgrading server with more RAM, faster CPUs, or additional storage.
 Horizontal Scaling (Scale out):-This means adding more machines to your system to spread the workload across multiple servers
 2. Latency vs Throughput: https://lnkd.in/g_amhAtN
+Latency is the delay in network communication. It shows the time that data takes to transfer across the network. Networks with a longer delay or lag 
+have high latency, while those with fast response times have lower latency. In contrast, throughput refers to the average volume of data that can 
+actually pass through the network over a specific time. It indicates the number of data packets that arrive at their destinations successfully and the 
+data packet loss.
+Best : high throughput * low latency
+Throughput can be measured in MBps and latency in milliseconds.
+Throughput is imapcted by Bandwidth, network processing power, packet loss, and network topology and Latency is impacted by Geographical distances, 
+network congestion, transport protocol, and network infrastructure. 
 3. CAP Theorem: https://lnkd.in/g3hmVamx
 4. ACID Transactions: https://lnkd.in/gMe2JqaF
 5. Rate Limiting: https://lnkd.in/gWsTDR3m
