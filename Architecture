@@ -112,6 +112,13 @@ Responsibilities:Provides support services to other layers,Handles integrations 
 7. ServiceOriented Architecture (SOA):
  Approach: The application is composed of loosely coupled, reusable services.
  Example: Salesforce integrates or offers sales, support, and marketing services as integrated or standalone components.
+
+8. Serverless Architecture :-
+It allows developers to build and run services without having to manage the underlying infrastructure. Developers can write and deploy code, 
+while a cloud provider provisions servers to run their applications, databases, and storage systems at any scale.
+y adopting serverless architecture, developers can offload these responsibilities to a third-party provider, enabling them to focus on writing application code.
+One of the most popular serverless architectures is Function as a Service (FaaS).
+Each function will perform a specific task when triggered by an event, such as an incoming email or an HTTP request.
  ==========================================================================================================================
  Software Architecture charatersic
  https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
