@@ -103,6 +103,8 @@ Responsibilities:Provides support services to other layers,Handles integrations 
 
 5. MasterSlave Architecture:
  Approach: One master coordinates tasks among multiple slaves.
+ It is used for distributed systems where one node acts as a 'master' and the remaining nodes as 'slaves'. The master node controls the operations
+of the slave nodes which manage the computations and store the results.
  Example: Database replication, where the master handles writes, and slaves serve reads, widely seen in various systems.
 
 6. Monolithic Architecture:
