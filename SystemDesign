@@ -3,6 +3,9 @@ No matter your programming language, start by understanding the basics of how sy
 
 👍 𝐒𝐲𝐬𝐭𝐞𝐦 𝐃𝐞𝐬𝐢𝐠𝐧 𝐊𝐞𝐲 𝐂𝐨𝐧𝐜𝐞𝐩𝐭𝐬
 1. Scalability: https://lnkd.in/gpge_z76
+Scalability is the property of a system to handle a growing amount of load by adding resources to the system.
+Vertical Scaling (Scale up):-This means adding more power to your existing machines by upgrading server with more RAM, faster CPUs, or additional storage.
+Horizontal Scaling (Scale out):-This means adding more machines to your system to spread the workload across multiple servers
 2. Latency vs Throughput: https://lnkd.in/g_amhAtN
 3. CAP Theorem: https://lnkd.in/g3hmVamx
 4. ACID Transactions: https://lnkd.in/gMe2JqaF
@@ -115,7 +118,7 @@ There are several types of partitioning, including RANGE, LIST, and KEY. Above e
 When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. 
 The value for one or more columns in a given row is used for this sorting process.
 
-Sharding :
+Sharding :https://blog.algomaster.io/p/scalability?open=false#%C2%A7shardingpartitioning
 Sharding is a method for distributing a single dataset across multiple databases, which can then be stored on multiple 
 machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
 increasing the total storage capacity of the system. Sharding is a form of scaling known as horizontal scaling or 
