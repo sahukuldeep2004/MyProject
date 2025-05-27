@@ -65,6 +65,9 @@ OLTP stands for Online Transaction Processing. OLTP has the work to administer d
 
 Diffrence between Monolithic, Service oriented architecture (SOA) and Microservices. Why need API gateway
 https://api7.ai/blog/why-do-microservices-need-an-api-gateway
+API Gateway : as the intermediate bridge between the client and the server, provides a unified management mechanism for the microservices system. 
+In addition to basic functions such as request distribution, API management, and conditional routing, it also includes identity authentication, monitoring 
+and alarm, tracing analysis, load balancing, rate limiting, isolation, and circuit breaking.
 =================================================================================
 
 Top  7 Architectural Patterns
