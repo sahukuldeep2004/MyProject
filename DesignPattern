@@ -105,8 +105,8 @@ class. Eg. if class A is a subtype of class B, then we should be able to replace
 of our program.
 4.Interface segregation Principal:-Clients should not be forced to implement unnecessary methods which they will not use.
 5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on 
-abstractions.Abstractions should not depend on details. 
-6.Details should depend upon abstractions.
+abstractions.Abstractions should not depend on details. Details should depend upon abstractions.
+i.e ->The Dependency Inversion principle states that our classes should depend upon interfaces or abstract classes instead of concrete classes and functions.
 
 Que: What is KISS and DRY, YAGNI design pattern ?
 Ans:DRY:Don't Repeat Yourself (DRY):Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs 
