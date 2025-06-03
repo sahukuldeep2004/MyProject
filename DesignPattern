@@ -734,6 +734,10 @@ separating queries and writes, allowing for scalability and avoided locking issu
 One example of CQRS in action is online banking, where a query for a customer's account balance might initiate an event to update that balance on 
 another microservice, while a query for the customer's transaction history would still return results from a previous update.
 
+You should consider using the CQRS pattern if:
+                - You implemented the database-per-service pattern and want to join data from multiple microservices.
+                - Your read and write workloads have separate requirements for scaling, latency, and consistency.
+                - Eventual consistency is acceptable for the read queries.
 
 Circuit pattern
 ================
