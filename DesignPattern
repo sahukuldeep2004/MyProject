@@ -664,6 +664,8 @@ Syntax: @HystrixCommand(fallbackMethod = "callStudentServiceAndGetData_Fallback"
 @SuppressWarnings("unused")
     private String callStudentServiceAndGetData_Fallback(String schoolname) { ...}
 https://blog.bitsrc.io/circuit-breaker-pattern-in-microservices-26bf6e5b21ff
+Advantage : It prevents cascading failures by temporarily halting requests to a failing service, allowing it time to recover and preventing the entire 
+system from being overwhelmed. It ensures that one service's issues don't bring down others.
 
 Zipkin is the tool for monitoring the API fail or pass info.
 Slueth is the tool which tarck the every request from one service to another service.
@@ -698,11 +700,15 @@ Springboot intergartion dependency archifect "camunda-bpm-spring-boot-starter"
 ii.) Choreography-Based Saga:In this approach, there is no central orchestrator. Each service participating in the Saga performs their transaction and publish 
 events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
 Axon Saga – a lightweight framework and widely used with Spring Boot-based microservices.
+Saga pattern is independent, so if one step fails, it doesn't block the entire process.
 
 What is 2PC for Distributed Transaction Management?
 2PC (Two-Phase Commit) is a protocol used to ensure all participants in a distributed transaction either commit or abort, ensuring consistency. 
 In the first phase, the coordinator asks all participants to agree to commit, and in the second phase, participants either vote to commit or abort the 
 transaction.
+Advantage : (String consistency,)Ensures that all participants either commit or rollback together, maintaining data consistency. 
+Disadvantege: 2PC is a synchronous protocol, meaning it blocks the transaction until all participants have responded.It can introduce latency and overhead, especially
+in high-volume environment.
 
 Aggregator (Apache Camel)
 ==========
