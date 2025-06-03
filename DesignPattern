@@ -623,6 +623,8 @@ Prometheus collects and stores metric data as time-series data, while Grafana is
 sources and display it in customizable charts.
 CloudWatch enables you to monitor your complete stack (applications, infrastructure, network, and services) and use alarms, logs, and events data to take automated 
 actions and reduce mean time to resolution (MTTR).
+Grafana used for data visualization and monitoring.Grafana helps create customizable dashboards for displaying metrics, logs, and traces, enabling users to understand 
+and analyze data over time. Eg: Consumer lag increaed with some threshold value then send an alert. Topic did not receive message in 4 hr then trigger an alert.
 
 b. Performance Metrics
 c. Distributed Tracing
