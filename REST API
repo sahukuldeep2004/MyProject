@@ -1,12 +1,17 @@
 ========================= API =======================
 What is API ?
-Application Programimg Interface act as bridge, allowing distinct software component to communicate and interact. They responsible for data excahnage,function calls and overall integration between software system.
+Application Programimg Interface act as bridge, allowing distinct software component to communicate and interact. They responsible for data excahnage,
+function calls and overall integration between software system.
 
 When to choose REST API and SOAP APi ?
-REST : Choose REST when Limited bandwidth,lightweight, low-cost or simple operations,Developing public APIs, REST API is stateless, meaning each request should contain all the information needed to process it.
+REST : Choose REST when Limited bandwidth,lightweight, low-cost or simple operations,Developing public APIs, REST API is stateless, meaning each request 
+should contain all the information needed to process it. It is 100% synchronus communication only.
 
 SOAP : Simple Object Application Protocol , It is messaging protocol specification for exchanging structure information.
-It is used mostly in finacial service and payment gateway project where security, transactional reliablity and formal contracts between client and server is key. It perform Asynchronous operations and stateless.SOAP uses XML as the data format for messages being sent and received by an API client.its support for WS-Security and strongly-typed contracts as Web Service Definition Language (WSDL) to specify the functionalities of an API.
+It is used mostly in finacial service and payment gateway project where security, transactional reliablity and formal contracts between client and server is key. 
+It perform Asynchronous operations or synchronus operation or both to meet business needs and stateless.
+SOAP uses XML as the data format for messages being sent and received by an API client.its support for WS-Security and strongly-typed contracts as
+Web Service Definition Language (WSDL) to specify the functionalities of an API.
 Envelope: Defining the structure of the message.
 Encoding: Rules for expressing the type of data.
 Requests: How each SOAP API request is structured.
@@ -36,7 +41,8 @@ What are top 6 API architectural Styles ?
 6.Webhook : It is all about event driven, HTTP callback and sysnchronus operation.
 
 Que: How to make my API request as Idempotance ?
-To get to a state of Idempotency, you can add a RequestId to your request and check if the request was done before. This means that you have to save the requestIds in the system and validate them when the API is called.
+To get to a state of Idempotency, you can add a RequestId to your request and check if the request was done before. This means that you have to save the requestIds 
+in the system and validate them when the API is called.
 
 Q: How many ways we can improve the performance of API ?
 1. Caching
