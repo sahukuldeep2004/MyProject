@@ -163,31 +163,64 @@ Maintain a pool of reusable database connections instead of creating a new one f
 ================================================================
 REST API Sample
 
-@PostMapping("/product")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-        Product newProduct = productService.saveProduct(product);
-        return ResponseEntity.ok(newProduct);
+@RestController
+@RequestMapping("/api/vi/products")
+public class ProductController {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    // 1. Create (POST)
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+        Product savedProduct = productRepository.save(product);
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
-@GetMapping("/products")
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+
+    // 2. Read (GET - List)
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
-@GetMapping("/products/{id}")
+
+    // 3. Read (GET - Single)
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return new ResponseEntity<>(product.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-@PutMapping("/products/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        return ResponseEntity.ok(updatedProduct);
+
+    // 4. Update (PUT)
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product updatedProduct) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isPresent()) {
+            updatedProduct.setId(id); // Ensure ID is maintained during update
+            Product savedProduct = productRepository.save(updatedProduct);
+            return new ResponseEntity<>(savedProduct, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-@DeleteMapping("/products/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.ok("Product deleted successfully");
+
+    // 5. Delete (DELETE)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            productRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-===========================================
+}
+=========================================================================
 http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
 @GetMapping
     public PostResponse getAllPosts(
