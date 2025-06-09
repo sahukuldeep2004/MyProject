@@ -899,3 +899,44 @@ MySQL or Equivalent Database
 8. Deployment and Infrastructure
 9. Documentation and Knowledge Transfer
 10. Compliance and Governance
+
+============================================================================================================================================
+Que: Scenarios where microservice architecture is preferred over monolithic Architecture
+Scalability
+Flexibility
+Development Velocity
+Team Structure
+Complexity
+Maintenance 
+
+Que: Scenarios where monolithic  architecture is preferred over microservice Architecture ?
+If your app is small, straightforward, and does its job just fine as one big piece (like a cake), there might not be a very good reason to go through the tricky task of splitting it into smaller pieces (like cupcakes). Instead, you can work on making your big cake better and adding more features to it to meet your business needs while keeping it easy to build and take care of.
+
+Que: How to handle data consistency in a Microservices architecture?
+Synchronous Communication
+Asynchronous Communication
+CQRS (Command Query Responsibility Segregation)
+Event Sourcing
+Distributed Transaction
+Saga Pattern
+Monitoring and Logging
+Conflict Resolution
+
+Que: How do you make sure a Microservices-based application can handle more users as it becomes more popular?
+Load Balancing
+Horizontal Scaling
+Auto Scaling
+Caching
+Database Scaling
+Asynchronous Processing
+
+
+Diffrence between 2 pahse commit & SAGA design pattern?
+ 2 Phase                                  SAGA
+  Strong consistency              Eventaul consistancy
+  Synchronus                     Asynchronus
+  Blocking                        Non Blocking
+  Complexity                      Simplicity
+  Performance overhead            Better Performance
+  String data consistancy         Temporiry consistancy
+  
