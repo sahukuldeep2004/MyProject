@@ -46,11 +46,10 @@ in the system and validate them when the API is called.
 
 Q: How many ways we can improve the performance of API ?
 1. Caching
-2. Connection Pool for DB call.
+2. Connection Pool for DB call. or Data base query optimizaion
 3. Avoid N+1 problem
 4. Pagination and Sorting 
-5. JSON Serilization
-6. Payload compression
+5. Payload optimization: A. Compress and reduce the size of data B. use data formats like JSON or Protobuf C. 
 7. Asysnchronus logging.
 
 Que: Consideration/Best Practice to use RESt API ?
