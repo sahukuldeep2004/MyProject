@@ -1,0 +1,128 @@
+The Junit 4.x framework is annotation based, so let's see the annotations that can be used while writing the test cases.
+
+@Test annotation specifies that method is the test method.
+
+@Test(timeout=1000) annotation specifies that method will be failed if it takes longer than 1000 milliseconds (1 second).
+
+@BeforeClass annotation specifies that method will be invoked only once, before starting all the tests.
+
+@Before annotation specifies that method will be invoked before each test.
+
+@After annotation specifies that method will be invoked after each test.
+
+@AfterClass annotation specifies that method will be invoked only once, after finishing all the tests.
+
+
+Assert class
+The org.junit.Assert class provides methods to assert the program logic.
+
+Methods of Assert class
+The common methods of Assert class are as follows:
+
+1.void assertEquals(boolean expected,boolean actual): checks that two primitives/objects are equal. It is overloaded.
+2.void assertTrue(boolean condition): checks that a condition is true.
+3.void assertFalse(boolean condition): checks that a condition is false.
+4.void assertNull(Object obj): checks that object is null.
+5.void assertNotNull(Object obj): checks that object is not null.
+
+public class BasicAnnotationTest {
+
+    // Run once, e.g. Database connection, connection pool
+    @BeforeClass
+    public static void runOnceBeforeClass() {
+        System.out.println("@BeforeClass - runOnceBeforeClass");
+    }
+
+    // Run once, e.g close connection, cleanup
+    @AfterClass
+    public static void runOnceAfterClass() {
+        System.out.println("@AfterClass - runOnceAfterClass");
+    }
+
+    // Should rename to @BeforeTestMethod
+    // e.g. Creating an similar object and share for all @Test
+    @Before
+    public void runBeforeTestMethod() {
+        System.out.println("@Before - runBeforeTestMethod");
+    }
+
+    // Should rename to @AfterTestMethod
+    @After
+    public void runAfterTestMethod() {
+        System.out.println("@After - runAfterTestMethod");
+    }
+
+    @Test
+    public void test_method_1() {
+        System.out.println("@Test - test_method_1");
+    }
+
+    @Test
+    public void test_method_2() {
+        System.out.println("@Test - test_method_2");
+    }
+
+}
+Output:
+==========
+@BeforeClass - runOnceBeforeClass
+
+@Before - runBeforeTestMethod
+@Test - test_method_1
+@After - runAfterTestMethod
+
+@Before - runBeforeTestMethod
+@Test - test_method_2
+@After - runAfterTestMethod
+
+@AfterClass - runOnceAfterClass
+
+
+In JUnit, you can run multiple test cases with @RunWith and @Suite annotation. Refer to the following examples :
+SuiteAbcTest.java
+=================
+package com.mkyong;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        Exception1Test.class, //test case 1
+        TimeoutTest.class     //test case 2
+})
+public class SuiteAbcTest {
+	//normally, this is an empty class
+}
+
+===================Sample Class for unit ============================
+public class TestWebApp extends SpringBootHelloWorldTests {
+
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	private MockMvc mockMvc;
+
+	@Before
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+	@Test
+	public void testEmployee() throws Exception {
+		mockMvc.perform(get("/employee")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.name").value("emp1")).andExpect(jsonPath("$.designation").value("manager"))
+				.andExpect(jsonPath("$.empId").value("1")).andExpect(jsonPath("$.salary").value(3000));
+
+	}
+
+}
+@Before
+public void setUp() {
+    Employee alex = new Employee("alex");
+
+    Mockito.when(employeeRepository.findByName(alex.getName()))
+      .thenReturn(alex);
+}

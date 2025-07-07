@@ -1,0 +1,236 @@
+DML command: INSERT, UPDATE, DELETE,SELECT.
+DDL command: create table, alter table.
+
+// return 3rd highested salary.
+SELECT DISTINCT salary FROM employee ORDER BY salary DESC LIMIT 2, 1;
+> LIMIT 2, 1 means 2 rows skipped and 1 row returned.
+> we use distinct so that same row does not come for LIMIT 2,1
+
+============
+GROUP BY:
+The GROUP BY clause is a SQL command that is used to group rows that have the same values.
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+SELECT `gender` FROM `members` ;
+
+Suppose we want to get the unique values for genders. We can use a following query -
+SELECT `gender` FROM `members` GROUP BY `gender`;
+
+It show only two row for 
+Gender
+male
+female
+
+The HAVING clause is used to restrict the results returned by the GROUP BY clause.
+eg. SELECT * FROM `movies` GROUP BY `category_id`,`year_released` HAVING `category_id` = 8;
+**********************************************************************************************
+Constraints:
+Constraints are the rules that we can apply on the type of data in a table. That is, we can specify the limit on the type of data that can be stored in a particular column in a table using constraints.
+The available constraints in SQL are
+1. NOT NULL
+2. UNIQUE
+3. PRIMARY KEY
+4. FOREIGN KEY
+5. CHECK
+6. Default
+We can specify constraints at the time of creating the table using CREATE TABLE statement. We can also specify the constraints
+after creating a table using ALTER TABLE statement.
+*************************************************************************************************
+SQL | Join (Inner, Left, Right and Full Joins)
+A SQL Join statement is used to combine data or rows from two or more tables based on a common field between them. 
+Different types of Joins are:
+
+INNER JOIN
+LEFT JOIN || LEFT OUTER JOIN
+RIGHT JOIN || RIGHT OUTER JOIN
+FULL JOIN
+CROSS JOIN || CARTESIAN JOIN
+
+The INNER JOIN keyword selects all rows from both the tables as long as the condition satisfies. This keyword will create the 
+result-set by combining all rows from both the tables where the condition satisfies i.e value of the common field will be same.
+SELECT table1.column1,table1.column2,table2.column1,....
+FROM table1 
+INNER JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+LEFT JOIN: This join returns all the rows of the table on the left side of the join and matching rows for the table on the right 
+side of join. The rows for which there is no matching row on right side, the result-set will contain null. LEFT JOIN is also 
+known as LEFT OUTER JOIN.
+SELECT table1.column1,table1.column2,table2.column1,....
+FROM table1 
+LEFT JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+RIGHT JOIN: RIGHT JOIN is similar to LEFT JOIN. This join returns all the rows of the table on the right side of the join and matching rows for the table on the left side of join. The rows for which there is no matching row on left side, the result-set will contain null. RIGHT JOIN is also known as RIGHT OUTER JOIN
+
+FULL JOIN: FULL JOIN creates the result-set by combining result of both LEFT JOIN and RIGHT JOIN. The result-set will contain all 
+the rows from both the tables. The rows for which there is no matching, the result-set will contain NULL values.
+
+CARTESIAN JOIN: The CARTESIAN JOIN is also known as CROSS JOIN. In a CARTESIAN JOIN there is a join for each row of 
+one table to every row of another table. This usually happens when the matching column or WHERE condition is not specified.
+
+SELF JOIN: As the name signifies, in SELF JOIN a table is joined to itself. That is, each row of the table is joined
+with itself and all other rows depending on some conditions. In other words we can say that it is a join between two copies 
+of the same table.
+
+***********************************************************************************************
+The Union Clause is used to combine two separate select statements and produce the result set as a union of both the select statements.
+The fields to be used in both the selet statements must be in same order, same number and same data type.
+The Union clause produces distinct values in the result set, to fetch the duplicate values too UNION ALL must be used instead of just UNION.
+
+UNION select distinct value where UnionAll select duplicate value as well.
+********************************************************************************************************
+Primary key will not accept NULL values whereas Unique key can accept one NULL value.
+A table can have only primary key whereas there can be multiple unique key on a table.
+A Clustered index automatically created when a primary key is defined whereas Unique key generates the non-clustered index.
+******************************************************
+The PL/SQL Function is very similar to PL/SQL Procedure. The main difference between procedure and a function is, a function must 
+always return a value, and on the other hand a procedure may or may not return a value.
+
+PL/SQL Cursor
+When an SQL statement is processed, Oracle creates a memory area known as context area. A cursor is a pointer to this context area.
+It contains all information needed for processing the statement. In PL/SQL, the context area is controlled by Cursor. A cursor 
+contains information on a select statement and the rows of data accessed by it.
+A cursor is used to referred to a program to fetch and process the rows returned by the SQL statement, 
+one at a time. There are two types of cursors:
+
+Implicit Cursors
+Explicit Cursors
+
+Implicit Cursors:
+The implicit cursors are automatically generated by Oracle while an SQL statement is executed, if you don?t use an explicit cursor for the statement.
+These are created by default to process the statements when DML statements like INSERT, UPDATE, DELETE etc. are executed.
+
+Declare the cursor to initialize in the memory. ---CURSOR name IS  SELECT statement;  
+Open the cursor to allocate memory. ---OPEN cursor_name;  
+Fetch the cursor to retrieve data. ---FETCH cursor_name INTO variable_list; 
+Close the cursor to release allocated memory. ---Close cursor_name;  
+****************************************************************************
+What is Exception: An error occurs during the program execution is called Exception in PL/SQL.
+DECLARE  
+   c_id customers.id%type := 5;  
+   c_name  customers.name%type;  
+   c_addr customers.address%type;  
+BEGIN  
+   SELECT  name, address INTO  c_name, c_addr  
+   FROM customers  
+   WHERE id = c_id;  
+DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+ DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);  
+EXCEPTION  
+   WHEN no_data_found THEN  
+      dbms_output.put_line('No such customer!');  
+   WHEN others THEN  
+      dbms_output.put_line('Error!');  
+END;  
+**********************************************************************************
+Index: An index is an performance optimization technique that speeds up the data retrieval process.
+The index can also be a UNIQUE index, which means that you cannot have duplicate values in that column, or a 
+PRIMARY KEY which in some storage engines defines where in the database file the value is stored.
+
+
+*******************************************
+View: View in SQL are kind of virtual tables. A view alos has rows and columns as they are in a reale table in the databse.
+We can create a view by selecting feilds from one or more tables present in the database.
+CREATE VIEW  view_name AS SELECT column1, column2....
+from table_name 
+where condition.
+
+********************************************************************************
+Foreign key :A Foreign key is a field which can uniquely identify each row in another table. And this constraint is used to specify a field as Foreign key. That is, this field points to primary key of another table. This usually creates a kind of link between the two tables.
+
+***********************************************************************************************
+Find the second highest salary?
+SELECT name, MAX(salary) AS salary
+  FROM employee  WHERE salary < (SELECT MAX(salary) FROM employee); 
+*******************************************************************
+A procedure is a group of PL/SQL statements .
+
+CREATE OR REPLACE PROCEDURE UpdateCource(name in VARCHAR2)
+IS
+BEGIN
+
+EXCEPTION 
+WHEN OTHERS THEN
+raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
+
+END;
+===============================================================
+Here are the top ways to improve database performance:
+1. Indexing
+Create the right indexes based on query patterns to speed up data retrieval.
+
+2. Materialized Views
+Store pre-computed query results for quick access, reducing the need to process complex queries repeatedly.
+
+3. Vertical Scaling
+Increase the capacity of the database server by adding more CPU, RAM, or storage.
+
+4. Denormalization
+Reduce complex joins by restructuring data, which can improve query performance.
+
+5. Database Caching
+Store frequently accessed data in a faster storage layer to reduce load on the database.
+
+6. Replication
+Create copies of the primary database on different servers to distribute read load and enhance availability.
+
+7. Sharding
+Divide the database into smaller, manageable pieces, or shards, to distribute load and improve performance.
+
+8. Partitioning
+Split large tables into smaller, more manageable pieces to improve query performance and maintenance.
+It is the process of splitting a database table into multiple logical units, or partitions, that are stored separately on disk.
+eg. in table of employee, we can store emp_id 1 to 10,000 in table employee_partition_1 and empId 10,001 to 20,000 in table employee_partition_2.
+There are several types of partitioning, including RANGE, LIST, and KEY. Above example is range one.
+When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. The value for one or more
+columns in a given row is used for this sorting process.
+
+9. Query Optimization
+Rewrite and fine-tune queries to execute more efficiently.
+
+10. Use of Appropriate Data Types
+Select the most efficient data types for each column to save space and speed up processing.
+
+11. Limiting Indexes
+Avoid excessive indexing, which can slow down write operations; use indexes judiciously.
+
+12. Archiving Old Data
+Move infrequently accessed data to an archive to keep the active database smaller and faster
+
+=====================================================================================================================================
+Relational Databases (RDBMS):
+Relational databases structure data into one or more tables of rows and columns, with a unique key identifying each row. Rows in a table can be linked to rows in other tables through foreign keys, establishing a relationship between them.
+This structure allows relational databases to handle large amounts of structured data, enforce data integrity, and support complex queries and ACID transactions.
+They use Structured Query Language (SQL) for defining, manipulating, and querying data, making them highly versatile and widely used in various applications
+Examples: MySQL, PostgreSQL, Oracle Database
+
+Key-Value Store :
+Key-value stores are NoSQL databases that store data as key-value pairs providing fast retrieval of values based on 
+unique keys.They are primarily used when the data model is based on key-value pairs and requires high scalability, 
+availability and throughput
+Examples: Redis, DynamoDB.
+
+Document Databases:
+Document databases, a subset of the broader NoSQL family, are designed to store, manage, and retrieve document-oriented
+information.These databases handle data in a semi-structured format, typically JSON, XML, or BSON, allowing for a more
+flexible schema than traditional relational databases.
+Content Management Systems (CMS): Ideal for managing articles, user profiles, and comments, where each piece of content can be stored as a document.
+Real-Time Analytics and IoT: Handling varied data structures generated by IoT devices and supporting real-time analytics on this data.
+Examples: MongoDB, Couchbase, and Apache CouchDB
+
+Graph Databases :-
+Graph databases are a type of NoSQL database that specialize in storing, managing, and querying complex networks of 
+interconnected data.They represent data as graphs, consisting of nodes (entities), edges (relationships between entities),
+and properties (information associated with nodes and edges).
+Social Networks: Managing user profiles and their connections, enabling features like friend recommendations and 
+social graph analysis.
+Recommendation Systems: Analyzing customer preferences, product inventories, and purchase histories to generate 
+personalized product or content recommendations.
+Examples: Neo4j, Amazon Neptune
+
+In-Memory Databases
+In-Memory Databases store data directly in the main memory (RAM) of the computer, as opposed to disk-based storage.
+They are designed to provide extremely fast data access and low latency by eliminating the need for disk I/O operations.
+In-memory databases are particularly well-suited for applications that require real-time processing, high-speed 
+transactions, and low-latency data access such as caching, real-time analytics, high-frequency trading.
+Examples: Redis, Memcached.

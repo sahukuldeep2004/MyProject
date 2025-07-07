@@ -1,0 +1,942 @@
+Que: Difference Between Architectural Style, Architectural Patterns and Design Patterns?
+Ans: An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem 
+of separating the UI from the model. Sensor-Controller-Actuator, is a pattern that will help you with the problem of 
+actuating in face of several input senses.
+An Architectural Pattern is a specific, reusable solution to a common problem or design issue in software architecture.
+For example: 3-tier, N-tier, MVC, Model View ViewModel, Publish-subscribe,Sensor-controller-actuator...
+
+Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
+Category	            Architecture styles
+Communication	        SOA, ROA, Message Bus
+Deployment	            Client/Server
+Domain	                Domain Driven Design,Monolithic, Mocroservice
+Structure	            Component-Based, Object-Oriented, Layered, Plug-ins
+Other	                REST, Peer-to-peer, Cloud computing, Internet of Things, Blockchain...
+
+A Design pattern is a general reusable solution to a commonly occurring problem in object-oriented software design. 
+It provide a blueprint for how to solve a specific problem or design issue at the level of individual classes and objects, 
+rather than the overall structure of a system.
+For example: Factory, Singleton, Prototype.
+How to instantiate an object when we only know what type needs to be instantiated at run time (maybe a Factory Class?);
+How to make an object behave differently according to its state (maybe a state machine, or a Strategy Pattern?).
+
+Top  7 Architectural Patterns
+An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in 
+software design. It offers a highlevel conceptual framework for structuring and organizing software systems to 
+effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
+
+1.Microservices Architecture:
+ Approach: The application is divided into small, independent services with welldefined APIs.
+ Example: Netflix separates user management, content streaming, and recommendations into distinct services.
+
+2. Layered Architecture:
+ Approach: The application is structured into layers (presentation, logic, data) to compartmentalize specific functions.
+ Example: JavaEE applications have distinct layers for UI, business logic, and data access.
+
+3. EventDriven Architecture:
+ Approach: Components communicate through events to achieve loose coupling.
+ Example: Airbnb uses Apache Kafka for realtime event processing, such as handling booking requests.
+
+4. ModelViewController (MVC) Architecture:
+ Approach: The application is divided into Model (data), View (UI), and Controller (logic) components.
+ Example: Ruby on Rails applications separate data, user interface, and user input handling.
+
+5. MasterSlave Architecture:
+ Approach: One master coordinates tasks among multiple slaves.
+ Example: Database replication, where the master handles writes, and slaves serve reads, widely seen in various systems.
+
+6. Monolithic Architecture:
+ Approach: The entire application is bundled together as a single unit.
+ Example: Traditional enterprise software often integrates all features into a single executable.
+
+7. ServiceOriented Architecture (SOA):
+ Approach: The application is composed of loosely coupled, reusable services.
+ Example: Salesforce integrates or offers sales, support, and marketing services as integrated or standalone components.
+======================================================================================================================
+
+https://refactoring.guru/design-patterns/adapter
+Microservices architecture (often shortened to microservices) refers to an architectural style for developing applications.
+Microservices allow a large application to be separated into smaller independent parts, with each part having its own realm 
+of responsibility.
+
+What is CAP theoram ?
+Ans:https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
+https://www.bmc.com/blogs/cap-theorem/#:~:text=The%20CAP%20theorem%20is%20a,or%20availability%E2%80%94but%20not%20both.
+The CAP theorem is a belief from theoretical computer science about distributed data stores that claims, in the event of a network failure on a 
+distributed database,it is possible to provide either consistency or availability—but not both.
+Consistency:- All reads receive the most recent write or an error.Consistency refers to every client having the same view of the data.
+eg. In financial data is good example where we need up to date balance. Mongo DB, Redis.
+Availability:-All reads contain data, but it might not be the most recent.Availability means that each read or write request for a data item will 
+ either be processed successfully or will receive a message that the operation cannot be completed.
+ eg. we need ecommerce app cart or product should be available always.
+ eg. Casandra, DynamoDB.
+
+Partition Tolerance:-The system continues to operate despite network failures (ie; dropped partitions, slow network connections, or unavailable network connections between nodes.)
+In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed database experiences a network failure, you can provide either consistency or availability.
+In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with network partitions. 
+Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
+What is mean by Partion :
+A partition is a communications break within a distributed system—a lost or temporarily delayed connection between two nodes. 
+Partition tolerance means that the cluster must continue to work despite any number of communication breakdowns between 
+nodes in the system.
+
+Que: Strong consistency vs weak consistency?
+Ans: Strong consistency: The data in all nodes is the same at any time. At the same time, you should get the value of key1 in node A and the value
+of key1 in node B.
+Weak consistency: There is no guarantee that all nodes have the same data at any time, and there are many different implementations.
+Eventual consistency - allows for temporary inconsistencies in the data store, but eventually, all nodes converge to the same value.
+
+Question: What is SOLID priciple ?
+https://www.jrebel.com/blog/solid-principles-in-java
+Ans: https://howtodoinjava.com/best-practices/5-class-design-principles-solid-in-java/
+SOLID refers to five design principles in object-oriented programming, designed to reduce code rot and improve the value, function, and maintainability
+of software. 
+The SOLID principles help the user develop less coupled code. If code is tightly coupled, a group of classes are dependent on one another.
+1.Single responsbilty:- Everything in the class should be related to that single purpose. It does not mean that your classes should only contain one method
+or property.
+2.Open-Close Principal:-The Open-Closed Principle (OCP) states that classes should be open for extension but closed for modification. 
+“Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated. 
+“Closed for modification” means that once you have developed a class you should never modify it, except to correct bugs.
+3.Liskove Substitution Pricipal:- it states that an object of a superclass should be replaceable by objects of its subclasses 
+without causing issues in the application. Therefore, a child class should never change the characteristics of its 
+parent class (such as the argument list and return types). Basically, derived classes should never do less than their base 
+class. Eg. if class A is a subtype of class B, then we should be able to replace objects of B with objects of A 
+(i.e., objects of type A may substitute objects of type B) without changing the behavior (correctness, functionality, etc.) 
+of our program.
+4.Interface segregation Principal:-Clients should not be forced to implement unnecessary methods which they will not use.
+5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on 
+abstractions.Abstractions should not depend on details. Details should depend upon abstractions.
+i.e ->The Dependency Inversion principle states that our classes should depend upon interfaces or abstract classes instead of concrete classes and functions.
+
+Que: What is KISS and DRY, YAGNI design pattern ?
+Ans:DRY:Don't Repeat Yourself (DRY):Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs 
+or can make the code change difficult. This can be fixed by doing code reuse (DRY Principle).
+The DRY principle is stated as "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system".
+Keep It Simple Stupid (KISS): The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, 
+simplicity should be a key goal in design, and unnecessary complexity should be avoided.
+Simple code has the following benefits:
+less time to write
+less chances of bugs
+easier to understand, debug and modify
+YAGNI -"You Aren't Gonna Need It." This principle is often applied in Agile software development. It means that we should not add features or functionality 
+to our software that we don't currently need.
+
+
+12 factor app principles, Zachman or TOGAF etc
+
+Que: What is 12 factor principal ?
+Ans:I. Codebase :One codebase tracked in revision control, many deploys
+II. Dependencies:Explicitly declare and isolate dependencies
+III. Config:Store config in the environment
+IV. Backing services:Treat backing services as attached resources
+V. Build, release, run:Strictly separate build and run stages
+VI. Processes:Execute the app as one or more stateless processes
+VII. Port binding:Export services via port binding
+VIII. Concurrency :Scale out via the process model
+IX. Disposability :Maximize robustness with fast startup and graceful shutdown
+X. Dev/prod parity:Keep development, staging, and production as similar as possible
+XI. Logs:Treat logs as event streams
+XII. Admin processes :Run admin/management tasks as one-off processes
+
+
+Que: What is 12 Factor app principal?
+https://www.joomlatools.com/blog/developer/12-factor-app
+Ans: 1.Codebase :Your codebase should be tracked in a central version control system that is easily accessible to all your developers.
+2. Dependencies: Explicitly declare and isolate dependencies.You should never assume that these packages exist on the target system. Instead, your application must declare all dependencies and their correct version explicitly.
+3. Configuration: Configuration options should never be hardcoded,Instead of hardcoding this information, we rely on environment variables to handle this sensitive information.
+4. Backing Services:A backing service is one that requires a network connection to run, like MySQL or Memcached. If the location or connection details of such a service changes, 
+   you should not have to make code changes. Instead, these details should be available in the configuration.
+5. Build, release, run: Build, release, and run stages should be treated as completely distinct from one another.
+6. Processes:-Execute the app as one or more stateless processes.That means if a part of your application stack fails, the app itself does not become a failure.
+7 .Port Binding:- Your application service should also be accessible via a URL.
+8. Concurrency:- Each process should be able to scale, restart, or clone itself when needed.
+9. Disposability:- apps can be started or stopped at a moment’s notice. This facilitates fast elastic scaling, rapid deployment of code or config changes, and robustness of production deploys.
+10. Dev/prod parity:-Keep development, staging, and production as similar as possible.
+11. Logs:-Logging is important for debugging and checking up on the general health of your application. However, your application should not be concerned with the storage and management of these logs. Instead, log entries should be treated as an event stream that is routed to a separate service for archival and analysis.
+12. Run admin/management tasks as one-off processes.Once your application is running in production, you'll want to do a lot of simple administrative tasks from time to time. You could need to run a database migration or fetch analytical data to gather business insights.
+
+Code.De.Con-Back.Bu--PP-CDD--LR
+Design Pattern: - A design pattern is a well-described solution to a common software problem.
+Creational Design Pattern: Creational design patterns provide solution to instantiate a object in the best possible way for 
+specific situations.
+Structural Design Pattern: Structural patterns provide different ways to create a class structure.Structural design patterns
+are concerned with how classes and objects can be composed, to form larger structures. for example using inheritance and 
+composition to create a large object from small objects.
+Behavioral Design Pattern: Behavioral patterns provide solution for the better interaction between objects and how to 
+provide lose coupling and flexibility to extend easily.
+
+Singleton -Creational
+Factory -Creational
+Builder -Creational
+Facade -Structure
+Adapter -Structure
+Decorator -Structure
+Observar - Behaviour
+Strategy -Behaviour
+COR  -Behaviour
+MVC
+DAO
+
+Que: use case of factory design pattern ?
+Ans: The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. 
+This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
+
+Question: What is main benefit of using factory pattern ? Where do you use it?
+Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance implementation without any change on client layer.
+
+Que: What is factory design pattern ?
+Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
+object and let the subclasses decide which class to instantiate.
+We create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.
+
+public interface Shape {
+   void draw();
+}
+public class Rectangle implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Inside Rectangle::draw() method.");
+   }
+}
+public class Square implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Inside Square::draw() method.");
+   }
+}
+public class ShapeFactory {
+	
+   //use getShape method to get object of type shape 
+   public Shape getShape(String shapeType){
+      if(shapeType == null){
+         return null;
+      }		
+      if(shapeType.equalsIgnoreCase("CIRCLE")){
+         return new Circle();
+         
+      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+         return new Rectangle();
+         
+      } else if(shapeType.equalsIgnoreCase("SQUARE")){
+         return new Square();
+      }
+      
+      return null;
+   }
+}
+public class FactoryPatternDemo {
+
+   public static void main(String[] args) {
+      ShapeFactory shapeFactory = new ShapeFactory();
+
+      //get an object of Circle and call its draw method.
+      Shape shape1 = shapeFactory.getShape("CIRCLE");
+
+      //call draw method of Circle
+      shape1.draw();
+
+      //get an object of Rectangle and call its draw method.
+      Shape shape2 = shapeFactory.getShape("RECTANGLE");
+
+      //call draw method of Rectangle
+      shape2.draw();
+
+      //get an object of Square and call its draw method.
+      Shape shape3 = shapeFactory.getShape("SQUARE");
+
+      //call draw method of square
+      shape3.draw();
+   }
+}
+Que: Abstarct Factory Pattern ?
+Ans: Abstract Factory pattern creates an object of several families of classes. It lets us produce families of related 
+objects without specifying their concrete classes. While a Factory Method can produce only one type of object 
+(only icecreams -valinal, choklet, straberry), an Abstract Factory can produce a family of different kinds of objects (multi-course and multi-cuisine meals).
+One generalized factory can consist of multiple specialized factories, each producing a different kind of object.
+https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
+
+
+Que: Builder Design pattern ?
+Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to 
+produce different types and representations of an object using the same construction code.
+Use the builder pattern to create complex objects that have many optional parameters, as the builder pattern allows you to specify only the parameters 
+that you need, without having to provide values for all possible parameters.
+https://www.geeksforgeeks.org/difference-between-builder-design-pattern-and-factory-design-pattern/
+https://www.youtube.com/watch?v=7x8iQUv5lcM
+https://www.youtube.com/watch?v=qOLRxN5eVC0 --Shreyansh
+public class Computer {	
+	//required parameters
+	private String HDD;
+	private String RAM;
+	
+	//optional parameters
+	private boolean isGraphicsCardEnabled;
+	private boolean isBluetoothEnabled;
+	public String getHDD() {
+		return HDD;
+	}
+	public String getRAM() {
+		return RAM;
+	}
+	public boolean isGraphicsCardEnabled() {
+		return isGraphicsCardEnabled;
+	}
+	public boolean isBluetoothEnabled() {
+		return isBluetoothEnabled;
+	}
+	private Computer(ComputerBuilder builder) {
+		this.HDD=builder.HDD;
+		this.RAM=builder.RAM;
+		this.isGraphicsCardEnabled=builder.isGraphicsCardEnabled;
+		this.isBluetoothEnabled=builder.isBluetoothEnabled;
+	}
+	//Builder Class
+	public static class ComputerBuilder{
+		// required parameters
+		private String HDD;
+		private String RAM;
+		// optional parameters
+		private boolean isGraphicsCardEnabled;
+		private boolean isBluetoothEnabled;
+		public ComputerBuilder(String hdd, String ram){
+			this.HDD=hdd;
+			this.RAM=ram;
+		}
+		public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
+			this.isGraphicsCardEnabled = isGraphicsCardEnabled;
+			return this;
+		}
+		public ComputerBuilder setBluetoothEnabled(boolean isBluetoothEnabled) {
+			this.isBluetoothEnabled = isBluetoothEnabled;
+			return this;
+		}
+		public Computer build(){
+			return new Computer(this);
+		}
+	}
+}
+public class TestBuilderPattern {
+	public static void main(String[] args) {
+		//Using builder to get the object in a single line of code and 
+                //without any inconsistent state or arguments management issues		
+		Computer comp = new Computer.ComputerBuilder(
+				"500 GB", "2 GB").setBluetoothEnabled(true)
+				.setGraphicsCardEnabled(true).build();
+	}
+}
+Que: What is Prototype Design Pattern ?
+Ans: Prototype design pattern is used when the Object creation is a costly affair and requires a lot of time and resources
+and you have a similar object already existing. Prototype pattern provides a mechanism to copy the original object to a 
+new object and then modify it according to our needs. Prototype design pattern uses java cloning to copy the object.
+https://www.digitalocean.com/community/tutorials/prototype-design-pattern-in-java
+
+Que: Where we can use the Singleton class?
+Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
+https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
+Que: Write a Singleton class with all consider scenario?
+Ans: Real java example is Java.lang.Runtime class of Singleton class.
+public class SingletonTest {
+  
+    // Step 1: private static variable of INSTANCE variable
+    private static volatile SingletonTest INSTANCE;
+  
+    // Step 2: private constructor
+    private SingletonTest() {
+  
+    }
+  
+    // Step 3: Provide public static getInstance() method 
+    // returning INSTANCE after checking
+    public static SingletonTest getInstance() {
+  
+        // double-checking lock
+        if(null == INSTANCE){
+            // synchronized block
+            synchronized(SingletonTest.class) {
+                if(null == INSTANCE){
+                    INSTANCE = new SingletonTest();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+}
+Que: What is Facade design pattern(Structural pattren)?
+Ans: It is a example of Orchastarion layer in our project.Facade pattern hides the complexities of the system and 
+provides an interface to the client using which the client can access the system. This type of design pattern comes
+under structural pattern.
+This pattern involves a single class which provides simplified methods required by client and delegates calls to 
+methods of existing system classes.
+1. Create an Interface
+public interface Shape {
+   void draw();
+}
+2.Create concrete classes implementing the same interface.
+public class Rectangle implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Rectangle::draw()");
+   }
+}
+public class Square implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Square::draw()");
+   }
+}
+3. Create a facade class.
+
+public class ShapeMaker {
+   private Shape rectangle;
+   private Shape square;
+
+   public ShapeMaker() {
+      rectangle = new Rectangle();
+      square = new Square();
+   }
+   public void drawRectangle(){
+      rectangle.draw();
+   }
+   public void drawSquare(){
+      square.draw();
+   }
+   
+4. Use the facade to draw various types of shapes.
+public class FacadePatternDemo {
+   public static void main(String[] args) {
+      ShapeMaker shapeMaker = new ShapeMaker();
+      shapeMaker.drawRectangle();
+      shapeMaker.drawSquare();		
+   }
+}
+Que What is strategy design or Policy pattern(Behaviral design pattern)?
+Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
+It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes 
+them interchangeable. It lets the client algorithm vary independently from the objects that use it. 
+For our example, we will try to implement a simple Shopping Cart where we have two payment strategies - using Credit Card 
+or using PayPal.
+https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial
+
+pulic interface Startegy{
+ pulic int doOperation(int a, int b);
+] 
+
+public class AddStartegy implements Startegy{
+pulic int doOperation(int a, int b){
+return a+b;
+}
+
+public class MultiplyStartegy implements Startegy{
+pulic int doOperation(int a, int b){
+return a*b;
+}
+
+pulic class StrategyContext{
+public Startegy startegy;
+//imp step is below
+public StrategyContext(Startegy startegy){
+this.startegy = startegy;
+}
+
+pulic int executeStrategy(int a, int b){
+startegy.doOperation(a,b);}
+}
+
+public class StrategyPatternDemo {
+   public static void main(String[] args) {
+      StrategyContext context = new StrategyContext(new AddStartegy());		
+      System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
+      context = new StrategyContext(new MultiplyStartegy());		
+      System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
+   }
+}
+
+Que: What is adpter design pattern ?
+Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
+work together. The object that joins these unrelated interface is called an Adapter.
+https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
+
+Que: What is decorator design pattern (Structural Design)?
+Ans: The Decorator attaches additional responsibilities to an object dynamically.
+Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
+It use the HAS A and IS A relationship.
+why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
+
+Que: Observar desig pattern (Behaviral design) ?
+Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. 
+An observable is an object which notifies observers about the changes in its state. For example, a news agency can 
+notify channels when it receives news.
+Youtube Subscription : When a user(Observer) subscribes to a Youtube channel(Subject) all its subscribers get notified of any new post.
+
+=============
+Diffrence between API Gateway and Load balancer ?
+API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
+Load balancer:  Traffic distribution, load balancing, Failover, Content based routing.
+https://levelup.gitconnected.com/system-design-interview-basics-difference-between-api-gateway-and-load-balancer-60260b568121
+
+
+Que: What IS CAP theoram? https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
+Ans: The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication.
+The theorem states that networked shared-data systems can only strongly support two of the following three properties.
+https://www.enjoyalgorithms.com/blog/cap-theorem-in-system-design
+Consistency: Consistency refers to the requirement that all nodes in a distributed system have the same data at a given point in time. It ensures that all clients accessing the system see the same data, regardless of which node they are connected to. When a client performs a read operation, it should receive the most recent write operation value, ensuring that all nodes in the system return the same data. To maintain consistency, it is the responsibility of the node where the write operation is performed to instantly replicate the data to all other nodes in the system.
+
+Avalability: Availability refers to the requirement that a distributed system is always able to respond to client requests for data. This means that the system must be operational at all times, even if one or more nodes are down or experiencing issues. When a client requests data, it should receive a response, regardless of the state of 
+any individual node in the system.
+
+Partition Tolerance: Partition tolerance refers to the ability of a distributed system to continue operating even if there is a failure or delay in the communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes or communication channels are unavailable.
+
+Que: What is fault tolerance ?
+Ans: Fault tolerance refers to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when 
+one or more of its components fail.
+Fault tolerance describes a system’s ability to handle errors and outages without any loss of functionality. 
+It is a critical capability, especially in cloud computing, where reliability and uptime are paramount.
+For example, here’s a simple demonstration of comparative fault tolerance in the database layer. In the diagram below, 
+Application 1 is connected to a single database instance. Application 2 is connected to two database instances — the primary database and a standby replica.
+
+Que: What are resilency design pattren ?
+Ans: 1. Circuit Braker (Polly/Hystrix are lib to use circuit breaker pattern) 2. Retry Design pattern 3. TimeOut design pattern.
+
+Que: what is diffrence between fault tolerance and resilency.
+Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive a fault, while resilience is the ability of a system to recover from a fault and continue operating: 
+Fault tolerance : -The ability of a system to continue operating effectively even when there are faults, such as a server crash or network partition. Fault tolerance minimizes the risk of systems becoming unavailable due to a component error. 
+Resilience : -The ability of a system to recover from failures and continue operating without significant downtime. Resilience focuses on adapting to different conditions and recovering from unexpected events. 
+Fault tolerance and resilience are important for maintaining service reliability and user trust
+
+Que: What is high availability ? (mean multiple avalability zone need to use)
+Ans:High availability systems are designed to provide continuous and uninterrupted service to the end customer by using redundant software performing similar functions.
+In highly available microservices, all the hosts must point to the same storage. So, in case of failure of one host, the workload in one host can failover to another host
+without downtime. The redundant software can be installed in another virtual machine (VM), or Kubernetes clusters in multicloud or hybrid cloud.
+ 
+Que:WHat we need to consider for NFR ?
+Ans:Latency:- the application should return result in 10 ms.
+Scalability: The app should be able to 1 billion request.
+Throughput: The app should be support 1000 request/seconds.
+Availability:  The application should be experience zero downtown.
+Customizable/Maintable: The application should be customizable.
+Durabale: application should be long lastic,low maintenance.
+fault Tolerance:The Fault Tolerant means the ability of an architecture to survive (tolerate) when an environment misbehaves by taking corrective actions, e.g, 
+surviving a server crash or preventing a misbehaving API from bringing down the whole system, etc.
+resilience: The Fault Resilience is probably the capacity to recover from these type of scenarios quickly or How many faults  the system can tolerate.
+
+Que: What is Cache?
+Ans: A cache is short term memory used to store data items from database,serveres or other storage layer. A cache helps speed up the application, 
+reduce the load on the backend server
+
+Que: What is distrubute caching ?
+Ans: A cache system that sits on several nodes with a cluster.
+
+Que: Elements of Cache System ?
+ANs: Cache Client, Cache Server, 
+
+Que: What things to consider whne you are design a system.
+Ans: Scalability, Latency, performance,throughput, consistency(strong,weak,eventaully), availability, Partition tolerance, CAP theoram, 
+DNS(domain name system- route to traffic to diffrent system), CDN (content delivery network- how many types are there), load balancer and reverse proxy, microservices, SQL and NOSQL,caching,message queue.
+
+Que: What is database partitioning?
+Ans: Horizontal partition also known as sharding. It is a range base sharding.You put diffrent rows in to tables, the structure of table orignal table stay the same in the new tables.i.e we have same structure of table.
+Vertical partition: This type of partition the table vertically(by column), which means that the structure of the main table changes in the new ones.
+
+Que: Load balancer algorithem used in that?
+Ans: Least connection b. Least response time c. Least bandwith d. round robin d. weight round robin e. IP Hash
+
+Que: What is Reverse proxy?
+Ans: a reverse proxy is the application that sits in front of back-end applications and forwards client (e.g. browser) requests to those applications. 
+Reverse proxies help increase scalability, performance, resilience and security. The resources returned to the client appear as if they originated from the web server itself.
+
+Que:
+
+Que: System deisgn preparation ?
+https://github.com/donnemartin/system-design-primer
+https://medium.com/must-know-computer-science/system-design-sharding-data-partitioning-b7201596aafa
+
+Que: Design a Parking Slot?
+Ans: https://www.youtube.com/watch?v=eV5Xh6jNfmU
+
+                             Design pattern
+=================================================================
+https://www.simform.com/blog/microservice-design-patterns/
+https://www.knowledgehut.com/blog/programming/microservices-design-pattern
+
+Que: Micro services design pattern?
+1. Decomposition Patterns
+a. Decompose by Business Capability
+One strategy is to decompose by business capability. A business capability is something that a business does in order to generate value. 
+The set of capabilities for a given business depend on the type of business. For example, the capabilities of an insurance company typically include sales, marketing, underwriting, claims processing, billing, compliance, etc. Each business capability can be thought of as a service, except it’s 
+ business-oriented rather than technical.
+
+b. Decompose by Subdomain
+the Order class will be used in Order Management, Order Taking, Order Delivery, etc. How do we decompose them?
+For the "God Classes" issue, DDD (Domain-Driven Design) comes to the rescue. It uses subdomains and bounded context concepts to solve this problem.
+DDD breaks the whole domain model created for the enterprise into subdomains. Each subdomain will have a model, and the scope of that model will 
+be called the bounded context. Each microservice will be developed around the bounded context.
+
+C. Strangler pattern 
+The Strangler Pattern is a popular design pattern to incrementally transform your monolithic application into microservices by replacing a particular functionality 
+with a new service. Once the new functionality is ready, the old component is remove slowly slowly by sending the less load to the old application. Intailly we 
+send 10% load to new app and 90% to old app.But gradually we remove the old app and use the new microservie app.
+
+D. SideCar Pattern
+Suppose we have 6 microservcie and talking to each other and each each microservice needs to have functionalities like observability, monitoring, logging,
+configuration, circuit breakers, and more.It is better not to replicate this in all the three services or rather build central service so that all the above services
+will interact with this central service.
+https://dzone.com/articles/sidecar-design-pattern-in-your-microservices-ecosy-1
+
+2. Integration Patterns
+a. API Gateway Pattern
+An API Gateway is the single point of entry for any microservice call.It can work as a proxy service to route a request to the concerned microservice, abstracting the 
+producer details.
+It can also offload the authentication/authorization responsibility of the microservice.
+During migration, an API Gateway acts as a facade which directs users’ requests to the correct application.
+
+b. Aggregator Pattern
+When breaking the business functionality into several smaller logical pieces of code, it becomes necessary to think about how to collaborate 
+the data returned by each service.A composite microservice will make calls to all the required microservices, consolidate the data, and transform the data before sending 
+back. eg. Orchastration layer
+
+3. Database Patterns
+a. Database per Service
+Services must be loosely coupled. They can be developed, deployed, and scaled independently.To solve the above concerns, one database per microservice must be designed; 
+it must be private to that service only. It should be accessed by the microservice API only. It cannot be accessed by other services directly.
+
+b. Shared Database per Service
+one database can be aligned with more than one microservice, but it has to be restricted to 2-3 maximum, otherwise scaling, autonomy, and independence will be 
+challenging to execute.
+
+e. event source patten:
+we store events with all the states like order initited,pending,inventory update, payemnt, completd, email to user etc in DB. This differet -2 events are publish
+to message broker and respective services like, email, inverory etc will consume the messages.
+
+4. Observability Patterns (Instana tool for Observability)
+a.Log Aggregation
+We need a centralized logging service that aggregates logs from each service instance. Users can search and analyze the logs. They can configure alerts that are 
+triggered when certain messages appear in the logs. AWS Cloud Watch also does the same.
+eg. ELK, CloudWatch
+Logstash is a light-weight, open-source, server-side data processing pipeline that allows you to collect data from a variety of sources, transform it on the fly, 
+and send it to your desired destination. It is most often used as a data pipeline for Elasticsearch, an open-source analytics and search engine.
+Prometheus collects and stores metric data as time-series data, while Grafana is an analytics and visualization web application that can ingest data from various 
+sources and display it in customizable charts.
+CloudWatch enables you to monitor your complete stack (applications, infrastructure, network, and services) and use alarms, logs, and events data to take automated 
+actions and reduce mean time to resolution (MTTR).
+Grafana used for data visualization and monitoring.Grafana helps create customizable dashboards for displaying metrics, logs, and traces, enabling users to understand 
+and analyze data over time. Eg: Consumer lag increaed with some threshold value then send an alert. Topic did not receive message in 4 hr then trigger an alert.
+
+b. Performance Metrics
+c. Distributed Tracing
+In microservice architecture, requests often span multiple services. Each service handles a request by performing one or more operations across multiple services.
+Spring Cloud Slueth, along with Zipkin server, is a common implementation.
+We can analyze the latency in the servces call with this.
+Spring Slueth use the spanId and traceId. 
+TraceId – This is an id that is assigned to a single request. 
+SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId. 
+
+5. Cross-Cutting Concern Patterns
+a. External Configuration
+Spring Cloud config server provides the option to externalize the properties to GitHub and load them as environment properties. These can be accessed by the application 
+on startup or can be refreshed without a server restart.
+
+b. Service Discovery Pattern(Service Registry)
+With container technology, IP addresses are dynamically allocated to the service instances. Every time the address changes, a consumer service can break and need manual 
+changes.A service registry needs to be created which will keep the metadata of each producer service. A service instance should register to the registry when starting 
+and should de-register when shutting down.The consumer or router should query the registry and find out the location of the service. The registry also needs to do a health 
+check of the producer service to ensure that only working instances of the services are available to be consumed through it.
+
+c. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
+A service generally calls other services to retrieve data, and there is the chance that the downstream service may be down. There are two problems with this: first, 
+the request will keep going to the down servics. It allows developers to prevent cascading failures in microservices architecture by invoking remote services through 
+a proxy.
+With the circuit breaker pattern, you can define a threshold value for the number of failures between 2 microservices. The proxy will count the number of failures 
+between microservices and automatically stop the request sending for a specific time if the number of failures exceeds the threshold value. Once the timeout ends, 
+the proxy will enable a limited number of requests to check whether the microservice is working. If those requests succeed, the proxy will allow microservices to 
+continue normal operations. If not, the proxy will again start the timeout.
+It has three states: Closed, Open, and Half Open(Limited no of request).
+Netflix Hystrix is a good implementation of the circuit breaker pattern. It also helps you to define a fallback mechanism which can be used when the 
+circuit breaker trips. That provides a better user experience.
+We need to add the default fall back method to API Gateway. If any microservces is not responding within given configure time than call the falback method.
+Syntax: @HystrixCommand(fallbackMethod = "callStudentServiceAndGetData_Fallback")
+    public String callStudentServiceAndGetData(String schoolname) { ....}
+
+@SuppressWarnings("unused")
+    private String callStudentServiceAndGetData_Fallback(String schoolname) { ...}
+https://blog.bitsrc.io/circuit-breaker-pattern-in-microservices-26bf6e5b21ff
+Advantage : It prevents cascading failures by temporarily halting requests to a failing service, allowing it time to recover and preventing the entire 
+system from being overwhelmed. It ensures that one service's issues don't bring down others.
+
+Zipkin is the tool for monitoring the API fail or pass info.
+Slueth is the tool which tarck the every request from one service to another service.
+
+
+
+
+Saga pattern(data consistency)
+=============
+The Saga pattern is one of the microservice design patterns that allow you to manage such transactions(span across multiple microservices) using a 
+sequence of local transactions. Each transaction is followed by an event that triggers the next transaction step.
+If one transaction fails, the saga pattern triggers a rollback transaction compensating for the failure.
+example of an eCommerce application that consists of multiple transactions for orders, payment, inventory, shipping, and notifications. Once an order 
+is generated for a specific product, the next transaction for the payment and the inventory update is initialized.If the transaction for inventory update 
+fails, for example, due to unavailability of a product, a rollback is triggered. If the transaction for inventory update is successful further transactions 
+are initialized.
+This pattern is suggested for applications where ensuring data consistency is critical without tight coupling.
+It is used to manage long-running and distributed transactions, particularly in microservices architecture.
+
+d. Saga design pattern( 2PC issue is resolved in SAGA)
+https://satyampushkar.medium.com/orchestration-based-saga-pattern-for-microservices-with-camunda-e68c1e81dc05
+This pattern use when a business tarnsation involves data that spans  across multiple microservices.
+The Saga Pattern is as microservices architectural pattern to implement a transaction that spans multiple services.
+A saga is a sequence of local transactions. Each service in a saga performs its own transaction and publishes an event. The other services listen to that 
+event and perform the next local transaction. If one transaction fails for some reason, the saga also executes compensating transactions to undo the impact 
+of the preceding transactions.
+There are two types of Sagas:
+i.) Orchestration-Based Saga:In this approach, there is a Saga orchestrator that manages all the transactions and directs the participant services to execute 
+local transactions based on events. This orchestrator can also be though of as a Saga Manager.
+We are using Camunda for Orchestraion. Camunda has work flow & decision model.
+Springboot intergartion dependency archifect "camunda-bpm-spring-boot-starter"
+ii.) Choreography-Based Saga:In this approach, there is no central orchestrator. Each service participating in the Saga performs their transaction and publish 
+events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
+Axon Saga – a lightweight framework and widely used with Spring Boot-based microservices.
+Saga pattern is independent, so if one step fails, it doesn't block the entire process.
+
+What is 2PC for Distributed Transaction Management?
+2PC (Two-Phase Commit) is a protocol used to ensure all participants in a distributed transaction either commit or abort, ensuring consistency. 
+In the first phase, the coordinator asks all participants to agree to commit, and in the second phase, participants either vote to commit or abort the 
+transaction.
+Advantage : (String consistency,)Ensures that all participants either commit or rollback together, maintaining data consistency. 
+Disadvantege: 2PC is a synchronous protocol, meaning it blocks the transaction until all participants have responded.It can introduce latency and overhead, especially
+in high-volume environment.
+
+Aggregator (Apache Camel)
+==========
+The aggregator pattern is a service that is operated in four steps:
+
+i) The service receives the request
+ii) Subsequently, this service makes request to multiple other services
+iii) Combines the result from these multiple services
+iv) Responds to the initial request
+
+This pattern allows you to abstract the business logic from multiple services and aggregate them in a single microservice. So, only one aggregated 
+microservice is exposed to the UI instead of multiple services.
+
+CQRS (Command Query Responsibility Segregation)
+===================================================
+CQRS separates reads and writes into different databases.Commands performs update data, Queries performs read data.
+CQRS is another design pattern used in microservices architecture which will have a separate service, model, and database for insert operations in the 
+database. This acts as a command layer and separate service, model, and database for query data that acts as a query layer.
+We have to split the database in 2 DB where one is only for read and another is for write and do the synchnorization for write to read database.
+CQRS is often used alongside the EventSourcing pattern.
+The CQRS design pattern is a technique used in microservices architecture to ensure data consistency and improve application performance. It works by 
+separating queries and writes, allowing for scalability and avoided locking issues, with messages being sent between bounded contexts for updates. 
+One example of CQRS in action is online banking, where a query for a customer's account balance might initiate an event to update that balance on 
+another microservice, while a query for the customer's transaction history would still return results from a previous update.
+
+You should consider using the CQRS pattern if:
+                - You implemented the database-per-service pattern and want to join data from multiple microservices.
+                - Your read and write workloads have separate requirements for scaling, latency, and consistency.
+                - Eventual consistency is acceptable for the read queries.
+
+Circuit pattern
+================
+It prevents a cascade of failures in a distributed system by monitoring the health of external services and breaking the connection if they are unhealthy.
+Possible states are OPEN, CLOSE and HALF OPEN
+Benefit: improving availability and performance, enhancing user experience, and facilitating recovery and maintenance. By avoiding unnecessary requests to 
+failed or slow services and reducing the impact of network latency and congestion, the circuit breaker pattern can help increase system performance.
+Challenges :you must select the right parameters and logic for your circuit breakers, such as the failure rate threshold and the timeout duration.
+https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
+https://javatechonline.com/fault-tolerance-in-microservices-resilience4j-spring-boot/
+
+sample code for RateLimit
+@RateLimiter(name = "getMessageRateLimit", fallbackMethod = "getMessageFallBack")
+      public ResponseEntity<String> getMessage(@RequestParam(value="name", defaultValue = "Hello") String name){
+
+          return ResponseEntity.ok().body("Message from getMessage() :" +name);
+      }
+public ResponseEntity<String> getMessageFallBack(RequestNotPermitted exception) {
+   return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+          .body("Too many requests : No further request will be accepted. Please try after sometime");
+}
+resilience4j.ratelimiter.instances.getMessageRateLimit.limit-for-period=2
+resilience4j.ratelimiter.instances.getMessageRateLimit.limit-refresh-period=5s
+resilience4j.ratelimiter.instances.getMessageRateLimit.timeout-duration=0
+
+Sample code for retry
+@Retry(name = "getInvoiceRetry", fallbackMethod = "getInvoiceFallback") 
+      public String getInvoice() {
+         logger.info("getInvoice() call starts here");
+         ResponseEntity<String> entity= restTemplate.getForEntity("http://localhost:8080/invoice/rest/find/2", String.class);
+         logger.info("Response :" + entity.getStatusCode());
+         return entity.getBody();
+      }
+
+      public String getInvoiceFallback(Exception e) {
+         logger.info("---RESPONSE FROM FALLBACK METHOD---");
+         return "SERVICE IS DOWN, PLEASE TRY AFTER SOMETIME !!!";
+      }
+resilience4j.retry.instances.getInvoiceRetry.max-attempts=5
+resilience4j.retry.instances.getInvoiceRetry.wait-duration=2s
+resilience4j.retry.instances.getInvoiceRetry.retry-exceptions=org.springframework.web.client.ResourceAccessException
+
+Sample code for Circuit braker 
+@CircuitBreaker(name = "getInvoiceCB", fallbackMethod = "getInvoiceFallback") 
+      public String getInvoice() { 
+         logger.info("getInvoice() call starts here");
+         ResponseEntity<String> entity= restTemplate.getForEntity("http://localhost:8080/invoice/rest/find/2", String.class);
+         logger.info("Response :" + entity.getStatusCode());
+         return entity.getBody();
+      }
+
+      public String getInvoiceFallback(Exception e) {
+         logger.info("---RESPONSE FROM FALLBACK METHOD---");
+         return "SERVICE IS DOWN, PLEASE TRY AFTER SOMETIME !!!";
+      }
+resilience4j.circuitbreaker.instances.getInvoiceCB.failure-rate-threshold=80
+resilience4j.circuitbreaker.instances.getInvoiceCB.sliding-window-size=10
+resilience4j.circuitbreaker.instances.getInvoiceCB.sliding-window-type=COUNT_BASED
+resilience4j.circuitbreaker.instances.getInvoiceCB.minimum-number-of-calls=5
+resilience4j.circuitbreaker.instances.getInvoiceCB.automatic-transition-from-open-to-half-open-enabled=true
+resilience4j.circuitbreaker.instances.getInvoiceCB.permitted-number-of-calls-in-half-open-state=4
+resilience4j.circuitbreaker.instances.getInvoiceCB.wait-duration-in-open-state=1s
+
+
+===================================================================================================
+Rest API design best practice
+
+1. Use JSON as the Format for Sending and Receiving Data
+2. Use Nouns Instead of Verbs in Endpoints
+This is because HTTP methods such as GET, POST, PUT, PATCH, and DELETE are already in verb form for performing basic CRUD (Create, Read, Update, Delete) 
+operations.
+old :-- https://mysite.com/getPosts or https://mysite.com/createPost
+new :-https://mysite.com/posts
+In short, you should let the HTTP verbs handle what the endpoints do. So GET would retrieve data, POST will create data, PUT will update data, and DELETE 
+will get rid of the data.
+3. Name Collections with Plural Nouns.
+So, instead of https://mysite.com/post/123, it should be https://mysite.com/posts/123
+4.Use Status Codes in Error Handling
+
+400 – 499  -> Client-side errors  eg. 400 means bad request and 404 means resource not found.
+500 – 599 -> Server-side errors, For example, 500 means an internal server error
+5. Use Filtering, Sorting, and Pagination to Retrieve the Data Requested.
+6. Use SSL for Security
+7. Be Clear with Versioning.
+REST APIs should have different versions, so you don’t force clients (users) to migrate to new versions. This might even break the application if you're not 
+careful.
+9. Provide accurate API Documentation.
+
+Software application best parctice /principal :
+1. YAGNI - You Ain’t Gonna Need It
+2. Think Before Coding
+3. KISS – Keep It Simple Stupid
+4. KISS – Keep It Simple Stupid
+5. use SOLID principal
+6. USe Pattern (Factory, Singleton)
+7.
+
+Que: Best parctice for micro service ?
+Ans:https://www.capitalone.com/tech/software-engineering/10-microservices-best-practices/
+The Single Responsibility Principle:-
+Have a separate data store(s) for your microservice:-
+Use asynchronous communication to achieve loose coupling:-
+Fail fast by using a circuit breaker to achieve fault tolerance:-
+Proxy your microservice requests through an API Gateway:-
+Ensure your API changes are backwards compatible:-
+Have dedicated infrastructure hosting your microservice:-
+Create a separate release train:-
+Create Organizational Efficiencies(side car/ common application like logging/security/configuration):-
+=======================================
+
+Que: Software design architecture steps ?
+Ans:https://www.lucidchart.com/blog/how-to-design-software-architecture
+https://www.geeksforgeeks.org/fundamentals-of-software-architecture/
+https://www.lucidchart.com/blog/how-to-draw-architectural-diagrams
+
+
+Que: Code review Best practice/ What to look for in a code review.
+Ans: key aspects to ensure the code is high-quality, maintainable, and meets the required standards.
+1. Functionality: 
+Does the code accomplish its intended functionality as outlined in the requirements or user stories?
+Are there any edge cases or boundary conditions that haven't been addressed?
+2. Code Structure and Organization: 
+Are functions/methods appropriately named and do they adhere to the principles of encapsulation?
+Are there any code smells such as duplicated code that could be refactored into reusable components.
+3. Clarity and Readability: 
+Is the code easy to understand at first glance (without extensive comments)?
+Are variables and functions named descriptively?
+Are there comments where necessary to explain complex or non-obvious sections of code?
+4.Best Practices and Standards
+Does the code follow the coding standards and best practices established by the team or organization?
+Are there any potential performance bottlenecks (e.g., inefficient algorithms or operations)?
+Are error handling and logging implemented appropriately?
+5.Testing and Edge Cases:
+Are there sufficient unit tests covering different scenarios and edge cases?
+Do the tests adequately verify the expected behavior of the code?
+6. Security
+Are there any potential security vulnerabilities such as SQL injection, cross-site scripting (XSS), or improper handling of sensitive data?
+Has input validation been performed correctly?
+7. Performance:
+Are there any potential performance issues such as memory leaks or inefficient use of resources?
+Is the code optimized where necessary without sacrificing readabilit
+8. Documentation
+Is the code adequately documented, including inline comments where necessary?
+Are there clear, up-to-date README files or documentation describing how to build, deploy, and use the code?
+9.Consistency
+Does the code maintain consistency with the existing codebase in terms of style, conventions, and architecture?
+
+Que: If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
+1. Technology Stack Selection
+Java Framework
+Containerization and Orchestration
+MySQL or Equivalent Database
+2. Code Migration and Refactoring
+3. Data Migration and Integration
+4. Performance and Scalability
+5. Security
+6. Testing and Quality Assurance:
+7. Monitoring and Logging:-
+8. Deployment and Infrastructure
+9. Documentation and Knowledge Transfer
+10. Compliance and Governance
+
+============================================================================================================================================
+Que: Scenarios where microservice architecture is preferred over monolithic Architecture
+Scalability
+Flexibility
+Development Velocity
+Team Structure
+Complexity
+Maintenance 
+
+Que: Scenarios where monolithic  architecture is preferred over microservice Architecture ?
+If your app is small, straightforward, and does its job just fine as one big piece (like a cake), there might not be a very good reason to go through the tricky task of splitting it into smaller pieces (like cupcakes). Instead, you can work on making your big cake better and adding more features to it to meet your business needs while keeping it easy to build and take care of.
+
+Que: How to handle data consistency in a Microservices architecture?
+Synchronous Communication
+Asynchronous Communication
+CQRS (Command Query Responsibility Segregation)
+Event Sourcing
+Distributed Transaction
+Saga Pattern
+Monitoring and Logging
+Conflict Resolution
+
+Que: How do you make sure a Microservices-based application can handle more users as it becomes more popular?
+Load Balancing
+Horizontal Scaling
+Auto Scaling
+Caching
+Database Scaling
+Asynchronous Processing
+
+
+Diffrence between 2 pahse commit & SAGA design pattern?
+ 2 Phase                                  SAGA
+  Strong consistency              Eventaul consistancy
+  Synchronus                     Asynchronus
+  Blocking                        Non Blocking
+  Complexity                      Simplicity
+  Performance overhead            Better Performance
+  String data consistancy         Temporiry consistancy
+  

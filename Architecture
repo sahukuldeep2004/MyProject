@@ -1,0 +1,222 @@
+Need to cover
+Java
+Design pattern
+CICD
+Messaging
+Cloud /AWS
+Security
+Architecture pattern 
+NFR
+DB
+Hibernate
+Spring framwork
+
+In system design what is What/How ?
+ans: What menas functinal req and how means non functional
+
+
+System Design road map
+1. High level Requiremnet/Feature
+2. users(admin/viewer/writer)/location/devices
+3. data model storage
+4. API's (API architecture style like REST,SOAP,webhook,gRPC,Text/Binary)
+5. high level component (datase,server, ALB,gateway,cdn,message queue,analytic service,cache layer,promothis for monitor)
+6. draw architecture with component /follow architecture pattern like microservices ,event driven,monolothi,SOA,layered) or deployemnet uses K8s, container or need cloud with services.
+7. Low level design -focus on each service and tink of it how it communicate with other.
+
+
+Know about
+Devops tool
+Architecture patern/style --Ok
+Design pattern/principal --Ok
+SQl/NoSQL --SQl (OLTP/OLAP)  --Ok
+Security Ouath2/JWT/SSl/TLS ect --ok
+Distrubuted system  -- ok
+SOLID, KISS, CAP --Ok
+Domain driven design/ TDD --
+Container/Orchestarion/Cloud Computing/CICD/serverless --Ok
+FindBug(static analysis on Java code)/checkstyle(Checkstyle is an open source tool that checks code against a configurable set of rules)/
+PMD(PMD Plugin allows you to automatically run the PMD code analysis tool on your project's source code and generate a site report with its results)/
+SONAR(SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells)/Junkin/JMETER/Splunk/ELK/
+Flow Diag/Architeture Diag/
+Messaing System(Kafka/MQ) --Ok
+
+
+Non Functional Requirmnet
+1.maintainability
+2.Availabilty
+3.security
+4.Extensibality
+5.Performance
+6.Recovery
+7.Reliability
+8.Capacity
+9.Sacalibility
+10.Usability
+
+How to choose DB  based on structured(table), semi structured(json), non structured(audio files) ?
+If data is structured and need to work with ACID property then RDBMS.
+Data is not structured. It has too many queries and attribute. Then we need to go DOCUMENT DB like Mongo DB.
+Data is not structured. if we have to work on an extremely large scale but have few types of queries we need to run, then we go for a COLUMNAR DB like Cassandra or HBase.
+
+OLTP/OLAP
+OLAP stands for Online Analytical Processing. OLAP systems have the capability to analyze database information of multiple systems at the current time. The primary goal of OLAP Service is data analysis and not data processing. 
+OLTP stands for Online Transaction Processing. OLTP has the work to administer day-to-day transactions in any organization. The main goal of OLTP is data processing not data analysis. 
+
+Diffrence between Monolithic, Service oriented architecture (SOA) and Microservices. Why need API gateway
+https://api7.ai/blog/why-do-microservices-need-an-api-gateway
+API Gateway : as the intermediate bridge between the client and the server, provides a unified management mechanism for the microservices system. 
+In addition to basic functions such as request distribution, API management, and conditional routing, it also includes identity authentication, monitoring 
+and alarm, tracing analysis, load balancing, rate limiting, isolation, and circuit breaking.
+=================================================================================
+
+Top  7 Architectural Patterns
+An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in software design. It offers a highlevel conceptual framework for structuring and organizing software systems to effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
+
+1.Microservices Architecture:
+ Approach: The application is divided into small, independent services with welldefined APIs.
+ Example: Netflix separates user management, content streaming, and recommendations into distinct services.
+
+2. Layered Architecture:
+Layered Architecture is a design pattern in software development that organizes a system into distinct layers, each with a specific role and responsibility.
+Presentation Layer (User Interface):Handles the interaction between the user and the system.
+Responsibilities: Displaying data to the user,Capturing user inputs and sending them to the underlying layers.
+Examples: Web interfaces, mobile apps, desktop applications.
+Application Layer (Service Layer): Manages the business logic and application workflows.
+Responsibilities: Implements core business rules,Processes inputs from the presentation layer.
+Coordinates data exchange between the presentation and data layers.
+Examples: Services or use cases in a web application.
+Domain Layer (Business Logic Layer): Focuses on the core domain logic and rules.
+Responsibilities:Encapsulates complex business rules and validations, Manages domain entities and aggregates.
+Examples: Business models, domain services.
+Data Access Layer (Persistence Layer): Handles interaction with the data storage mechanisms.
+Responsibilities:Fetches and saves data to databases or other storage systems.
+Abstracts the details of data storage from higher layers.
+Examples: ORMs (Object-Relational Mappers) like Hibernate, raw SQL queries.
+Infrastructure Layer (Optional): Manages technical details such as logging, caching, and messaging.
+Responsibilities:Provides support services to other layers,Handles integrations with external systems like message brokers or third-party APIs.
+
+3. EventDriven Architecture:
+ Approach: Components communicate through events to achieve loose coupling.
+ Example: Airbnb uses Apache Kafka for realtime event processing, such as handling booking requests.
+
+4. ModelViewController (MVC) Architecture:
+ Approach: The application is divided into Model (data), View (UI), and Controller (logic) components.
+ Example: Ruby on Rails applications separate data, user interface, and user input handling.
+
+5. MasterSlave Architecture:
+ Approach: One master coordinates tasks among multiple slaves.
+ It is used for distributed systems where one node acts as a 'master' and the remaining nodes as 'slaves'. The master node controls the operations
+of the slave nodes which manage the computations and store the results.
+ Example: Database replication, where the master handles writes, and slaves serve reads, widely seen in various systems.
+
+6. Monolithic Architecture:
+ Approach: The entire application is bundled together as a single unit.
+ Example: Traditional enterprise software often integrates all features into a single executable.
+
+7. ServiceOriented Architecture (SOA):
+ Approach: The application is composed of loosely coupled, reusable services.
+ Example: Salesforce integrates or offers sales, support, and marketing services as integrated or standalone components.
+
+8. Serverless Architecture :-
+It allows developers to build and run services without having to manage the underlying infrastructure. Developers can write and deploy code, 
+while a cloud provider provisions servers to run their applications, databases, and storage systems at any scale.
+y adopting serverless architecture, developers can offload these responsibilities to a third-party provider, enabling them to focus on writing application code.
+One of the most popular serverless architectures is Function as a Service (FaaS).
+Each function will perform a specific task when triggered by an event, such as an incoming email or an HTTP request.
+ ==========================================================================================================================
+ Software Architecture charatersic
+ https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
+ 1.Understandability: It should able to communicate easily, quickly understood by development teams and stakeholders at the same time it should meet the business requirements. 
+ When a new developer joins the product team they should able to understand the software architecture with a short introduction.
+ 2.Usability & Learnability :-All features of the application should be easily visible and accessible. To adopt new technology or frameworks the architect should be aware of how easy to learn or 
+ adopt the new technology or framework quickly by the developer
+ 3. Securability :-What Authentication mechanism to adopt and what roles should be given to different application features.Ensure Application communicates on Secured Protocols.All passwords should be encrypted and secured.
+ Design to detect and protect DDoS Attacks and SQL Injection.Data Encryption, Confidentiality & Integrity.
+ 4. Reliability & Availability:-
+ 5. Interoperability:-Most of applications services are required to communicate with external systems to provide full-fudged services. A well-designed software architecture facilitates how well the application is interoperable to communicate and exchange the data with external systems or legacy systems
+ 6.Testablity:-Testability is the ability to test different components and events of the Application.All the Business Requirements and NFR’s should be consistent and completely testable.
+ 7.Scalability:-When the load gets increased the application should able to scale without impacting the performance. There are two types of scaling vertical scaling/scaling up and horizontal scaling or scaling out.
+ 8.Performability:-Performance is the ability of the application to meet timing requirements such as speed & accuracy. The performance score is generally measured on throughput, latency, and capacity.
+ 9. Agility :-Maintain continuous focus on emerging customer-facing features.
+ 10.Observability:-Central Log management by effective instrumentation to collect telemetry, logs, events, metrics, and traces.Have a visualization dashboard to make it easy to understand and convey what’s happening and why it is happening.
+ 11.Fault Tolerance:- Define recovery actions in case of full failure.
+ 
+ ======================================================================================================================================
+ https://gist.github.com/Nj-kol/d5211ed218557a6e398212838dffa3e9
+ Fault Tolerant:- The Fault Tolerant means the ability of an architecture to survive (tolerate) when an environment misbehaves by taking corrective actions, 
+ e.g, surviving a server crash or preventing a misbehaving API from bringing down the whole system, etc. 
+ eg. If out of N instances of a microservice sitting behind a reverse proxy like nginx, one instance fails, the service is still available. However, There will be a decrease in throughput. 
+ Hence the service is fault-tolerant.
+ 
+ Fault Resilience:- The Fault Resilience is probably the capacity to recover from these type of scenarios quickly.Resiliency is a measure of the system's ability to self-recover from problems.
+ eg. If we run the above example on Kubernetes, the instance that failed will be automatically brought back online (maynot be the same instance) because Kubenetes automatically maintains the exact number of pods in a replica set. Hence in addition to being fault tolerance this it is also resilient.
+ 
+ =================================================
+ CI/CD Kubernated Deployment Steps
+ https://www.linkedin.com/pulse/mastering-cicd-workflows-empowering-your-software-rocky-bhatia/
+ 
+ 1. Developer commit the code and push it to git repo.
+ 2. CI server will notice new code in git repo and starts running through its pipeline.
+ 3. CI server build new docker image, run test cases and push new docker images to docker repository. It alos update the kubernetes deployment.
+4 .K8s pull the new image from docker repository and create new pod. It check health. If new pod is healthy then delete old pod. If new pod is not healthy then let old pod continue running and restart new pod. 
+
+
+1. What thing we need to consider while migrating the application java 8 to java 17?
+Feature and API Changes: Leverage new features and address deprecated/removed APIs.
+Code Compatibility: Refactor code and update libraries for compatibility.
+Module System: Consider modularization and module compatibility.
+Performance and Behavior: Test performance and review garbage collection settings.
+Testing and Validation: Conduct thorough testing and ensure backward compatibility.
+Build and Deployment: Update build tools and CI/CD pipelines.
+Security: Implement new security features and best practices.
+Documentation and Training: Update documentation and provide developer training.
+Tooling and IDE Support: Ensure IDE and tools support Java 17.
+Legal and Licensing: Review licensing terms and compliance.
+
+2 If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
+Architecture Design: Decompose into microservices, define service boundaries.
+Data Migration: Map schemas, use migration tools, ensure data integrity.
+Database Differences: Adjust SQL syntax, optimize performance, handle transactions.
+Code Migration: Rewrite code, switch ORM frameworks, adjust APIs.
+Microservices Implementation: Manage service communication, discovery, and configuration.
+Testing: Perform unit, integration, and performance testing.
+Deployment and DevOps: Set up CI/CD pipelines, consider containerization, implement monitoring.
+Security: Implement security measures, ensure data protection.
+User Training and Documentation: Update documentation, provide training.
+Migration Strategy: Plan phased migration, prepare rollback options.
+
+3 If we have one API call that needs to update DB A and then DB B, if the DB B call fails then how to roll back the transaction?
+Ans: Use SAGA just like all or nothing
+
+4. If we have 2 node microservice application and before node we have LB, if the request fails in node A due to system issue then how to switch the request to node B. Which design pattern we need to use?
+Ans: Use circuit design pattern.
+
+5. If have 10 GB data in the table and we want to delete 9GB data from the table then what would be the impact on table space?
+Ans: It can have several impacts on the table space and database performance.
+Table Size and Disk Space: Initially, the table size might not immediately shrink after deleting the data.
+Transaction Log Growth:-The deletion operation itself will generate transaction log entries
+Index Maintenance: the table has indexes, deleting a large portion of the data may require index maintenance.
+Performance Considerations:-During the deletion process, the database might experience increased I/O activity and locking, especially if the table being modified is heavily accessed concurrently.
+
+6. What are the things we need to consider while revising the code?
+Functionality: Correctness, edge cases.
+Quality: Readability, consistency, modularity.
+Performance: Efficiency, scalability.
+Maintainability: Code duplication, complexity.
+Security: Vulnerabilities, validation.
+Testing: Coverage, reliability.
+Documentation: Comments, code documentation.
+Error Handling: Exceptions, logging.
+Dependencies: Library versions, unused dependencies.
+Compliance: Coding standards, legal issues.
+Code Review Practices: Peer review, checklists.
+
+7. Event-driven architecture component?
+Que: We have DB where our SQL query is reading the data, now it takes 20 min compared to 2 min. How to troubleshoot. What could be reason
+Ans: Analyze the Query Execution Plan
+Check for Index Utilization
+Review Query Statistics and Performance Metrics
+Identify Recent Changes
+Database Server Resource Utilization
+Optimize the Query

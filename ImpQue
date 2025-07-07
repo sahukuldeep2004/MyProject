@@ -1,0 +1,84 @@
+Que: If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
+que: If we have one API call which needs to update DB A and then DB B , if DB B call is failed then how to rollback the transation?
+Ans: In a microservices architecture, ensuring data consistency across multiple services—especially when operations span different databases like DB A 
+and DB B—requires careful design. Traditional monolithic transaction mechanisms (like ACID transactions) don't scale well in distributed systems. 
+To handle such scenarios, the Saga Pattern is a widely adopted solution.
+que: If we have 2 node microservice application and before node we have LB, if request is failed in node A due to system issue thenhow to switch the request to node B. Which design pattern we need to use?
+Ans: In a microservices architecture with two nodes (Node A and Node B) behind a Load Balancer (LB), ensuring high availability and fault tolerance is crucial.
+If a request to Node A fails due to a system issue, the system should seamlessly reroute the request to Node B. To achieve this we can try Retry Pattern, Circuit pattern.
+que: If have 10gb data in table and we want to delete 9GB data from table then what would be impact on table space.?
+Ans:Potential Performance Impacts are
+1.Index Fragmentation :
+Large deletions can cause index fragmentation, leading to inefficient data retrieval and degraded query performance.
+2.Outdated Statistics :
+Deleting significant data volumes can render table statistics outdated, causing the query optimizer to make suboptimal decisions and generate inefficient execution plans. 
+3.Transaction Log Growth :
+Mass deletions generate extensive transaction logs, consuming considerable disk space and potentially impacting other database operations.
+4.Table and Index Bloat :
+In databases like PostgreSQL, deleted rows remain as dead tuples until vacuumed, leading to bloated tables and indexes, which can slow down queries.
+
+que: We have DB weher our SQL qury is reading the data, noow it taking 20 min comparing to 2 min? How to trobleshhot.what could be reason?
+que: How to implement the security in app if we need to perform the authentication from third partyy like GMAIL/GIT?
+
+que: what is fallback mechanism ?
+Que: OLTP/OLAP
+Que:  eventaul vs strong consistency?
+
+que: What are the thing we need to consider while reviwing the code?
+Que: Code review Best practice/ What to look for in a code review.
+Que: Best parctice for micro service ?
+que: SOLID principal?
+Que: Software architecture style
+Que: Architectural Patterns you have worked ?
+
+Que: Want design REST API ? What best practice need to follow ?
+Que:  What is builder factory pattern ?
+Que: What strategy factory pattern ?
+
+============
+Que: Code review Best practice/ What to look for in a code review.
+Ans: key aspects to ensure the code is high-quality, maintainable, and meets the required standards.
+1. Functionality: 
+Does the code accomplish its intended functionality as outlined in the requirements or user stories?
+Are there any edge cases or boundary conditions that haven't been addressed?
+2. Code Structure and Organization: 
+Are functions/methods appropriately named and do they adhere to the principles of encapsulation?
+Are there any code smells such as duplicated code that could be refactored into reusable components.
+3. Clarity and Readability: 
+Is the code easy to understand at first glance (without extensive comments)?
+Are variables and functions named descriptively?
+Are there comments where necessary to explain complex or non-obvious sections of code?
+4.Best Practices and Standards
+Does the code follow the coding standards and best practices established by the team or organization?
+Are there any potential performance bottlenecks (e.g., inefficient algorithms or operations)?
+Are error handling and logging implemented appropriately?
+5.Testing and Edge Cases:
+Are there sufficient unit tests covering different scenarios and edge cases?
+Do the tests adequately verify the expected behavior of the code?
+6. Security
+Are there any potential security vulnerabilities such as SQL injection, cross-site scripting (XSS), or improper handling of sensitive data?
+Has input validation been performed correctly?
+7. Performance:
+Are there any potential performance issues such as memory leaks or inefficient use of resources?
+Is the code optimized where necessary without sacrificing readabilit
+8. Documentation
+Is the code adequately documented, including inline comments where necessary?
+Are there clear, up-to-date README files or documentation describing how to build, deploy, and use the code?
+9.Consistency
+Does the code maintain consistency with the existing codebase in terms of style, conventions, and architecture?
+
+Que: If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
+1. Technology Stack Selection
+Java Framework
+Containerization and Orchestration
+MySQL or Equivalent Database
+2. Code Migration and Refactoring
+3. Data Migration and Integration
+4. Performance and Scalability
+5. Security
+6. Testing and Quality Assurance:
+7. Monitoring and Logging:-
+8. Deployment and Infrastructure
+9. Documentation and Knowledge Transfer
+10. Compliance and Governance
+

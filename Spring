@@ -1,0 +1,317 @@
+====================================================SpringFramwork ========================== =============================================================================================
+
+Spring MVC and REST Annotation?
+www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html#at_pco=smlwn-1.0&at_si=5cdbb7194383efff&at_ab=per-2&at_pos=0&at_tot=1
+
+Que: When to use Singleton and prototype bean ?
+Ans: you should use the prototype scope for all stateful beans and the singleton scope for stateless beans.
+
+Ans: Que: What is life cycle of Spring bean /
+Ans: Spring beans are instantiated, configured, wired and managed by IoC container.
+
+Que: AOP, Aspect Oriented Programming?
+Ans: A cross-cutting concern such as transaction management, authentication, logging, security etc is a concern that could affect the whole application and should be 
+centralized in one location in code as much as possible for security and modularity purposes.
+Que: What is join point?
+https://stackoverflow.com/questions/15447397/spring-aop-whats-the-difference-between-joinpoint-and-pointcut
+Ans: A point during the execution of a program, such as the execution of a method or the handling of an exception. 
+In Spring AOP, a join point always represents a method execution.
+eg.: A method in Employe calss like geName() or getDepartmentname().
+this regular expression is what defines Pointcut. e.g.
+* * mypackage.Employee.get*(*)
+
+Que: What is an advice? Explain its types in spring?
+Ans: An advice is the implementation of cross-cutting concern can be applied on other modules of the spring application. 
+Advices are of mainly 5 types.
+
+1. Before :This advice executes before a join point, but it does not have the ability to prevent execution flow proceeding to the join point (unless it throws an exception).To use this, use @Before annotation.
+2. AfterReturning :This advice is to be executed after a join point completes normally i.e if a method returns without throwing an exception.
+To use this, use @AfterReturning annotation.
+3. AfterThrowing :This advice is to be executed if a method exits by throwing an exception.To use this, use @AfterThrowing annotation.
+4. After :This advice is to be executed regardless of the means by which a join point exits (normal return or exception encounter).
+To use this, use @After annotation.
+5. Around :This is the most powerful advice surrounds a join point such as a method invocation.
+To use this, use @Around annotation.
+
+Que: @Autowiring ?
+Ans: The @Autowired annotation in spring automatically injects the dependent beans into the associated references of a POJO class. This annotation will inject the dependent beans by matching the data-type.
+Que: @component, @controller, @service, @repository
+@component : which automatically scans and registers classes as Spring bean which is annotated using @Component annotation.
+@controler: This is specialized form of @Component annotation for certain situations. Instead of using @Component on a controller class in Spring MVC, we use @Controller,
+ which is more readable and appropriate. It used for presentaion layer.
+
+@services: It is used for services layer.
+@Repository is a stereotype for the persistence layer.
+
+Read more: https://javarevisited.blogspot.com/2017/11/difference-between-component-service.html#ixzz6vZ5sKVbl
+
+Read more: https://javarevisited.blogspot.com/2017/11/difference-between-component-service.html#ixzz6vZ55UI8v
+
+Read more: https://javarevisited.blogspot.com/2017/11/difference-between-component-service.html#ixzz6vZ3z9G4u
+Que: How to add bean dependncy for 2 class which Implements same Interface?
+Ans:public interface MyService {   void doWork(); }
+
+@Service
+@Qualifier("firstService")
+public static class FirstServiceImpl implements MyService {
+    @Override
+    public void doWork() {
+        System.out.println("firstService work");
+    }
+}
+
+@Service
+@Qualifier("secondService")
+public static class SecondServiceImpl implements MyService {
+    @Override
+    public void doWork() {
+        System.out.println("secondService work");
+    }
+}
+
+@Component
+public static class FirstManager {
+    private final MyService myService;
+    @Autowired // inject FirstServiceImpl
+    public FirstManager(@Qualifier("firstService") MyService myService) {
+        this.myService = myService;
+    }
+
+    @PostConstruct
+    public void startWork() {
+        System.out.println("firstManager start work");
+        myService.doWork();
+    }
+
+}
+Que : How to add scope in Spring using anntaion?
+Ans: @Bean
+@Scope("singleton")
+public Person personSingleton() {
+    return new Person();
+}
+in xml  : <bean id="personSingleton" class="org.baeldung.scopes.Person" scope="singleton"/> 
+
+Que:Name some of the design patterns used in Spring Framework?
+Ans: Singleton Pattern: Creating beans with default scope.
+Factory Pattern: Bean Factory classes
+Prototype Pattern: Bean scopes
+Adapter Pattern: Spring Web and Spring MVC
+Proxy Pattern: Spring Aspect Oriented Programming support
+Template Method Pattern: JdbcTemplate, HibernateTemplate etc
+Front Controller: Spring MVC DispatcherServlet
+Data Access Object: Spring DAO support
+Dependency Injection and Aspect Oriented Programming
+
+Que: Diffrence b/w singleton and prototype bean ?
+Ans:Singleton: Only one instance will be created for a single bean definition per Spring IoC container and the same object will be shared for each request made for 
+that bean. 
+Prototype: A new instance will be created for a single bean definition every time a request is made for that bean.
+eg. For shopping cart app, each cart object is created for each user.
+
+Que: Diffrence between IOC and Dependency injection ?
+Ans: IoC is a generic term meaning rather than Giving control to the container to create and inject instances of objects that your application depend upon, means instead of you are creating an object using the new operator, let the container do that for you.
+DI is a form of IoC, where implementations are passed into an object through constructors/setters/service look-ups, which the object will 'depend' on
+in order to behave correctly.
+
+Que: Spring MVC Execution flow ?
+
+In Spring Web MVC, DispatcherServlet class works as the front controller. It is responsible to manage the flow of the spring mvc application.
+The @Controller annotation is used to mark the class as the controller
+The @RequestMapping annotation is used to map the request url.
+
+Step 1: First request will be received by DispatcherServlet.
+Step 2: DispatcherServlet will take the help of HandlerMapping and get to know the Controller class name associated with the given request.
+Step 3: So request transfer to the Controller, and then controller will process the request by executing appropriate methods and returns ModelAndView object 
+(contains Model data and View name) back to the DispatcherServlet.
+Step 4: Now DispatcherServlet send the model object to the ViewResolver to get the actual view page.
+Step 5: Finally DispatcherServlet will pass the Model object to the View page to display the result.
+
+Que: What is beanFactory ?
+Ans: Bean Factory is core of the spring framework and, it is a Lightweight container which loads bean definitions and manages your beans. Beans are configured using XML file and manage singleton defined bean. It is also responsible for life cycle methods and injects dependencies. It also removes adhoc singletons and factories.
+
+Que: How to configuer Spring data JPA in non spring boot project?
+Ans:To use spring data we need to configure following objects:
+
+DataSource: Database configuration- URL, username, password, driver, etc
+EntityManager: Most important object which binds all objects, like entity package, datasource, etc
+ - we can configure entityManager using LocalEntityManagerFactoryBean
+ - we can also configure additional properties using setJpaProperties(properties)
+TransactionManager: Configuration for database transaction
+Configuration using java code:
+@Configuration
+@EnableJpaRepositories
+@EnableTransactionManagement
+class ApplicationConfig {
+
+
+Programimg interview Question
+http://www.java67.com/2013/01/10-programming-questions-and-exercises.html
+
+sonarlint for code quality plug-in
+jacoco(Java code coverage) plug-in for code coverage reort in sonarcube. It will generate the report and say about which method is not covered by junit tetsing.
+
+testing approaches TDD, BDD
+
+=================================================================Spring Security=====================================================================
+Q: What is Delegating Filter Proxy?
+Ans: Spring makes use of the DelegatingFilterProxy for implementing security mechanisms.It is a Proxy for standard Servlet Filter, delegating to a Spring-managed bean that implements the Filter interface. Its the starting point in the springSecurityFilterChain which instantiates the Spring Security filters according to the Spring configuration.
+
+que: What is Security Context and Security Context Holder in Spring Security?
+Ans: The SecurityContext and SecurityContextHolder are two fundamental classes of Spring Security. The SecurityContext is used to store the details of the currently authenticated user, also known as a principle.
+
+Que: How to get the current logged-in username in Spring Security?
+Ans: Normally, the getPrincipal() method returns the UserDetails object in Spring Security that contains all the details of the user that is currently logged in.
+
+Q: What is diffrence between UserDetailsService & UserDetailsManager ?
+A: UserDetailsService only one method loadUserByUsername(String username) which get the details user details from database.
+UserDetailsManager have method like createUser(UserDetails user),updateUser(UserDetails user),deleteUser(String username),chnagePassword(oldpew, new pwd).
+
+Que: What is use of JdbcUserDetailsManager?
+Ans: It is use for database user retivew and validation. It implements UserDetailsManager interface.
+
+Que: What mechanism we need to use for password storing in DB?
+ANs: Hashing is the best way to store the password compare to encoding or encryption.
+
+Que: Where do we validate the encode password ?
+Ans: PasswordEncoder Interface has method encode(CharSequence password) which encode which we need to implements it. It also has boolean(rawPwd, encodedPwdFromDB) this method 
+validate the password in spring security when we try to verify the pwd from DB.
+
+
+1. What is CORS issue ?
+Ans: Cross Origen resource sharing occur when two diifrent resource try to communicate. So browser identify this and stop sending request. So we need to enable it by adding the resource server side  by adding the resoucre server name, port no. which type of service like GET, POST,PATCH, etc.
+2. What is CSRF ?
+Ans: CROSS Site Request Forgery, hacker can use the user data by having multioues request behalf of user. To protest this. Spring application generate the CSRF token and accet on every request when request come from UI.
+3. What is Authrity in security?
+Ans: Means User has access to perform READ, WRITE, DELETE access in indivisual manner. where Role define the group of previleges.
+authentication is the process of verifying who someone is, whereas authorization is the process of verifying what specific applications, files, and data a user has access to
+
+4. What is JWT?
+Ans: https://www.javainuse.com/spring/jwt
+The client will need to authenticate with the server using the credentials only once. During this time the server validates the credentials and returns the client a JSON Web Token(JWT). For all future requests the client can authenticate itself to the server using this JSON Web Token(JWT) and so does not need to send the credentials like username 
+and password.
+Jession Web Token. It contain 3 part. Fist one is header which contain the type of token (JWT) and algorthim used (HS256).{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+Second part is Payload. It contain the claims means user and some additional data.
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+3rd part is signature.To create a signature part it will use encoded header, encoded payload, a secret and algorithem specified in the header.
+All the 
+5. What Authentication Manger do in Spring Security ?
+Ans: It takes the credenations from Authentication object and also get the credenations from DB and verify it. If both are equal then it return true 
+else invalid user exception..
+
+6. Flow of JWT token ?
+Ans: When user send username & pwd to server, it goes to our extended filer(JWTRequestFilter exteds OncePerRequestFilter). This filter check that request has token or not.
+If it has token then it will get the user details from userDetailsservice(DB) and send it for validationit for token &user details.If it is valid then it will pass the request 
+from filter and request will move on.
+If user is coming first time then it will go to the mapping controller and token get generated and return in response.
+
+7. How Spring Security works ?
+Ans https://www.javainuse.com/webseries/spring-security-jwt/chap3
+https://www.youtube.com/watch?v=1ERV-6cz2xk
+Whenever there is a request to that specific URL, That request is sent to the servlet which would handle the request and proving the required response.But if we plan to secure that 
+servlet such that only authorized and authenticated user can access the servlet then we have to implement servlet filters or chain of filters which will intercept any request 
+coming to the servlet and can check if the user who has requested the response from that servlet is indeed valid.
+
+A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. So any incoming request will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
+
+B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the request and creates the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
+
+C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. The Authentication Manager is only a interface and actual implementation of the authenticate method is provided by the ProviderManager. It call all the provided and and check which one accept the authentication object.
+
+D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like CasAuthenticationProvider, DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
+E.UserDetailsService - The UserDetailsService is an interface having a single method named loadUserByUsername.
+
+Que: Diffrence between OAUTH2 and JWT?
+Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
+OAUTH token can be refresh for longer time other wise it can be expired.
+JWT is a protocol. If you just haev simeple app with one to one communication with server return the token and used it for subscuent request for same server.
+
+Que: Which algorithem is used for password encryption?
+Ans: Bcrypt algorithem is used in most of the application.
+
+Q: Why OAuth2?
+A: It solve prolem where we share user crediantl over network whener we send request multipe time in common basic authntication.
+If we have multiple microservcies then we have to write common authintication logic to every microservcies to validate user.
+if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account credenatils during login.TwitAnalyzer used my credenatils to intract with my credenatils to intract with Twiter. So ther is a securit breach if app misuse credenatils.
+
+Que: What is OAuth?
+Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, to use account information from an end-user without exposing the user's password.
+
+Que: How OAuth2 will work?
+Ans: It has seprate authorixation sever where it will validate the user credtails and provide the access token. This access token is on temporary bases.
+So whenevr user try to access the protected resource from server, server will ask for token. if user wont able to provide the token then it will redirect the request to Authorization server.
+
+Que: What are the component involve in Oauth2?
+Ans: 1.Autorization Server :The server that authorize the client to access the user resources. It will authenticate the user by valiation the details and provide the token.
+2.Resource srever:  It is the server which has protected resource details(diffrent microservie) like credit cards, loan, account balance info. WHen tokne is provided then only they give the details.
+3. The USER / resource owner : the person who owns resources exposed by the resource server.Usually user will prove his identity with username & pwd.
+4. The Client: It is the medium which access the protected resources. The clent application that want to access the resources owned y the user on their behalf .
+
+
+Que: What is auth2 work flow?
+Ans: 1. User will login to any client app(Quara.com).2. Clinet will fwd the request to facebook authserver for authentication and athorization.
+3. Authservere will procide the AUTH_CODE to client afer successful athentication.
+4. Clinet will use AUTH_CODE and also proide the clinet crdentails to AUTh server for auth token.
+5. Auth server will provide the auth token.
+6. Clinet will send the auth token to resource server(where application is deployed) and ask for some info like account balance, etc.
+7. Resouce server will verify the auth token from authorization server(using APi or common DB) and provide teh details to user like account balance.
+
+
+Que:What is OAuth2 grant type?
+Ans: An grant is a credential representing the resource owner's authorization (to access its protected resources) used by the client to obtain an access token or OAuth grant types are methods for getting tokens to make requests to a resource server..
+This specification defines four GRANT TYPE:
+1. Authorization Code : used in client app is using faceook,gmail etc and athorization servere share the authrization code and redirect 
+to client app.
+2. Implicit : Not use now as it will use one way authentication & authorization.
+3. Resource Owner Password Credentials: We use it if client app, authorization server, resource server are for one organization and sharing the user credenatils to communicate to each other without redirecting to other module.
+4. Client Credentials : Mainly it use for microservices API communication where no user interfarance is required and communication can happen within more microservices using standard credenatls.
+ https://www.javainuse.com/spring/springboot-oauth2-client-grant
+
+Q: What is Resource Owner Password Credentials? How to implement Resource Owner Password Credentials?
+Ans: The Password grant type is a way to exchange a user's username and password for an access token. Since the client application has to collect the user's password and send it to the authorization server.
+
+Q: What is Client Credentials Grant Type? How to implement Client Credentials Grant Type?
+Ans:With the Client Credentials grant type, an app sends its own credentials (the Client ID and Client Secret) to Authorization Server to generate an access token. If the credentials are valid, Authorization Server will return an access token to the client app.
+Client Credentials grant type flow occurs mainly between a client app and the authorization server. An end user does not participate or contribute in this grant type flow.
+
+Q: What's the difference between @Secured and @PreAuthorize in spring security?
+Ans:A: if you wanted to do something like access the method only if the user has Role1 and Role2 the you would have to use @PreAuthorize @PreAuthorize("hasRole('ROLE_role1') 
+and hasRole('ROLE_role2')") Using @Secured({"role1", "role2"}) is treated as an OR.
+
+Que: How to secure the communication between clent & server?
+Ans:In a springboot application, we can configure the SSl/TLS certificate in classpath with below configuration:
+server.ssl.key-alias =example
+server.ssl.key-store = classpath:javatechi.JKS
+server.ssl.key-store-type = JKS
+server.ssl.key-password= test
+We can use PKCS12(.p12) key store which can be used for any parogramming lang.
+
+Que: What is Key Differences: TLS vs OAuth 2.0?
+Ans: 
+| Feature         | TLS (SSL)                      | OAuth 2.0                      |
+| --------------- | ------------------------------ | ------------------------------ |
+| Purpose         | Secure communication           | Secure **authorization**       |
+| What it secures | Transport (network connection) | Application access             |
+| Who provides it | Certificate Authority (CA)     | Identity Provider (Okta, etc.) |
+| Example use     | HTTPS connection               | API access control             |
+| Protects        | Data in transit                | Access to protected resources  |
+| Works at        | Transport layer (TCP)          | Application layer (HTTP/REST)  |
+
+Que: How Oauth & SSL/TLS Work Together?
+✅ You must use both in a secure microservices architecture:
+
+Example: A Request Between Services
+1. TLS Secures the Transport
+    Service A makes a request to Service B over https://service-b.internal.
+    TLS ensures encryption, server identity, and data integrity.
+
+2. OAuth Secures the Request Authorization
+    Service A includes Authorization: Bearer <access_token>.
+    Service B verifies the token (e.g., JWT signed by Okta) and authorizes the action.

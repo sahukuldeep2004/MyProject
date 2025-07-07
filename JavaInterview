@@ -1,0 +1,1261 @@
+Challenges: 1. Performance/ Cost Optimization.
+             2. Lambda cold starm time was high?
+
+https://nagcloudlab.notion.site/Kafka-8cf2e394ef3845d29341371a55259750?pvs=4
+Tool: Draw.io, Licid chart
+Tool: Instana IBM for help customers address the challenges of monitoring microservices and 
+cloud-native applications in real-time
+
+renege ---vada karke mukur jana 
+
+Issue: Apache FOP issue while writing to PDF file. I was not ale to write the some french text on PDF file ut ale to wwrite ENGLISH and other lang.
+Issue: Deployed the code in PSP having issue with keystore in .p12 certificate but same is working in lower env.
+
+
+
+Role: 1. Architect 2. Lead role 3. Indivisual developer.
+How to start work on requirment/design part:  Discovery,Ideation, Execution
+1. For any new requiremnt, we follow the ATOM(Agile Traget Operating Model) process. Where we need to prepare the doc about the high levl solution with pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
+2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the problem in technical manner.
+3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and provide the story point.
+
+
+Sumologic
+
+
+MicroServices used in, Catalog, Search,Pricing,Shipping, Inventory,Promotion,order,Customer,cart,Reporting,Loyalty,PaymnetGateway,Address,Tax,EMail/SMSNotification.
+
+O2I is based on event driven architecture.
+==================================================================================================
+
+
+My current project based on architectue style based Pattern.But I ahve also worked on Layered Architecture Pattern.
+
+AWS component : EC2, RDS, S3, Lambda,EKS,Simple queue services (SQS), IAM, Security Group,Load Balancer,Images,Auto Scaling group.
+
+https://dzone.com/articles/5-major-software-architecture-patterns
+
+https://www.quora.com/What-are-10-Awesome-Algorithm-interview-Questions
+Que: Whch algo is used in load balancer ?
+Ans: Consistent Hashing, Round robin 
+Que: 
+ 
+Que: When we go for NOSQL DB and SQL DB?
+Ans: 1. If we want to scalability and high performance and zero down time.
+2. NoSQL is used for Big data and real-time web apps. 
+3. NoSQL databases are often better suited to storing and modeling structured, semi-structured, and unstructured data in one database.
+4. A NoSQL database is a much better fit to store data like article content, social media posts, sensor data, and other types of unstructured data that won’t fit neatly into a table.
+SQL: If your data is very structured and ACID compliance is a must, SQL is a great choice.
+
+Que: Diffrence between SQL and NOSQL?
+Ans:SQL: It work on relational 2. A single way to store data which is table. 3. Heavily support transation 4. Predefeined schema. 
+5. Best for vertical scaling. 6. Based on ACID
+7. Not suitable for large DB. 8.Synchronus execution of insert and updates.
+
+NOSQL: It is worked on NOn relational. 2. Various implemenation column, document, graph, key value. 3. Not suitable for heavy load of transaction. 
+4.Flexible schema. 
+5.Best for Horizontal scaling. 5. Based on CAP theoram. 6. Prefered for large database. 7.Asysnchronus execution of insert and updates. 
+8. Lack of fe
+NoSQL:
+Que: Diffrence b/w strong consistency and eventually consistency ?
+Ans: In distributed system, strong consistency sya that all the node have same data at any given point of time or any scenario(failiue or running system).
+
+Que: Eventual consistency support by which technology ?
+Ans: Kafka, Rabbit MQ, where we are working on just real time.
+
+Que: What is fault tolerance ?
+Ans:Fault tolerance is the proprty that enable a system to continue operating properly in the event of the failure of some of the component.
+
+Que: Diffrence between fault tolerance and fault resilience ?
+Ans:Fault tolerance:(How much system can tolerate the fault) User does not see any impact except some dealy during some failure occur.(Fault tolerance refers to the ability of a system 
+(computer, network, cloud cluster, etc.) to continue operating without interruption when one or more of its components fail.)
+Fault Resilience:(How many fault can system tolrate and bounce back) Failue is observed in seome services but rest of the system continue to function normall.
+Que: NFR category ?
+Ans:1. browser/general compatibilty 2.Uasbility(who are you end user) 3. Security
+==================================java 8 ==== Programming=========================================================================================================
+https://javaconceptoftheday.com/java-8-interview-sample-coding-questions/
+
+Map<String, String> map = Map.of("A", "Alex", "B", "Brian", "C", "Charles");
+map.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
+
+List<String> list = Arrays.asList("Alex", "Brian", "Charles");
+list.forEach(System.out::println);
+
+Que: Why do we have static method even we do have default method in interface ?
+Ans:For security sothat implemnation class can not ocverride it and good for utility method like checking the null i.e whose defination is not going to change.
+
+Que: Why we need default method in interface?
+Ans: Interface has only abstarct method, if we want to add any new method in that then other implemneted class start giving compilation issue.
+If we wish to add new method without any issue then we can add default method which can be used by all method.
+If any class want to have diffrent implemntaion of that default method then that class can overwritten.
+
+
+Que: Count no.of occurance of words in given string usinh java 8?
+Ans: String str ="Welocome as code decode Welcome as code decode";
+List<String> al = Arrays.asList(str.split(" "));
+Map<String,Long> mp = al.stream().collect(Collectors.groupingBy(Function.Identity(),Collectors.counting()));
+
+
+Que: Fail fast & fails safe iterator ?
+Ans:Fail-Fast systems abort operation as-fast-as-possible exposing failures immediately and stopping the whole operation.
+iterators throw ConcurrentModificationException on a best effort basis.
+Whereas, Fail-Safe systems don't abort an operation in the case of a failure. Such systems try to avoid raising failures as much as possible.
+Eg. ConcurrentHashMap, CopyOnWriteArrayList
+
+
+Que: What is Java Parallel Streams?
+Ans: It is a feature in java 8 and above to utilize the multiple core of processor.Whereas by using parallel streams, we can divide the code into multiple streams that are 
+executed in parallel on separate cores and the final result is the combination of the individual outcomes. The order of execution, however, is not under our control.
+eg.: eList.stream().parallel().filter(e -> e.getId() > 15000).count());
+
+Que: How to write cutome anotaion?
+Ans: @Retention(RetentionPolicy.RUNTIME)  //refers to the runtime, available to java compiler and JVM .
+@Target(ElementType.METHOD)  // for method level anotaion, TYPE->class, interface or enumeration level
+@interface MyAnnotation{  
+int value();  
+}  
+  
+//Applying annotation  
+class Hello{  
+@MyAnnotation(value=10)  
+public void sayHello(){System.out.println("hello annotation");}  
+}  
+=============================Normal Java ==================
+How to convert String to char.
+Using this method .. toCharArray()
+
+Que: Exception handling rule ?
+Ans: 1. If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it 
+can declare unchecked exception. 
+2. If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but 
+cannot declare parent exception.
+
+Que: Which collection maintain insertion order?
+Ans:ArrayList ,LinkedList, LinkedHashSet,LinkedHashtMap,CopyOnWriteArrayList
+List maintain insertion order and set did not maintain except LinkedHashSet
+
+que: Which collection classes provide random access of it’s elements?
+Ans: ArrayList, hashMap, TreeMap,HashTable random access to its elements.
+
+Que: Which garbage collection algorithem used in Java 8?
+Ans: Mark-Sweep algorithm used.
+
+Que: What is need of polymorphism in Java? What could have happen if polymorphism is not present?
+Polymorphism is considered one of the important features of Object-Oriented Programming. Polymorphism allows us to perform a single action in different ways.
+In other words, polymorphism allows you to define one interface and have multiple implementations.
+
+
+Que: Real time example of oops in java ?
+Ans: Abstraction is a process of hiding the implementation from the user, only the functionality is exposed here. 
+So you are aware only of what the application does, not how it does it.
+Eg; ATM machine, TV remote, Car .
+For example, take Apache poi library, it gives methods to create excel sheet, but we don’t know how internally it is implemented.
+So the implementation is hidden. This is called abstraction.
+Encapsulation is basically denying the access to the internal implementation or knowledge about internals to the external world , 
+while abstraction is giving a generalized view of any implementation that helps the external world to interact with it.
+
+1.forEach() method in Iterable interface
+Whenever we need to traverse through a Collection, we need to create an Iterator whose whole purpose is to iterate over and 
+then we have business logic in a loop for each of the elements in the Collection.
+Java 8 has introduced forEach method in java.lang.Iterable interface so that while writing code we focus on business logic 
+only. forEach method takes java.util.function.Consumer object as argument, so it helps in having our business logic at a separate location that we can reuse.
+ //creating sample Collection
+		List<Integer> myList = new ArrayList<Integer>();
+		for(int i=0; i<10; i++) myList.add(i);
+		//traversing using Iterator
+		Iterator<Integer> it = myList.iterator();
+		while(it.hasNext()){
+			Integer i = it.next();
+			System.out.println("Iterator Value::"+i);
+		}
+		
+		//traversing through forEach method of Iterable with anonymous class
+		myList.forEach(new Consumer<Integer>() {
+			public void accept(Integer t) {
+				System.out.println("forEach anonymous class Value::"+t);
+			}
+2. Default Method :
+Default method in java 8 to enable the functionality of lambda expression in java or to provide backword compatibility to old iterface.To support lambda expressions seamlessly, all core classes have to be modified. But these core classes like java.util.List are implemented not only in JDK classes, but also in thousands of client code as well.Default methods break this deadlock and allow adding support for functional interface in core classes.
+2. Static method:
+Static Methods in Interface are those methods, which are defined in the interface with the keyword static. Unlike other methods in Interface, these static methods contain the complete definition of the function and since the definition is complete and the method is static, therefore these methods cannot be overridden or changed in the implementation class.
+
+3. Functional Interface:
+A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, 
+lambda expressions can be used to represent the instance of a functional interface. A functional interface can have any number of default methods. 
+Runnable, ActionListener, Comparable are some of the examples of functional interfaces.
+@FunctionalInterface annotation is used to ensure that the functional interface can’t have more than one abstract method. 
+One of the major benefits of functional interface is the possibility to use lambda expressions to instantiate them. We can instantiate an interface 
+with anonymous class but the code looks bulky.
+we have default functional interface y java.
+1. PT Predicate : It check boolena condiation. It has test() method which accept one argument and return boolean result.
+2. FAP Function : It accept one argument and one return type. I has apply()method.
+3. CAC Consumer: It just consumed the data.It accept one argument ut did not return any resut. It has accept() method.
+4. SG Supplier :Supplier won't take any input and it will always supply objects. Supplier Functional Interface contains only one method get().
+
+4. Lambda Expression: 
+Since functional interfaces have only one method, lambda expressions can easily provide the method implementation. We just need to provide method arguments and business logic.
+a Lambda expression (or function) is an anonymous function, i.e., a function with no name and any identifier.
+ 
+5. Stream:  Stream API is used to process collections of objects.
+A new java.util.stream has been added in Java 8 to perform filter/map/reduce like operations with the collection. Stream API will allow sequential as well as parallel execution.
+stream() method is a default method added to the Collection in 1.8 version.
+
+INTERMEDIATE Operations:
+
+1.map: The map method is used to map the items in the collection to other objects according to the Oject passed as argument.
+List number = Arrays.asList(2,3,4,5);
+List square = number.stream().map(x->x*x).collect(Collectors.toList());
+
+2. filter: The filter method is used to select elements as per the Predicate passed as argument.
+List names = Arrays.asList("Reflection","Collection","Stream");
+List result = names.stream().filter(s->s.startsWith("S")).collect(Collectors.toList());
+
+3. sorted: The sorted method is used to sort the stream.
+List names = Arrays.asList("Reflection","Collection","Stream");
+List result = names.stream().sorted().collect(Collectors.toList())
+4. distinct()
+List number = Arrays.asList(2,3,2,4,5,4);
+List distinctNum = number.stream().distinct().collect(Collectors.toList());
+
+5. limit() : Give first n element from list.
+List number = Arrays.asList(2,3,2,4,5,4);
+List distinctNum = number.stream().limit(2).collect(Collectors.toList());
+
+6. skip() : It is almost oppiost of limit. Skip will skip the record on given number. Eg. skip(3) .It will skip first 3 record and share remaning record.
+Eg: Share the employee sarary after 3rd highest saraly. In thi case we need to sort salry in desc order and skip(3) records and share remaning record.
+7. Peek: This method exists mainly to support debugging.it performs the specified operation on each element of the stream and 
+returns a new stream which can be used further. peek() is an intermediate operation.
+empList.stream()
+      .peek(e -> e.salaryIncrement(10.0))
+      .peek(System.out::println)
+      .collect(Collectors.toList());
+
+8.flatMap():A stream can hold complex data structures like Stream<List<String>>.flatMap() helps us to flatten the data structure to simplify further operations.
+ flattening is referred to as merging multiple collections/arrays into one.
+ or Stream flatMap() method is used to flatten a Stream of collections to a stream of objects.
+List<List<String>> namesNested = Arrays.asList( 
+      Arrays.asList("Jeff", "Bezos"), 
+      Arrays.asList("Bill", "Gates"), 
+      Arrays.asList("Mark", "Zuckerberg"));
+
+    List<String> namesFlatStream = namesNested.stream().flatMap(list->list.stream()).collect(Collectors.toList());
+
+How to compare ased on name.
+Comparator<Employee> compareByLastName = Comparator.comparing( Employee::getLastName );
+List result = names.stream().sorted(compareByLastName).collect(Collectors.toList())
+
+compare based on reverse ID:
+Comparator<Employee> compareById = Comparator.comparing( Employee::getEmpID, Comparator.reverseOrder());
+List<Book> empNo = names.stream().sorted(compareById).collect(Collectors.toList());
+
+TERMINAL Operations:
+
+1.collect: The collect method is used to return the result of the intermediate operations performed on the stream.
+List number = Arrays.asList(2,3,4,5,3);
+Set square = number.stream().map(x->x*x).collect(Collectors.toSet());
+
+2.forEach: The forEach method is used to iterate through every element of the stream.
+List number = Arrays.asList(2,3,4,5);
+number.stream().map(x->x*x).forEach(y->System.out.println(y));
+
+3. reduce: The reduce method is used to reduce the elements of a stream to a single value.
+The reduce method takes a BinaryOperator as a parameter.
+List number = Arrays.asList(2,3,4,5);
+int even = number.stream().filter(x->x%2==0).reduce(0,(a,b)-> a+b);
+here 0 is intial value .
+
+Terminal short circuit operation
+1.findFirst :-return very first elemnt which is wrapped in Optional object.
+eg. Employee emp = list.stream.filter(e->e.getName('kuldeep')).findFirst().get();
+2.findAny :- return any single element from stearm which is wrapped in Optional object.
+eg. Employee emp = list.stream.filter(e->e.getName('kuldeep')).findAny().get();
+Note: For sequentail stream there won't be any diffrence between findFirst & findAny.But for parallel stream findAny will return 'any' 
+element rathne than waiting for first element.
+3. anyMatch :-any element from the stream which meet the predicate condition then it return true value and not going to travese the comlete list.
+Boolean val = list.stream().findMatch(emp->emp.getName.contains('kuldeep'));
+Note: It is like OR condition.
+4. allMatch : All element should match the provided predicate condition.
+Note: it is kind of && operation wher any single record does not meet with condition then it return false.
+
+6. Java Date/Time API
+LocaDate,LocalTime,LocalDateTime,Instant can be used with now.
+
+7. Colletion API improvement
+a. Performance Improvement for HashMap class with Key Collisions-> added the Tree and replacing the LinkedLists dynamically whne threshold reach to 8.
+b. Map replaceAll(), compute(), merge() methods.
+
+8. Concurrency  API 
+ConcurrentHashMap Improvement
+CompletableFuture 
+Executors
+
+Que: What is method reference in java 8?
+Method reference is used refer method of functional interface. It is nothing but compact way of lambda expression.You can simply replace lambda expression with method reference.
+Syntax:
+class::methodname
+interface Sayable{  
+    void say();  
+}  
+public class MethodReference {  
+    public static void saySomething(){  
+        System.out.println("Hello, this is static method.");  
+    }  
+    public static void main(String[] args) {  
+        // Referring static method  
+        Sayable sayable = MethodReference::saySomething;  
+        // Calling interface method  
+        sayable.say();  
+    }  
+}  
+
+Que: What is Future class?
+Ans: Future class represents a future result of an asynchronous computation – a result that will eventually appear in the Future after the processing is complete.
+eg. public Future<Integer> calculate(Integer input) { .......}
+Future<Integer> future = new SquareCalculator().calculate(10);
+get() is called after making sure that the task is finished.
+Integer result = future.get();
+
+Que: What is Optional? Why and how can you use it?
+Java 8 has introduced new class Called Optional. This class is basically introduced to avoid NullPointerException in java.
+If we have 100s of feilds in Oject then we can use this to check null conditions.
+Optional class encapsulates optional value which is either present or not.
+
+It has 3 method, empty(), of(), ofNullalble().
+empty(): It returns an empty Optional object. No value is present for this Optional.
+ofNullalble: It can take null or not nullable value. If we are not sure that object can hava null valaue or not then, we can go for ofNullalble. We can have same if else condition here as well. if we optional is nullable then
+of(): If we are sure that object does not contain null then we can got for of(() method in Optional.
+
+Que: What is the difference between Predicate ,Supplier and Function, Consumer?
+Ans: Both are functional interfaces.
+Predicate<T> is single argument function and either it returns true or false.This can be used as the assignment target for a lambda expression or method 
+reference.
+Function<T,R> is also single argument function but it returns an Object.Here T denotes type of input to the function and R denotes type of Result.
+Supplier is function interface which does not take any parameter but returns the value using get method.
+
+
+Que: Explain StringJoiner Class in Java 8? How can we achieve joining multiple Strings using StringJoiner Class?
+Ans:  In Java 8, a new class was introduced in the package java.util which was known as StringJoiner. Through this class, we can join multiple strings separated by delimiters along with providing prefix and suffix to them.
+StringJoiner stj = new StringJoiner(",", "(", ")");
+         
+        // Separated the elements with a comma in between.
+        //Added a prefix "(" and a suffix ")"
+         
+        stj.add("Saket");
+        stj.add("John");
+        stj.add("Ricky");
+         
+        // Added elements into StringJoiner “stj”
+         
+        System.out.println(stj);
+		Op :=  (Saket,John,)
+
+=============================Garbage Collection====================
+Que Do we have PermGen in Java 8? Are you aware of MetaSpace?
+https://www.baeldung.com/java-permgen-metaspace#:~:text=PermGen%20(Permanent%20Generation)%20is%20a,content%20in%20this%20memory%20section.
+Ans: Until Java 7, JVM used an area called PermGen to store classes. It got removed in Java 8 and replaced by MetaSpace.
+Major advantage of MetaSpace over permgen:
+PermGen was fixed in term of mazimum size and can not grow dynamically but Metaspace can grow dynamically and do not have any size constraint.
+
+Que; What is PermGen  and what it contain?
+Ans: PermGen (Permanent Generation) is a special heap space separated from the main memory heap.
+It loaded class metadata in the PermGen.the JVM stores all the static content in this memory section. This includes all the static methods, primitive variables, and references to the static objects.
+It is removed from java 8 onwards.this native memory region grows automatically by default.with this improvement, JVM reduces the chance to get the OutOfMemory error.
+
+Que: What is MetadataSpace ?
+Ans: It has replaced the older PermGen memory space.
+
+Que: What Is Garbage Collection and What Are Its Advantages?
+Ans: Garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
+
+Que: Are There Any Disadvantages of Garbage Collection?
+Yes. Whenever the garbage collector runs, it has an effect on the application's performance. This is because all other threads in the application have to be stopped to allow the garbage collector thread to effectively do its work.
+
+Que: What is Heap memory?
+Ans: The heap is a large bulk of memory intended for allocation of objects. When you create an object with the new keyword, it gets allocated on the heap. 
+However, the reference to this object lives on the stack.
+
+Que: Describe how Garbage Collection Works ?
+Ans:The heap is divided up into smaller spaces or generations. These spaces are Young Generation, Old or Tenured Generation, and Permanent Generation.
+The young generation hosts most of the newly created objects.The young generation space is further divided into three spaces: an Eden space and two 
+survivor spaces such as Survivor 1 (s1) and Survivor 2 (s2).The old generation hosts objects that have lived in memory longer than a certain “age”. 
+The objects that survived garbage collection from the young generation are promoted to this space.
+The permanent generation or more commonly called, PermGen, contains metadata required by the JVM to describe the classes and methods used in the application. 
+It also contains the string pool for storing interned strings. It is populated by the JVM at runtime based on classes in use by the application. In addition, 
+platform library classes and methods may be stored here.
+
+First, any new objects are allocated to the Eden space. Both survivor spaces start out empty. When the Eden space fills up, a minor garbage collection is 
+triggered. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted.During the next minor GC, the same thing happens to the 
+Eden space. Unreferenced objects are deleted and referenced objects are moved to a survivor space. However, in this case, they are moved to the second survivor
+ space (S2).
+In addition, objects from the last minor GC in the first survivor space (S1) have their age incremented and are moved to S2. Once all surviving objects have
+been moved to S2, both S1 and Eden space are cleared. At this point, S2 contains objects with different ages.
+At the next minor GC, the same process is repeated. However this time the survivor spaces switch. Referenced objects are moved to S1 from both Eden and S2. 
+Surviving objects are aged. Eden and S2 are cleared.
+After every minor garbage collection cycle, the age of each object is checked. Those that have reached a certain arbitrary age, for example, 8, are promoted 
+from the young generation to the old or tenured generation. For all subsequent minor GC cycles, objects will continue to be promoted to the old generation space.
+This pretty much exhausts the process of garbage collection in the young generation. Eventually, a major garbage collection will be performed on the old 
+generation which cleans up and compacts that space. For each major GC, there are several minor GCs.
+
+Que; What Is a Stringbuilder and What Are Its Use Cases? What Is the Difference Between Appending a String to a Stringbuilder and Concatenating
+Two Strings with a + Operator? How Does Stringbuilder Differ from Stringbuffer?
+Ans: StringBuilder allows manipulating character sequences by appending, deleting and inserting characters and strings. This is a mutable data structure, as opposed to the String class which is immutable.
+When concatenating two String instances, a new object is created, and strings are copied. This could bring a huge garbage collector overhead if we need to create or modify a string in a loop. StringBuilder allows handling string manipulations much more efficiently.
+StringBuffer is different from StringBuilder in that it is thread-safe. If you need to manipulate a string in a single thread, use StringBuilder instead.
+StringBuffer method synchronized.
+
+======================================================================
+Que Example of Singleton class in java.
+Ans: Java.lang.Runtime
+Que: Where we can use the Singleton class?
+Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
+https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
+
+
+Que: How to ensure that instance is never garbage collected.?
+Ans: A singleton kind of pattern. There's a static reference to a singleton, so it won't be eligible for garbage collection until the
+classloader is eligible for garbage collection.
+
+Que: How to prevent SQL injection attack in java ?
+Ans: By using parametric queries and PreparedStatement you prevent many forms of SQL injection because all the parameters passed as part of 
+place-holder will be escaped automatically by JDBC Driver. 
+PreparedStatement are precompiled where Callable is used for call the procedure and Statemnet is used for general query.
+
+In order to prevent SQL Injection attacks in Java, PreparedStatement doesn't allow multiple values for one placeholder (?) who makes it tricky 
+to execute SQL query with IN clause. Following example of SQL query with IN clause using prepared Statement will not work in Java.
+
+Que: What is the requirmnet for a Key Object in HashMap/HashTable/ConcurrentHashMap?
+ANs: To implemnet the hashCode() and equals() method.
+
+Question 1: What’s wrong using HashMap in the multi-threaded environment? When does the get() method go to an infinite loop? (answer)
+Answer: The real problem starts when at-least one of that thread is updating HashMap i.e. adding, changing or removing any key value pair. 
+Since put() operation can cause re-sizing and which can further lead to infinite loop, that’s why either you should use Hashtable or 
+ConcurrentHashMap, later is better.
+
+Question 2. Does overriding the hashCode() method have any performance implication? 
+Answer: From Java 8 onwards though, collision will not impact performance as much as it does in earlier versions, because after a threshold the linked list will be replaced by the binary tree, which will give you O(logN) performance in the worst case, as compared to O(n) of linked list.
+
+Que: How HashSet work internally?
+Ans: HashSet also work same hashMap internally. when we are going to add() method it is going to call return map.put(e, PRESENT)==null 
+it returns the previous value associated with key, or null if there was no mapping for key. So in add() method we check the return value of map.put(key, value) method with null value.
+1.If map.put(key, value) returns null, then the statement “map.put(e, PRESENT) == null” will return true and element is added to the HashSet(internally HashMap).
+If map.put(key, value) returns old value of the key, then the statement “map.put(e, PRESENT) == null” will return false and element is not added to the HashSet(internally HashMap).
+
+Question : Do all properties of an Immutable Object need to be final? 
+Not necessarily, as stated above you can achieve same functionality by making the member non-final but private and not modifying them except
+ in a constructor. Don’t provide setter methods for them and if it is a mutable object, then don’t ever leak any reference for that member. 
+ Remember making a reference variable final, only ensures that it will not be reassigned to a different value, but you can still change 
+ individual properties of object, pointed by that reference variable. This is one of the key point, Interviewer like to hear from candidates.
+
+Que; How to create immutable object in java?
+Ans: An immutable object is an object that will not change its internal state after creation.
+Immutable objects are very useful in multithreaded applications because they can be shared between threads without synchronization.
+a. Declare the class as final so it can’t be extended.
+b. Make all fields private so that direct access is not allowed.
+c. Don’t provide setter methods for variables.
+d. Make all mutable fields final so that its value can be assigned only once
+e. Initialize all the fields via a constructor performing deep copy.
+f. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+
+// fields of the FinalClassExample class
+private final HashMap<String,String> testMap;
+private final int id;
+private final String name;
+//getter method clomming of object
+public HashMap<String, String> getTestMap() {
+		//return testMap;
+		return (HashMap<String, String>) testMap.clone();
+	}
+// Constructor method performing deep copy
+		public FinalClassExample(int i, String n, HashMap<String,String> hm){
+		System.out.println("Performing Deep Copy for Object initialization");
+
+		// "this" keyword refers to the current object
+		this.id=i;
+		this.name=n;
+
+		HashMap<String,String> tempMap=new HashMap<String,String>();
+		String key;
+		Iterator<String> it = hm.keySet().iterator();
+		while(it.hasNext()){
+			key=it.next();
+			tempMap.put(key, hm.get(key));
+		}
+		this.testMap=tempMap;
+	}
+
+Question: How does the substring() method inside String works?
+Ans: substring() call the String (int offset, int count, char value []) constructor to create new String object. What is interesting here is, value[],
+which is the same character array used to represent original string. If the original string is very long, and has array of size 1GB, no matter how 
+small a substring is, it will hold 1GB array.  This will also stop original string to be garbage collected, in case if doesn't have any live reference.
+This is clear case of memory leak in Java, where memory is retained even if it's not required. That's how substring method creates memory leak.
+
+How to solve this problem?
+Simple solution is to trim the string, and keep size of character array according to length of substring. Luckily java.lang.String has constructor to do this,
+ as shown in below example.
+
+/ comma separated stock symbols from NYSE
+String listOfStockSymbolsOnNYSE = getStockSymbolsForNYSE(); 
+
+//calling String(string) constructor
+String apple = new String( 
+               listOfStockSymbolsOnNYSE.substring(appleStartIndex, appleEndIndex)
+               );
+			   
+Que: HashMap profile ?
+Ans: If we have to search among a large array then searching through each if them will not be efficient, so what hash technique tells us that lets preprocess the array with some logic and group the elements based on that logic i.e. Hashing
+Now apart from the above hashmap also tells that it wont add any Duplicates in it. And this is the main reason why we have to override the equals and hashcode.
+
+Default Equal() method check the memory location are equal or not, but make two obect equal by theier property we need to override equal() method.
+hashcode() method is the technique to arrange the obect in similiar fashion.
+
+Question 11 : When do you override hashCode() and equals()?
+Also overriding both these methods are must if you want to use them as key in HashMap.Now as part of the equals-hashcode contract in Java, 
+when you override equals, you must override hashcode as well, otherwise your object will not break invariant of classes e.g. Set, Map which relies on 
+equals() method for functioning properly.
+Now apart from the above hashmap also tells that it wont add any Duplicates in it. And this is the main reason why we have to override the equals and hashcode.
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((accountsId == null) ? 0 : accountsId.hashCode());
+	result = prime * result + ((ageVerification == null) ? 0 : ageVerification.hashCode());
+	result = prime * result + ((cartId == null) ? 0 : cartId.hashCode());
+	return result;
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	SFCart other = (SFCart) obj;
+	if (accountsId == null) {
+		if (other.accountsId != null)
+			return false;
+	} else if (!accountsId.equals(other.accountsId))
+		return false;
+	if (ageVerification == null) {
+		if (other.ageVerification != null)
+			return false;
+	} else if (!ageVerification.equals(other.ageVerification))
+		return false;
+	if (cartId == null) {
+		if (other.cartId != null)
+			return false;
+	} else if (!cartId.equals(other.cartId))
+		return false;
+	return true;
+}
+
+Question: What will be the problem if you don’t override hashCode() method?
+Aswer: If you don’t override the equals method, then the contract between equals and hashcode will not work, according to which, two objects which 
+are equal by equals() must have the same hashcode. In this case, an other object may return different hashCode and will be stored on that location, 
+which breaks invariant of HashMap class, because they are not supposed to allow duplicate keys.
+When you add object using put() method, it iterate through all Map.Entry object present in that bucket location, and update value of previous mapping,
+if Map already contains that key. This will not work if hashcode is not overridden.
+
+Que: Why we need to overridden @hashCode method?
+Ans: If we use built-in hash technique, for above two customers(C1 & C2) it generates two different hashcode. So we are storing the same identical object in two different places. or default implementation gives different values for different objects, even if they are equal according to the equals() method.
+To avoid this kind of issues we should override the hashCode method also based on the following principles.
+ - un-equal instances may have same hashcode.
+ - equal instances should return same hashcode.
+ 
+Que: How hashmap works ?
+Ans: HashMap in java use it’s inner class Node<K,V> for storing mappings. HashMap works on hashing algorithm and uses hashCode() and equals() method on key for get and put
+ operations. HashMap use singly linked list to store elements, these are called bins or buckets. When we call put method, hashCode of key is used to determine the bucket 
+ that will be used to store the mapping. Once bucket is identified, hashCode is used to check if there is already a key with same hashCode or not. If there is an existing 
+ key with same hashCode, then equals() method is used on key. If equals returns true, then value is overwritten, otherwise a new mapping is made to this singly linked list 
+ bucket. If there is no key with same hashCode then mapping is inserted into the bucket. For HashMap get operation, again key hashCode is used to determine the bucket to 
+ look for the value. After bucket is identified, entries are traversed to find out the Entry using hashCode and equals method. If match is found, value is returned otherwise 
+ null is returned.
+
+
+Question: How do you avoid a deadlock in Java?
+Ans: You can avoid deadlock by breaking the circular wait condition. In order to do that, you can make an arrangement in the code to impose the 
+ordering on acquisition and release of locks.
+
+Question: What is the difference between creating String as new() and literal?
+When we create the string with new() Operator, it’s created in heap and not added into string pool while String created using literal are created in 
+String pool itself which exists in PermGen area of heap.
+
+String str = new String("Test")
+
+does not put the object str in String pool, we need to call String.intern() method which is used to put them into String pool explicitly. 
+It’s only when you create String object as a String literal e.g. String s = "Test" that Java automatically puts that into the String pool.
+
+Question : What is an Immutable Object? Can you write an Immutable Class?
+Answer: Immutable classes are Java classes whose objects can not be modified once created. Any modification in Immutable object results in the new object. 
+For example, String is immutable in Java.
+
+Question: Give the simplest way to find out the time a method takes for execution without using any profiling tool?
+Ans:  Use sysout at the start and end of the month.
+
+Question: What are the valid signature for main method in java.
+Answer:
+Following are valid main method signature:
+
+public static void main(String[] argument)
+public static void main(String argument[])
+public static void main(String... args)
+public static synchronized void main(String... args)
+public static strictfp void main(String... args)
+public static final void main(String... args)
+
+Que: When to use Comparator and Comparable in Java
+Ans: 
+If sorting of objects needs to be based on natural order then use Comparable whereas if your sorting needs to be done on attributes of different objects, then use 
+Comparator in Java. Comparator use int compare(objOne, objTwo) method.
+
+Question: Give an example where you prefer abstract class over interface ?
+Answer: 1. In java you can extends only one class but you can implemnets multiple interface.So if you extends a class  you lost your chance of extending another class.
+2. Interface are used to represent the behaviour e.g. RUNNABLE,CLONABLE,SERIALIZABLE etc.so if you use an abstarct class to represent behaviour your class can not be 
+Runnbale and Clonable at same time bacause you can not extend two class in java but if you have interfcae your class can have multiple behavior at same time.
+3. On time critical application prefer abstract class is slightly faster than interface.
+4. If there is a genuine common behavior across the inheritance hierarchy which can be coded better at one place than abstract class is preferred choice. 
+Some time interface and abstarct class can work together also where defining function in interface and default functionality on abstract class.
+
+Question: When do you overload a method in Java and when do you override it?
+Answer: if you see different implementation of a class has different way of doing certain thing than overriding is the way to go while 
+overloading is doing same thing but with different input. method signature varies in case of overloading but not in case of overriding in java.
+
+Question: Can you name few design patterns used in standard JDK library?
+Answer: Singleton design pattern is used for Runtime,Calendar  and various other classes.Factory pattern which is used along with various 
+Immutable classes like Boolean e.g. Boolean.valueOf and observer patternn which is used in Swing.
+
+Question:Difference between ConcurrentHashMap, Hashtable and Synchronized Map in Java?
+Answer: Hashtable is a legacy class from JDK 1.1 itself, which uses synchronized methods to achieve thread-safety. All methods of Hashtable are synchronized which makes them quite slow due to contention if a number of thread increases.
+The only difference between Hashtable and Synchronized Map is that later is not a legacy and you can wrap any Map to create it's synchronized version by using Collections.synchronizedMap() method.
+ConcurrentHashMap is specially designed for concurrent use i.e. more than one thread. By default it simultaneously allows 16 threads to read and write from Map without any external synchronization. It is also very scalable because of stripped locking technique used in the internal implementation of ConcurrentHashMap class. Unlike Hashtable and Synchronized Map, it never locks whole Map, instead, it divides the map into segments and locking is done on those. Though it performs better if a number of reader threads are greater than the number of writer threads. 
+
+Question: Why need ConcurrentHashMap and CopyOnWriteArrayList?
+Ans: The synchronized collections classes, Hashtable, and Vector, and the synchronized wrapper classes, Collections.synchronizedMap() and 
+Collections.synchronizedList(), provide a basic conditionally thread-safe implementation of Map and List. However, several factors make them unsuitable for use in highly concurrent applications, for example, their single collection-wide lock is an impediment to scalability and it often becomes necessary to lock a collection for a considerable time during iteration to prevent ConcurrentModificationException.
+
+ConcurrentHashMap and CopyOnWriteArrayList implementations provide much higher concurrency while preserving thread safety, with some minor compromises in their promises to callers. ConcurrentHashMap and CopyOnWriteArrayList are not necessarily useful everywhere you might use HashMap or ArrayList,
+but are designed to optimize specific common situations. Many concurrent applications will benefit from their use.
+
+Question:The difference between ConcurrentHashMap and Collections.synchronizedMap?
+Answer:ConcurrentHashMap is designed for concurrency and improve performance while HashMap which is non-synchronized by nature can be synchronized by applying a wrapper using synchronized Map.
+ConcurrentHashMap does not allow null keys or null values while synchronized HashMap allows one null key.
+
+Question: How to Sort HashMap in Java based on Keys and Values ?
+Answer: Sorting HashMap on keys is quite easy, all you need to do is to create a TreeMap by copying entries from HashMap. TreeMap is an implementation of SortedMap and keeps keys in their natural order or a custom order specified by Comparator provided while creating TreeMap.
+
+Question: Why methods like wait(), notify() and notify all() are present in object class and not in Thread class?
+Aswer: Object class has monitors which allow the thread to lock an object, while Thread does not have any monitors.When any of above methods are 
+called it waits for another thread to release the object and notifies the monitor by calling notify() or notify all(). When notify() method is 
+called it does the job of notifying all threads which are waiting for the object to be released. The object class’s monitor checks for the object 
+if it is available or not. Thread class having these methods would not help as multiple threads exist on an object and not vice versa.
+
+Question:How to force start a thread in Java?
+Answer: In Java, multithreading one cannot force start a thread. Only thread scheduler can control threads and they are not exposed to any API for control.
+
+Question: What is the difference between Runnable and Callable in Java?
+Answer: run() method does not return any value, it's return type is void while call method returns value. 
+Another difference on run and call method is that run method can not throw checked exception while call method can throw checked exception in Java.
+
+Que: What is volatile keyword in java and when to use it?
+Ans:the volatile keyword in Java is used as an indicator to Java compiler and Thread that do not cache value of this variable and always read it from main memory. So if you want to share any variable in which read and write operation is atomic by implementation e.g. read and write in an int or a boolean variable then  you can declare them as volatile variable.
+It guarantees that value of the volatile variable will always be read from the main memory, not from the local thread cache.
+
+Que: What happens when an Exception occurs in a thread?
+Ans: If it is not handlaed then thread will stop.
+
+Que: How and where is java object serialization used in real time?
+Ans: Saving an object state (in file) is termed as serialization and from the saved format regain the object's state is known as deserialization.
+So,shopkeeper will save the particular bill item in a serialized form and then deserialize it for later use.
+
+Que: If superclass is serializable then subclass is automatically serializable 
+Ans: If superclass is Serializable, then by default every subclass is serializable.
+
+que: If a superclass is not serializable then subclass can still be serialized?
+Ans: In this case super class instances variables which are inherited in subclass doesn't get serialize and also looses their assigned values during serialization of sub class. Also JVM during serialization of subclass re-assign the default initialized values to these instance variables of superclass.One more point which is to be taken care of it in this scenerio is super class must have default no argument constructor as JVM access super class during deserialization.In case this constructor is not present a compile time exception will be encountered.
+
+Que: When requirement is to serialize superclass but not to subclass (Custom Serialization).?
+Ans: In order to prevent subclass from serialization we need to implement writeObject() and readObject() methods which are executed by JVM during serialization and deserialization also NotSerializableException is made to be thrown from these methods.We can also provide our custom logic in these  methods which would be executed during serialization/deserializatin.
+
+Que:Can we serialize the static variable?
+In Java, serialization is a concept using which we can write the state of an object into a byte stream so that we can transfer it over the network (using technologies like JPA and RMI). But, static variables belong to class therefore, you cannot serialize static variables in Java.
+
+Que: Whay Object class is Parent for evry class?
+A object class give the common behavior to every class thats why object class is a super class in java and it provide the common methods to all of them.
+Que: What is String Pool or String Constant Pool or String Literal Pool ?
+String pool is nothing but a storage area in Java heap where string literals stores.
+
+Que: Is java is fulyy object oriented programming or not ?
+Java is not fully object oriented because it supports primitive data type like it,byte,long etc.,which are not objects.
+
+Que: Marker Interface have no method Then what is use of it?
+They are used to provide some essential information to the JVM so that JVM may perform some useful operation. Marker interface is an empty interface where in doesn't have any 
+fields or methods in it. eg. Clonnable, Serializable
+
+Que: Why cant we create object for an abstarct class ?
+You cannot create an instance of an abstract class because it does not have a complete implementation.It is just template.
+Que: Why String is not primitive data type?
+String is non-primitive because only class can have methods. Primitive can not. And String need many functions to be called upon while processing like substring, indexof, 
+equals, touppercase.
+
+Que: Can we override the main method ?
+No, we cannot override main method of java because a static method cannot be overridden. The static method in java is associated with class whereas the non-static method  is associated with an object.
+
+Que: Why return type is not a part of method signature.?
+Que: Can we declare main () method as final?
+Que: Why should every class in java extends Object class ?
+Que: How many ways we can create an object ?
+
+Que: Can we create a constructor of a astarct class?
+Ans: Yes, we can create constructor of a abstract class.
+
+Que:why we can't create an object for abstract class?
+Ans: In simple, anything which is incomplete we can't create object coming to your question abstract class have abstract as well as concrete methods and
+ if suppose java provides the facility to create an object for abstract then who provide implementation for abstract method which is fully depends on 
+ the class which is going to implement the abstract method so every thing is available in class which extends abstract class so java doesn't permit 
+ to create an object of abstract class because it doesn't make any sense.
+
+Que:How many JVM could be run on an operating system. if only one then what is the logical reason.
+Ans: we can install any number of JVMs in one operating system.But at a time we can run only one since what ever the PATH we specified in 
+environmental variables based on the version it runs.
+
+Que: What is connection pooling? what is the main advantage of using connection pooling?
+Ans: whenever our web app needs an access to database it connects to the database. it will be disadvantageous if it connect every time a user 
+sends a request for a particular data.so the server maintains a pool of connection instances. so if a request comes it will take a instance from 
+the pool and serve.because the database connection is tedious task so it is better to maintain a pool of connection instances. it makes the access faster.
+
+Que:Why Java is secured compare with other languages? Explain with example.
+Ans:The main reason behind the java's security are ......
+1) no readability i.e., contains byte code understandable to only JVM
+2) no virus will infect the byte code. Even if the virus entered into byte code the jvm doesn't understand it, so jvm keeps these instructions as it is. 
+No executable code will be generated to this virus.
+
+Que: If there are multiple If-else, what is the alternative algorthim we can use apart from using switch?
+Ans:we can use conditonal operator ?
+eg.  return (i<j) ? i : j;
+
+Que: How many ways object can be create ?
+Ans: 1 Using : new keyword
+2 Using : Static Factory
+3 Using : Instance Factory
+4 Using : Factory Pattern
+5 Using : De-serialization
+6 Using : Clone Method
+7 Using : new Instance method
+
+Que: What is throwable and where should we use this?
+Ans: Throwable is the superclass to Exception and Error, so you would catch Throwable if you wanted to not only catch Exceptions but Error as well.
+The thing is, Errors are generally things which a normal application wouldn't and shouldn't catch, so just use Exception unless you have a specific 
+reason to use Throwable.
+
+Que:When the Subclass method is called, does the SuperClass constructor execute?
+Ans: Yes
+
+Que: What is the use of interface in realtime java project ?
+Ans:An interface in java is a blueprint of a class. It has static constants and abstract methods.The interface in java is a mechanism to achieve abstraction.
+There can be only abstract methods in the java interface not method body. It is used to achieve abstraction and multiple inheritance in Java.
+Java Interface also represents IS-A relationship.
+It cannot be instantiated just like abstract class.
+It is used to achieve abstraction.
+It can be used to achieve loose coupling.
+
+Que: What kind of relation use in composition & aggregation?
+Ans: Both use HAS-A relationship. Aggregation implies a relationship where the child can exist independently of the parent.
+Composition implies a relationship where the child cannot exist independent of the parent.
+Example Libray and Book. for Composition if Library is destroy then Book does not exists.
+
+Que: Why Constructors are not inherited in Java?
+Ans: Whenever a class (child class) extends another class (parent class), the sub class inherits state and behavior in the form of variables and methods from its super class but it does not inherit constructor of super class.
+Constructors are special and have same name as class name. So if constructors were inherited in child class then child class would contain a parent 
+class constructor which is against the constraint that constructor should have same name as class name.
+
+Que: Why String is used as key value in HashMap?
+Ans; It is immutable and hashcode of immutable objects has less possibility of hash collisions.
+ wrapper classes (like Integer, Boolean,
+
+Que: Why Hashtable does not allow null keys or values?
+Ans: This is because the objects used as keys in a Hashtable implements the hashCode() and equals() methods for their storage and retrieval.
+Since null is not an object it cannot implement the methods. If you try hashing a null key, it will throw a NullPointerException.
+============================================Java 8 stream programming interview==============================
+https://javaconceptoftheday.com/java-8-interview-sample-coding-questions/
+https://javaconceptoftheday.com/solving-real-time-queries-using-java-8-features-employee-management-system/
+https://www.youtube.com/watch?v=AFmyV43UBgc
+Employee{int empid,String empName,int deptId, String status, int salary}
+
+1. write a programe to print the employee details working in each department?
+Ans: Map<Integer,List<Employee>> =emplyList.stream().collect(Collectors.groupingBy(Employee::getDeptId,Collectors.toList()));
+2. write a programe to print the employee count working in each department ?
+Ans: Map<Integer, Long> mapEachDept= empList.stream().collect(Collectors.groupingBy(Employee::getDeptId,Collectors.counting()));
+3. write a programe to print the employee active/inactive status.
+ans: List<Employee> empListInactive = empList.stream().filter(emp->"inactive".equals(emp.getStatus())).collect(Collectors.toList());
+4.write a programe to print the min/max salary of employee?
+Optional<Employee> maxSal = empList.stream().max(Comparator.comparing(Employee::getSalary));
+Optional<Employee> minSal = empList.stream().min(Comparator.comparing(Employee::getSalary));
+
+4. Count the word from string.
+String str ="Welocome as code decode Welcome as code decode";
+		List<String> strList = str.split(" ");
+		 Map<String, Long> result= strList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+5. Count the no. of 'b' char from a string 
+String s ="abcdabcd";
+char ch = 'b';
+int count = s.chars().filter(c -> c == ch).count();
+6. find duplicate element with its count from the string?
+List<String> ss = Arrays.asList("Kuldeep", "Kumar", "Kuldeep");
+Map<String, Long> mm=  ss.stream().filter(x->Collections.frequency(ss,x)>1)
+  .collect(Collectors.groupingBy(Function.Identity(), Collectors.counting()))
+7. Seprate the odd even no from given arry?
+Map<Boolean, List<Integer>> partitions = ints.stream()
+    .collect(Collectors.partitioningBy(x -> x % 2 == 0));
+List<Integer> evens = partitions.get(true);
+List<Integer> odds = partitions.get(false);
+
+8. Sort the emp list by salary
+comparedBySalary = Comparator.comparing(Employee: getSalary)
+list.stream().sort(comparedBySalary).connect(Collectors.toList());
+
+9. write java 8 progme to return the second loweset number from an array
+int[] numbers =[2,6,5,3,1,2]
+int sencodLoweset = Arrays.stream(numbers).distinct().sort().skip(1).findFirst()
+
+10.Finding common elements between two arrays
+array1 =[1,2,3,4,5], arra2 = [4,5,6,7]
+Solu: 
+List<Integer> ll = Arrays.stream(arra1).filter(num1 -> Arrays.stream.anyMatch(num2 ->num2 == num1)).boxed().collect(Collectors.toList);
+
+11. Reversing an array of integers in-place?
+Sol: IntStram.range(0, arr.length/2).forEach(i ->{
+int temp = arr[i];
+arr[i] = arr[arr.length-i-1];
+arr[arr.length-i-1] =temp;}
+);
+12. Finding the length of the longest string in an array
+String[] str1 = {"AAA","BABABA", "BAS", "AA"}
+int maxL = Arrays.stream(str1).maptoInt(str -> str.length).max().orElse(0);
+================================================== Micro Services===============================================
+Que: How to get Retry mechanism in Springboot?
+https://howtodoinjava.com/spring-boot2/spring-retry-module/#:~:text=Create%20one%20sample%20Rest%20controller,retry%20module%20will%20automatically%20retry.&text=In%20the%20Rest%20Api%20we,so%20that%20spring%20can%20retry.
+ANs: 1. add the below dependency in pom.xml
+<dependency>
+    <groupId>org.springframework.retry</groupId>
+    <artifactId>spring-retry</artifactId>
+    <version>${version}</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aspects</artifactId>
+    <version>${version}</version>
+</dependency>
+2. To enable spring-retry we need to put one annotation in the Spring Boot Application class. So open SpringRetryApplication class and add @EnableRetry in class level.
+3. @Retryable – to indicate any method to be a candidate of retry.
+
+public interface BackendAdapter {
+    @Retryable(value = { RemoteServiceNotAvailableException.class }, maxAttempts = 3, backoff = @Backoff(delay = 1000))
+    public String getBackendResponse(boolean simulateretry, boolean simulateretryfallback);
+ 
+    @Recover
+    public String getBackendResponseFallback(RemoteServiceNotAvailableException e,boolean simulateretry, boolean simulateretryfallback);
+}
+@Retryable - :This is the main annotation after @EnableRetry. This annotation tells that if we get RemoteServiceNotAvailableException from the method then retry maximum 3 times before sending the response. Also we are introducing delay of 1 second in each retry.
+@Recover – in the fallback method indicates that if we don’t get any success response after 3 retry, response will come from this fallback method. Make sure you pass expected exception as parameter, else spring will have hard time finding the exact method.
+
+Que: @SpringBootApplication eqaul to 
+ans: @Configuration to enable Java-based configuration +@ComponentScan to enable component scanning + @EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+
+Que: What is the difference betweeen JPARepository and CRUDRepository.
+Ans: CrudRepository mainly provides CRUD functions.
+PagingAndSortingRepository provides methods to do pagination and sorting records.
+JpaRepository provides some JPA-related methods such as flushing the persistence context and deleting records in a batch.
+JPA repository extends CrudRepository and PagingAndSorting repository.
+Because of the inheritance mentioned above, JpaRepository will have all the functions of CrudRepository and PagingAndSortingRepository. So if you don't need the repository to have the functions provided by JpaRepository and PagingAndSortingRepository , use CrudRepository.
+
+Que: How to communicate to microservices to other microservices?
+Ans: Can communicate using synchronus & asysnchronus microservices. Synchronus menas need to wait till we get response from servcies then go ahead further.
+Asysnchronus services means we can not wait for response from services and it can be happen using message queue or call back mechanism where response can come laet and return to requester.
+
+Que: What is Microservices ?
+Ans: Decoupling of entire application into small small services . Eg. Filpkart, we have many part in it like inventory, Order, Card, Catalog, merchandise, Seller, Buyer etc all thet part may be buit on diffrent -diffrent technology but they are indivisual application. we can eaisly deploye, scale up as per our requiremnet.
+
+Que: Diffrence between SOA, Monolothik and Microservices ?
+Ans: SOA is similar monolithik wher Modules are divided at granuler level. Monolothik is complete application.
+
+Que Explain microservices architecture?
+Ans: Microservice Architecture is an architectural development style which builds an application as a collection of small autonomous services developed for a business domain.
+Que: Best parctice of Microservices ?
+Ans: Docarize the application, seprate build, indivisual DB.
+
+Question: What are the main features of Microservices?
+Answer: Microservices have the following main features:
+Multiple Individually Deployable Components.
+Service Distribution based on Business Capabilities.
+Decentralized Data Management.
+DevOps Implementation.
+Technical Independence.
+Hidden Component Complexity to avoid unnecessary microservices dependencies.
+
+Que: What principles microservice architecture has been built?
+Ans:Scalability ,Availability ,Resiliency, Independent, autonomous,Decentralized governance,Failure isolation Auto-Provisioning,Continuous delivery through DevOps.
+
+Question: What are the main components of Microservices?
+Ans: Container,Clustering,Orchastration, API Gateway, Service Discovery,resilience,scalability,
+
+Que:What are the fundamental characteristics of a Microservices Design?
+Ans:Services split up and organized around business functionality.
+Separate modules handled and owned by different development teams.
+Decentralized Framework.
+Maintenance of respective modules by respective development teams.
+Separate modules may be maintained by different databases.
+Modules in a Microservice Architecture are separately deployable. They can be updated, enhanced, or deleted without disrupting the entire architecture.
+Real-time monitoring of the application.
+
+Question: What is Distributed Transaction?
+Ans:Transactions that span over multiple physical systems or computers over the network, are simply termed Distributed Transactions. In the world of microservices a transaction is now distributed to multiple services that are called in a sequence to complete the entire transaction.
+
+Question: Explain end to end Microservices Testing?
+Answer: It is a testing technique used to test the entire flow of an application using a business transaction. Since several components are involved in microservices architecture,
+these tests can cover the gaps during a unit or integration testing.
+
+Question: What is Spring Cloud?
+Answer: While building a distributed system, there are a few problems that are encountered. They are Configuration Management, Service Discovery, Circuit breakers, and distributed sessions. Spring Cloud is a collection of tools that provides solutions to suchcommonly encountered problems.
+
+Question: What is an Actuator?
+Answer: The actuator brings in production-ready features into an application. It is mainly used to expose operational information about the running application’s health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to interact with it.
+
+Que: What is PACT in Microservices Architecture?
+Answer: A contract between a consumer application and a provider application is called a PACT. Each pact is a collection of interactions. It is an open-source tool that can be used to implement the Consumer-Driven Contract in Microservices.
+
+Question: What is Eureka in Microservices?
+Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
+Add the maven dependency and add @@EnableEurekaServer on main class and add eureka.client.registerWithEureka = false and  eureka.client.fetchRegistry = false
+
+Question: How will you balance the server-side load by utilizing Spring Cloud?
+Answer: The server-side load balancing can be done by using Netflix Zuul. It is also known as a JVM based router.
+
+Que: How to handle client side load balancing in microservcie?
+Ans We have faclity like Ribbontool in microservices spring boot for client side load balancing.
+
+Question: When will you see fit to use the Netflix Hystrix?
+Answer:Thus, we can use Hystrix to ensure that an application runs efficiently and avoids the kind of failures that occur in distributed systems.
+
+Que: Why we should not return List from REST API ?
+Ans: Becuase if we need to make the code change in Object then the complet return type need to change. To avoid this we need to have a wrapper of Object class which can have list but acutal return type should be as Object sothat in future if we want to make chnages in object then consumer did not to modify it.
+
+Que: Waht is the benifit of microservices architecture?
+Ans: if our application follow the microservices architecture then it easy to deploye, scalibilty, no dependency on technology.
+
+Que: What kind of services required by micro services to talk to each other by client in Spring cloud ?
+Ans: Spring clound use client side service discoverry.
+
+Que: Disadvantage of monolithik application ?
+Ans: Difficult to deploy big applications.
+Need to test the whole application as no one know which part is broken due to small change .
+Scalibility(as only one part needs to scale up  the application but complete application needs to make scale)
+
+Que: Advantage of Micro Services ?
+Ans:Deploymnet felxibility (can use diffrent lang platfor to make build the part of appplication)
+Can be scale seprately.
+make the code in diffrent lang
+only single module testing
+Need to stop only one server for one microservices.
+
+Ques:Disadvantage of Microservices ?
+Ans: Deploymnet/Architecture complex, There is a higher chance of failure during communication between different services,Difficult to manage a large number of services,
+Complex testing over a distributed environment.
+
+Que: How to create an Springoot proect?
+ans: we can use https://start.spring.io/ to create an springboot project.
+
+39) What is Swagger2?
+Swagger is used to describing the structure of APIs. Swagger 2 is an open-source service provided in Spring Boot which makes it easier for the machines to find out the structure of APIs like RESTful Web services.
+
+Que: Explain the term 'Spring Boot'.?
+Ans: It is a Spring module that offers Rapid Application Development to Spring framework. Spring module is used to create an application based on Spring framework which requires to configure few Spring files.
+
+Question: How will you deploy Exception Handling in Microservices?
+Answer: If an exception occurs while processing an HTTP request, you need to catch the exception in your controller or service and return an appropriate ResponseEntity manually. 
+Here are some thumb rules for exception handling.
+1.Add @ResponseStatus for exceptions that you write.
+2.For all other exceptions, implement an @ExceptionHandler method on a @ControllerAdvice class or use an instance of SimpleMappingExceptionResolver.
+3.For Controller specific exceptions, add @ExceptionHandler methods to your controller.
+Point to be noted is that @ExceptionHandler methods on the controller are always selected before those on any @ControllerAdvice instance. It is undefined in what order ControllerAdvices are processed.
+eg.
+@ControllerAdvice
+@RestController
+public class ASNOrdersResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+ */
+	@ExceptionHandler(ASNOrdersDaoException.class)
+	public final ResponseEntity<Object> handleDaoLevelException(ASNOrdersDaoException ex, WebRequest request) {
+		logger.error("Issue with DB level");
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), 
+				getI18Messges(Constants.DB_EXCEPTION),
+				ex.getErroMessage());
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
+Take the complete example of it.
+Que: How to handle exception in Spring Boot.
+Ans: Spring Boot provides a very useful way to handle exceptions using @ControllerAdvice annotation.
+
+Que: Diffrence between PUT & PATCH?
+Ans: PUT is a method of modifying resource where the client sends data that updates the entire resource . PATCH is a method of modifying resources where the client sends partial data that is to be updated without modifying the entire data.
+===========================================Micro Services Design Pattrn=========================
+Que: Event Sourcing desig pattern ?
+Ans: The event sourceing design patten creates an event regarding the changes in the application state.Alos, these events are stored as a sequence of events to help the developer track the chnages was made when.So with the help of this you can always adjust the application state to cope up with the past changes.You can also query those events, for any data change.
+
+Que: What is 2 phase commit in micro services architecture?
+Ans: it's a two-step process means 2PC.
+1. The Coordinator service asks all the participants if they are ready to commit the transaction. They can reply with a yes or no. Note that if a single service replies with a no ( or a timeout or any other error), the full transaction is automatically canceled. 
+2. If all the participants have answered yes, the Coordinator sends the Commit command to them and waits for the final ack.
+First of all, it comes with an intrinsic performance penalty as we're putting all the actors on hold multiple times waiting for an answer.
+Secondly, in some cases, it may be possible that other transactions triggered in between are paused until the whole process completes.
+
+Que: On waht principal microservices architecture has been built???
+Ans: Scalibility, Availablity,Resiliency, Failure isolation, auto provision, load balancing, independent & autonomous service etc.
+Microservices is all about making services loosely coupled, applying the single responsibility principle.
+
+Que: Best parctice for micro service?
+Ans: 1. Each micro services should have their own data store.
+2. Deploying microservices in containers.
+3. Do a Separate Build for Each Microservice.
+4. Treat Servers as Stateless means utilize the restful api.
+5. Document the API
+6. Monitor the key
+7. Use the good Devops tool.
+
+
+
+
+Que: What is evntual/Strong consistency ?
+Ans:  Eventual consistency means provide the response to user without getting response to respective replication node. Mean if we have 4 node then user can insert/update the node 1
+but replication between 1 to 4 may take time and data may not be same in all node. but latecy is more.
+Strong consistency means provide the response to user once it will replicate the data to acrros all node , once replication is done then only provide the response to user.
+But in this case latency is more but data would be same across all node.
+
+===========================================================Hibernate=======================================================================
+Que: Why default constructor is reqired in Hiernate ?
+Ans: When Hibernate creates an instance of entities using reflection it uses the Class. newInstance() method, which requires a no-argument constructor to create an 
+instance. It's effectively equivalent to the new Entity().
+
+Que; What is Projection?
+Ans:
+Que: How validation work in Hibernate?
+Ans: We need to use spring validate framework or JSR303. Need to sue @valid annotation for requestbody .
+eg.
+@RequestMapping(value = "/object", method = RequestMethod.POST)
+public @ResponseBody TestObject create(@Valid @RequestBody TestObject obj,
+
+Que: What is “dirty checking”?
+Ans: Dirty checking changes or updates only the fields that require action, while keeping the rest of the fields untouched and unchanged.
+
+Que: What is Hibernate’s default cache service?
+Ans:Hibernate’s default cache service is EHCache, though the framework additionally supports OSCache, SWARMCache, and TreeCache.
+
+Que: List and describe the Hibernate framework’s essential interfaces.
+Ans: a.SessionFactory :-SessionFactory is thread safe Object for Single database.SessionFactory is designed to return the session objects for database operations.
+b. session :- A session is a single threaded short lived oject. It is the interface that exists between hibernate framework and java application code. Providing the CRUD operation.
+c. Transaction :- It is a single thread , short lived oject that the application uses to specify atomic units of work.
+
+What is lazy loading?
+Ans: Lazy loading is a technique where objects are loaded as needed, instead of an entire page, for example. This technique became default since Hibernate version 3.
+
+Que: What are the concurrency strategies?
+Ans: concurrency strategies are used for storing & retrieve cach items.
+1. Non strict Read-Write
+2. Read Only
+3.Transactional
+4.Read Write
+
+Que: What design patterns does the Hibernate framework use?
+Ans; Data Mapper: which moves data between objects and a database, keeping them independent of each other and the mapper
+Domain Model Pattern: which is a domain object model that incorporates both behavior and data
+Proxy Pattern: for lazy loading
+Factory pattern : SessionFactory
+
+Que: What is Hibernate tuning?
+Ans:The process of Hibernate tuning is designed to optimize Hibernate applications’ performance.
+SQL Optimization
+Session Managment
+Data Caching
+
+Que: Name the states that a persistent entity exists in?
+Ans: Transient :This state describes new objects that are created in Java but not associated with a Hibernate session.
+Persistent:  This state describes objects associated with a Hibernate session.
+Detached: This state describes an object that was formerly Persistent and associated with a Hibernate session. Developers can reattach the object to a     	  Hibernate session by using either update() or saveOrUpdate().
+
+Que: What’s the difference between Session and SessionFactory?
+Ans: A Session provides the first-level cache and is a single-threaded, short-lived object. A SessionFactory provides the second-level cache and is immutable and 
+shared by all Sessions. It lives until Hibernate is running.
+
+Que: How many ways can an object be fetched from Hibernate’s database?
+Ans: Creteria API, HQL, The Identifier, Standard SQL.
+
+Que: How many ways can you disable Hibernate’s second-level cache?
+Ans: By setting hibernate. cache. use_second_level_cache property to false.
+Using a cache provider such as org.hibernate.cache.NoCacheProvider
+
+Question:
+What are the different levels of caching supported in Hibernate?
+Answer:
+Hibernate supports two main levels of cache:
+
+1. First-level Cache -  This is the default cache associated with the Session object. Hibernate uses this cache on a per-transaction basis. 
+   Mainly it reduces the number of SQL queries it needs to generate within a given transaction. Instead of updating after every modification
+   in the transaction, it updates only at the end of the transaction.
+   UserDetails ud = (UserDetails)session.get(UserDetails.class, 1);
+   ud.setUserName('Updated User');
+   UserDetails ud2 = (UserDetails)session.get(UserDetails.class, 1);
+   session.getTransation().commit();session.close();
+   
+   Here it will genarate only one single select statement even we are fetching same object 2 time. Hibernate internally recognize it and
+   donot genarate 2 select statement.same thing for update statement.
+
+2. Second-level Cache -  This cache is associated with the SessionFactory object. To reduce database traffic, second level cache keeps 
+loaded objects with the SessionFactory between transactions. These objects are not bound to a single user, available at the application level.
+Since the objects are available at the cache, each time a query returns an object, one or more database transactions can be avoided. 
+Eg: First we have to enble the second level cache by adding the cache provider like EHCacheProvider in configuration file and enable it to
+true. Then we have to configure the entity class which needs to be cachable by using below anotation.
+@Entitiy
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+public class UserDetails {......
+
+Now if we try to get same object from Db then Hibernate will get the object from Cache only.
+session.beginTransaction();
+UserDetails user = (UserDetails)session.get(UserDetails.class, 1);
+session.getTrnsaction().commit(); session.cloase();
+session.beginTransaction();
+UserDetails user1 = (UserDetails)session.get(UserDetails.class, 1);
+session.getTrnsaction().commit(); session.cloase();
+
+Here you will get only one select statemnet by hibernate as after run first select statement then its added the object in second level cache
+There is one more cache - Query level Cache is supported and this is more for caching query results which can be used along with second level cache for 
+improved performance.
+==========================================CI/CD== Continuous Integration / Continuous Delivery=========Dev Ops Developement Operation team=====================
+We can create Jenkin pipeline by using "pipeline as code". we can create a file"Jenkinfile".A Jenkinsfile is a text file that stores the entire workflow as code and it can be checked into a SCM on your local system.
+The Jenkins pipeline is written based on two syntaxes, namely:
+1.Declarative pipeline syntax
+2.Scripted pipeline syntax
+
+pipeline  concept:
+1.Pipeline : This is a user defined block which contains all the processes such as build, test, deploy, etc. It is a collection of all the stages in a Jenkinsfile. All the stages and steps are defined within this block. It is the key block for a declarative pipeline syntax.
+Pipeline{ 
+ }
+ 2. Agent: An agent is a directive that can run multiple builds with only one instance of Jenkins.
+ 3. Docker:This parameter uses docker container as an execution environment for the pipeline or a specific stage. 
+2.Stages: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within this directive. Each stage performs a specific task.
+3. Steps: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within this directive. Each stage performs a specific task.
+
+pipeline {
+         agent any
+         stages {
+                 stage('One') {
+                 steps {
+                     echo 'Hi, this is Zulaikha from edureka'
+                 }
+                 }
+                 stage('Two') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Three') {
+                 when {
+                       not {
+                            branch "master"
+                       }
+                 }
+                 steps {
+                       echo "Hello"
+                 }
+                 }
+                 stage('Four') {
+                 parallel { 
+                            stage('Unit Test') {
+                           steps {
+                                echo "Running the unit test..."
+                           }
+                           }
+                            stage('Integration test') {
+                              agent {
+                                    docker {
+                                            reuseNode true
+                                            image 'ubuntu'
+                                           }
+                                    }
+                              steps {
+                                echo "Running the integration test..."
+                              }
+                           }
+                           }
+                           }
+              }
+			  post{ // after above stage post below condiation need to be run.
+			  always { }
+			  failure {}
+			  success{}
+			  
+			  }
+
+}
+=======================java 17 Feature==================
+
+REST API CRUD with JPA
+https://www.javaguides.net/2022/09/spring-boot-rest-api-crud-example-with-mysql-database.html
+
+REST API with Pagination with JPA
+https://www.javaguides.net/2021/10/spring-boot-pagination-and-sorting-rest-api.html
+
+http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
+@GetMapping
+    public PostResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
+    ){
+        return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
+    }
+	
+Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
+WHAT : A record in Java is a class that is intended to store data.Records are immutable by default, which means that their state cannot be changed once they are created. This makes them ideal for storing data that should not be modified (immutable data), such as configuration settings or values returned from a database query.
+
+WHEN To USE: If you want to transfer immutable data between different layers of your application, then using a record in Java can be a good choice.By default, Records are immutable in Java, which means that we can’t change their properties after they are created.
+
+WHERE TO USE : eg; DTOs, API response,
+Exmaple Syntax: public record Book(String name, double price) { }
+This creates a new record called “Book” with two fields: “name” and “price”.
+eg. Book book = new Book("Core Java", 324.25);
+String name = book.name(); 
+double price = book.price();
+
+We can add a new field, but not recommended. A new field added to the record must be static. For example:
+public record Person(String name, int age) {
+   static String sex;
+}
+Canonical Constructor:-Java compiler by default provides us an all-arguments constructor (a constructor with all fields) that assigns its arguments to the corresponding fields. It is known as the canonical constructor. We can also add business logic such as conditional statements to validate data. Below is the example:
+public record Person(String name, int age) {
+       public Person(String name, int age) {
+           if (age < 18) {
+              throw new IllegalArgumentException("You are not allowed to participate in general elections");
+           }
+      }
+}
+Methods in Records:-In addition to the automatically generated accessor methods, we can also define our own methods in a record, just like in a regular class. For example:
+public record Person(String name, int age) { 
+   public void sayHello() { 
+      System.out.println("Hello, my name is " + name); 
+   }
+}
+https://javatechonline.com/record-in-java-with-examples/#:~:text=Just%20like%20any%20other%20class,be%20specified%20as%20constructor%20parameters.
+
+Pattern Matching for SWITCH statement:
+
+Sealed Class & Interface:
+Sealed classes and interfaces offer a restriction whether classes/interfaces can extend/implement other classes/interfaces or not.
+public sealed class Shape permits Circle, Square, Triangle {
+    // ...
+}
+In the example, the “sealed” modifier is used to specify that the Shape class is a sealed class. The “permits” keyword is then used to specify the allowed subclasses of Shape, which are Circle, Square, and Triangle.
+
+By using a sealed class, we can ensure that the only allowed subclasses of Shape are Circle, Square, and Triangle. Any other attempt to extend Shape will result in a compilation error.
+
+
+======================================================

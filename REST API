@@ -1,0 +1,248 @@
+========================= API =======================
+What is API ?
+Application Programimg Interface act as bridge, allowing distinct software component to communicate and interact. They responsible for data excahnage,
+function calls and overall integration between software system.
+
+When to choose REST API and SOAP APi ?
+REST : Choose REST when Limited bandwidth,lightweight, low-cost or simple operations,Developing public APIs, REST API is stateless, meaning each request 
+should contain all the information needed to process it. It is 100% synchronus communication only.
+
+SOAP : Simple Object Application Protocol , It is messaging protocol specification for exchanging structure information.
+It is used mostly in finacial service and payment gateway project where security, transactional reliablity and formal contracts between client and server is key. 
+It perform Asynchronous operations or synchronus operation or both to meet business needs and stateless.
+SOAP uses XML as the data format for messages being sent and received by an API client.its support for WS-Security and strongly-typed contracts as
+Web Service Definition Language (WSDL) to specify the functionalities of an API.
+Envelope: Defining the structure of the message.
+Encoding: Rules for expressing the type of data.
+Requests: How each SOAP API request is structured.
+Responses: How each SOAP API response is structured.
+
+Que: Diffrence between PUT & PATCH.
+HTTP PUT request is used to replace and update the entire resource or document, while the PATCH request only updates the specific parts of that document.
+
+Que: What is REST API ?
+https://blog.postman.com/soap-vs-rest/
+A REST API, also known as a RESTful API, is a simple, uniform interface that is used to make data, content, algorithms, media, and other digital resources available through web URLs.
+APIs that are designed according to REST principles are referred to as “RESTful APIs.
+Statelessness:The server shouldnot need to store any information about the client’s state
+Separation of concerns:-The client and server should be properly decoupled from each other
+Layered architecture:-Software architecture should be split into layers with their own distinct purpose, which helps keep the system modular and maintainable
+Cache support: Responses can be cached on the client to improve an application’s performance and remove the need to re-process repeated requests.
+Consistent interface: HTTP methods like GET, POST, and DELETE help make interactions between clients and servers simple and consistent.
+Emphasis on resources: RESTful APIs are resource-based, rather than method-based or function-based. A resource can be an object, entity, or data within a system. Resources are uniquely identified using a Uniform Resource Identifier (URI), and HTTP methods are used to perform CRUD operations (create, read, update, delete) on them.
+
+
+What are top 6 API architectural Styles ?
+1. SOAP:
+2.RESTFul : It uses Http methods.A client-server communication model centered around resources identified by URIs.
+3.GraphQL : It is also a query language. It allow clients to aks for specific data as they need . No more over fetching or under fetching.
+4.gRPC :A high-performance RPC (Remote Procedure Call) that works with a binary serialization format called Protocol Buffers.
+5.WebSocket : It is all about real time, biderectional and persist connection.It is perfect for live chat and real time gaming wher low latency data exchange is crucial.
+6.Webhook : It is all about event driven, HTTP callback and sysnchronus operation.
+
+Que: How to make my API request as Idempotance ?
+To get to a state of Idempotency, you can add a RequestId to your request and check if the request was done before. This means that you have to save the requestIds 
+in the system and validate them when the API is called.
+
+Q: How many ways we can improve the performance of API ?
+1. Caching
+2. Connection Pool for DB call. or Data base query optimizaion
+3. Avoid N+1 problem
+4. Pagination and Sorting 
+5. Payload optimization: A. Compress and reduce the size of data B. use data formats like JSON or Protobuf C. 
+7. Asysnchronus logging.
+
+Que: Consideration/Best Practice to use RESt API ?
+Ans: 1. resource Naming & plurals 2. Idempotancy 3.Use Versioning 4. Softdelete reocrds, pagination& sorting,Filtering 5. Handle error gracefully and return error code 6. Secure ACcess 7. RateLimiting 8. Documentation.
+Tips for API security
+Ans: Use SSL(Https) B. OAuth2 C.WebAuthn C. Level API Keys (InterService communication) D. Authorization E.Rate Limiting F.API Version. G Allowlisting H. API Gateway I. ErrorHandling J. Input validation
+
+How SSL works?
+It works on Asymmetric key with valid certificat which is issued by any valid issuer company. Server send the public key to client and client verify the public key with help of certiificate authority and exchange the data between client/server. Server decrypt the data using private key.
+ 
+ 
+Que: How to improve java code performance ?
+Ans: 1. always use a StringBuilder rather than the + operator for String manupulation.
+2.Regular expressions are useful, but they come at a price. you must avoid regular expressions at all costs.Use a popular library like Apache Commons Lang instead, for your String manipulation.
+3. avoid recurrsion
+4. Always use entrySet() when you need both keys and values during map iteration.
+5. 
+https://www.geeksforgeeks.org/12-tips-to-optimize-java-code-performance/
+
+1. Avoid Writing Long Methods
+2. Avoid Multiple If-else Statements (may be use switch statemnet)
+3. Avoid Getting the Size of the Collection in the Loop
+4.Avoid Using String Objects For Concatenation
+5.Use Primitive Types Wherever Possible
+6.Avoid Using BigDecimal Class
+7.Avoid Creating Big Objects Often
+8.Use Stored Procedures Instead of Queries
+9.Using PreparedStatement instead of Statement
+10. Use of Unnecessary Log Statements and Incorrect Log Levels
+11. Select Required Columns in a Query
+12. Fetch the Data Using Joins
+
+=====================================================================================================================
+API Architecture - Design Best Practices for REST APIs
+https://blog.wahab2.com/api-architecture-best-practices-for-designing-rest-apis-bf907025f5f
+1. Learn the basics of HTTP
+Although, as far as REST API design is concerned, here is a TLDR of HTTP applied to RESTful Design:
+HTTP has verbs (actions or methods): GET, POST, PUT, PATCH and DELETE are most common.
+REST is resource-oriented and a resource is represented by an URI: /library/
+An endpoint is the combination of a verb and an URI, example: GET: /books/
+An endpoint can be interpreted as an action performed on a resource. Example: POST: /books/ may mean "Create a new book".
+At a high-level, verbs map to CRUD operations: GET means Read, POST means Create, PUT and PATCH mean Update, and DELETE means Delete
+A response’s status is specified by its status code: 1xx for information, 2xx for success, 3xx for redirection, 4xx for client errors and 5xx for server errors.
+
+2. Do not return plain text
+3.Do not use verbs in URIs.
+eg: # Don’t do this POST: /books/createNewBook/
+# Do this           POST: /books/
+# Don’t        GET: /books/:slug/generateBookCover/
+# Do this      GET: /books/:slug/bookCover/
+Use plural nouns for resources
+GET: /books/2/
+POST: /books/
+4. Use plural nouns for resources
+5. Return the error details in the response body.
+{
+    "error": "Invalid payload.",
+    "detail": {
+        "name": "This field is required."
+    }
+}
+6. Make use of the HTTP status code, and only use the response body to provide error details.
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+    "error": "Expected at least three items in the list."
+}
+7. You should use HTTP status codes consistently
+8. Do not nest resources
+Don't : GET: /authors/Cagan/books/
+DO :  GET: /books?author=Cagan
+9. Make use of the querystring for filtering and pagination
+10. Make use of the querystring for filtering and pagination
+11. Know the difference between 401 Unauthorized and 403 Forbidden
+Has the consumer not provided authentication credentials? Was their SSO Token invalid/timed out? 👉 401 Unauthorized.
+Was the consumer correctly authenticated, but they don’t have the required permissions/proper clearance to access the resource? 👉 403 Forbidden
+12. 
+===========================================================================================================================================================
+Performance Enhancement Tips
+1. Reduce and limit the Payload Size : We can use GZip Compression to reduce our payload size.
+2. Enable caching : If we have requests that frequently give back the same response, then a cached version of that response helps avoid additional service calls/database queries.
+3. Provide sufficient Network speed :
+This can be achieved by leveraging and purchasing sufficient cloud resources and infrastructure (example: in AWS, allocate the proper # of EC2 instances,
+use a Network Load Balancer).
+Also, if you have a large amount of background processes, run those on separate threads to avoid blocking requests. You can also use mirrors, 
+and Content Delivery Networks (CDNs) such as CloudFront to serve requests faster around different parts of the globe.
+4. Prevent accidental calls, slowdowns, and abuse
+rate-limiting helps reduce excessive requests that would slow the API down, helps deal with accidental calls/executions, and proactively monitor and identify possible malicious activity.
+5. Try to use PATCH over PUT
+PUT operations update resources by sending updates to the entire resource. PATCH operations apply partial updates to only the resources 
+that need updating. Resulting inPATCH calls that produce smaller payloads, and improve performance at scale.
+6. Enable Logging, Monitoring, and Alerting
+7. Enable Pagination
+===============================================================================================================
+A high-performing API is crucial for a great user experience and efficient application operation.
+1. Caching
+Store frequently accessed data in a cache (like Redis or Memcached) for rapid retrieval, bypassing the database for repeated requests.
+2. Scale-out with Load Balancing
+Distribute incoming requests across multiple server instances using a load balancer (like Nginx or HAProxy).
+3. Asynchronous Processing
+Acknowledge client requests immediately and process them in the background, sending results later.
+4. Pagination
+Limit the number of records returned per request and provide a way to retrieve subsequent pages.
+5. Connection Pooling
+Maintain a pool of reusable database connections instead of creating a new one for each request.
+*Additional Tips**
+- Optimize Database Queries
+- Gzip Compression - Reduce response sizes.
+- Content Delivery Network (CDN) - Cache static assets globally for faster delivery.
+- Monitor and Profile - Use tools like New Relic or Datadog to identify bottlenecks. 
+================================================================
+REST API Sample
+
+@RestController
+@RequestMapping("/api/vi/products")
+public class ProductController {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    // 1. Create (POST)
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+        Product savedProduct = productRepository.save(product);
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+    }
+
+    // 2. Read (GET - List)
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // 3. Read (GET - Single)
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return new ResponseEntity<>(product.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // 4. Update (PUT)
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product updatedProduct) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isPresent()) {
+            updatedProduct.setId(id); // Ensure ID is maintained during update
+            Product savedProduct = productRepository.save(updatedProduct);
+            return new ResponseEntity<>(savedProduct, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // 5. Delete (DELETE)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            productRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+}
+=========================================================================
+http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
+@GetMapping
+    public PostResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
+    ){
+        return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
+    }
+=================================
+Microservices Principal:
+1.Highly maintainable and testable 
+2.Loosely coupled
+3.Independently deployable
+4. Organized around business capabilities
+5. Owned by a small team
+6. Database per service
+7. Eventual consistency
+Best Practice
+1.Design for failure
+2.Decentralize everything 3. Use containers 4. Implement Continuous Integration (CI) and Continuous Delivery
+5.Monitor and Log 6.Embrace automation 7. Service Discovery.
+===========================================
+
