@@ -1362,4 +1362,30 @@ public class SealedClassExample {
     }
 }
 
+Sealed classes work very well with records. Since records are implicitly final, the sealed hierarchy is even more concise. Let’s try to rewrite our class example using records:
+
+public sealed interface Vehicle permits Car, Truck {
+    String getRegistrationNumber();
+}
+
+public record Car(int numberOfSeats, String registrationNumber) implements Vehicle {
+    @Override
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+}
+
+public record Truck(int loadCapacity, String registrationNumber) implements Vehicle {
+    @Override
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+    public int getLoadCapacity() {
+        return loadCapacity;
+    }
+}
+
 ======================================================
