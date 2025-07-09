@@ -231,6 +231,11 @@ http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
     ){
         return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
     }
+REST API CRUD with JPA
+https://www.javaguides.net/2022/09/spring-boot-rest-api-crud-example-with-mysql-database.html
+
+REST API with Pagination with JPA
+https://www.javaguides.net/2021/10/spring-boot-pagination-and-sorting-rest-api.html
 =================================
 Microservices Principal:
 1.Highly maintainable and testable 
