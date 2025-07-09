@@ -151,7 +151,10 @@ So you are aware only of what the application does, not how it does it.
 Eg; ATM machine, TV remote, Car .
 For example, take Apache poi library, it gives methods to create excel sheet, but we don’t know how internally it is implemented.
 So the implementation is hidden. This is called abstraction.
-Encapsulation is basically denying the access to the internal implementation or knowledge about internals to the external world , 
+Encapsulation is basically denying the access to the internal implementation or knowledge about internals to the external world. i.e. This mechanism 
+hides the internal implementation details of an object from the outside world and provides controlled access to its data.
+example in class Employee, outside word can set the age and salary but ca not set negative age and salary becuase we are doing validation in setter method 
+of age and salary.
 while abstraction is giving a generalized view of any implementation that helps the external world to interact with it.
 
 1.forEach() method in Iterable interface
