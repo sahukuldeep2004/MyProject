@@ -1,22 +1,5 @@
 =======================java 17 Feature==================
 
-REST API CRUD with JPA
-https://www.javaguides.net/2022/09/spring-boot-rest-api-crud-example-with-mysql-database.html
-
-REST API with Pagination with JPA
-https://www.javaguides.net/2021/10/spring-boot-pagination-and-sorting-rest-api.html
-
-http://localhost:8080/api/posts?pageSize=5&pageNo=1&sortBy=title&sortDir=asc
-@GetMapping
-    public PostResponse getAllPosts(
-            @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
-            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
-            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
-    ){
-        return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
-    }
-	
 Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
 WHAT : A record in Java is a class that is intended to store data.Records are immutable by default, which means that their state cannot be changed once they are created. This makes them ideal for storing data that should not be modified (immutable data), such as configuration settings or values returned from a database query.
 
