@@ -75,6 +75,53 @@ public class PatternMatchingSwitchExample {
         System.out.println(describeObject(new Object()));
     }
 }
+=====================
+public class EnhancedSwitchExample {
+
+    // Define a simple enum for demonstration
+    enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    public static void main(String[] args) {
+        Day today = Day.WEDNESDAY;
+
+        // 1. Switch as an expression (returning a value)
+        String message = switch (today) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "It's a weekday.";
+            case SATURDAY, SUNDAY -> "It's the weekend!";
+        };
+        System.out.println("Message: " + message);
+
+        // 2. Using 'yield' for more complex logic within a case
+        String activity = switch (today) {
+            case MONDAY -> {
+                System.out.println("Starting the work week...");
+                yield "Planning meetings";
+            }
+            case FRIDAY -> {
+                System.out.println("Almost the weekend!");
+                yield "Finishing tasks";
+            }
+            case SATURDAY, SUNDAY -> "Relaxing";
+            default -> "Working"; // Default case is required for exhaustiveness in switch expressions
+        };
+        System.out.println("Activity: " + activity);
+
+        // 3. Pattern Matching for switch (Preview Feature in Java 17, standard in Java 21)
+        Object obj = "Hello"; // Can be any object type
+
+        String typeDescription = switch (obj) {
+            case String s -> "This is a String: " + s.toUpperCase();
+            case Integer i -> "This is an Integer: " + i * 2;
+            case Day d -> "This is a Day enum: " + d.name();
+            case null -> "This is a null object."; // Handling null explicitly
+            default -> "Unknown type.";
+        };
+        System.out.println("Type Description: " + typeDescription);
+    }
+}
+======================================================
 
 Sealed Class & Interface:
 Sealed classes and interfaces offer a restriction whether classes/interfaces can extend/implement other classes/interfaces or not.
