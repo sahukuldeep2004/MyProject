@@ -533,6 +533,7 @@ Default Equal() method check the memory location are equal or not, but make two 
 hashcode() method is the technique to arrange the obect in similiar fashion.
 
 Question 11 : When do you override hashCode() and equals()?
+If you're using custom objects as keys in a Map or elements in a Set, always override both equals() and hashCode().
 Also overriding both these methods are must if you want to use them as key in HashMap.Now as part of the equals-hashcode contract in Java, 
 when you override equals, you must override hashcode as well, otherwise your object will not break invariant of classes e.g. Set, Map which relies on 
 equals() method for functioning properly.
