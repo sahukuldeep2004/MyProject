@@ -44,7 +44,8 @@ Que: When we go for NOSQL DB and SQL DB?
 Ans: 1. If we want to scalability and high performance and zero down time.
 2. NoSQL is used for Big data and real-time web apps. 
 3. NoSQL databases are often better suited to storing and modeling structured, semi-structured, and unstructured data in one database.
-4. A NoSQL database is a much better fit to store data like article content, social media posts, sensor data, and other types of unstructured data that won’t fit neatly into a table.
+4. A NoSQL database is a much better fit to store data like article content, social media posts, sensor data, and other types of unstructured data that won’t
+fit neatly into a table.
 SQL: If your data is very structured and ACID compliance is a must, SQL is a great choice.
 
 Que: Diffrence between SQL and NOSQL?
@@ -67,8 +68,8 @@ Que: What is fault tolerance ?
 Ans:Fault tolerance is the proprty that enable a system to continue operating properly in the event of the failure of some of the component.
 
 Que: Diffrence between fault tolerance and fault resilience ?
-Ans:Fault tolerance:(How much system can tolerate the fault) User does not see any impact except some dealy during some failure occur.(Fault tolerance refers to the ability of a system 
-(computer, network, cloud cluster, etc.) to continue operating without interruption when one or more of its components fail.)
+Ans:Fault tolerance:(How much system can tolerate the fault) User does not see any impact except some dealy during some failure occur.(Fault tolerance refers
+to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when one or more of its components fail.)
 Fault Resilience:(How many fault can system tolrate and bounce back) Failue is observed in seome services but rest of the system continue to function normall.
 Que: NFR category ?
 Ans:1. browser/general compatibilty 2.Uasbility(who are you end user) 3. Security
@@ -104,8 +105,9 @@ Eg. ConcurrentHashMap, CopyOnWriteArrayList
 
 
 Que: What is Java Parallel Streams?
-Ans: It is a feature in java 8 and above to utilize the multiple core of processor.Whereas by using parallel streams, we can divide the code into multiple streams that are 
-executed in parallel on separate cores and the final result is the combination of the individual outcomes. The order of execution, however, is not under our control.
+Ans: It is a feature in java 8 and above to utilize the multiple core of processor.Whereas by using parallel streams, we can divide the code into multiple
+streams that are executed in parallel on separate cores and the final result is the combination of the individual outcomes. The order of execution, however, 
+is not under our control.
 eg.: eList.stream().parallel().filter(e -> e.getId() > 15000).count());
 
 Que: How to write cutome anotaion?
@@ -178,9 +180,13 @@ only. forEach method takes java.util.function.Consumer object as argument, so it
 				System.out.println("forEach anonymous class Value::"+t);
 			}
 2. Default Method :
-Default method in java 8 to enable the functionality of lambda expression in java or to provide backword compatibility to old iterface.To support lambda expressions seamlessly, all core classes have to be modified. But these core classes like java.util.List are implemented not only in JDK classes, but also in thousands of client code as well.Default methods break this deadlock and allow adding support for functional interface in core classes.
+Default method in java 8 to enable the functionality of lambda expression in java or to provide backword compatibility to old iterface.To support lambda 
+expressions seamlessly, all core classes have to be modified. But these core classes like java.util.List are implemented not only in JDK classes, but also in 
+thousands of client code as well.Default methods break this deadlock and allow adding support for functional interface in core classes.
 2. Static method:
-Static Methods in Interface are those methods, which are defined in the interface with the keyword static. Unlike other methods in Interface, these static methods contain the complete definition of the function and since the definition is complete and the method is static, therefore these methods cannot be overridden or changed in the implementation class.
+Static Methods in Interface are those methods, which are defined in the interface with the keyword static. Unlike other methods in Interface, these static 
+methods contain the complete definition of the function and since the definition is complete and the method is static, therefore these methods cannot be 
+overridden or changed in the implementation class.
 
 3. Functional Interface:
 A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, 
@@ -196,7 +202,8 @@ we have default functional interface y java.
 4. SG Supplier :Supplier won't take any input and it will always supply objects. Supplier Functional Interface contains only one method get().
 
 4. Lambda Expression: 
-Since functional interfaces have only one method, lambda expressions can easily provide the method implementation. We just need to provide method arguments and business logic.
+Since functional interfaces have only one method, lambda expressions can easily provide the method implementation. We just need to provide method arguments 
+and business logic.
 a Lambda expression (or function) is an anonymous function, i.e., a function with no name and any identifier.
 // Define a custom functional interface
 @FunctionalInterface
@@ -219,7 +226,8 @@ public class LambdaFunctionalInterfaceExample {
 }
  
 5. Stream:  Stream API is used to process collections of objects.
-A new java.util.stream has been added in Java 8 to perform filter/map/reduce like operations with the collection. Stream API will allow sequential as well as parallel execution.
+A new java.util.stream has been added in Java 8 to perform filter/map/reduce like operations with the collection. Stream API will allow sequential as well 
+as parallel execution.
 stream() method is a default method added to the Collection in 1.8 version.
 
 INTERMEDIATE Operations:
@@ -312,7 +320,8 @@ CompletableFuture
 Executors
 
 Que: What is method reference in java 8?
-Method reference is used refer method of functional interface. It is nothing but compact way of lambda expression.You can simply replace lambda expression with method reference.
+Method reference is used refer method of functional interface. It is nothing but compact way of lambda expression.You can simply replace lambda expression 
+with method reference.
 Syntax:
 class::methodname
 interface Sayable{  
@@ -344,7 +353,8 @@ Optional class encapsulates optional value which is either present or not.
 
 It has 3 method, empty(), of(), ofNullalble().
 empty(): It returns an empty Optional object. No value is present for this Optional.
-ofNullalble: It can take null or not nullable value. If we are not sure that object can hava null valaue or not then, we can go for ofNullalble. We can have same if else condition here as well. if we optional is nullable then
+ofNullalble: It can take null or not nullable value. If we are not sure that object can hava null valaue or not then, we can go for ofNullalble. We can have 
+same if else condition here as well. if we optional is nullable then
 of(): If we are sure that object does not contain null then we can got for of(() method in Optional.
 
 Que: What is the difference between Predicate ,Supplier and Function, Consumer?
@@ -356,7 +366,8 @@ Supplier is function interface which does not take any parameter but returns the
 
 
 Que: Explain StringJoiner Class in Java 8? How can we achieve joining multiple Strings using StringJoiner Class?
-Ans:  In Java 8, a new class was introduced in the package java.util which was known as StringJoiner. Through this class, we can join multiple strings separated by delimiters along with providing prefix and suffix to them.
+Ans:  In Java 8, a new class was introduced in the package java.util which was known as StringJoiner. Through this class, we can join multiple strings separated 
+by delimiters along with providing prefix and suffix to them.
 StringJoiner stj = new StringJoiner(",", "(", ")");
          
         // Separated the elements with a comma in between.
@@ -380,8 +391,9 @@ PermGen was fixed in term of mazimum size and can not grow dynamically but Metas
 
 Que; What is PermGen  and what it contain?
 Ans: PermGen (Permanent Generation) is a special heap space separated from the main memory heap.
-It loaded class metadata in the PermGen.the JVM stores all the static content in this memory section. This includes all the static methods, primitive variables, and references to the static objects.
-It is removed from java 8 onwards.this native memory region grows automatically by default.with this improvement, JVM reduces the chance to get the OutOfMemory error.
+It loaded class metadata in the PermGen.the JVM stores all the static content in this memory section. This includes all the static methods, primitive variables, 
+and references to the static objects.It is removed from java 8 onwards.this native memory region grows automatically by default.with this improvement, 
+JVM reduces the chance to get the OutOfMemory error.
 
 Que: What is MetadataSpace ?
 Ans: It has replaced the older PermGen memory space.
@@ -390,7 +402,8 @@ Que: What Is Garbage Collection and What Are Its Advantages?
 Ans: Garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
 
 Que: Are There Any Disadvantages of Garbage Collection?
-Yes. Whenever the garbage collector runs, it has an effect on the application's performance. This is because all other threads in the application have to be stopped to allow the garbage collector thread to effectively do its work.
+Yes. Whenever the garbage collector runs, it has an effect on the application's performance. This is because all other threads in the application have to be 
+stopped to allow the garbage collector thread to effectively do its work.
 
 Que: What is Heap memory?
 Ans: The heap is a large bulk of memory intended for allocation of objects. When you create an object with the new keyword, it gets allocated on the heap. 
@@ -420,8 +433,10 @@ generation which cleans up and compacts that space. For each major GC, there are
 
 Que; What Is a Stringbuilder and What Are Its Use Cases? What Is the Difference Between Appending a String to a Stringbuilder and Concatenating
 Two Strings with a + Operator? How Does Stringbuilder Differ from Stringbuffer?
-Ans: StringBuilder allows manipulating character sequences by appending, deleting and inserting characters and strings. This is a mutable data structure, as opposed to the String class which is immutable.
-When concatenating two String instances, a new object is created, and strings are copied. This could bring a huge garbage collector overhead if we need to create or modify a string in a loop. StringBuilder allows handling string manipulations much more efficiently.
+Ans: StringBuilder allows manipulating character sequences by appending, deleting and inserting characters and strings. This is a mutable data structure, 
+as opposed to the String class which is immutable.
+When concatenating two String instances, a new object is created, and strings are copied. This could bring a huge garbage collector overhead if we need to 
+create or modify a string in a loop. StringBuilder allows handling string manipulations much more efficiently.
 StringBuffer is different from StringBuilder in that it is thread-safe. If you need to manipulate a string in a single thread, use StringBuilder instead.
 StringBuffer method synchronized.
 
@@ -454,15 +469,18 @@ Since put() operation can cause re-sizing and which can further lead to infinite
 ConcurrentHashMap, later is better.
 
 Question 2. Does overriding the hashCode() method have any performance implication? 
-Answer: From Java 8 onwards though, collision will not impact performance as much as it does in earlier versions, because after a threshold the linked list will be replaced by the binary tree, which will give you O(logN) performance in the worst case, as compared to O(n) of linked list.
+Answer: From Java 8 onwards though, collision will not impact performance as much as it does in earlier versions, because after a threshold the linked list 
+will be replaced by the binary tree, which will give you O(logN) performance in the worst case, as compared to O(n) of linked list.
 Que: when we need to override hashcode() & equals() method?
 Ans: hashCode and equals methods is crucial when working with custom objects, especially within collections like HashMap, HashSet, or Hashtable.
 
 Que: How HashSet work internally?
 Ans: HashSet also work same hashMap internally. when we are going to add() method it is going to call return map.put(e, PRESENT)==null 
-it returns the previous value associated with key, or null if there was no mapping for key. So in add() method we check the return value of map.put(key, value) method with null value.
+it returns the previous value associated with key, or null if there was no mapping for key. So in add() method we check the return value of map.put(key, value) 
+method with null value.
 1.If map.put(key, value) returns null, then the statement “map.put(e, PRESENT) == null” will return true and element is added to the HashSet(internally HashMap).
-If map.put(key, value) returns old value of the key, then the statement “map.put(e, PRESENT) == null” will return false and element is not added to the HashSet(internally HashMap).
+If map.put(key, value) returns old value of the key, then the statement “map.put(e, PRESENT) == null” will return false and element is not added to the 
+HashSet(internally HashMap).
 
 Question : Do all properties of an Immutable Object need to be final? 
 Not necessarily, as stated above you can achieve same functionality by making the member non-final but private and not modifying them except
@@ -526,7 +544,8 @@ String apple = new String(
                );
 			   
 Que: HashMap profile ?
-Ans: If we have to search among a large array then searching through each if them will not be efficient, so what hash technique tells us that lets preprocess the array with some logic and group the elements based on that logic i.e. Hashing
+Ans: If we have to search among a large array then searching through each if them will not be efficient, so what hash technique tells us that lets preprocess the 
+array with some logic and group the elements based on that logic i.e. Hashing
 Now apart from the above hashmap also tells that it wont add any Duplicates in it. And this is the main reason why we have to override the equals and hashcode.
 
 Default Equal() method check the memory location are equal or not, but make two obect equal by theier property we need to override equal() method.
@@ -582,20 +601,20 @@ When you add object using put() method, it iterate through all Map.Entry object 
 if Map already contains that key. This will not work if hashcode is not overridden.
 
 Que: Why we need to overridden @hashCode method?
-Ans: If we use built-in hash technique, for above two customers(C1 & C2) it generates two different hashcode. So we are storing the same identical object in two different places. or default implementation gives different values for different objects, even if they are equal according to the equals() method.
+Ans: If we use built-in hash technique, for above two customers(C1 & C2) it generates two different hashcode. So we are storing the same identical object in two 
+different places. or default implementation gives different values for different objects, even if they are equal according to the equals() method.
 To avoid this kind of issues we should override the hashCode method also based on the following principles.
  - un-equal instances may have same hashcode.
  - equal instances should return same hashcode.
  
 Que: How hashmap works ?
-Ans: HashMap in java use it’s inner class Node<K,V> for storing mappings. HashMap works on hashing algorithm and uses hashCode() and equals() method on key for get and put
- operations. HashMap use singly linked list to store elements, these are called bins or buckets. When we call put method, hashCode of key is used to determine the bucket 
- that will be used to store the mapping. Once bucket is identified, hashCode is used to check if there is already a key with same hashCode or not. If there is an existing 
- key with same hashCode, then equals() method is used on key. If equals returns true, then value is overwritten, otherwise a new mapping is made to this singly linked list 
- bucket. If there is no key with same hashCode then mapping is inserted into the bucket. For HashMap get operation, again key hashCode is used to determine the bucket to 
- look for the value. After bucket is identified, entries are traversed to find out the Entry using hashCode and equals method. If match is found, value is returned otherwise 
- null is returned.
-
+Ans: HashMap in java use it’s inner class Node<K,V> for storing mappings. HashMap works on hashing algorithm and uses hashCode() and equals() method on key for 
+get and put operations. HashMap use singly linked list to store elements, these are called bins or buckets. When we call put method, hashCode of key is used to 
+determine the bucket  that will be used to store the mapping. Once bucket is identified, hashCode is used to check if there is already a key with same hashCode 
+or not. If there is an existing  key with same hashCode, then equals() method is used on key. If equals returns true, then value is overwritten, otherwise a 
+new mapping is made to this singly linked list  bucket. If there is no key with same hashCode then mapping is inserted into the bucket. For HashMap get operation,
+again key hashCode is used to determine the bucket to  look for the value. After bucket is identified, entries are traversed to find out the Entry using hashCode 
+and equals method. If match is found, value is returned otherwise  null is returned.
 
 Question: How do you avoid a deadlock in Java?
 Ans: You can avoid deadlock by breaking the circular wait condition. In order to do that, you can make an arrangement in the code to impose the 
@@ -682,11 +701,17 @@ Answer: run() method does not return any value, it's return type is void while c
 Another difference on run and call method is that run method can not throw checked exception while call method can throw checked exception in Java.
 
 Que: What is volatile keyword in java and when to use it?
-Ans:the volatile keyword in Java is used as an indicator to Java compiler and Thread that do not cache value of this variable and always read it from main memory. So if you want to share any variable in which read and write operation is atomic by implementation e.g. read and write in an int or a boolean variable then  you can declare them as volatile variable.
+Ans:the volatile keyword in Java is used as an indicator to Java compiler and Thread that do not cache value of this variable and always read it from main memory. 
+So if you want to share any variable in which read and write operation is atomic by implementation e.g. read and write in an int or a boolean variable then 
+you can declare them as volatile variable.
 It guarantees that value of the volatile variable will always be read from the main memory, not from the local thread cache.
 
 Que: What happens when an Exception occurs in a thread?
 Ans: If it is not handlaed then thread will stop.
+
+Que: What is serilization ?
+Ans: Serialization in Java is the process of converting an object's state into a byte stream. This byte stream can then be saved to a file, transmitted over 
+a network, or stored in a database. The reverse process, converting the byte stream back into a Java object, is known as deserialization. 
 
 Que: How and where is java object serialization used in real time?
 Ans: Saving an object state (in file) is termed as serialization and from the saved format regain the object's state is known as deserialization.
