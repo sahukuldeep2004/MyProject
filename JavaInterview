@@ -474,6 +474,36 @@ will be replaced by the binary tree, which will give you O(logN) performance in 
 Que: when we need to override hashcode() & equals() method?
 Ans: hashCode and equals methods is crucial when working with custom objects, especially within collections like HashMap, HashSet, or Hashtable.
 
+Que: If I just override the hashCode() method and do not override equals() method then what will happen.
+Ans: Your objects may have the same hash code, but they will still be compared using Object class's default equals() method, which checks reference 
+equality (i.e., whether they are the same object in memory).
+As a result, even if two objects are logically equal and have the same hash code, they will be considered unequal by a HashSet, HashMap, etc.
+@Override
+    public int hashCode() {
+        return id;
+    }
+// equals() is not overridden
+Person p1 = new Person(1);
+Person p2 = new Person(1);
+System.out.println(p1.equals(p2)); // false, because equals() checks reference
+
+Que: if I just override the equals() method and do not override hashCode() method then what will happen.
+Ans: The default hashCode() method (from Object) will be used, which typically returns a unique integer based on the object’s memory address.
+Even if two objects are logically equal based on your overridden equals() method, their hash codes will likely be different unless they are the same instance.
+As a result, hash-based collections will treat them as different keys.
+@Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person other = (Person) obj;
+        return this.id == other.id;
+    }
+
+// hashCode() is NOT overridden
+Person p1 = new Person(1);
+Person p2 = new Person(1);
+System.out.println(p1.equals(p2)); // true
+
 Que: How HashSet work internally?
 Ans: HashSet also work same hashMap internally. when we are going to add() method it is going to call return map.put(e, PRESENT)==null 
 it returns the previous value associated with key, or null if there was no mapping for key. So in add() method we check the return value of map.put(key, value) 
