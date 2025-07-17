@@ -1,4 +1,35 @@
 ====================================================SpringFramwork ========================== =============================================================================================
+Core Annotations (Dependency Injection & Configuration):
+@Component: Generic stereotype for any Spring-managed component.
+@Service: Stereotype for service layer components.
+@Repository: Stereotype for data access layer components (often used with Spring Data JPA).
+@Controller: Stereotype for MVC controllers.
+@RestController: Combines @Controller and @ResponseBody, ideal for building RESTful web services.
+@Autowired: Used for automatic dependency injection by type.
+@Qualifier: Used with @Autowired to specify a particular bean when multiple beans of the same type exist.
+@Value: Injects values from properties files or environment variables.
+@Configuration: Marks a class as a source of bean definitions.
+@Bean: Marks a method within a @Configuration class that produces a Spring-managed bean.
+@ComponentScan: Configures component scanning to automatically detect and register Spring components.
+@EnableAutoConfiguration: (Spring Boot) Attempts to automatically configure your Spring application based on classpath dependencies.
+@SpringBootApplication: (Spring Boot) Convenience annotation that combines @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+Web Annotations (Spring MVC/WebFlux):
+@RequestMapping: Maps HTTP requests to handler methods in controllers.
+@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping: Specialized versions of @RequestMapping for specific HTTP methods.
+@PathVariable: Binds a URI template variable to a method parameter.
+@RequestParam: Binds a web request parameter to a method parameter.
+@RequestBody: Binds the HTTP request body to a method parameter.
+@ResponseBody: Indicates that a method's return value should be bound to the web response body.
+@ResponseStatus: Sets the HTTP status code of the response.
+@CrossOrigin: Enables cross-origin requests for a controller or method.
+Data & Transaction Management:
+@Transactional: Defines the scope of a single database transaction.
+@EnableJpaRepositories: Enables Spring Data JPA repositories.
+Other Useful Annotations:
+@Profile: Specifies that a component or configuration is active only for specific profiles.
+@Scope: Defines the scope of a Spring bean (e.g., singleton, prototype, request, session).
+@Async: Marks a method for asynchronous execution.
+@Scheduled: Schedules a method to run at fixed intervals or times.
 
 Spring MVC and REST Annotation?
 www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html#at_pco=smlwn-1.0&at_si=5cdbb7194383efff&at_ab=per-2&at_pos=0&at_tot=1
@@ -6,7 +37,7 @@ www.java67.com/2019/04/top-10-spring-mvc-and-rest-annotations-examples-java.html
 Que: When to use Singleton and prototype bean ?
 Ans: you should use the prototype scope for all stateful beans and the singleton scope for stateless beans.
 
-Ans: Que: What is life cycle of Spring bean /
+Que: What is life cycle of Spring bean /
 Ans: Spring beans are instantiated, configured, wired and managed by IoC container.
 
 Que: AOP, Aspect Oriented Programming?
