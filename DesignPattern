@@ -422,38 +422,39 @@ For our example, we will try to implement a simple Shopping Cart where we have t
 or using PayPal.
 https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial
 
-pulic interface Startegy{
- pulic int doOperation(int a, int b);
-] 
-
-public class AddStartegy implements Startegy{
-pulic int doOperation(int a, int b){
-return a+b;
+public interface PaymentStrategy {
+    void pay(int amount);
+}
+public class CreditCardPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid ₹" + amount + " using Credit Card.");
+    }
 }
 
-public class MultiplyStartegy implements Startegy{
-pulic int doOperation(int a, int b){
-return a*b;
+public class PayPalPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid ₹" + amount + " using PayPal.");
+    }
 }
+public class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
 
-pulic class StrategyContext{
-public Startegy startegy;
-//imp step is below
-public StrategyContext(Startegy startegy){
-this.startegy = startegy;
+    public ShoppingCart(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void checkout(int amount) {
+        paymentStrategy.pay(amount);
+    }
 }
+public class Main {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart(new CreditCardPayment());
+        cart.checkout(500);
 
-pulic int executeStrategy(int a, int b){
-startegy.doOperation(a,b);}
-}
-
-public class StrategyPatternDemo {
-   public static void main(String[] args) {
-      StrategyContext context = new StrategyContext(new AddStartegy());		
-      System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
-      context = new StrategyContext(new MultiplyStartegy());		
-      System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
-   }
+        cart = new ShoppingCart(new PayPalPayment());
+        cart.checkout(750);
+    }
 }
 
 Que: What is adpter design pattern ?
