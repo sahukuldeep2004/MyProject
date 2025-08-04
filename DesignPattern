@@ -477,6 +477,11 @@ notify channels when it receives news.
 - When the Subject’s state changes, it automatically notifies all registered Observers
 Youtube Subscription : When a user(Observer) subscribes to a Youtube channel(Subject) all its subscribers get notified of any new post.
 
+Que: Chain of Responsbility (COR) design pattern ?
+Ans: The Chain of Responsibility design pattern is a behavioral pattern in Java that allows a request to be passed along a chain of potential handlers 
+until one of them handles it. This pattern promotes loose coupling between the sender of a request and its receivers by giving multiple objects a chance 
+to handle the request without explicitly specifying the receiver.
+
 =============
 Diffrence between API Gateway and Load balancer ?
 API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
