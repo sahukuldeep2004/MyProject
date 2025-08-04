@@ -467,6 +467,7 @@ Ans: The Decorator attaches additional responsibilities to an object dynamically
 Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
 It use the HAS A and IS A relationship.
 why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
+Used: Decorator pattern is used a lot in Java IO classes, such as FileReader, BufferedReader etc.
 
 Que: Observar desig pattern (Behaviral design) ?
 Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. 
