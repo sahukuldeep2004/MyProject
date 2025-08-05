@@ -648,7 +648,7 @@ actions and reduce mean time to resolution (MTTR).
 Grafana used for data visualization and monitoring.Grafana helps create customizable dashboards for displaying metrics, logs, and traces, enabling users to understand 
 and analyze data over time. Eg: Consumer lag increaed with some threshold value then send an alert. Topic did not receive message in 4 hr then trigger an alert.
 
-b. Performance Metrics
+b. Performance Monitoring: Uses metrics to track the performance of individual operations and overall system health. 
 c. Distributed Tracing
 In microservice architecture, requests often span multiple services. Each service handles a request by performing one or more operations across multiple services.
 Spring Cloud Slueth, along with Zipkin server, is a common implementation.
@@ -656,6 +656,10 @@ We can analyze the latency in the servces call with this.
 Spring Slueth use the spanId and traceId. 
 TraceId – This is an id that is assigned to a single request. 
 SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId. 
+
+d. Health check API
+Sometimes, it may happen that a particular service instance is running but is incapable of processing any request. Such services can be termed 
+“unhealthy.” Whenever an instance of an unhealthy service occurs, monitoring systems should generate an alert.
 
 5. Cross-Cutting Concern Patterns
 a. External Configuration
