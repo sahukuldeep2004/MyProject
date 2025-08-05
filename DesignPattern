@@ -661,7 +661,9 @@ d. Health check API
 Sometimes, it may happen that a particular service instance is running but is incapable of processing any request. Such services can be termed 
 “unhealthy.” Whenever an instance of an unhealthy service occurs, monitoring systems should generate an alert.
 
-5. Cross-Cutting Concern Patterns
+5. Cross-Cutting Concern Patterns :- Cross-cutting concerns in microservices are functionalities or aspects that affect multiple services or modules
+throughout the system.These concerns need to be addressed consistently across the entire microservice landscape to ensure proper operation, 
+maintainability, and security.
 a. External Configuration
 Spring Cloud config server provides the option to externalize the properties to GitHub and load them as environment properties. These can be accessed by the 
 application on startup or can be refreshed without a server restart.
@@ -672,7 +674,13 @@ changes.A service registry needs to be created which will keep the metadata of e
 and should de-register when shutting down.The consumer or router should query the registry and find out the location of the service. The registry also needs to do a health 
 check of the producer service to ensure that only working instances of the services are available to be consumed through it.
 
-c. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
+c. Authentication and Authorization: -
+Managing user identities, verifying credentials, and controlling access permissions across all services.
+d. Metrics and Performance Monitoring :
+Collecting and analyzing performance metrics (e.g., CPU usage, memory consumption, request latency) to identify bottlenecks and optimize resource utilization.
+
+e. Error Handling
+f. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
 A service generally calls other services to retrieve data, and there is the chance that the downstream service may be down. There are two problems with this: first, 
 the request will keep going to the down servics. It allows developers to prevent cascading failures in microservices architecture by invoking remote services through 
 a proxy.
