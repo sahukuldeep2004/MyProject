@@ -50,7 +50,7 @@ Q: How many ways we can improve the performance of API ?
 3. Avoid N+1 problem
 4. Pagination and Sorting 
 5. Payload optimization: A. Compress and reduce the size of data B. use data formats like JSON or Protobuf C. 
-7. Asysnchronus logging.
+7. Asysnchronus logging:-Asynchronous logging is a technique that improves application logging performance by executing all I/O operations in a separate thread.
 
 Que: Consideration/Best Practice to use RESt API ?
 Ans: 1. resource Naming & plurals 2. Idempotancy 3.Use Versioning 4. Softdelete reocrds, pagination& sorting,Filtering 5. Handle error gracefully and return error code 6. Secure ACcess 7. RateLimiting 8. Documentation.
