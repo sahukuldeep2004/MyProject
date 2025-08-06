@@ -837,28 +837,6 @@ resilience4j.circuitbreaker.instances.getInvoiceCB.wait-duration-in-open-state=1
 
 
 ===================================================================================================
-Rest API design best practice
-
-1. Use JSON as the Format for Sending and Receiving Data
-2. Use Nouns Instead of Verbs in Endpoints
-This is because HTTP methods such as GET, POST, PUT, PATCH, and DELETE are already in verb form for performing basic CRUD (Create, Read, Update, Delete) 
-operations.
-old :-- https://mysite.com/getPosts or https://mysite.com/createPost
-new :-https://mysite.com/posts
-In short, you should let the HTTP verbs handle what the endpoints do. So GET would retrieve data, POST will create data, PUT will update data, and DELETE 
-will get rid of the data.
-3. Name Collections with Plural Nouns.
-So, instead of https://mysite.com/post/123, it should be https://mysite.com/posts/123
-4.Use Status Codes in Error Handling
-
-400 – 499  -> Client-side errors  eg. 400 means bad request and 404 means resource not found.
-500 – 599 -> Server-side errors, For example, 500 means an internal server error
-5. Use Filtering, Sorting, and Pagination to Retrieve the Data Requested.
-6. Use SSL for Security
-7. Be Clear with Versioning.
-REST APIs should have different versions, so you don’t force clients (users) to migrate to new versions. This might even break the application if you're not 
-careful.
-9. Provide accurate API Documentation.
 
 Software application best parctice /principal :
 1. YAGNI - You Ain’t Gonna Need It
@@ -869,17 +847,7 @@ Software application best parctice /principal :
 6. USe Pattern (Factory, Singleton)
 7.
 
-Que: Best parctice for micro service ?
-Ans:https://www.capitalone.com/tech/software-engineering/10-microservices-best-practices/
-The Single Responsibility Principle:-
-Have a separate data store(s) for your microservice:-
-Use asynchronous communication to achieve loose coupling:-
-Fail fast by using a circuit breaker to achieve fault tolerance:-
-Proxy your microservice requests through an API Gateway:-
-Ensure your API changes are backwards compatible:-
-Have dedicated infrastructure hosting your microservice:-
-Create a separate release train:-
-Create Organizational Efficiencies(side car/ common application like logging/security/configuration):-
+
 =======================================
 
 Que: Software design architecture steps ?
