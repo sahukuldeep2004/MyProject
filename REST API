@@ -37,7 +37,8 @@ What are top 6 API architectural Styles ?
 2.RESTFul : It uses Http methods.A client-server communication model centered around resources identified by URIs.
 3.GraphQL : It is also a query language. It allow clients to aks for specific data as they need . No more over fetching or under fetching.
 4.gRPC :A high-performance RPC (Remote Procedure Call) that works with a binary serialization format called Protocol Buffers.
-5.WebSocket : It is all about real time, biderectional and persist connection.It is perfect for live chat and real time gaming wher low latency data exchange is crucial.
+5.WebSocket : It is all about real time, biderectional and persist connection.It is perfect for live chat and real time gaming wher low latency data exchange is 
+crucial.
 6.Webhook : It is all about event driven, HTTP callback and sysnchronus operation.
 
 Que: How to make my API request as Idempotance ?
@@ -52,10 +53,17 @@ Q: How many ways we can improve the performance of API ?
 5. Payload optimization: A. Compress and reduce the size of data B. use data formats like JSON or Protobuf C. 
 7. Asysnchronus logging:-Asynchronous logging is a technique that improves application logging performance by executing all I/O operations in a separate thread.
 
+Que: What is N+1 problem ?
+Ans: Let's say you have a collection of Car objects (database rows), and each Car has a collection of Wheel objects (also rows). In other words, Car → Wheel 
+is a 1-to-many relationship.
+How to avoid it : use SQl join or custome queris or ORM-specific Eager Fetching.
+
 Que: Consideration/Best Practice to use RESt API ?
-Ans: 1. resource Naming & plurals 2. Idempotancy 3.Use Versioning 4. Softdelete reocrds, pagination& sorting,Filtering 5. Handle error gracefully and return error code 6. Secure ACcess 7. RateLimiting 8. Documentation.
+Ans: 1. resource Naming & plurals 2. Idempotancy 3.Use Versioning 4. Softdelete reocrds, pagination& sorting,Filtering 5. Handle error gracefully and return 
+error code 6. Secure ACcess 7. RateLimiting 8. Documentation.
 Tips for API security
-Ans: Use SSL(Https) B. OAuth2 C.WebAuthn C. Level API Keys (InterService communication) D. Authorization E.Rate Limiting F.API Version. G Allowlisting H. API Gateway I. ErrorHandling J. Input validation
+Ans: Use SSL(Https) B. OAuth2 C.WebAuthn C. Level API Keys (InterService communication) D. Authorization E.Rate Limiting F.API Version. G Allowlisting H. 
+API Gateway I. ErrorHandling J. Input validation
 
 How SSL works?
 It works on Asymmetric key with valid certificat which is issued by any valid issuer company. Server send the public key to client and client verify the public key with help of certiificate authority and exchange the data between client/server. Server decrypt the data using private key.
