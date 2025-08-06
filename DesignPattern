@@ -941,4 +941,15 @@ Diffrence between 2 pahse commit & SAGA design pattern?
   Complexity                      Simplicity
   Performance overhead            Better Performance
   String data consistancy         Temporiry consistancy
-  
+  ===================================================================
+Microservices Design Principles :===
+Independent and Autonomous/Self-governing services
+API aggregation 
+Flexibility
+Scalability
+Constant monitoring
+Failure Isolation/ Failure resilience
+Realtime Load balancing
+Inclusion of DevOps
+Versioning
+Availability
