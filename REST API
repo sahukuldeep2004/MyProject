@@ -245,4 +245,14 @@ Best Practice
 2.Decentralize everything 3. Use containers 4. Implement Continuous Integration (CI) and Continuous Delivery
 5.Monitor and Log 6.Embrace automation 7. Service Discovery.
 ===========================================
-
+Que: Best parctice for micro service ?
+Ans:https://www.capitalone.com/tech/software-engineering/10-microservices-best-practices/
+The Single Responsibility Principle:-
+Have a separate data store(s) for your microservice:-
+Use asynchronous communication to achieve loose coupling:-
+Fail fast by using a circuit breaker to achieve fault tolerance:-
+Proxy your microservice requests through an API Gateway:-
+Ensure your API changes are backwards compatible:-
+Have dedicated infrastructure hosting your microservice:-
+Create a separate release train:-
+Create Organizational Efficiencies(side car/ common application like logging/security/configuration):-
