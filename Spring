@@ -1,3 +1,10 @@
+- @Configuration: Marks a class as a source of bean definitions.
+- @Component: Marks a class as a Spring-managed bean.
+- @Bean: Declares a bean inside a @Configuration class.
+- @ComponentScan: Tells Spring where to look for annotated components.
+- @PropertySource: Loads properties from external files.
+- @Import: Imports additional configuration classes.
+
 ====================================================SpringFramwork ========================== =============================================================================================
 
 Spring MVC and REST Annotation?
