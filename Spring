@@ -4,6 +4,23 @@
 - @ComponentScan: Tells Spring where to look for annotated components.
 - @PropertySource: Loads properties from external files.
 - @Import: Imports additional configuration classes.
++++++++++++++++++++++++++++++++++++++++++++++++++++
+JPA vs Hibernate: Core Differences
+| Aspect | JPA (Java Persistence API) | Hibernate | 
+| Type | Specification (API) | Framework (Implementation of JPA) | 
+| Package | javax.persistence | org.hibernate | 
+| Purpose | Defines how ORM tools should behave | Provides actual ORM functionality | 
+| Query Language | JPQL (Java Persistence Query Language) | HQL (Hibernate Query Language) | 
+| Interfaces Used | EntityManager, EntityManagerFactory | Session, SessionFactory | 
+| Vendor Neutrality | Yes — can switch between providers (e.g., Hibernate, EclipseLink) | No — specific to Hibernate | 
+| Operations | Needs an implementation to perform persistence | Performs persistence directly | 
+
+Most modern Spring Boot applications use JPA with Hibernate as the default provider. So when you add:
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+You're actually using JPA with Hibernate under the hood — unless you configure a different provider.
 
 ====================================================SpringFramwork ========================== =============================================================================================
 
