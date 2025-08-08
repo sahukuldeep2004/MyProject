@@ -248,3 +248,31 @@ Distributed Tracing in Microservices explains how to monitor and track requests 
 in a microservices architecture. In microservices, a single user request might interact with multiple small services, 
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
+
+What Is Rate Limiting?
+Rate limiting is a technique to limit network traffic to prevent users from exhausting system resources. Rate limiting makes it harder for malicious actors to overburden the system and cause attacks like Denial of Service (DoS). This involves attackers flooding a target system with requests and consuming too much network capacity, storage, and memory.
+
+Distributed Caching
+Caching is a technique used to store and retrieve frequently accessed data or computations to speed up subsequent data requests. By storing data temporarily in a cache, systems can reduce the time and resources required to fetch the same data from its original source, leading to improved performance and reduced latency.
+Local caching:- refers to storing data on a single machine or within a single application. It’s commonly used in scenarios where data retrieval is limited to one machine or where the volume of data is relatively small. Examples of local caching include browser caches or application-level caches.
+Distributed caching:- involves storing data across multiple machines or nodes, often in a network. This type of caching is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed caching ensures that data is available close to where it’s needed, even if the original data source is remote or under heavy load.
+
+Que 1: How does eureka server know that client is up or down ?
+When client down garcefully then it send request to Eureka server and deregister it self, so in server those instace will not be avaialbel.
+Second is heart beat.Eureka client send heart beat to Eureka server on periodic interval.
+Que 2: Where and how the data is stored?
+Ans: Its store data in in-memory : Map<String, Lease<InstanceInfo>>
+key : appName/Instance ID
+InstanceInfo object : instance Id, App name, IP Address, Host Name, Port, status, Lease duration etc
+
+Que:3 is Eureka server is single point of failure ?
+No, We can have cluster of 3 machine/container. WHere each server is a client too. As they have to registred themselves, fecth registery,
+replicate changes.
+When need share the config with other clinet then client need to add all the 3 server URL.
+
+Que: 4 Do ereka clients call the eureka server on each request ? If yes then what will be the impact on latency?
+Ans: Eureka clients do not call Eureka server on each request. Eureka clients load the data in cach at the strating poin only.
+It is update the cache on regular interval.
+
+Que 5: What if local cache is stale ? Can it lead to dead instacne ?
+Ans: Yes you can say it is trade off, because you do not have latest cache copy of data. So we have refrech the cache on regular interval.
