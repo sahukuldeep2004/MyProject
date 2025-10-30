@@ -474,6 +474,12 @@ ConcurrentHashMap, later is better.
 Question 2. Does overriding the hashCode() method have any performance implication? 
 Answer: From Java 8 onwards though, collision will not impact performance as much as it does in earlier versions, because after a threshold the linked list 
 will be replaced by the binary tree, which will give you O(logN) performance in the worst case, as compared to O(n) of linked list.
+
+Que: when we need to override equal() & hashCode() methos?
+Ans: You need to override the equals() and hashCode() methods in Java when you want to define "value-based equality" for your objects, rather than relying 
+on the default "reference-based equality." Always override hashCode() when you override equals() to maintain the contract between them. The contract states 
+that if two objects are equal according to the equals() method, then their hashCode() values must also be equal.
+
 Que: when we need to override hashcode() & equals() method?
 Ans: hashCode and equals methods is crucial when working with custom objects, especially within collections like HashMap, HashSet, or Hashtable.
 
