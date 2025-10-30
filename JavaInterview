@@ -136,6 +136,9 @@ Que: Which collection maintain insertion order?
 Ans:ArrayList ,LinkedList, LinkedHashSet,LinkedHashtMap,CopyOnWriteArrayList
 List maintain insertion order and set did not maintain except LinkedHashSet
 
+Que: Which collection does not maintain insertion order?
+ans: HashSet, HashMap, TreeSet, Treemap
+
 que: Which collection classes provide random access of it’s elements?
 Ans: ArrayList, hashMap, TreeMap,HashTable random access to its elements.
 
