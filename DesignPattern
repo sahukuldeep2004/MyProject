@@ -71,9 +71,11 @@ Availability:-All reads contain data, but it might not be the most recent.Availa
  eg. we need ecommerce app cart or product should be available always.
  eg. Casandra, DynamoDB.
 
-Partition Tolerance:-The system continues to operate despite network failures (ie; dropped partitions, slow network connections, or unavailable network connections between nodes.)
-In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed database experiences a network failure, you can provide either consistency or availability.
-In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with network partitions. 
+Partition Tolerance:-The system continues to operate despite network failures (ie; dropped partitions, slow network connections, or unavailable network 
+connections between nodes.) In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed 
+database experiences a network failure, you can provide either consistency or availability.
+In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with 
+network partitions. 
 Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
 What is mean by Partion :
 A partition is a communications break within a distributed system—a lost or temporarily delayed connection between two nodes. 
@@ -142,18 +144,23 @@ XII. Admin processes :Run admin/management tasks as one-off processes
 Que: What is 12 Factor app principal?
 https://www.joomlatools.com/blog/developer/12-factor-app
 Ans: 1.Codebase :Your codebase should be tracked in a central version control system that is easily accessible to all your developers.
-2. Dependencies: Explicitly declare and isolate dependencies.You should never assume that these packages exist on the target system. Instead, your application must declare all dependencies and their correct version explicitly.
-3. Configuration: Configuration options should never be hardcoded,Instead of hardcoding this information, we rely on environment variables to handle this sensitive information.
-4. Backing Services:A backing service is one that requires a network connection to run, like MySQL or Memcached. If the location or connection details of such a service changes, 
-   you should not have to make code changes. Instead, these details should be available in the configuration.
+2. Dependencies: Explicitly declare and isolate dependencies.You should never assume that these packages exist on the target system. Instead, your application
+must declare all dependencies and their correct version explicitly.
+3. Configuration: Configuration options should never be hardcoded,Instead of hardcoding this information, we rely on environment variables to handle this 
+sensitive information.
+4. Backing Services:A backing service is one that requires a network connection to run, like MySQL or Memcached. If the location or connection details of such 
+a service changes, you should not have to make code changes. Instead, these details should be available in the configuration.
 5. Build, release, run: Build, release, and run stages should be treated as completely distinct from one another.
 6. Processes:-Execute the app as one or more stateless processes.That means if a part of your application stack fails, the app itself does not become a failure.
 7 .Port Binding:- Your application service should also be accessible via a URL.
 8. Concurrency:- Each process should be able to scale, restart, or clone itself when needed.
-9. Disposability:- apps can be started or stopped at a moment’s notice. This facilitates fast elastic scaling, rapid deployment of code or config changes, and robustness of production deploys.
+9. Disposability:- apps can be started or stopped at a moment’s notice. This facilitates fast elastic scaling, rapid deployment of code or config changes, and 
+robustness of production deploys.
 10. Dev/prod parity:-Keep development, staging, and production as similar as possible.
-11. Logs:-Logging is important for debugging and checking up on the general health of your application. However, your application should not be concerned with the storage and management of these logs. Instead, log entries should be treated as an event stream that is routed to a separate service for archival and analysis.
-12. Run admin/management tasks as one-off processes.Once your application is running in production, you'll want to do a lot of simple administrative tasks from time to time. You could need to run a database migration or fetch analytical data to gather business insights.
+11. Logs:-Logging is important for debugging and checking up on the general health of your application. However, your application should not be concerned with 
+the storage and management of these logs. Instead, log entries should be treated as an event stream that is routed to a separate service for archival and analysis.
+12. Run admin/management tasks as one-off processes.Once your application is running in production, you'll want to do a lot of simple administrative tasks from 
+time to time. You could need to run a database migration or fetch analytical data to gather business insights.
 
 Code.De.Con-Back.Bu--PP-CDD--LR
 Design Pattern: - A design pattern is a well-described solution to a common software problem.
@@ -182,7 +189,8 @@ Ans: The factory design pattern is used when we have a superclass with multiple 
 This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
 
 Question: What is main benefit of using factory pattern ? Where do you use it?
-Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance implementation without any change on client layer.
+Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance 
+implementation without any change on client layer.
 
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
