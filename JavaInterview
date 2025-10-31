@@ -15,15 +15,19 @@ Issue: Deployed the code in PSP having issue with keystore in .p12 certificate b
 
 Role: 1. Architect 2. Lead role 3. Indivisual developer.
 How to start work on requirment/design part:  Discovery,Ideation, Execution
-1. For any new requiremnt, we follow the ATOM(Agile Traget Operating Model) process. Where we need to prepare the doc about the high levl solution with pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
-2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the problem in technical manner.
-3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and provide the story point.
+1. For any new requiremnt, we follow the ATOM(Agile Traget Operating Model) process. Where we need to prepare the doc about the high levl solution with 
+pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
+2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the 
+problem in technical manner.
+3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and 
+provide the story point.
 
 
 Sumologic
 
 
-MicroServices used in, Catalog, Search,Pricing,Shipping, Inventory,Promotion,order,Customer,cart,Reporting,Loyalty,PaymnetGateway,Address,Tax,EMail/SMSNotification.
+MicroServices used in, Catalog, Search,Pricing,Shipping, Inventory,Promotion,order,Customer,cart,Reporting,Loyalty,PaymnetGateway,Address,Tax,
+EMail/SMSNotification.
 
 O2I is based on event driven architecture.
 ==================================================================================================
@@ -708,23 +712,33 @@ Answer: Singleton design pattern is used for Runtime,Calendar  and various other
 Immutable classes like Boolean e.g. Boolean.valueOf and observer patternn which is used in Swing.
 
 Question:Difference between ConcurrentHashMap, Hashtable and Synchronized Map in Java?
-Answer: Hashtable is a legacy class from JDK 1.1 itself, which uses synchronized methods to achieve thread-safety. All methods of Hashtable are synchronized which makes them quite slow due to contention if a number of thread increases.
-The only difference between Hashtable and Synchronized Map is that later is not a legacy and you can wrap any Map to create it's synchronized version by using Collections.synchronizedMap() method.
-ConcurrentHashMap is specially designed for concurrent use i.e. more than one thread. By default it simultaneously allows 16 threads to read and write from Map without any external synchronization. It is also very scalable because of stripped locking technique used in the internal implementation of ConcurrentHashMap class. Unlike Hashtable and Synchronized Map, it never locks whole Map, instead, it divides the map into segments and locking is done on those. Though it performs better if a number of reader threads are greater than the number of writer threads. 
+Answer: Hashtable is a legacy class from JDK 1.1 itself, which uses synchronized methods to achieve thread-safety. All methods of Hashtable are synchronized 
+which makes them quite slow due to contention if a number of thread increases.
+The only difference between Hashtable and Synchronized Map is that later is not a legacy and you can wrap any Map to create it's synchronized version by 
+using Collections.synchronizedMap() method.
+ConcurrentHashMap is specially designed for concurrent use i.e. more than one thread. By default it simultaneously allows 16 threads to read and write from 
+Map without any external synchronization. It is also very scalable because of stripped locking technique used in the internal implementation of ConcurrentHashMap 
+class. Unlike Hashtable and Synchronized Map, it never locks whole Map, instead, it divides the map into segments and locking is done on those. Though it 
+performs better if a number of reader threads are greater than the number of writer threads. 
 
 Question: Why need ConcurrentHashMap and CopyOnWriteArrayList?
 Ans: The synchronized collections classes, Hashtable, and Vector, and the synchronized wrapper classes, Collections.synchronizedMap() and 
-Collections.synchronizedList(), provide a basic conditionally thread-safe implementation of Map and List. However, several factors make them unsuitable for use in highly concurrent applications, for example, their single collection-wide lock is an impediment to scalability and it often becomes necessary to lock a collection for a considerable time during iteration to prevent ConcurrentModificationException.
+Collections.synchronizedList(), provide a basic conditionally thread-safe implementation of Map and List. However, several factors make them unsuitable for 
+use in highly concurrent applications, for example, their single collection-wide lock is an impediment to scalability and it often becomes necessary to lock a 
+collection for a considerable time during iteration to prevent ConcurrentModificationException.
 
-ConcurrentHashMap and CopyOnWriteArrayList implementations provide much higher concurrency while preserving thread safety, with some minor compromises in their promises to callers. ConcurrentHashMap and CopyOnWriteArrayList are not necessarily useful everywhere you might use HashMap or ArrayList,
+ConcurrentHashMap and CopyOnWriteArrayList implementations provide much higher concurrency while preserving thread safety, with some minor compromises in their 
+promises to callers. ConcurrentHashMap and CopyOnWriteArrayList are not necessarily useful everywhere you might use HashMap or ArrayList,
 but are designed to optimize specific common situations. Many concurrent applications will benefit from their use.
 
 Question:The difference between ConcurrentHashMap and Collections.synchronizedMap?
-Answer:ConcurrentHashMap is designed for concurrency and improve performance while HashMap which is non-synchronized by nature can be synchronized by applying a wrapper using synchronized Map.
+Answer:ConcurrentHashMap is designed for concurrency and improve performance while HashMap which is non-synchronized by nature can be synchronized by applying a 
+wrapper using synchronized Map.
 ConcurrentHashMap does not allow null keys or null values while synchronized HashMap allows one null key.
 
 Question: How to Sort HashMap in Java based on Keys and Values ?
-Answer: Sorting HashMap on keys is quite easy, all you need to do is to create a TreeMap by copying entries from HashMap. TreeMap is an implementation of SortedMap and keeps keys in their natural order or a custom order specified by Comparator provided while creating TreeMap.
+Answer: Sorting HashMap on keys is quite easy, all you need to do is to create a TreeMap by copying entries from HashMap. TreeMap is an implementation of 
+SortedMap and keeps keys in their natural order or a custom order specified by Comparator provided while creating TreeMap.
 
 Question: Why methods like wait(), notify() and notify all() are present in object class and not in Thread class?
 Aswer: Object class has monitors which allow the thread to lock an object, while Thread does not have any monitors.When any of above methods are 
@@ -760,13 +774,20 @@ Que: If superclass is serializable then subclass is automatically serializable
 Ans: If superclass is Serializable, then by default every subclass is serializable.
 
 que: If a superclass is not serializable then subclass can still be serialized?
-Ans: In this case super class instances variables which are inherited in subclass doesn't get serialize and also looses their assigned values during serialization of sub class. Also JVM during serialization of subclass re-assign the default initialized values to these instance variables of superclass.One more point which is to be taken care of it in this scenerio is super class must have default no argument constructor as JVM access super class during deserialization.In case this constructor is not present a compile time exception will be encountered.
+Ans: In this case super class instances variables which are inherited in subclass doesn't get serialize and also looses their assigned values during 
+serialization of sub class. Also JVM during serialization of subclass re-assign the default initialized values to these instance variables of superclass.
+One more point which is to be taken care of it in this scenerio is super class must have default no argument constructor as JVM access super class during 
+deserialization.In case this constructor is not present a compile time exception will be encountered.
 
 Que: When requirement is to serialize superclass but not to subclass (Custom Serialization).?
-Ans: In order to prevent subclass from serialization we need to implement writeObject() and readObject() methods which are executed by JVM during serialization and deserialization also NotSerializableException is made to be thrown from these methods.We can also provide our custom logic in these  methods which would be executed during serialization/deserializatin.
+Ans: In order to prevent subclass from serialization we need to implement writeObject() and readObject() methods which are executed by JVM during serialization 
+and deserialization also NotSerializableException is made to be thrown from these methods.We can also provide our custom logic in these  methods which would be 
+executed during serialization/deserializatin.
 
 Que:Can we serialize the static variable?
-In Java, serialization is a concept using which we can write the state of an object into a byte stream so that we can transfer it over the network (using technologies like JPA and RMI). But, static variables belong to class therefore, you cannot serialize static variables in Java.
+In Java, serialization is a concept using which we can write the state of an object into a byte stream so that we can transfer it over the network (using 
+
+technologies like JPA and RMI). But, static variables belong to class therefore, you cannot serialize static variables in Java.
 
 Que: Whay Object class is Parent for evry class?
 A object class give the common behavior to every class thats why object class is a super class in java and it provide the common methods to all of them.
@@ -777,17 +798,18 @@ Que: Is java is fulyy object oriented programming or not ?
 Java is not fully object oriented because it supports primitive data type like it,byte,long etc.,which are not objects.
 
 Que: Marker Interface have no method Then what is use of it?
-They are used to provide some essential information to the JVM so that JVM may perform some useful operation. Marker interface is an empty interface where in doesn't have any 
-fields or methods in it. eg. Clonnable, Serializable
+They are used to provide some essential information to the JVM so that JVM may perform some useful operation. Marker interface is an empty interface where in 
+doesn't have any fields or methods in it. eg. Clonnable, Serializable
 
 Que: Why cant we create object for an abstarct class ?
 You cannot create an instance of an abstract class because it does not have a complete implementation.It is just template.
 Que: Why String is not primitive data type?
-String is non-primitive because only class can have methods. Primitive can not. And String need many functions to be called upon while processing like substring, indexof, 
-equals, touppercase.
+String is non-primitive because only class can have methods. Primitive can not. And String need many functions to be called upon while processing like substring, 
+indexof, equals, touppercase.
 
 Que: Can we override the main method ?
-No, we cannot override main method of java because a static method cannot be overridden. The static method in java is associated with class whereas the non-static method  is associated with an object.
+No, we cannot override main method of java because a static method cannot be overridden. The static method in java is associated with class whereas the non-static
+method  is associated with an object.
 
 Que: Why return type is not a part of method signature.?
 Que: Can we declare main () method as final?
@@ -853,7 +875,8 @@ Composition implies a relationship where the child cannot exist independent of t
 Example Libray and Book. for Composition if Library is destroy then Book does not exists.
 
 Que: Why Constructors are not inherited in Java?
-Ans: Whenever a class (child class) extends another class (parent class), the sub class inherits state and behavior in the form of variables and methods from its super class but it does not inherit constructor of super class.
+Ans: Whenever a class (child class) extends another class (parent class), the sub class inherits state and behavior in the form of variables and methods from 
+its super class but it does not inherit constructor of super class.
 Constructors are special and have same name as class name. So if constructors were inherited in child class then child class would contain a parent 
 class constructor which is against the constraint that constructor should have same name as class name.
 
@@ -944,31 +967,39 @@ public interface BackendAdapter {
     @Recover
     public String getBackendResponseFallback(RemoteServiceNotAvailableException e,boolean simulateretry, boolean simulateretryfallback);
 }
-@Retryable - :This is the main annotation after @EnableRetry. This annotation tells that if we get RemoteServiceNotAvailableException from the method then retry maximum 3 times before sending the response. Also we are introducing delay of 1 second in each retry.
-@Recover – in the fallback method indicates that if we don’t get any success response after 3 retry, response will come from this fallback method. Make sure you pass expected exception as parameter, else spring will have hard time finding the exact method.
+@Retryable - :This is the main annotation after @EnableRetry. This annotation tells that if we get RemoteServiceNotAvailableException from the method then retry 
+maximum 3 times before sending the response. Also we are introducing delay of 1 second in each retry.
+@Recover – in the fallback method indicates that if we don’t get any success response after 3 retry, response will come from this fallback method. Make sure you 
+pass expected exception as parameter, else spring will have hard time finding the exact method.
 
 Que: @SpringBootApplication eqaul to 
-ans: @Configuration to enable Java-based configuration +@ComponentScan to enable component scanning + @EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+ans: @Configuration to enable Java-based configuration +@ComponentScan to enable component scanning + @EnableAutoConfiguration to enable Spring Boot's 
+auto-configuration feature.
 
 Que: What is the difference betweeen JPARepository and CRUDRepository.
 Ans: CrudRepository mainly provides CRUD functions.
 PagingAndSortingRepository provides methods to do pagination and sorting records.
 JpaRepository provides some JPA-related methods such as flushing the persistence context and deleting records in a batch.
 JPA repository extends CrudRepository and PagingAndSorting repository.
-Because of the inheritance mentioned above, JpaRepository will have all the functions of CrudRepository and PagingAndSortingRepository. So if you don't need the repository to have the functions provided by JpaRepository and PagingAndSortingRepository , use CrudRepository.
+Because of the inheritance mentioned above, JpaRepository will have all the functions of CrudRepository and PagingAndSortingRepository. So if you don't need the 
+repository to have the functions provided by JpaRepository and PagingAndSortingRepository , use CrudRepository.
 
 Que: How to communicate to microservices to other microservices?
 Ans: Can communicate using synchronus & asysnchronus microservices. Synchronus menas need to wait till we get response from servcies then go ahead further.
-Asysnchronus services means we can not wait for response from services and it can be happen using message queue or call back mechanism where response can come laet and return to requester.
+Asysnchronus services means we can not wait for response from services and it can be happen using message queue or call back mechanism where response can come 
+laet and return to requester.
 
 Que: What is Microservices ?
-Ans: Decoupling of entire application into small small services . Eg. Filpkart, we have many part in it like inventory, Order, Card, Catalog, merchandise, Seller, Buyer etc all thet part may be buit on diffrent -diffrent technology but they are indivisual application. we can eaisly deploye, scale up as per our requiremnet.
+Ans: Decoupling of entire application into small small services . Eg. Filpkart, we have many part in it like inventory, Order, Card, Catalog, merchandise, 
+Seller, Buyer etc all thet part may be buit on diffrent -diffrent technology but they are indivisual application. we can eaisly deploye, scale up as per our 
+requiremnet.
 
 Que: Diffrence between SOA, Monolothik and Microservices ?
 Ans: SOA is similar monolithik wher Modules are divided at granuler level. Monolothik is complete application.
 
 Que Explain microservices architecture?
-Ans: Microservice Architecture is an architectural development style which builds an application as a collection of small autonomous services developed for a business domain.
+Ans: Microservice Architecture is an architectural development style which builds an application as a collection of small autonomous services developed for a 
+business domain.
 Que: Best parctice of Microservices ?
 Ans: Docarize the application, seprate build, indivisual DB.
 
@@ -997,23 +1028,26 @@ Modules in a Microservice Architecture are separately deployable. They can be up
 Real-time monitoring of the application.
 
 Question: What is Distributed Transaction?
-Ans:Transactions that span over multiple physical systems or computers over the network, are simply termed Distributed Transactions. In the world of microservices a transaction is now distributed to multiple services that are called in a sequence to complete the entire transaction.
+Ans:Transactions that span over multiple physical systems or computers over the network, are simply termed Distributed Transactions. In the world of 
+microservices a transaction is now distributed to multiple services that are called in a sequence to complete the entire transaction.
 
 Question: Explain end to end Microservices Testing?
-Answer: It is a testing technique used to test the entire flow of an application using a business transaction. Since several components are involved in microservices architecture,
-these tests can cover the gaps during a unit or integration testing.
+Answer: It is a testing technique used to test the entire flow of an application using a business transaction. Since several components are involved in 
+microservices architecture,these tests can cover the gaps during a unit or integration testing.
 
 Question: What is Spring Cloud?
 Answer: While building a distributed system, there are a few problems that are encountered. They are Configuration Management, Service Discovery, Circuit breakers, and distributed sessions. Spring Cloud is a collection of tools that provides solutions to suchcommonly encountered problems.
 
 Question: What is an Actuator?
-Answer: The actuator brings in production-ready features into an application. It is mainly used to expose operational information about the running application’s health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to interact with it.
+Answer: The actuator brings in production-ready features into an application. It is mainly used to expose operational information about the running application’s 
+health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to interact with it.
 
 Que: What is PACT in Microservices Architecture?
 Answer: A contract between a consumer application and a provider application is called a PACT. Each pact is a collection of interactions. It is an open-source tool that can be used to implement the Consumer-Driven Contract in Microservices.
 
 Question: What is Eureka in Microservices?
-Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
+Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and 
+Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
 Add the maven dependency and add @@EnableEurekaServer on main class and add eureka.client.registerWithEureka = false and  eureka.client.fetchRegistry = false
 
 Question: How will you balance the server-side load by utilizing Spring Cloud?
@@ -1026,7 +1060,8 @@ Question: When will you see fit to use the Netflix Hystrix?
 Answer:Thus, we can use Hystrix to ensure that an application runs efficiently and avoids the kind of failures that occur in distributed systems.
 
 Que: Why we should not return List from REST API ?
-Ans: Becuase if we need to make the code change in Object then the complet return type need to change. To avoid this we need to have a wrapper of Object class which can have list but acutal return type should be as Object sothat in future if we want to make chnages in object then consumer did not to modify it.
+Ans: Becuase if we need to make the code change in Object then the complet return type need to change. To avoid this we need to have a wrapper of Object class 
+which can have list but acutal return type should be as Object sothat in future if we want to make chnages in object then consumer did not to modify it.
 
 Que: Waht is the benifit of microservices architecture?
 Ans: if our application follow the microservices architecture then it easy to deploye, scalibilty, no dependency on technology.
@@ -1047,25 +1082,29 @@ only single module testing
 Need to stop only one server for one microservices.
 
 Ques:Disadvantage of Microservices ?
-Ans: Deploymnet/Architecture complex, There is a higher chance of failure during communication between different services,Difficult to manage a large number of services,
-Complex testing over a distributed environment.
+Ans: Deploymnet/Architecture complex, There is a higher chance of failure during communication between different services,Difficult to manage a large number 
+of services,Complex testing over a distributed environment.
 
 Que: How to create an Springoot proect?
 ans: we can use https://start.spring.io/ to create an springboot project.
 
 39) What is Swagger2?
-Swagger is used to describing the structure of APIs. Swagger 2 is an open-source service provided in Spring Boot which makes it easier for the machines to find out the structure of APIs like RESTful Web services.
+Swagger is used to describing the structure of APIs. Swagger 2 is an open-source service provided in Spring Boot which makes it easier for the machines to 
+find out the structure of APIs like RESTful Web services.
 
 Que: Explain the term 'Spring Boot'.?
-Ans: It is a Spring module that offers Rapid Application Development to Spring framework. Spring module is used to create an application based on Spring framework which requires to configure few Spring files.
+Ans: It is a Spring module that offers Rapid Application Development to Spring framework. Spring module is used to create an application based on Spring framework
+which requires to configure few Spring files.
 
 Question: How will you deploy Exception Handling in Microservices?
-Answer: If an exception occurs while processing an HTTP request, you need to catch the exception in your controller or service and return an appropriate ResponseEntity manually. 
+Answer: If an exception occurs while processing an HTTP request, you need to catch the exception in your controller or service and return an appropriate 
+ResponseEntity manually. 
 Here are some thumb rules for exception handling.
 1.Add @ResponseStatus for exceptions that you write.
 2.For all other exceptions, implement an @ExceptionHandler method on a @ControllerAdvice class or use an instance of SimpleMappingExceptionResolver.
 3.For Controller specific exceptions, add @ExceptionHandler methods to your controller.
-Point to be noted is that @ExceptionHandler methods on the controller are always selected before those on any @ControllerAdvice instance. It is undefined in what order ControllerAdvices are processed.
+Point to be noted is that @ExceptionHandler methods on the controller are always selected before those on any @ControllerAdvice instance. It is undefined in what
+order ControllerAdvices are processed.
 eg.
 @ControllerAdvice
 @RestController
@@ -1084,14 +1123,18 @@ Que: How to handle exception in Spring Boot.
 Ans: Spring Boot provides a very useful way to handle exceptions using @ControllerAdvice annotation.
 
 Que: Diffrence between PUT & PATCH?
-Ans: PUT is a method of modifying resource where the client sends data that updates the entire resource . PATCH is a method of modifying resources where the client sends partial data that is to be updated without modifying the entire data.
+Ans: PUT is a method of modifying resource where the client sends data that updates the entire resource . PATCH is a method of modifying resources where the 
+client sends partial data that is to be updated without modifying the entire data.
 ===========================================Micro Services Design Pattrn=========================
 Que: Event Sourcing desig pattern ?
-Ans: The event sourceing design patten creates an event regarding the changes in the application state.Alos, these events are stored as a sequence of events to help the developer track the chnages was made when.So with the help of this you can always adjust the application state to cope up with the past changes.You can also query those events, for any data change.
+Ans: The event sourceing design patten creates an event regarding the changes in the application state.Alos, these events are stored as a sequence of events to 
+help the developer track the chnages was made when.So with the help of this you can always adjust the application state to cope up with the past changes.You 
+can also query those events, for any data change.
 
 Que: What is 2 phase commit in micro services architecture?
 Ans: it's a two-step process means 2PC.
-1. The Coordinator service asks all the participants if they are ready to commit the transaction. They can reply with a yes or no. Note that if a single service replies with a no ( or a timeout or any other error), the full transaction is automatically canceled. 
+1. The Coordinator service asks all the participants if they are ready to commit the transaction. They can reply with a yes or no. Note that if a single service 
+replies with a no ( or a timeout or any other error), the full transaction is automatically canceled. 
 2. If all the participants have answered yes, the Coordinator sends the Commit command to them and waits for the final ack.
 First of all, it comes with an intrinsic performance penalty as we're putting all the actors on hold multiple times waiting for an answer.
 Secondly, in some cases, it may be possible that other transactions triggered in between are paused until the whole process completes.
@@ -1113,15 +1156,15 @@ Ans: 1. Each micro services should have their own data store.
 
 
 Que: What is evntual/Strong consistency ?
-Ans:  Eventual consistency means provide the response to user without getting response to respective replication node. Mean if we have 4 node then user can insert/update the node 1
-but replication between 1 to 4 may take time and data may not be same in all node. but latecy is more.
-Strong consistency means provide the response to user once it will replicate the data to acrros all node , once replication is done then only provide the response to user.
-But in this case latency is more but data would be same across all node.
+Ans:  Eventual consistency means provide the response to user without getting response to respective replication node. Mean if we have 4 node then user can 
+insert/update the node 1 but replication between 1 to 4 may take time and data may not be same in all node. but latecy is more.
+Strong consistency means provide the response to user once it will replicate the data to acrros all node , once replication is done then only provide the 
+response to user.But in this case latency is more but data would be same across all node.
 
 ===========================================================Hibernate=======================================================================
 Que: Why default constructor is reqired in Hiernate ?
-Ans: When Hibernate creates an instance of entities using reflection it uses the Class. newInstance() method, which requires a no-argument constructor to create an 
-instance. It's effectively equivalent to the new Entity().
+Ans: When Hibernate creates an instance of entities using reflection it uses the Class. newInstance() method, which requires a no-argument constructor to 
+create an instance. It's effectively equivalent to the new Entity().
 
 Que; What is Projection?
 Ans:
@@ -1139,11 +1182,13 @@ Ans:Hibernate’s default cache service is EHCache, though the framework additio
 
 Que: List and describe the Hibernate framework’s essential interfaces.
 Ans: a.SessionFactory :-SessionFactory is thread safe Object for Single database.SessionFactory is designed to return the session objects for database operations.
-b. session :- A session is a single threaded short lived oject. It is the interface that exists between hibernate framework and java application code. Providing the CRUD operation.
+b. session :- A session is a single threaded short lived oject. It is the interface that exists between hibernate framework and java application code. 
+Providing the CRUD operation.
 c. Transaction :- It is a single thread , short lived oject that the application uses to specify atomic units of work.
 
 What is lazy loading?
-Ans: Lazy loading is a technique where objects are loaded as needed, instead of an entire page, for example. This technique became default since Hibernate version 3.
+Ans: Lazy loading is a technique where objects are loaded as needed, instead of an entire page, for example. This technique became default since Hibernate 
+version 3.
 
 Que: What are the concurrency strategies?
 Ans: concurrency strategies are used for storing & retrieve cach items.
@@ -1167,11 +1212,12 @@ Data Caching
 Que: Name the states that a persistent entity exists in?
 Ans: Transient :This state describes new objects that are created in Java but not associated with a Hibernate session.
 Persistent:  This state describes objects associated with a Hibernate session.
-Detached: This state describes an object that was formerly Persistent and associated with a Hibernate session. Developers can reattach the object to a     	  Hibernate session by using either update() or saveOrUpdate().
+Detached: This state describes an object that was formerly Persistent and associated with a Hibernate session. Developers can reattach the object to a
+Hibernate session by using either update() or saveOrUpdate().
 
 Que: What’s the difference between Session and SessionFactory?
-Ans: A Session provides the first-level cache and is a single-threaded, short-lived object. A SessionFactory provides the second-level cache and is immutable and 
-shared by all Sessions. It lives until Hibernate is running.
+Ans: A Session provides the first-level cache and is a single-threaded, short-lived object. A SessionFactory provides the second-level cache and is immutable 
+and shared by all Sessions. It lives until Hibernate is running.
 
 Que: How many ways can an object be fetched from Hibernate’s database?
 Ans: Creteria API, HQL, The Identifier, Standard SQL.
@@ -1218,19 +1264,23 @@ Here you will get only one select statemnet by hibernate as after run first sele
 There is one more cache - Query level Cache is supported and this is more for caching query results which can be used along with second level cache for 
 improved performance.
 ==========================================CI/CD== Continuous Integration / Continuous Delivery=========Dev Ops Developement Operation team=====================
-We can create Jenkin pipeline by using "pipeline as code". we can create a file"Jenkinfile".A Jenkinsfile is a text file that stores the entire workflow as code and it can be checked into a SCM on your local system.
+We can create Jenkin pipeline by using "pipeline as code". we can create a file"Jenkinfile".A Jenkinsfile is a text file that stores the entire workflow as 
+code and it can be checked into a SCM on your local system.
 The Jenkins pipeline is written based on two syntaxes, namely:
 1.Declarative pipeline syntax
 2.Scripted pipeline syntax
 
 pipeline  concept:
-1.Pipeline : This is a user defined block which contains all the processes such as build, test, deploy, etc. It is a collection of all the stages in a Jenkinsfile. All the stages and steps are defined within this block. It is the key block for a declarative pipeline syntax.
+1.Pipeline : This is a user defined block which contains all the processes such as build, test, deploy, etc. It is a collection of all the stages in a 
+Jenkinsfile. All the stages and steps are defined within this block. It is the key block for a declarative pipeline syntax.
 Pipeline{ 
  }
  2. Agent: An agent is a directive that can run multiple builds with only one instance of Jenkins.
  3. Docker:This parameter uses docker container as an execution environment for the pipeline or a specific stage. 
-2.Stages: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within this directive. Each stage performs a specific task.
-3. Steps: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within this directive. Each stage performs a specific task.
+2.Stages: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within 
+this directive. Each stage performs a specific task.
+3. Steps: This block contains all the work that needs to be carried out. The work is specified in the form of stages. There can be more than one stage within 
+this directive. Each stage performs a specific task.
 
 pipeline {
          agent any
