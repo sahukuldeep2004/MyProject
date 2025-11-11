@@ -14,6 +14,17 @@ Spring framwork
 In system design what is What/How ?
 ans: What menas functinal req and how means non functional
 
+Diffrence between System/Solution and Enterprise architect ?
+
+| Role                        | **Scope**                                    | **Focus Area**                                          | **Main Goal**                                                          |
+| --------------------------- | -------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 🧱 **System Architect**     | A single system or application               | Technical design, components, integration, performance  | Ensure the system is well-designed, reliable, and efficient            |
+| 🧩 **Solution Architect**   | A business solution (often multiple systems) | Bridging business requirements and technology           | Design how different systems work together to solve a business problem |
+| 🏢 **Enterprise Architect** | The entire organization                      | Strategy, standards, governance, and technology roadmap | Align IT systems and architecture with business strategy               |
+
+eg of System architect : Designing the internal architecture of a Payment Processing System — defining microservices, message queues, databases, and APIs.
+eg of Solution Architect : Designing an e-commerce solution that integrates:A front-end web app,Payment gateway,Inventory management system,Customer analytics platform
+eg of Enterprise : Developing a 5-year IT roadmap — defining how all business units’ systems will migrate to the cloud and integrate under a unified data strategy.
 
 System Design road map
 1. High level Requiremnet/Feature
