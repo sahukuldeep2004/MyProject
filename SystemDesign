@@ -126,6 +126,9 @@ There are several types of partitioning, including RANGE, LIST, and KEY. Above e
 When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. 
 The value for one or more columns in a given row is used for this sorting process.
 
+I.E: Cutting a big table into smaller “slices” inside the same database. Eg. creating a transation table with partition by range(year), so based on year data
+can be move in transation table partition.
+
 Sharding :https://blog.algomaster.io/p/scalability?open=false#%C2%A7shardingpartitioning
 Sharding is a method for distributing a single dataset across multiple databases, which can then be stored on multiple 
 machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
