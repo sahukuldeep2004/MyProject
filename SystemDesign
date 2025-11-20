@@ -251,3 +251,68 @@ Distributed Tracing in Microservices explains how to monitor and track requests 
 in a microservices architecture. In microservices, a single user request might interact with multiple small services, 
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
+################################################################C4 Model###################################
+Level 1 – System Context Diagram
+Purpose: Show how the system fits into its environment (people + external systems).
+System: BookHub
+Primary Actors:
+Customer – browses books, places orders.
+Admin – manages inventory.
+External Systems:
+Payment Gateway – processes customer payments.
+Email Service – sends order confirmations.
+Shipping Provider API – arranges shipments.
+Context Summary:
+Customers interact with BookHub to search for books and make purchases.
+BookHub collects payment through the Payment Gateway.
+BookHub sends order emails via Email Service.
+BookHub notifies the Shipping Provider to fulfill deliveries.
+Level 2 – Container Diagram
+
+Purpose: Show the high-level containers (applications, databases, APIs).
+Containers in BookHub:
+Web Application (React.js)
+Provides UI for customers/admins.
+Calls the API.
+Backend API (Node.js / Express)
+Handles business logic: orders, payments, inventory.
+Integrates with external systems.
+Database (PostgreSQL)
+Stores users, books, orders, inventory.
+Message Queue (RabbitMQ)
+Handles asynchronous tasks (email notifications, shipping requests).
+Admin Portal (React.js)
+Used by admins to update catalog and stock.
+External Systems
+Payment Gateway
+Email Service
+Shipping Provider API
+Container Interactions (examples):
+Web App → Backend API (REST)
+Backend API → Database (SQL)
+Backend API → Payment Gateway (HTTPS)
+Backend API → Queue → Email Service
+Backend API → Queue → Shipping Provider API
+
+Level 3 – Component Diagram (Example for Backend API)
+Purpose: Show major logical components inside a container.
+Components inside Backend API:
+Authentication Component
+JWT-based authentication.
+Manages login/signup.
+Catalog Component
+Retrieves book list, categories.
+Supports search.
+Order Component
+Creates and manages orders.
+Communicates with Payment Gateway.
+Inventory Component
+Manages stock levels.
+Used by Admin Portal.
+Notification Component
+Publishes messages to RabbitMQ for emails.
+Shipping Component
+Sends shipping requests to Shipping Provider API.
+
+Level 4 – Code / Class Diagram (Example for Order Component)
+Order Component Classes:
