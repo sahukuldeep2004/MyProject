@@ -1,3 +1,10 @@
+Concurrency = Doing many tasks at the same time (but not necessarily exactly at the same time).
+Think: Switching between tasks quickly.
+Like a single worker handling multiple tasks by jumping between them.
+Parallelism = Doing many tasks literally at the same time.
+Think: Multiple workers doing tasks simultaneously.
+Requires multiple CPU cores or processors.
+
 https://www.designgurus.io/blog/high-availability-system-design-basics
 No matter your programming language, start by understanding the basics of how systems are designed.
 
