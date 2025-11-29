@@ -468,6 +468,8 @@ Que: What is adpter design pattern ?
 Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
 work together. The object that joins these unrelated interface is called an Adapter.
 https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
+eg.:-The Adapter pattern can also be used if the main goal is to integrate a third-party currency conversion library that has an incompatible interface with 
+your existing codebase. 
 
 Que: What is decorator design pattern (Structural Design)?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
