@@ -1,3 +1,18 @@
+Que: Why KAFKA is fast ?
+Ans : 
+Sequential I/O: -
+Kafka stores messages in an append-only log, which is a file where new data is always added to the end.
+This access pattern is sequential, meaning it reads and writes large, contiguous blocks of data, which is much faster than random I/O (e.g., jumping to different locations on a disk).
+This avoids the costly physical movement of a disk's head, drastically improving throughput.
+
+Zero-Copy Principle: -
+Normally, transferring data from a disk to a network involves multiple copies between different memory locations (disk cache, application buffer, socket buffer).
+Kafka uses a "zero-copy" technique that bypasses these unnecessary copies by letting the operating system's kernel move data directly from the disk's cache to the network interface card (NIC).
+This reduces CPU usage and improves performance by eliminating intermediate copies. 
+
+Append-only log:
+The append-only log structure makes writes very fast because producers only ever need to write to the end of the log.
+*********************************************************************************************************************************
 Kafka uses a binary protocol over TCP
 Kafka clinet lib is required.
 
