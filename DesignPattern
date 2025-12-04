@@ -515,6 +515,50 @@ work together. The object that joins these unrelated interface is called an Adap
 https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
 eg.:-The Adapter pattern can also be used if the main goal is to integrate a third-party currency conversion library that has an incompatible interface with 
 your existing codebase. 
+//Step 1: Target Interface (what client expects)
+public interface CurrencyConverter {
+    double convertCurrency(String from, String to, double amount);
+}
+//Step 2: Existing Incompatible Class (third-party API)
+// Simulating an external API
+public class ExchangeRateAPI {
+    public double getExchangeRate(String currencyPair) {
+        switch (currencyPair) {
+            case "USDINR": return 83.5;
+            case "EURINR": return 90.2;
+            case "INRUSD": return 0.012;
+            default: return 1.0;
+        }
+    }
+}
+// Adapter class
+public class CurrencyAdapter implements CurrencyConverter {
+    private final ExchangeRateAPI exchangeRateAPI;
+
+    public CurrencyAdapter(ExchangeRateAPI exchangeRateAPI) {
+        this.exchangeRateAPI = exchangeRateAPI;
+    }
+
+    @Override
+    public double convertCurrency(String from, String to, double amount) {
+        String currencyPair = from + to;
+        double rate = exchangeRateAPI.getExchangeRate(currencyPair);
+        return amount * rate;
+    }
+}
+// client code
+public class Main {
+    public static void main(String[] args) {
+        ExchangeRateAPI api = new ExchangeRateAPI();
+        CurrencyConverter converter = new CurrencyAdapter(api);
+
+        double inrAmount = converter.convertCurrency("USD", "INR", 100);
+        System.out.println("100 USD = " + inrAmount + " INR");
+
+        double usdAmount = converter.convertCurrency("INR", "USD", 1000);
+        System.out.println("1000 INR = " + usdAmount + " USD");
+    }
+}
 
 Que: What is decorator design pattern (Structural Design)?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
