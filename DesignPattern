@@ -357,50 +357,75 @@ provides an interface to the client using which the client can access the system
 under structural pattern.
 This pattern involves a single class which provides simplified methods required by client and delegates calls to 
 methods of existing system classes.
-1. Create an Interface
-public interface Shape {
-   void draw();
+@Service
+public class InventoryService {
+    public boolean checkStock(String productId) {
+        System.out.println("Checking stock for " + productId);
+        return true;
+    }
 }
-2.Create concrete classes implementing the same interface.
-public class Rectangle implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Rectangle::draw()");
-   }
+@Service
+public class PaymentService {
+    public void processPayment(String accountId, double amount) {
+        System.out.println("Processing payment of " + amount + " for account " + accountId);
+    }
 }
-public class Square implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Square::draw()");
-   }
+@Service
+public class ShippingService {
+    public void shipProduct(String productId, String address) {
+        System.out.println("Shipping " + productId + " to " + address);
+    }
 }
-3. Create a facade class.
+============================================
+The facade coordinates all these services and exposes a single method for placing an order.
 
-public class ShapeMaker {
-   private Shape rectangle;
-   private Shape square;
+@Service
+public class OrderFacade {
+    private final InventoryService inventoryService;
+    private final PaymentService paymentService;
+    private final ShippingService shippingService;
 
-   public ShapeMaker() {
-      rectangle = new Rectangle();
-      square = new Square();
-   }
-   public void drawRectangle(){
-      rectangle.draw();
-   }
-   public void drawSquare(){
-      square.draw();
-   }
-   
-4. Use the facade to draw various types of shapes.
-public class FacadePatternDemo {
-   public static void main(String[] args) {
-      ShapeMaker shapeMaker = new ShapeMaker();
-      shapeMaker.drawRectangle();
-      shapeMaker.drawSquare();		
-   }
+    public OrderFacade(InventoryService inventoryService,
+                       PaymentService paymentService,
+                       ShippingService shippingService) {
+        this.inventoryService = inventoryService;
+        this.paymentService = paymentService;
+        this.shippingService = shippingService;
+    }
+
+    public void placeOrder(String productId, String accountId, double amount, String address) {
+        if (inventoryService.checkStock(productId)) {
+            paymentService.processPayment(accountId, amount);
+            shippingService.shipProduct(productId, address);
+            System.out.println("Order placed successfully!");
+        } else {
+            System.out.println("Product out of stock!");
+        }
+    }
 }
+==========================================
+Notice how the controller only interacts with the facade, not the individual services.
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+    private final OrderFacade orderFacade;
+
+    public OrderController(OrderFacade orderFacade) {
+        this.orderFacade = orderFacade;
+    }
+
+    @PostMapping("/place")
+    public String placeOrder(@RequestParam String productId,
+                             @RequestParam String accountId,
+                             @RequestParam double amount,
+                             @RequestParam String address) {
+        orderFacade.placeOrder(productId, accountId, amount, address);
+        return "Order request processed!";
+    }
+}
+========================================================
 Que What is strategy design or Policy pattern(Behaviral design pattern)?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
 It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes 
