@@ -430,44 +430,85 @@ Que What is strategy design or Policy pattern(Behaviral design pattern)?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
 It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes 
 them interchangeable. It lets the client algorithm vary independently from the objects that use it. 
+Note: Instead of writing multiple if-else statements, we use the Strategy Pattern.
 For our example, we will try to implement a simple Shopping Cart where we have two payment strategies - using Credit Card 
 or using PayPal.
 https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial
 
-pulic interface Startegy{
- pulic int doOperation(int a, int b);
-] 
-
-public class AddStartegy implements Startegy{
-pulic int doOperation(int a, int b){
-return a+b;
+// Strategy interface
+public interface PaymentStrategy {
+    void pay(double amount);
 }
 
-public class MultiplyStartegy implements Startegy{
-pulic int doOperation(int a, int b){
-return a*b;
+public class CreditCardPayment implements PaymentStrategy {
+    private String cardNumber;
+
+    public CreditCardPayment(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card: " + cardNumber);
+    }
 }
 
-pulic class StrategyContext{
-public Startegy startegy;
-//imp step is below
-public StrategyContext(Startegy startegy){
-this.startegy = startegy;
+public class PayPalPayment implements PaymentStrategy {
+    private String email;
+
+    public PayPalPayment(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using PayPal account: " + email);
+    }
 }
 
-pulic int executeStrategy(int a, int b){
-startegy.doOperation(a,b);}
-}
+public class GooglePayPayment implements PaymentStrategy {
+    private String mobileNumber;
 
-public class StrategyPatternDemo {
-   public static void main(String[] args) {
-      StrategyContext context = new StrategyContext(new AddStartegy());		
-      System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
-      context = new StrategyContext(new MultiplyStartegy());		
-      System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
-   }
-}
+    public GooglePayPayment(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Google Pay: " + mobileNumber);
+    }
+}
+===========================
+public class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
+
+    // Set strategy at runtime
+    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void checkout(double amount) {
+        paymentStrategy.pay(amount);
+    }
+}
+========================================================================
+public class Main {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Pay using Credit Card
+        cart.setPaymentStrategy(new CreditCardPayment("1234-5678-9876"));
+        cart.checkout(250.75);
+
+        // Pay using PayPal
+        cart.setPaymentStrategy(new PayPalPayment("kuldeep@example.com"));
+        cart.checkout(100.00);
+
+        // Pay using Google Pay
+        cart.setPaymentStrategy(new GooglePayPayment("9876543210"));
+        cart.checkout(50.00);
+    }
+}
 Que: What is adpter design pattern ?
 Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
 work together. The object that joins these unrelated interface is called an Adapter.
