@@ -645,15 +645,22 @@ https://levelup.gitconnected.com/system-design-interview-basics-difference-betwe
 
 
 Que: What IS CAP theoram? https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
-Ans: The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication.
+Ans: The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at 
+the same time in a distributed system with data replication.
 The theorem states that networked shared-data systems can only strongly support two of the following three properties.
 https://www.enjoyalgorithms.com/blog/cap-theorem-in-system-design
-Consistency: Consistency refers to the requirement that all nodes in a distributed system have the same data at a given point in time. It ensures that all clients accessing the system see the same data, regardless of which node they are connected to. When a client performs a read operation, it should receive the most recent write operation value, ensuring that all nodes in the system return the same data. To maintain consistency, it is the responsibility of the node where the write operation is performed to instantly replicate the data to all other nodes in the system.
+Consistency: Consistency refers to the requirement that all nodes in a distributed system have the same data at a given point in time. 
+It ensures that all clients accessing the system see the same data, regardless of which node they are connected to. When a client performs a read operation, 
+it should receive the most recent write operation value, ensuring that all nodes in the system return the same data. To maintain consistency, 
+it is the responsibility of the node where the write operation is performed to instantly replicate the data to all other nodes in the system.
 
-Avalability: Availability refers to the requirement that a distributed system is always able to respond to client requests for data. This means that the system must be operational at all times, even if one or more nodes are down or experiencing issues. When a client requests data, it should receive a response, regardless of the state of 
-any individual node in the system.
+Avalability: Availability refers to the requirement that a distributed system is always able to respond to client requests for data. This means that the 
+system must be operational at all times, even if one or more nodes are down or experiencing issues. When a client requests data, it should receive a response, 
+regardless of the state of any individual node in the system.
 
-Partition Tolerance: Partition tolerance refers to the ability of a distributed system to continue operating even if there is a failure or delay in the communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes or communication channels are unavailable.
+Partition Tolerance: Partition tolerance refers to the ability of a distributed system to continue operating even if there is a failure or delay in the 
+communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes 
+or communication channels are unavailable.
 
 Que: What is fault tolerance ?
 Ans: Fault tolerance refers to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when 
@@ -667,7 +674,7 @@ Que: What are resilency design pattren ?
 Ans: 1. Circuit Braker (Polly/Hystrix are lib to use circuit breaker pattern) 2. Retry Design pattern 3. TimeOut design pattern.
 
 Que: what is diffrence between fault tolerance and resilency.
-Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive a fault, while resilience is the ability of a system to recover from a fault and continue operating: 
+Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive from a fault, while resilience is the ability of a system to recover from a fault and continue operating: 
 Fault tolerance : -The ability of a system to continue operating effectively even when there are faults, such as a server crash or network partition. Fault tolerance minimizes the risk of systems becoming unavailable due to a component error. 
 Resilience : -The ability of a system to recover from failures and continue operating without significant downtime. Resilience focuses on adapting to different conditions and recovering from unexpected events. 
 Fault tolerance and resilience are important for maintaining service reliability and user trust
