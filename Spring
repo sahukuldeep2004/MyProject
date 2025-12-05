@@ -346,3 +346,38 @@ Example: A Request Between Services
 2. OAuth Secures the Request Authorization
     Service A includes Authorization: Bearer <access_token>.
     Service B verifies the token (e.g., JWT signed by Okta) and authorizes the action.
+
+===================================================================================================================================================
+Spring security flow from user request onwards:----
+Spring Security Flow for REST API
+1. Incoming Request
+- Client sends HTTP request (credentials or JWT).
+- Request contains:
+- Username/Password (login).
+- Or JWT/API Key (subsequent requests).
+2. Filter Chain
+- Spring Security intercepts request via filters:
+- UsernamePasswordAuthenticationFilter → login.
+- BearerTokenAuthenticationFilter / custom JWT filter → token validation.
+3. Authentication Manager
+- Delegates to AuthenticationProvider:
+- DaoAuthenticationProvider → validates credentials via UserDetailsService.
+- Custom provider → validates JWT/API keys.
+4. Authentication Success
+- Creates Authentication object (user + roles).
+- Stored in SecurityContextHolder.
+- Invalid → 401 Unauthorized.
+5. Authorization
+- Role/authority checks:
+@PreAuthorize("hasRole('ADMIN')")
+public ResponseEntity<String> getAdminData() { ... }
+- Unauthorized → 403 Forbidden.
+6. Controller Execution
+- If authenticated + authorized:
+- Controller executes.
+- Response returned.
+7. Statelessness with JWT
+- REST APIs are stateless:
+- JWT carries identity + roles.
+- Sent in Authorization: Bearer <token> header.
+- Validated on each request.
