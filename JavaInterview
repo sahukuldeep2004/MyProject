@@ -486,6 +486,9 @@ that if two objects are equal according to the equals() method, then their hashC
 
 Que: when we need to override hashcode() & equals() method?
 Ans: hashCode and equals methods is crucial when working with custom objects, especially within collections like HashMap, HashSet, or Hashtable.
+your class objects are stored in hash-based collections (HashSet, HashMap, etc.)
+You want to define equality based on object content (logical equality) instead of memory address (reference equality).
+You override one — you MUST override the other to maintain Java's contract.
 
 Que: If I just override the hashCode() method and do not override equals() method then what will happen.
 Ans: Your objects may have the same hash code, but they will still be compared using Object class's default equals() method, which checks reference 
