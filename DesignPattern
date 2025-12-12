@@ -72,12 +72,11 @@ Availability:-All reads contain data, but it might not be the most recent.Availa
  eg. Casandra, DynamoDB.
 
 Partition Tolerance:-The system continues to operate despite network failures (ie; dropped partitions, slow network connections, or unavailable network 
-connections between nodes.)
-In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed database experiences a network 
-failure, you can provide either consistency or availability.
-In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates 
-with network partitions. Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
-
+connections between nodes.) In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed 
+database experiences a network failure, you can provide either consistency or availability.
+In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with 
+network partitions. 
+Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
 What is mean by Partion :
 A partition is a communications break within a distributed system—a lost or temporarily delayed connection between two nodes. 
 Partition tolerance means that the cluster must continue to work despite any number of communication breakdowns between 
@@ -146,18 +145,23 @@ XII. Admin processes :Run admin/management tasks as one-off processes
 Que: What is 12 Factor app principal?
 https://www.joomlatools.com/blog/developer/12-factor-app
 Ans: 1.Codebase :Your codebase should be tracked in a central version control system that is easily accessible to all your developers.
-2. Dependencies: Explicitly declare and isolate dependencies.You should never assume that these packages exist on the target system. Instead, your application must declare all dependencies and their correct version explicitly.
-3. Configuration: Configuration options should never be hardcoded,Instead of hardcoding this information, we rely on environment variables to handle this sensitive information.
-4. Backing Services:A backing service is one that requires a network connection to run, like MySQL or Memcached. If the location or connection details of such a service changes, 
-   you should not have to make code changes. Instead, these details should be available in the configuration.
+2. Dependencies: Explicitly declare and isolate dependencies.You should never assume that these packages exist on the target system. Instead, your application
+must declare all dependencies and their correct version explicitly.
+3. Configuration: Configuration options should never be hardcoded,Instead of hardcoding this information, we rely on environment variables to handle this 
+sensitive information.
+4. Backing Services:A backing service is one that requires a network connection to run, like MySQL or Memcached. If the location or connection details of such 
+a service changes, you should not have to make code changes. Instead, these details should be available in the configuration.
 5. Build, release, run: Build, release, and run stages should be treated as completely distinct from one another.
 6. Processes:-Execute the app as one or more stateless processes.That means if a part of your application stack fails, the app itself does not become a failure.
 7 .Port Binding:- Your application service should also be accessible via a URL.
 8. Concurrency:- Each process should be able to scale, restart, or clone itself when needed.
-9. Disposability:- apps can be started or stopped at a moment’s notice. This facilitates fast elastic scaling, rapid deployment of code or config changes, and robustness of production deploys.
+9. Disposability:- apps can be started or stopped at a moment’s notice. This facilitates fast elastic scaling, rapid deployment of code or config changes, and 
+robustness of production deploys.
 10. Dev/prod parity:-Keep development, staging, and production as similar as possible.
-11. Logs:-Logging is important for debugging and checking up on the general health of your application. However, your application should not be concerned with the storage and management of these logs. Instead, log entries should be treated as an event stream that is routed to a separate service for archival and analysis.
-12. Run admin/management tasks as one-off processes.Once your application is running in production, you'll want to do a lot of simple administrative tasks from time to time. You could need to run a database migration or fetch analytical data to gather business insights.
+11. Logs:-Logging is important for debugging and checking up on the general health of your application. However, your application should not be concerned with 
+the storage and management of these logs. Instead, log entries should be treated as an event stream that is routed to a separate service for archival and analysis.
+12. Run admin/management tasks as one-off processes.Once your application is running in production, you'll want to do a lot of simple administrative tasks from 
+time to time. You could need to run a database migration or fetch analytical data to gather business insights.
 
 Code.De.Con-Back.Bu--PP-CDD--LR
 Design Pattern: - A design pattern is a well-described solution to a common software problem.
@@ -186,7 +190,8 @@ Ans: The factory design pattern is used when we have a superclass with multiple 
 This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
 
 Question: What is main benefit of using factory pattern ? Where do you use it?
-Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance implementation without any change on client layer.
+Answer: If you use Factory to create object you can later replace original implementation of Products or classes with more advanced and high performance 
+implementation without any change on client layer.
 
 Que: What is factory design pattern ?
 Ans: The factory design pattern says to define an interface ( A java interface or an abstract class) for creating the 
@@ -268,67 +273,46 @@ Builder is a creational design pattern that lets you construct complex objects s
 produce different types and representations of an object using the same construction code.
 Use the builder pattern to create complex objects that have many optional parameters, as the builder pattern allows you to specify only the parameters 
 that you need, without having to provide values for all possible parameters.
+Note: - Instead of passing all parameters into a constructor, you use a builder class with chained methods to set values, then call build() to create the
+final object.
 https://www.geeksforgeeks.org/difference-between-builder-design-pattern-and-factory-design-pattern/
 https://www.youtube.com/watch?v=7x8iQUv5lcM
 https://www.youtube.com/watch?v=qOLRxN5eVC0 --Shreyansh
-public class Computer {	
-	//required parameters
-	private String HDD;
-	private String RAM;
-	
-	//optional parameters
-	private boolean isGraphicsCardEnabled;
-	private boolean isBluetoothEnabled;
-	public String getHDD() {
-		return HDD;
-	}
-	public String getRAM() {
-		return RAM;
-	}
-	public boolean isGraphicsCardEnabled() {
-		return isGraphicsCardEnabled;
-	}
-	public boolean isBluetoothEnabled() {
-		return isBluetoothEnabled;
-	}
-	private Computer(ComputerBuilder builder) {
-		this.HDD=builder.HDD;
-		this.RAM=builder.RAM;
-		this.isGraphicsCardEnabled=builder.isGraphicsCardEnabled;
-		this.isBluetoothEnabled=builder.isBluetoothEnabled;
-	}
-	//Builder Class
-	public static class ComputerBuilder{
-		// required parameters
-		private String HDD;
-		private String RAM;
-		// optional parameters
-		private boolean isGraphicsCardEnabled;
-		private boolean isBluetoothEnabled;
-		public ComputerBuilder(String hdd, String ram){
-			this.HDD=hdd;
-			this.RAM=ram;
-		}
-		public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
-			this.isGraphicsCardEnabled = isGraphicsCardEnabled;
-			return this;
-		}
-		public ComputerBuilder setBluetoothEnabled(boolean isBluetoothEnabled) {
-			this.isBluetoothEnabled = isBluetoothEnabled;
-			return this;
-		}
-		public Computer build(){
-			return new Computer(this);
-		}
-	}
+public class Student {
+    private final int id;       // mandatory
+    private final String name;  // mandatory
+    private final String address; // optional
+
+    private Student(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.address = builder.address;
+    }
+
+    public static class Builder {
+        private final int id;       // required
+        private final String name;  // required
+        private String address;     // optional
+
+        // Constructor enforces mandatory fields
+        public Builder(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Student build() {
+            return new Student(this);
+        }
+    }
 }
 public class TestBuilderPattern {
 	public static void main(String[] args) {
-		//Using builder to get the object in a single line of code and 
-                //without any inconsistent state or arguments management issues		
-		Computer comp = new Computer.ComputerBuilder(
-				"500 GB", "2 GB").setBluetoothEnabled(true)
-				.setGraphicsCardEnabled(true).build();
+		Student student = new Student.Builder(101, "Kuldeep").setAddress("Jaipur").build();
 	}
 }
 Que: What is Prototype Design Pattern ?
@@ -374,81 +358,114 @@ provides an interface to the client using which the client can access the system
 under structural pattern.
 This pattern involves a single class which provides simplified methods required by client and delegates calls to 
 methods of existing system classes.
-1. Create an Interface
-public interface Shape {
-   void draw();
+@Service
+public class InventoryService {
+    public boolean checkStock(String productId) {
+        System.out.println("Checking stock for " + productId);
+        return true;
+    }
 }
-2.Create concrete classes implementing the same interface.
-public class Rectangle implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Rectangle::draw()");
-   }
+@Service
+public class PaymentService {
+    public void processPayment(String accountId, double amount) {
+        System.out.println("Processing payment of " + amount + " for account " + accountId);
+    }
 }
-public class Square implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Square::draw()");
-   }
+@Service
+public class ShippingService {
+    public void shipProduct(String productId, String address) {
+        System.out.println("Shipping " + productId + " to " + address);
+    }
 }
-3. Create a facade class.
+============================================
+The facade coordinates all these services and exposes a single method for placing an order.
 
-public class ShapeMaker {
-   private Shape rectangle;
-   private Shape square;
+@Service
+public class OrderFacade {
+    private final InventoryService inventoryService;
+    private final PaymentService paymentService;
+    private final ShippingService shippingService;
 
-   public ShapeMaker() {
-      rectangle = new Rectangle();
-      square = new Square();
-   }
-   public void drawRectangle(){
-      rectangle.draw();
-   }
-   public void drawSquare(){
-      square.draw();
-   }
-   
-4. Use the facade to draw various types of shapes.
-public class FacadePatternDemo {
-   public static void main(String[] args) {
-      ShapeMaker shapeMaker = new ShapeMaker();
-      shapeMaker.drawRectangle();
-      shapeMaker.drawSquare();		
-   }
+    public OrderFacade(InventoryService inventoryService,
+                       PaymentService paymentService,
+                       ShippingService shippingService) {
+        this.inventoryService = inventoryService;
+        this.paymentService = paymentService;
+        this.shippingService = shippingService;
+    }
+
+    public void placeOrder(String productId, String accountId, double amount, String address) {
+        if (inventoryService.checkStock(productId)) {
+            paymentService.processPayment(accountId, amount);
+            shippingService.shipProduct(productId, address);
+            System.out.println("Order placed successfully!");
+        } else {
+            System.out.println("Product out of stock!");
+        }
+    }
 }
+==========================================
+Notice how the controller only interacts with the facade, not the individual services.
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+    private final OrderFacade orderFacade;
+
+    public OrderController(OrderFacade orderFacade) {
+        this.orderFacade = orderFacade;
+    }
+
+    @PostMapping("/place")
+    public String placeOrder(@RequestParam String productId,
+                             @RequestParam String accountId,
+                             @RequestParam double amount,
+                             @RequestParam String address) {
+        orderFacade.placeOrder(productId, accountId, amount, address);
+        return "Order request processed!";
+    }
+}
+========================================================
 Que What is strategy design or Policy pattern(Behaviral design pattern)?
 Ans: We define multiple algorithms and let client application pass the algorithm to be used as a parameter.
 It is a behavioral design pattern in Java that defines a family of algorithms, encapsulates each algorithm, and makes 
 them interchangeable. It lets the client algorithm vary independently from the objects that use it. 
+Note: Instead of writing multiple if-else statements, we use the Strategy Pattern.
 For our example, we will try to implement a simple Shopping Cart where we have two payment strategies - using Credit Card 
 or using PayPal.
 https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial
 
+// Strategy interface
 public interface PaymentStrategy {
-    void pay(int amount);
-}
-public class CreditCardPayment implements PaymentStrategy {
-    public void pay(int amount) {
-        System.out.println("Paid ₹" + amount + " using Credit Card.");
-    }
+    void pay(double amount);
 }
 
-public class PayPalPayment implements PaymentStrategy {
-    public void pay(int amount) {
-        System.out.println("Paid ₹" + amount + " using PayPal.");
+public class CreditCardPayment implements PaymentStrategy {
+    private String cardNumber;
+
+    public CreditCardPayment(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card: " + cardNumber);
     }
 }
 public class ShoppingCart {
     private PaymentStrategy paymentStrategy;
 
-    public ShoppingCart(PaymentStrategy paymentStrategy) {
-        this.paymentStrategy = paymentStrategy;
+public class PayPalPayment implements PaymentStrategy {
+    private String email;
+
+    public PayPalPayment(String email) {
+        this.email = email;
     }
 
-    public void checkout(int amount) {
-        paymentStrategy.pay(amount);
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using PayPal account: " + email);
     }
 }
 public class Main {
@@ -456,15 +473,99 @@ public class Main {
         ShoppingCart cart = new ShoppingCart(new CreditCardPayment());
         cart.checkout(500);
 
-        cart = new ShoppingCart(new PayPalPayment());
-        cart.checkout(750);
+public class GooglePayPayment implements PaymentStrategy {
+    private String mobileNumber;
+
+    public GooglePayPayment(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Google Pay: " + mobileNumber);
     }
 }
+===========================
+public class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
 
+    // Set strategy at runtime
+    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void checkout(double amount) {
+        paymentStrategy.pay(amount);
+    }
+}
+========================================================================
+public class Main {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Pay using Credit Card
+        cart.setPaymentStrategy(new CreditCardPayment("1234-5678-9876"));
+        cart.checkout(250.75);
+
+        // Pay using PayPal
+        cart.setPaymentStrategy(new PayPalPayment("kuldeep@example.com"));
+        cart.checkout(100.00);
+
+        // Pay using Google Pay
+        cart.setPaymentStrategy(new GooglePayPayment("9876543210"));
+        cart.checkout(50.00);
+    }
+}
 Que: What is adpter design pattern ?
 Ans: Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can 
 work together. The object that joins these unrelated interface is called an Adapter.
 https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
+eg.:-The Adapter pattern can also be used if the main goal is to integrate a third-party currency conversion library that has an incompatible interface with 
+your existing codebase. 
+//Step 1: Target Interface (what client expects)
+public interface CurrencyConverter {
+    double convertCurrency(String from, String to, double amount);
+}
+//Step 2: Existing Incompatible Class (third-party API)
+// Simulating an external API
+public class ExchangeRateAPI {
+    public double getExchangeRate(String currencyPair) {
+        switch (currencyPair) {
+            case "USDINR": return 83.5;
+            case "EURINR": return 90.2;
+            case "INRUSD": return 0.012;
+            default: return 1.0;
+        }
+    }
+}
+// Adapter class
+public class CurrencyAdapter implements CurrencyConverter {
+    private final ExchangeRateAPI exchangeRateAPI;
+
+    public CurrencyAdapter(ExchangeRateAPI exchangeRateAPI) {
+        this.exchangeRateAPI = exchangeRateAPI;
+    }
+
+    @Override
+    public double convertCurrency(String from, String to, double amount) {
+        String currencyPair = from + to;
+        double rate = exchangeRateAPI.getExchangeRate(currencyPair);
+        return amount * rate;
+    }
+}
+// client code
+public class Main {
+    public static void main(String[] args) {
+        ExchangeRateAPI api = new ExchangeRateAPI();
+        CurrencyConverter converter = new CurrencyAdapter(api);
+
+        double inrAmount = converter.convertCurrency("USD", "INR", 100);
+        System.out.println("100 USD = " + inrAmount + " INR");
+
+        double usdAmount = converter.convertCurrency("INR", "USD", 1000);
+        System.out.println("1000 INR = " + usdAmount + " USD");
+    }
+}
 
 Que: What is decorator design pattern (Structural Design)?
 Ans: The Decorator attaches additional responsibilities to an object dynamically.
@@ -481,11 +582,71 @@ notify channels when it receives news.
 - When the Subject’s state changes, it automatically notifies all registered Observers
 Youtube Subscription : When a user(Observer) subscribes to a Youtube channel(Subject) all its subscribers get notified of any new post.
 
-Que: Chain of Responsbility (COR) design pattern ?
-Ans: The Chain of Responsibility design pattern is a behavioral pattern in Java that allows a request to be passed along a chain of potential handlers 
-until one of them handles it. This pattern promotes loose coupling between the sender of a request and its receivers by giving multiple objects a chance 
-to handle the request without explicitly specifying the receiver.
+public interface Observer {
+    void update(int temperature);
+}
+public interface Subject {
+    void registerObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers();
+}
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class WeatherStation implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private int temperature;
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(temperature);
+        }
+    }
+    public void setTemperature(int temperature) {
+        System.out.println("WeatherStation: Temperature changed to " + temperature);
+        this.temperature = temperature;
+        notifyObservers();
+    }
+}
+public class PhoneDisplay implements Observer {
+    @Override
+    public void update(int temperature) {
+        System.out.println("Phone Display: Temperature is " + temperature + "°C");
+    }
+}
+public class WindowDisplay implements Observer {
+    @Override
+    public void update(int temperature) {
+        System.out.println("Window Display: Temperature is " + temperature + "°C");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        WeatherStation station = new WeatherStation();
+
+        Observer phone = new PhoneDisplay();
+        Observer window = new WindowDisplay();
+
+        station.registerObserver(phone);
+        station.registerObserver(window);
+
+        station.setTemperature(25);
+        station.setTemperature(30);
+
+        station.removeObserver(window);
+
+        station.setTemperature(35);
+    }
+}
 =============
 Diffrence between API Gateway and Load balancer ?
 API gateway perfrom :- Routing,Authorization,Ratelimiting,Load balancing, Caching,Monitoring,Logging,Transformation, Service discovery, Circuit braker.
@@ -494,15 +655,22 @@ https://levelup.gitconnected.com/system-design-interview-basics-difference-betwe
 
 
 Que: What IS CAP theoram? https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
-Ans: The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication.
+Ans: The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at 
+the same time in a distributed system with data replication.
 The theorem states that networked shared-data systems can only strongly support two of the following three properties.
 https://www.enjoyalgorithms.com/blog/cap-theorem-in-system-design
-Consistency: Consistency refers to the requirement that all nodes in a distributed system have the same data at a given point in time. It ensures that all clients accessing the system see the same data, regardless of which node they are connected to. When a client performs a read operation, it should receive the most recent write operation value, ensuring that all nodes in the system return the same data. To maintain consistency, it is the responsibility of the node where the write operation is performed to instantly replicate the data to all other nodes in the system.
+Consistency: Consistency refers to the requirement that all nodes in a distributed system have the same data at a given point in time. 
+It ensures that all clients accessing the system see the same data, regardless of which node they are connected to. When a client performs a read operation, 
+it should receive the most recent write operation value, ensuring that all nodes in the system return the same data. To maintain consistency, 
+it is the responsibility of the node where the write operation is performed to instantly replicate the data to all other nodes in the system.
 
-Avalability: Availability refers to the requirement that a distributed system is always able to respond to client requests for data. This means that the system must be operational at all times, even if one or more nodes are down or experiencing issues. When a client requests data, it should receive a response, regardless of the state of 
-any individual node in the system.
+Avalability: Availability refers to the requirement that a distributed system is always able to respond to client requests for data. This means that the 
+system must be operational at all times, even if one or more nodes are down or experiencing issues. When a client requests data, it should receive a response, 
+regardless of the state of any individual node in the system.
 
-Partition Tolerance: Partition tolerance refers to the ability of a distributed system to continue operating even if there is a failure or delay in the communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes or communication channels are unavailable.
+Partition Tolerance: Partition tolerance refers to the ability of a distributed system to continue operating even if there is a failure or delay in the 
+communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes 
+or communication channels are unavailable.
 
 Que: What is fault tolerance ?
 Ans: Fault tolerance refers to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when 
@@ -516,12 +684,9 @@ Que: What are resilency design pattren ?
 Ans: 1. Circuit Braker (Polly/Hystrix are lib to use circuit breaker pattern) 2. Retry Design pattern 3. TimeOut design pattern.
 
 Que: what is diffrence between fault tolerance and resilency.
-Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive a fault, while resilience is 
-the ability of a system to recover from a fault and continue operating: 
-Fault tolerance : -The ability of a system to continue operating effectively even when there are faults, such as a server crash or network partition.
-Fault tolerance minimizes the risk of systems becoming unavailable due to a component error. 
-Resilience : -The ability of a system to recover from failures and continue operating without significant downtime. Resilience focuses on adapting to 
-different conditions and recovering from unexpected events. 
+Ans: The main difference between fault tolerance and resilience is that fault tolerance is the ability of a system to survive from a fault, while resilience is the ability of a system to recover from a fault and continue operating: 
+Fault tolerance : -The ability of a system to continue operating effectively even when there are faults, such as a server crash or network partition. Fault tolerance minimizes the risk of systems becoming unavailable due to a component error. 
+Resilience : -The ability of a system to recover from failures and continue operating without significant downtime. Resilience focuses on adapting to different conditions and recovering from unexpected events. 
 Fault tolerance and resilience are important for maintaining service reliability and user trust
 
 Que: What is high availability ? (mean multiple avalability zone need to use)

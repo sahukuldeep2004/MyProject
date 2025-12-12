@@ -116,6 +116,7 @@ Launching new containers on different machines if something fails.
 Que: How to checks logs in K8S?
  If pod have single container then kubectl logs POD_NAME
 => If pod have multiple containers then kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE
+eg: = kubectl logs employee-deployment-5d74f4cbd7-7q9l2 -c employee
 
 What is Orchastartion in K8s?
  In Kubernetes, orchestration is the process of coordinating and managing the deployment, scaling, and organization of containerized applications. 

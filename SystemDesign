@@ -1,3 +1,10 @@
+Concurrency = Doing many tasks at the same time (but not necessarily exactly at the same time).
+Think: Switching between tasks quickly.
+Like a single worker handling multiple tasks by jumping between them.
+Parallelism = Doing many tasks literally at the same time.
+Think: Multiple workers doing tasks simultaneously.
+Requires multiple CPU cores or processors.
+
 https://www.designgurus.io/blog/high-availability-system-design-basics
 No matter your programming language, start by understanding the basics of how systems are designed.
 
@@ -126,6 +133,9 @@ There are several types of partitioning, including RANGE, LIST, and KEY. Above e
 When data is written to the table, a partitioning function will be used by MySQL to decide which partition to store the data in. 
 The value for one or more columns in a given row is used for this sorting process.
 
+I.E: Cutting a big table into smaller “slices” inside the same database. Eg. creating a transation table with partition by range(year), so based on year data
+can be move in transation table partition.
+
 Sharding :https://blog.algomaster.io/p/scalability?open=false#%C2%A7shardingpartitioning
 Sharding is a method for distributing a single dataset across multiple databases, which can then be stored on multiple 
 machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
@@ -248,31 +258,68 @@ Distributed Tracing in Microservices explains how to monitor and track requests 
 in a microservices architecture. In microservices, a single user request might interact with multiple small services, 
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
+################################################################C4 Model###################################
+Level 1 – System Context Diagram
+Purpose: Show how the system fits into its environment (people + external systems).
+System: BookHub
+Primary Actors:
+Customer – browses books, places orders.
+Admin – manages inventory.
+External Systems:
+Payment Gateway – processes customer payments.
+Email Service – sends order confirmations.
+Shipping Provider API – arranges shipments.
+Context Summary:
+Customers interact with BookHub to search for books and make purchases.
+BookHub collects payment through the Payment Gateway.
+BookHub sends order emails via Email Service.
+BookHub notifies the Shipping Provider to fulfill deliveries.
+Level 2 – Container Diagram
 
-What Is Rate Limiting?
-Rate limiting is a technique to limit network traffic to prevent users from exhausting system resources. Rate limiting makes it harder for malicious actors to overburden the system and cause attacks like Denial of Service (DoS). This involves attackers flooding a target system with requests and consuming too much network capacity, storage, and memory.
+Purpose: Show the high-level containers (applications, databases, APIs).
+Containers in BookHub:
+Web Application (React.js)
+Provides UI for customers/admins.
+Calls the API.
+Backend API (Node.js / Express)
+Handles business logic: orders, payments, inventory.
+Integrates with external systems.
+Database (PostgreSQL)
+Stores users, books, orders, inventory.
+Message Queue (RabbitMQ)
+Handles asynchronous tasks (email notifications, shipping requests).
+Admin Portal (React.js)
+Used by admins to update catalog and stock.
+External Systems
+Payment Gateway
+Email Service
+Shipping Provider API
+Container Interactions (examples):
+Web App → Backend API (REST)
+Backend API → Database (SQL)
+Backend API → Payment Gateway (HTTPS)
+Backend API → Queue → Email Service
+Backend API → Queue → Shipping Provider API
 
-Distributed Caching
-Caching is a technique used to store and retrieve frequently accessed data or computations to speed up subsequent data requests. By storing data temporarily in a cache, systems can reduce the time and resources required to fetch the same data from its original source, leading to improved performance and reduced latency.
-Local caching:- refers to storing data on a single machine or within a single application. It’s commonly used in scenarios where data retrieval is limited to one machine or where the volume of data is relatively small. Examples of local caching include browser caches or application-level caches.
-Distributed caching:- involves storing data across multiple machines or nodes, often in a network. This type of caching is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed caching ensures that data is available close to where it’s needed, even if the original data source is remote or under heavy load.
+Level 3 – Component Diagram (Example for Backend API)
+Purpose: Show major logical components inside a container.
+Components inside Backend API:
+Authentication Component
+JWT-based authentication.
+Manages login/signup.
+Catalog Component
+Retrieves book list, categories.
+Supports search.
+Order Component
+Creates and manages orders.
+Communicates with Payment Gateway.
+Inventory Component
+Manages stock levels.
+Used by Admin Portal.
+Notification Component
+Publishes messages to RabbitMQ for emails.
+Shipping Component
+Sends shipping requests to Shipping Provider API.
 
-Que 1: How does eureka server know that client is up or down ?
-When client down garcefully then it send request to Eureka server and deregister it self, so in server those instace will not be avaialbel.
-Second is heart beat.Eureka client send heart beat to Eureka server on periodic interval.
-Que 2: Where and how the data is stored?
-Ans: Its store data in in-memory : Map<String, Lease<InstanceInfo>>
-key : appName/Instance ID
-InstanceInfo object : instance Id, App name, IP Address, Host Name, Port, status, Lease duration etc
-
-Que:3 is Eureka server is single point of failure ?
-No, We can have cluster of 3 machine/container. WHere each server is a client too. As they have to registred themselves, fecth registery,
-replicate changes.
-When need share the config with other clinet then client need to add all the 3 server URL.
-
-Que: 4 Do ereka clients call the eureka server on each request ? If yes then what will be the impact on latency?
-Ans: Eureka clients do not call Eureka server on each request. Eureka clients load the data in cach at the strating poin only.
-It is update the cache on regular interval.
-
-Que 5: What if local cache is stale ? Can it lead to dead instacne ?
-Ans: Yes you can say it is trade off, because you do not have latest cache copy of data. So we have refrech the cache on regular interval.
+Level 4 – Code / Class Diagram (Example for Order Component)
+Order Component Classes:
