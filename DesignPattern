@@ -421,8 +421,6 @@ public class CreditCardPayment implements PaymentStrategy {
         System.out.println("Paid " + amount + " using Credit Card: " + cardNumber);
     }
 }
-public class ShoppingCart {
-    private PaymentStrategy paymentStrategy;
 
 public class PayPalPayment implements PaymentStrategy {
     private String email;
@@ -436,11 +434,6 @@ public class PayPalPayment implements PaymentStrategy {
         System.out.println("Paid " + amount + " using PayPal account: " + email);
     }
 }
-public class Main {
-    public static void main(String[] args) {
-        ShoppingCart cart = new ShoppingCart(new CreditCardPayment());
-        cart.checkout(500);
-
 public class GooglePayPayment implements PaymentStrategy {
     private String mobileNumber;
 
