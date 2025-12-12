@@ -105,6 +105,7 @@ parent class (such as the argument list and return types). Basically, derived cl
 class. Eg. if class A is a subtype of class B, then we should be able to replace objects of B with objects of A 
 (i.e., objects of type A may substitute objects of type B) without changing the behavior (correctness, functionality, etc.) 
 of our program.
+i.e if we replace the superclass object with derived type object then our  code should work.
 4.Interface segregation Principal:-Clients should not be forced to implement unnecessary methods which they will not use.
 5.Dependency Inversion Principle (DIP)--It states that high-level modules should not depend upon low-level modules; they should depend on 
 abstractions.Abstractions should not depend on details. Details should depend upon abstractions.
@@ -452,6 +453,8 @@ public class CreditCardPayment implements PaymentStrategy {
         System.out.println("Paid " + amount + " using Credit Card: " + cardNumber);
     }
 }
+public class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
 
 public class PayPalPayment implements PaymentStrategy {
     private String email;
@@ -465,6 +468,10 @@ public class PayPalPayment implements PaymentStrategy {
         System.out.println("Paid " + amount + " using PayPal account: " + email);
     }
 }
+public class Main {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart(new CreditCardPayment());
+        cart.checkout(500);
 
 public class GooglePayPayment implements PaymentStrategy {
     private String mobileNumber;
@@ -565,11 +572,14 @@ Ans: The Decorator attaches additional responsibilities to an object dynamically
 Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
 It use the HAS A and IS A relationship.
 why : To avoid the class explosen. Othereise we have to add so many class with combination of multiple functionality.
+Used: Decorator pattern is used a lot in Java IO classes, such as FileReader, BufferedReader etc.
 
 Que: Observar desig pattern (Behaviral design) ?
 Ans: Observer is a behavioral design pattern. It specifies communication between objects: observable and observers. 
 An observable is an object which notifies observers about the changes in its state. For example, a news agency can 
 notify channels when it receives news.
+- One object (called the Subject) maintains a list of dependents (called Observers).
+- When the Subject’s state changes, it automatically notifies all registered Observers
 Youtube Subscription : When a user(Observer) subscribes to a Youtube channel(Subject) all its subscribers get notified of any new post.
 
 public interface Observer {
@@ -680,8 +690,10 @@ Resilience : -The ability of a system to recover from failures and continue oper
 Fault tolerance and resilience are important for maintaining service reliability and user trust
 
 Que: What is high availability ? (mean multiple avalability zone need to use)
-Ans:High availability systems are designed to provide continuous and uninterrupted service to the end customer by using redundant software performing similar functions.
-In highly available microservices, all the hosts must point to the same storage. So, in case of failure of one host, the workload in one host can failover to another host
+Ans:High availability systems are designed to provide continuous and uninterrupted service to the end customer by using redundant software performing similar 
+functions.
+In highly available microservices, all the hosts must point to the same storage. So, in case of failure of one host, the workload in one host can failover 
+to another host
 without downtime. The redundant software can be installed in another virtual machine (VM), or Kubernetes clusters in multicloud or hybrid cloud.
  
 Que:WHat we need to consider for NFR ?
@@ -707,10 +719,12 @@ ANs: Cache Client, Cache Server,
 
 Que: What things to consider whne you are design a system.
 Ans: Scalability, Latency, performance,throughput, consistency(strong,weak,eventaully), availability, Partition tolerance, CAP theoram, 
-DNS(domain name system- route to traffic to diffrent system), CDN (content delivery network- how many types are there), load balancer and reverse proxy, microservices, SQL and NOSQL,caching,message queue.
+DNS(domain name system- route to traffic to diffrent system), CDN (content delivery network- how many types are there), load balancer and reverse proxy, 
+microservices, SQL and NOSQL,caching,message queue.
 
 Que: What is database partitioning?
-Ans: Horizontal partition also known as sharding. It is a range base sharding.You put diffrent rows in to tables, the structure of table orignal table stay the same in the new tables.i.e we have same structure of table.
+Ans: Horizontal partition also known as sharding. It is a range base sharding.You put diffrent rows in to tables, the structure of table orignal table stay 
+the same in the new tables.i.e we have same structure of table.
 Vertical partition: This type of partition the table vertically(by column), which means that the structure of the main table changes in the new ones.
 
 Que: Load balancer algorithem used in that?
@@ -718,7 +732,8 @@ Ans: Least connection b. Least response time c. Least bandwith d. round robin d.
 
 Que: What is Reverse proxy?
 Ans: a reverse proxy is the application that sits in front of back-end applications and forwards client (e.g. browser) requests to those applications. 
-Reverse proxies help increase scalability, performance, resilience and security. The resources returned to the client appear as if they originated from the web server itself.
+Reverse proxies help increase scalability, performance, resilience and security. The resources returned to the client appear as if they originated from the
+web server itself.
 
 Que:
 
@@ -738,7 +753,8 @@ Que: Micro services design pattern?
 1. Decomposition Patterns
 a. Decompose by Business Capability
 One strategy is to decompose by business capability. A business capability is something that a business does in order to generate value. 
-The set of capabilities for a given business depend on the type of business. For example, the capabilities of an insurance company typically include sales, marketing, underwriting, claims processing, billing, compliance, etc. Each business capability can be thought of as a service, except it’s 
+The set of capabilities for a given business depend on the type of business. For example, the capabilities of an insurance company typically include sales, 
+marketing, underwriting, claims processing, billing, compliance, etc. Each business capability can be thought of as a service, except it’s 
  business-oriented rather than technical.
 
 b. Decompose by Subdomain
@@ -760,20 +776,20 @@ https://dzone.com/articles/sidecar-design-pattern-in-your-microservices-ecosy-1
 
 2. Integration Patterns
 a. API Gateway Pattern
-An API Gateway is the single point of entry for any microservice call.It can work as a proxy service to route a request to the concerned microservice, abstracting the 
-producer details.
+An API Gateway is the single point of entry for any microservice call.It can work as a proxy service to route a request to the concerned microservice, 
+abstracting the producer details.
 It can also offload the authentication/authorization responsibility of the microservice.
 During migration, an API Gateway acts as a facade which directs users’ requests to the correct application.
 
 b. Aggregator Pattern
 When breaking the business functionality into several smaller logical pieces of code, it becomes necessary to think about how to collaborate 
-the data returned by each service.A composite microservice will make calls to all the required microservices, consolidate the data, and transform the data before sending 
-back. eg. Orchastration layer
+the data returned by each service.A composite microservice will make calls to all the required microservices, consolidate the data, and transform the data 
+before sending back. eg. Orchastration layer
 
 3. Database Patterns
 a. Database per Service
-Services must be loosely coupled. They can be developed, deployed, and scaled independently.To solve the above concerns, one database per microservice must be designed; 
-it must be private to that service only. It should be accessed by the microservice API only. It cannot be accessed by other services directly.
+Services must be loosely coupled. They can be developed, deployed, and scaled independently.To solve the above concerns, one database per microservice must be 
+designed; it must be private to that service only. It should be accessed by the microservice API only. It cannot be accessed by other services directly.
 
 b. Shared Database per Service
 one database can be aligned with more than one microservice, but it has to be restricted to 2-3 maximum, otherwise scaling, autonomy, and independence will be 
@@ -797,7 +813,7 @@ actions and reduce mean time to resolution (MTTR).
 Grafana used for data visualization and monitoring.Grafana helps create customizable dashboards for displaying metrics, logs, and traces, enabling users to understand 
 and analyze data over time. Eg: Consumer lag increaed with some threshold value then send an alert. Topic did not receive message in 4 hr then trigger an alert.
 
-b. Performance Metrics
+b. Performance Monitoring: Uses metrics to track the performance of individual operations and overall system health. 
 c. Distributed Tracing
 In microservice architecture, requests often span multiple services. Each service handles a request by performing one or more operations across multiple services.
 Spring Cloud Slueth, along with Zipkin server, is a common implementation.
@@ -806,10 +822,16 @@ Spring Slueth use the spanId and traceId.
 TraceId – This is an id that is assigned to a single request. 
 SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId. 
 
-5. Cross-Cutting Concern Patterns
+d. Health check API
+Sometimes, it may happen that a particular service instance is running but is incapable of processing any request. Such services can be termed 
+“unhealthy.” Whenever an instance of an unhealthy service occurs, monitoring systems should generate an alert.
+
+5. Cross-Cutting Concern Patterns :- Cross-cutting concerns in microservices are functionalities or aspects that affect multiple services or modules
+throughout the system.These concerns need to be addressed consistently across the entire microservice landscape to ensure proper operation, 
+maintainability, and security.
 a. External Configuration
-Spring Cloud config server provides the option to externalize the properties to GitHub and load them as environment properties. These can be accessed by the application 
-on startup or can be refreshed without a server restart.
+Spring Cloud config server provides the option to externalize the properties to GitHub and load them as environment properties. These can be accessed by the 
+application on startup or can be refreshed without a server restart.
 
 b. Service Discovery Pattern(Service Registry)
 With container technology, IP addresses are dynamically allocated to the service instances. Every time the address changes, a consumer service can break and need manual 
@@ -817,7 +839,13 @@ changes.A service registry needs to be created which will keep the metadata of e
 and should de-register when shutting down.The consumer or router should query the registry and find out the location of the service. The registry also needs to do a health 
 check of the producer service to ensure that only working instances of the services are available to be consumed through it.
 
-c. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
+c. Authentication and Authorization: -
+Managing user identities, verifying credentials, and controlling access permissions across all services.
+d. Metrics and Performance Monitoring :
+Collecting and analyzing performance metrics (e.g., CPU usage, memory consumption, request latency) to identify bottlenecks and optimize resource utilization.
+
+e. Error Handling
+f. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
 A service generally calls other services to retrieve data, and there is the chance that the downstream service may be down. There are two problems with this: first, 
 the request will keep going to the down servics. It allows developers to prevent cascading failures in microservices architecture by invoking remote services through 
 a proxy.
@@ -974,28 +1002,6 @@ resilience4j.circuitbreaker.instances.getInvoiceCB.wait-duration-in-open-state=1
 
 
 ===================================================================================================
-Rest API design best practice
-
-1. Use JSON as the Format for Sending and Receiving Data
-2. Use Nouns Instead of Verbs in Endpoints
-This is because HTTP methods such as GET, POST, PUT, PATCH, and DELETE are already in verb form for performing basic CRUD (Create, Read, Update, Delete) 
-operations.
-old :-- https://mysite.com/getPosts or https://mysite.com/createPost
-new :-https://mysite.com/posts
-In short, you should let the HTTP verbs handle what the endpoints do. So GET would retrieve data, POST will create data, PUT will update data, and DELETE 
-will get rid of the data.
-3. Name Collections with Plural Nouns.
-So, instead of https://mysite.com/post/123, it should be https://mysite.com/posts/123
-4.Use Status Codes in Error Handling
-
-400 – 499  -> Client-side errors  eg. 400 means bad request and 404 means resource not found.
-500 – 599 -> Server-side errors, For example, 500 means an internal server error
-5. Use Filtering, Sorting, and Pagination to Retrieve the Data Requested.
-6. Use SSL for Security
-7. Be Clear with Versioning.
-REST APIs should have different versions, so you don’t force clients (users) to migrate to new versions. This might even break the application if you're not 
-careful.
-9. Provide accurate API Documentation.
 
 Software application best parctice /principal :
 1. YAGNI - You Ain’t Gonna Need It
@@ -1006,17 +1012,7 @@ Software application best parctice /principal :
 6. USe Pattern (Factory, Singleton)
 7.
 
-Que: Best parctice for micro service ?
-Ans:https://www.capitalone.com/tech/software-engineering/10-microservices-best-practices/
-The Single Responsibility Principle:-
-Have a separate data store(s) for your microservice:-
-Use asynchronous communication to achieve loose coupling:-
-Fail fast by using a circuit breaker to achieve fault tolerance:-
-Proxy your microservice requests through an API Gateway:-
-Ensure your API changes are backwards compatible:-
-Have dedicated infrastructure hosting your microservice:-
-Create a separate release train:-
-Create Organizational Efficiencies(side car/ common application like logging/security/configuration):-
+
 =======================================
 
 Que: Software design architecture steps ?
@@ -1110,4 +1106,15 @@ Diffrence between 2 pahse commit & SAGA design pattern?
   Complexity                      Simplicity
   Performance overhead            Better Performance
   String data consistancy         Temporiry consistancy
-  
+  ===================================================================
+Microservices Design Principles :===
+Independent and Autonomous/Self-governing services
+API aggregation 
+Flexibility
+Scalability
+Constant monitoring
+Failure Isolation/ Failure resilience
+Realtime Load balancing
+Inclusion of DevOps
+Versioning
+Availability
