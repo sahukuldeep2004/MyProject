@@ -81,8 +81,12 @@ In addition to basic functions such as request distribution, API management, and
 and alarm, tracing analysis, load balancing, rate limiting, isolation, and circuit breaking.
 =================================================================================
 
-Top  7 Architectural Patterns
+Top  8 Architectural Patterns
 An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in software design. It offers a highlevel conceptual framework for structuring and organizing software systems to effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
+
+8. Cloud Native Architecture : -
+Cloud Native Architecture = Modern way of building applications using microservices, containers, Kubernetes, automation, and cloud services to achieve 
+scalability, resilience, and rapid delivery.
 
 1.Microservices Architecture:
  Approach: The application is divided into small, independent services with welldefined APIs.
