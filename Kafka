@@ -254,5 +254,21 @@ Ans: JMS is Java Messaging service which is the Enterprise Java standard for mes
 MQ employs a push-based communication mechanism.
 IBM MQ has multiple modes of operation, including point-to-point, publish/subscribe, file transfer, and enterprise-grade messaging features.
 ===========================================
+| Feature                 | **RabbitMQ**                                        | **Kafka**                                                  | **ActiveMQ**                                  |
+| ----------------------- | --------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------- |
+| **Type**                | Message Broker (Traditional)                        | Distributed Event Streaming Platform                       | Message Broker (Traditional, JMS-based)       |
+| **Ideal Use**           | Short-lived messages, task queues, request/response | High-throughput event streaming, real-time analytics       | Enterprise integrations, legacy systems (JMS) |
+| **Message Model**       | Push-based                                          | Pull-based                                                 | Push-based                                    |
+| **Delivery Guarantee**  | At least once, exactly once (with config)           | At least once, exactly once (strong)                       | At most once, at least once                   |
+| **Performance**         | Moderate (~ tens of thousands msgs/sec)             | Very high throughput (millions msgs/sec)                   | Moderate                                      |
+| **Message Retention**   | Deletes message after consumption                   | Stores events for configured retention (minutes → forever) | Deletes after consumption                     |
+| **Ordering Guarantees** | Per queue                                           | Strong per partition                                       | Limited                                       |
+| **Scalability**         | Medium                                              | Very High (distributed, partitioned logs)                  | Medium                                        |
+| **Use Case Fit**        | Real-time messaging, async processing, RPC          | Event sourcing, streaming pipelines, big data              | Legacy enterprise workflows, JMS integrations |
+| **Protocol Support**    | AMQP, MQTT, STOMP                                   | Custom Kafka protocol                                      | JMS, AMQP, STOMP, REST                        |
+| **Persistence Model**   | Queue-based                                         | Log-based append-only                                      | Queue/topic-based                             |
+| **Consumer Model**      | Broker pushes messages                              | Consumers pull at own pace                                 | Broker pushes messages                        |
+| **Replay Messages**     | Not built-in                                        | Built-in replay (just read older offsets)                  | Limited                                       |
+
 Kafka theory short cut
 https://codingnconcepts.com/post/apache-kafka-ccdak-exam-notes/
