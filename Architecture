@@ -84,10 +84,6 @@ and alarm, tracing analysis, load balancing, rate limiting, isolation, and circu
 Top  8 Architectural Patterns
 An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in software design. It offers a highlevel conceptual framework for structuring and organizing software systems to effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
 
-8. Cloud Native Architecture : -
-Cloud Native Architecture = Modern way of building applications using microservices, containers, Kubernetes, automation, and cloud services to achieve 
-scalability, resilience, and rapid delivery.
-
 1.Microservices Architecture:
  Approach: The application is divided into small, independent services with welldefined APIs.
  Example: Netflix separates user management, content streaming, and recommendations into distinct services.
@@ -139,6 +135,10 @@ while a cloud provider provisions servers to run their applications, databases, 
 y adopting serverless architecture, developers can offload these responsibilities to a third-party provider, enabling them to focus on writing application code.
 One of the most popular serverless architectures is Function as a Service (FaaS).
 Each function will perform a specific task when triggered by an event, such as an incoming email or an HTTP request.
+
+9. Cloud Native Architecture : -
+Cloud Native Architecture = Modern way of building applications using microservices, containers, Kubernetes, automation, and cloud services to achieve 
+scalability, resilience, and rapid delivery.
  ==========================================================================================================================
  Software Architecture charatersic
  https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
