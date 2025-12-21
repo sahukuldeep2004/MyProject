@@ -261,6 +261,7 @@ Distributed Tracing in Microservices explains how to monitor and track requests 
 in a microservices architecture. In microservices, a single user request might interact with multiple small services, 
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
+Use jar as spring-cloud-starter-sleuth & spring-cloud-starter-zipkin
 ********************************************************************************************************
 Que : How to handle concurrent request in DB when multiple request are trying to update the same row in DB?
 Ans: Add the new field version with annotaion @Version in Entity class. Spring Boot + JPA/Hibernate microservice, optimistic locking(builtin support from hibernate) is automatic once you 
