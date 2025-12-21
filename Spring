@@ -263,28 +263,34 @@ else invalid user exception..
 
 6. Flow of JWT token ?
 Ans: When user send username & pwd to server, it goes to our extended filer(JWTRequestFilter exteds OncePerRequestFilter). This filter check that request has token or not.
-If it has token then it will get the user details from userDetailsservice(DB) and send it for validationit for token &user details.If it is valid then it will pass the request 
-from filter and request will move on.
+If it has token then it will get the user details from userDetailsservice(DB) and send it for validationit for token &user details.If it is valid then it
+will pass the request from filter and request will move on.
 If user is coming first time then it will go to the mapping controller and token get generated and return in response.
 
 7. How Spring Security works ?
 Ans https://www.javainuse.com/webseries/spring-security-jwt/chap3
 https://www.youtube.com/watch?v=1ERV-6cz2xk
-Whenever there is a request to that specific URL, That request is sent to the servlet which would handle the request and proving the required response.But if we plan to secure that 
-servlet such that only authorized and authenticated user can access the servlet then we have to implement servlet filters or chain of filters which will intercept any request 
+Whenever there is a request to that specific URL, That request is sent to the servlet which would handle the request and proving the required response.
+But if we plan to secure that servlet such that only authorized and authenticated user can access the servlet then we have to implement servlet filters
+or chain of filters which will intercept any request 
 coming to the servlet and can check if the user who has requested the response from that servlet is indeed valid.
 
-A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. So any incoming request will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
-
-B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the request and creates the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
-
-C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. The Authentication Manager is only a interface and actual implementation of the authenticate method is provided by the ProviderManager. It call all the provided and and check which one accept the authentication object.
-
-D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like CasAuthenticationProvider, DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
+A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. 
+So any incoming request will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there 
+are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
+B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the 
+request and creates the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
+C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. 
+The Authentication Manager is only a interface and actual implementation of the authenticate method is provided by the ProviderManager. It call all the 
+provided and and check which one accept the authentication object.
+D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like 
+CasAuthenticationProvider, DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
 E.UserDetailsService - The UserDetailsService is an interface having a single method named loadUserByUsername.
 
 Que: Diffrence between OAUTH2 and JWT?
-Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
+Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want 
+to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse 
+it in general.
 OAUTH token can be refresh for longer time other wise it can be expired.
 JWT is a protocol. If you just haev simeple app with one to one communication with server return the token and used it for subscuent request for same server.
 
@@ -294,14 +300,17 @@ Ans: Bcrypt algorithem is used in most of the application.
 Q: Why OAuth2?
 A: It solve prolem where we share user crediantl over network whener we send request multipe time in common basic authntication.
 If we have multiple microservcies then we have to write common authintication logic to every microservcies to validate user.
-if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account credenatils during login.TwitAnalyzer used my credenatils to intract with my credenatils to intract with Twiter. So ther is a securit breach if app misuse credenatils.
+if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account credenatils during login.TwitAnalyzer used my credenatils to 
+intract with my credenatils to intract with Twiter. So ther is a securit breach if app misuse credenatils.
 
 Que: What is OAuth?
-Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, to use account information from an end-user without exposing the user's password.
+Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, 
+to use account information from an end-user without exposing the user's password.
 
 Que: How OAuth2 will work?
 Ans: It has seprate authorixation sever where it will validate the user credtails and provide the access token. This access token is on temporary bases.
-So whenevr user try to access the protected resource from server, server will ask for token. if user wont able to provide the token then it will redirect the request to Authorization server.
+So whenevr user try to access the protected resource from server, server will ask for token. if user wont able to provide the token then it will redirect 
+the request to Authorization server.
 
 Que: What are the component involve in Oauth2?
 Ans: 1.Autorization Server :The server that authorize the client to access the user resources. It will authenticate the user by valiation the details and provide the token.
