@@ -41,6 +41,10 @@ What are top 6 API architectural Styles ?
 crucial.
 6.Webhook : It is all about event driven, HTTP callback and sysnchronus operation.
 
+Que: What is mean by idempotance ?
+Ans: an operation is idempotent if executing it multiple times has the same effect as executing it once.
+- In REST APIs, this means that making the same request repeatedly should not change the result beyond the first application.
+
 Que: How to make my API request as Idempotance ?
 To get to a state of Idempotency, you can add a RequestId to your request and check if the request was done before. This means that you have to save the requestIds 
 in the system and validate them when the API is called.
