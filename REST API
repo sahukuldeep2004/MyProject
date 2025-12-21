@@ -55,6 +55,7 @@ Q: How many ways we can improve the performance of API ?
 3. Avoid N+1 problem
 4. Pagination and Sorting 
 5. Payload optimization: A. Compress and reduce the size of data B. use data formats like JSON or Protobuf C. 
+6. load balancing
 7. Asysnchronus logging:-Asynchronous logging is a technique that improves application logging performance by executing all I/O operations in a separate thread.
 
 Que: What is N+1 problem ?
