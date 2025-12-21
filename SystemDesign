@@ -266,7 +266,8 @@ Que : How to handle concurrent request in DB when multiple request are trying to
 Ans: Add the new field version with annotaion @Version in Entity class. Spring Boot + JPA/Hibernate microservice, optimistic locking(builtin support from hibernate) is automatic once you 
 add @Version
 Hibernate automatically: - A)Increments the version column on each update. B) Compares the version during UPDATE. C) Throws OptimisticLockException if another transaction has already updated the row.
-
+Note: Threadpool is for request for servlet container
+ConnectionPool is for data sql execution connection. Each request treated as new client.
 ################################################################C4 Model###################################
 Level 1 – System Context Diagram
 Purpose: Show how the system fits into its environment (people + external systems).
