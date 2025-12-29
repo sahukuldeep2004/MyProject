@@ -327,6 +327,17 @@ Ans: 1. User will login to any client app(Quara.com).2. Clinet will fwd the requ
 6. Clinet will send the auth token to resource server(where application is deployed) and ask for some info like account balance, etc.
 7. Resouce server will verify the auth token from authorization server(using APi or common DB) and provide teh details to user like account balance.
 
+Que: Octa, oauth2 and set up
+| Component         | Choice         |
+| ----------------- | -------------- |
+| Auth Protocol     | OAuth2 + OIDC  |
+| Identity Provider | Okta           |
+| Token Type        | JWT            |
+| Frontend          | SPA / Mobile   |
+| Backend           | Microservices  |
+| Authorization     | Scopes + roles |
+OAuth 2.0 with Okta (via OpenID Connect) can be used for secure authentication and authorization in an e-commerce application by issuing access tokens
+with scopes and claims that control user access to APIs and resources.
 
 Que:What is OAuth2 grant type?
 Ans: An grant is a credential representing the resource owner's authorization (to access its protected resources) used by the client to obtain an access token or OAuth grant types are methods for getting tokens to make requests to a resource server..
