@@ -277,7 +277,7 @@ coming to the servlet and can check if the user who has requested the response f
 
 A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. 
 So any incoming request will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there 
-are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
+are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter,OAuth2LoginAuthenticationFilter etc.
 B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the 
 request and creates the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
 C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. 
