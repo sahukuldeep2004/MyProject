@@ -221,8 +221,8 @@ bean that implements the Filter interface. Its the starting point in the springS
 the Spring configuration.
 
 que: What is Security Context and Security Context Holder in Spring Security?
-Ans: The SecurityContext and SecurityContextHolder are two fundamental classes of Spring Security. The SecurityContext is used to store the details of the 
-currently authenticated user, also known as a principle.
+Ans :In Spring Security, the SecurityContext holds the authentication details (like the current user and their roles), while the SecurityContextHolder is the central 
+class that stores and provides access to the SecurityContext, usually bound to the current thread.
 
 Que: How to get the current logged-in username in Spring Security?
 Ans: Normally, the getPrincipal() method returns the UserDetails object in Spring Security that contains all the details of the user that is currently logged in.
