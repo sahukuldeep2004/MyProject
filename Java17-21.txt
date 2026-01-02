@@ -42,6 +42,20 @@ https://javatechonline.com/record-in-java-with-examples/#:~:text=Just%20like%20a
 Pattern Matching for SWITCH statement:
 Pattern matching for switch statements and expressions, introduced as a preview feature in Java 17 and finalized in later versions, enhances the switch 
 construct by allowing it to match against types and values, not just exact constants.
+eg 1: try { }
+catch(final GlueException glueExcep){
+throw handleGlueexception(glueException, "querySchemaVersionMetadata")
+}
+
+private NonRetryableException handleGlueexception(final GlueException glueException, final string method){
+final message = switch (glueException){
+case InvalidInputException ignore -> "Request was invalid while calling" + method "!"
+case AccessDeniedException ignore -> "Access was denied while calling" + method "!"
+default -> "An unknow exception occur"
+};
+return NonRetryableException.builder().message(message).cause(glueException).build();
+}
+eg 2
 public class PatternMatchingSwitchExample {
 
     public static String describeObject(Object obj) {
