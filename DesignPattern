@@ -289,6 +289,35 @@ and you have a similar object already existing. Prototype pattern provides a mec
 new object and then modify it according to our needs. Prototype design pattern uses java cloning to copy the object.
 https://www.digitalocean.com/community/tutorials/prototype-design-pattern-in-java
 
+public interface Prototype<T> {
+    T clone();
+}
+public class Employee implements Prototype<Employee> {
+    private int id;
+    private String name;
+    private List<String> skills; // mutable field
+    public Employee(int id, String name, List<String> skills) {
+        this.id = id;
+        this.name = name;
+        this.skills = new ArrayList<>(skills); // defensive copy
+    }
+    // Deep clone implementation
+    @Override
+    public Employee clone() {
+        return new Employee(this.id, this.name, new ArrayList<>(this.skills));
+    }
+    // Getters
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public List<String> getSkills() { return new ArrayList<>(skills); }
+    // Utility method
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "', skills=" + skills + "}";
+    }
+}
+===========
+
 Que: Where we can use the Singleton class?
 Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
 https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
