@@ -1,0 +1,29 @@
++-------------------+
+|     Student       |
++-------------------+
+| - id: int         |
+| - name: String    |
+| - email: String   |
++-------------------+
+| + getId(): int    |
+| + getName(): String|
+| + getEmail(): String|
+| + setName(String): void |
+| + setEmail(String): void|
+| + displayInfo(): void   |
++-------------------+
+
+
+Class Name: Student
+
+Fields (Attributes):
+id → integer (private)
+name → string (private)
+email → string (private)
+
+Methods (Operations):
+getId() → returns student ID
+getName() → returns student name
+getEmail() → returns student email
+setName(String) → updates student name
+setEmail(String) → updates student email
