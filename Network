@@ -2,6 +2,9 @@ DNS: Translates website names to IP address. DNS service works much like a phone
 the domain and routing, and one needs to understand common types of resource records like A, CNAME, NS, MX, etc.
 CDN: The content delivery network is a server between the origin and the client. It stores and delivers content to the end users, 
 reducing latency and improving the system's overall performance.
+A CDN (Content Delivery Network) service example involves a global network of servers that cache content (images, videos, scripts) closer to users, 
+like Akamai, Cloudflare, Amazon CloudFront, and Google Cloud CDN, making websites load faster, as seen with Netflix (Open Connect).
+
 PUB SUB: Publish-subscribe messaging works asynchronously, involving publishers, topics, subscribers, and messages. It helps to 
 decouple the system, scalability, Durability, etc.
 
