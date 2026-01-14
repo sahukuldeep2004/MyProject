@@ -115,6 +115,22 @@ network congestion, transport protocol, and network infrastructure.
  • Designing WhatsApp Messenger
  • Designing Instagram
 
+Rate Limiting :-
+Rate limiting is a technique to limit network traffic to prevent users from exhausting system resources. Ratelimiter restricts attackers to flooding a target system 
+with requests and consuming too much network capacity, storage, and memory.APIs that use rate limiting can throttle or temporarily block any client that tries 
+to make too many API calls. It might slow down a throttled user’s requests for a specified time or deny them altogether. Rate limiting ensures that legitimate 
+requests can reach the system and access information without impacting the overall application’s performance.
+why: Rate limiting is a crucial part of a modern cybersecurity strategy. It addresses several attack techniques that affect the incoming request rate.
+A DDoS(Distributed Denil of Service) attack attempts to overwhelm the target system with traffic, making it unavailable to legitimate users. Rate limiting mitigates DDoS threats by 
+preventing any given traffic source from sending too many requests.
+How : Rate limiting works within applications, not in the web server. Rate limiting typically involves tracking the IP addresses where requests originate 
+and identifying the time lapsed between requests. IP addresses are the application’s main way to identify who has made each request.
+Types of Rate Limits : user rate limit, geographics rate limit, server rate limit
+Algo used for  Ratelimit : 
+Fixed Window Rate limit :restrict the number of requests allowed during a given timeframe (window)
+Leaky Bucket Rate Limiting :-They focus on the fixed length of request queues without considering the time. The server will service requests on a first-come, 
+first-serve basis. New requests join the back of the queue. The server will drop a new request if it arrives when the queue is full
+
 Data Redundancy :
 Data redundancy is when multiple copies of the same information are stored in more than one place at a time.A typical example of this is customer information
 that is replicated across departments’ separate systems (e.g., finance, marketing, sales).
