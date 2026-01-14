@@ -141,6 +141,11 @@ Sharding is a method for distributing a single dataset across multiple databases
 machines. This allows for larger datasets to be split into smaller chunks and stored in multiple data nodes, 
 increasing the total storage capacity of the system. Sharding is a form of scaling known as horizontal scaling or 
 scale-out, as additional nodes are brought on to share the load.
+- Sharding = Horizontal Partitioning
+Instead of storing all data in one monolithic database, rows are divided into subsets and placed on different servers.
+- Shard = Each subset of data. Together, shards form a distributed database system.
+- Shard Key = A chosen attribute (e.g., user ID, region) that determines which shard a record belongs to.
+MongoDB, Cassandra, DynamoDB: Built‑in sharding support.
 
 Database indexes:
 An index is a database structure that you can use to improve the performance of database activity. A database table can 
