@@ -69,6 +69,17 @@ Every write operation updates both the database and the cache simultaneously.
 Use case: e-commerce inventory, price updates, real-time financial data.
 “I’d prefer read-through for high-traffic pages where occasional staleness is fine. For sensitive or fast-changing data, write-through gives 
 strong consistency at the cost of write latency.”
+REST vs GrapQL
+REST:Use case: CRUD apps, admin panels, traditional backends
+GraphQL:-Use case: Dynamic UIs, mobile-first apps, microservices gateway
+“For simple CRUD services, REST is perfect. But when frontend demands are dynamic or nested, GraphQL provides flexibility — as long as I layer it with cost 
+controls and caching.”
+Batch Processing vs Stream processing
+Batch : Data is collected over a period, then processed in chunks.
+Example: Generating daily sales reports, processing logs at midnight.
+Stream processing :- Data is processed in real time (or near real time) as it arrive.
+Example: Showing live stock prices, flagging suspicious login attempts.
+
 3. CAP Theorem: https://lnkd.in/g3hmVamx
 4. ACID Transactions: https://lnkd.in/gMe2JqaF
 5. Rate Limiting: https://lnkd.in/gWsTDR3m
