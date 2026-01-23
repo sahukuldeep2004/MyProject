@@ -341,6 +341,56 @@ in a microservices architecture. In microservices, a single user request might i
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
 Use jar as spring-cloud-starter-sleuth & spring-cloud-starter-zipkin
+****************************************************************************
+8 Common System Design Problems and Solutions
+1. Slow Reads: Use Caching for Faster Reads
+When users experience slow response times, it often stems from repeated trips to the database. In high-traffic systems, fetching data directly 
+from the database for every request can bog down the system and degrade performance. Enter caching—a proven technique for boosting read performance.
+Solution:
+Use a caching layer, like Redis or Memcached, to store frequently requested data in memory. When a request is made, the system checks the 
+cache first before querying the database. This reduces the load on the database, speeds up response times, and improves the overall user experience.
+2.High-Write Traffic: Use Asynchronous Writes
+A system bombarded with write operations can quickly become overwhelmed, causing slowdowns, especially in real-time applications. For instance, 
+an e-commerce platform that logs thousands of transactions per second may experience lag if all writes are processed synchronously.
+To handle high-write traffic, implement asynchronous writing mechanisms using message queues like Kafka, RabbitMQ, or AWS SQS. Asynchronous writes
+allow the system to process and queue write operations without blocking the main thread, ensuring the system remains responsive
+3. Handling Large Files: Use Distributed Storage
+When dealing with large files—such as videos, high-resolution images, or data backups—traditional storage systems can struggle to keep up with the 
+demands. As the volume of data grows, both in size and quantity, storing everything in a single location not only slows down access but also 
+increases the risk of system failure.
+Solution: Use Distributed Storage
+Distributed storage systems, such as Amazon S3, Google Cloud Storage, or Hadoop Distributed File System (HDFS), are designed to handle 
+massive datasets by distributing files across multiple servers. This ensures that data is not only stored efficiently but can also be retrieved 
+quickly, even under heavy load
+4.Single Point of Failure: Implement Redundancy and Failover
+Having a Single Point of Failure (SPOF) is like putting all your eggs in one basket. If that component fails, the entire system comes 
+crashing down, leading to downtime and lost revenue.
+Solution:
+Implement redundancy and failover strategies to ensure system reliability. This involves replicating critical components (servers, databases, etc.) 
+and using failover mechanisms to automatically switch to backups in case of failure. Tools like Zookeeper, AWS RDS Multi-AZ, and Consul can help 
+automate failover processes.
+5. Read-Heavy Systems: Use Proper Indexing
+In read-heavy systems, querying large databases without proper indexing can lead to slow response times. Without indexes, the database has to scan
+the entire table for the relevant data, which can be time-consuming and inefficient, especially in large datasets.
+Solutions:To enhance query performance, design proper indexes on columns that are frequently queried. Indexes allow the database to quickly locate 
+the data, bypassing the need for a full table scan. Be mindful of which fields to index, as over-indexing can also affect write performance.
+6.High Availability : Use Sharding
+As data grows, the capacity of a single database server can be quickly exceeded. Instead of scaling vertically (adding more resources to a 
+single server), which has limitations, horizontal scaling via sharding can distribute the load across multiple servers.
+Solution:
+Sharding breaks your database into smaller, more manageable pieces (shards), each responsible for a subset of data. This allows for distributed 
+query execution and increases scalability. Many NoSQL databases like MongoDB and Cassandra support sharding out of the box.
+7. High Latency: Use a Content Delivery Network (CDN)
+Latency, especially for globally distributed systems, is a significant issue. When users from different parts of the world access a central 
+server, the physical distance can cause delays, leading to high latency and poor user experience.
+Solution:
+Content Delivery Networks (CDNs), such as Cloudflare or Akamai, distribute copies of your content to servers located closer to users. By caching 
+content like images, CSS, and JavaScript files on edge servers worldwide, the CDN reduces the distance data has to travel, cutting down on latency.
+8.Monitoring and Alerting : Centralised Logging and Monitoring
+Without a proper logging system, identifying performance bottlenecks and slow issues becomes a daunting task.
+Solution:
+Set up a centralised logging solution like the ELK stack (Elasticsearch, Logstash, Kibana) or Grafana and Prometheus for monitoring. This allows you 
+to collect, analyse, and visualise logs in real time.
 ********************************************************************************************************
 Que : How to handle concurrent request in DB when multiple request are trying to update the same row in DB?
 Ans: Add the new field version with annotaion @Version in Entity class. Spring Boot + JPA/Hibernate microservice, optimistic locking(builtin support from hibernate) is automatic once you 
@@ -350,6 +400,7 @@ Sol 2 : we can also use pessimistic locking as well. In tis case row will be loc
 We can use annotation like @Lock(LockModeType.PESSIMISTIC_WRITE) on method which try to update the db table row.
 Note: Threadpool is for request for servlet container
 ConnectionPool is for data sql execution connection. Each request treated as new client.
+*****************************************************************************************
 ################################################################C4 Model###################################
 Level 1 – System Context Diagram
 Purpose: Show how the system fits into its environment (people + external systems).
