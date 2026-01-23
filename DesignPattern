@@ -33,9 +33,11 @@ https://www.bmc.com/blogs/cap-theorem/#:~:text=The%20CAP%20theorem%20is%20a,or%2
 The CAP theorem is a belief from theoretical computer science about distributed data stores that claims, in the event of a network failure on a 
 distributed database,it is possible to provide either consistency or availability—but not both.
 Consistency:- All reads receive the most recent write or an error.Consistency refers to every client having the same view of the data.
+i.e. Every node returns the same most recent data, no matter which one you hit
 eg. In financial data is good example where we need up to date balance. Mongo DB, Redis.
 Availability:-All reads contain data, but it might not be the most recent.Availability means that each read or write request for a data item will 
  either be processed successfully or will receive a message that the operation cannot be completed.
+i.e. Every request gets a response, even if it’s not the latest version.
  eg. we need ecommerce app cart or product should be available always.
  eg. Casandra, DynamoDB.
 
@@ -45,10 +47,11 @@ database experiences a network failure, you can provide either consistency or av
 In the theorem, partition tolerance is a must. The assumption is that the system operates on a distributed data store so the system, by nature, operates with 
 network partitions. 
 Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
-What is mean by Partion :
+What is mean by Partition :
 A partition is a communications break within a distributed system—a lost or temporarily delayed connection between two nodes. 
 Partition tolerance means that the cluster must continue to work despite any number of communication breakdowns between 
 nodes in the system.
+Note: In a network partition, I’d prefer consistency for money transfer services, and availability for user comments or likes. I’ll design my system based on this choice.
 
 Que: Strong consistency vs weak consistency?
 Ans: Strong consistency: The data in all nodes is the same at any time. At the same time, you should get the value of key1 in node A and the value
