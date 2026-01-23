@@ -12,7 +12,10 @@ No matter your programming language, start by understanding the basics of how sy
 1. Scalability: https://lnkd.in/gpge_z76
 Scalability is the property of a system to handle a growing amount of load by adding resources to the system.
 Vertical Scaling (Scale up):-This means adding more power to your existing machines by upgrading server with more RAM, faster CPUs, or additional storage.
-Horizontal Scaling (Scale out):-This means adding more machines to your system to spread the workload across multiple servers
+Horizontal Scaling (Scale out):-This means adding more machines to your system to spread the workload across multiple servers.
+Use vertical scaling for simplicity and prototyping.
+Use horizontal scaling when you're thinking production-grade, distributed, and future-proof.
+
 2. Latency vs Throughput: https://lnkd.in/g_amhAtN
 Latency is the delay in network communication. It shows the time that data takes to transfer across the network. Networks with a longer delay or lag 
 have high latency, while those with fast response times have lower latency. In contrast, throughput refers to the average volume of data that can 
@@ -22,6 +25,50 @@ Best : high throughput * low latency
 Throughput can be measured in MBps and latency in milliseconds.
 Throughput is imapcted by Bandwidth, network processing power, packet loss, and network topology and Latency is impacted by Geographical distances, 
 network congestion, transport protocol, and network infrastructure. 
+3. SQL vs NoSQL
+SQL (Relational DBs like Postgres, MySQL)
+Data is stored in structured, related tables.Strong ACID guarantees — transactions, consistency.Schema is fixed — changes require migrations.
+Use case: Banking systems, e-commerce orders, employee records.
+Strength: Data integrity and complex joins.
+
+NoSQL (MongoDB, DynamoDB, Cassandra)
+Use case: User activity logs, social feeds, product catalogs.
+Strength: Scale, performance, and schema flexibility.
+
+Feature 	        SQL (Relational)	              NoSQL (Non-relational)
+Data Model	       Table-based (Rows & Columns)	      Document, Key-value, Graph, or Wide-column
+Schema	          Rigid, predefined                   upfront	Dynamic and flexible
+Scalability	      Vertical (Upgrading hardware)	        Horizontal (Adding more servers)
+Query Language	  Standardized SQL	                    Varies by database (e.g., MQL for MongoDB)
+Integrity	      ACID-compliant (Strong consistency)	BASE-compliant (Eventual consistency)
+Best For	      Complex queries & transactions	    Large-scale data & fast read/writes
+
+4.  Sync vs Async Processing
+When to Use Sync:
+You need immediate user feedback (e.g., login, payment).
+The operation is quick and deterministic.
+Failure needs to be known immediately (e.g., user authentication).
+✅ When to Use Async:
+Task takes longer (e.g., video processing, sending emails).
+You want to decouple services (e.g., orders → inventory → shipment).
+You need to absorb spikes in traffic via a queue.
+“We can process the request synchronously for the user-facing part, and enqueue secondary tasks for async processing—this improves 
+responsiveness while maintaining reliability."
+
+5.Read-Through vs Write-Through Caching
+The application queries the cache first.
+If there's a cache miss, the app fetches from the database, returns the value to the client, and writes the result into the cache.
+✅ Simple and reactive: only fetch what’s needed
+✅ Works well for read-heavy systems
+Use case: Product detail pages, user profiles, dashboards.
+Write-Through Caching
+Every write operation updates both the database and the cache simultaneously.
+✅ Cache is always in sync with DB — minimal chance of stale data
+❌ Adds write latency, and if the cache layer fails, writes may fail too
+✅ Ideal for read-freshness critical systems like real-time pricing, stock levels
+Use case: e-commerce inventory, price updates, real-time financial data.
+“I’d prefer read-through for high-traffic pages where occasional staleness is fine. For sensitive or fast-changing data, write-through gives 
+strong consistency at the cost of write latency.”
 3. CAP Theorem: https://lnkd.in/g3hmVamx
 4. ACID Transactions: https://lnkd.in/gMe2JqaF
 5. Rate Limiting: https://lnkd.in/gWsTDR3m
