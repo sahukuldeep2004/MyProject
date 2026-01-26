@@ -200,6 +200,8 @@ One should note that messages are filtered and routed depending on the type of e
 Caching is a technique used to store and retrieve frequently accessed data or computations to speed up subsequent 
 data requests. By storing data temporarily in a cache, systems can reduce the time and resources required to fetch
 the same data from its original source, leading to improved performance and reduced latency.
+Redis (Remote Dictionary Server) is an open-source, in-memory data store designed for high performance and versatility.
+Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries.
 Different types of caching:
 Caching can be broadly categorized into two types: local caching and distributed caching.
 Local caching refers to storing data on a single machine or within a single application. It’s commonly used in 
@@ -209,6 +211,11 @@ Distributed caching involves storing data across multiple machines or nodes, oft
 is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed 
 caching ensures that data is available close to where it’s needed, even if the original data source is remote or under 
 heavy load.
+So Redis provides a different range of persistence options.
+RDB (Redis Database): The RDB persistence performs point-in-time snapshots of your dataset at specified intervals.
+AOF (Append Only File): The AOF persistence logs every write operation received by the server, that will be played again at server startup, 
+reconstructing the original dataset.
+https://medium.com/the-modern-scientist/caching-a-dive-into-in-memory-and-redis-caches-7b9491a1fa1b
 
 ACID transaction:
 Atomicity :Atomicity in ACID transactions guarantees that a transaction is treated as a single, indivisible unit of work. 
