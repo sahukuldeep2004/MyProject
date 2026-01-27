@@ -10,24 +10,38 @@ renege ---vada karke mukur jana
 
 Issue: Apache FOP issue while writing to PDF file. I was not ale to write the some french text on PDF file ut ale to wwrite ENGLISH and other lang.
 Issue: Deployed the code in PSP having issue with keystore in .p12 certificate but same is working in lower env.
+I am kuldeep Kumar Sahu. I have more than  17 years of experience in IT industry. Last 4.5 years I am associated with CTS.
+I have worked in many domain  like Insurance, Finance, Retail and Logistics. But last 10 years I am working in Retail & Logistic domain.
+During my past experience I have worked in Agile and Water fall methodology  project.
 
+Currently working on Ally bank account with Fulcrum project. It uses event driven architecture with multiple diffrent pattern for producer/consumer.
+We are using apache Kafka(AWS MSK) for distributed event streaming platform. Using Java 17 for code development with Springboot3.X.
+For version tool we are using Gitlab and same for pipeline as well.
+For code coverage and static analytics we are using plugn in for report.
+For contaraized the app we are using docker and for managing/Orchastarion them we are usig AWS ECS with ECR. 
+We are doing the monitoring/observalabilty of application by Cloudwatch(aws alert),promothis,graphana and Splunk(APIGEE).
+All the deployment process is working through Gitlab CI/CD pipeline. 
+We are deploying our service in AWS cloud and using terraform for resource creation in aws.
 
+Description: Fulcrum is the event driven platform that supoort real time intelligence and event based integration between applications 
+and other data platform.
+ATOM: Agile target operating model with discovery, ideation and epic creation with execution.
 
 Role: 1. Architect 2. Lead role 3. Indivisual developer.
-How to start work on requirment/design part:  Discovery,Ideation, Execution
-1. For any new requiremnt, we follow the ATOM(Agile Traget Operating Model) process. Where we need to prepare the doc about the high levl solution with 
-pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
-2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the 
-problem in technical manner.
-3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and 
-provide the story point.
+How to start work on requirment/design part:
+1. For any new requiremnt, we follow the ATOM process. Where we need to prepare the doc about the high levl solution with pron/cons, duable or not in our product with some high level solution. This solution needs to present to EA.
+2. After that we prepare the design doc with about to achive the end goal in technical term sothat developers can understand how we want to solve the problem in technical manner.
+3. Then creat teh EPIC from phase manner then create the story in that. Once it is is done we start discussing about the every story in detail and provide the story point.
 
+Currently working on Skava Product. It use mnaily microservices based architecture and all the services are based on springoot based.
+and for dataase side we are using MongoDB and MySQL. For interservice communication we are using RabbitMQ.We have also exposed REST API of Orachastarion layer to used by UI app.
+For versioning tool we are using git and for build pipe line we are using Jenkin. For code coverage and static anlysis we are using SONAR Qube. We are alos using ELK for logging purpose and for monitoring we are using instana. For contaraized the app we are using docker and for managing them we are usig AWS EKS.
 
-Sumologic
+Priviously I have worked Kafka where I have written Producer & Consumer in Springboot and  used REST API to shared the fileterd data to other3rd party which we received from consuers.
+I have also experience in production support to handle the incident based on their priority.
+I am always eager to learn new things in my life.
 
-
-MicroServices used in, Catalog, Search,Pricing,Shipping, Inventory,Promotion,order,Customer,cart,Reporting,Loyalty,PaymnetGateway,Address,Tax,
-EMail/SMSNotification.
+MicroServices used in, Catalog, Search,Pricing,Shipping, Inventory,Promotion,order,Customer,cart,Reporting,Loyalty,PaymnetGateway,Address,Tax,EMail/SMSNotification.
 
 O2I is based on event driven architecture.
 ==================================================================================================
