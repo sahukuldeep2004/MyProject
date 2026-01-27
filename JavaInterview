@@ -14,7 +14,7 @@ I am kuldeep Kumar Sahu. I have more than  17 years of experience in IT industry
 I have worked in many domain  like Insurance, Finance, Retail and Logistics. But last 10 years I am working in Retail & Logistic domain.
 During my past experience I have worked in Agile and Water fall methodology  project.
 
-Currently working on Ally bank account with Fulcrum project. It uses event driven architecture with multiple diffrent pattern for producer/consumer.
+Currently working on A*** bank account with Ful**** project. It uses event driven architecture with multiple diffrent pattern for producer/consumer.
 We are using apache Kafka(AWS MSK) for distributed event streaming platform. Using Java 17 for code development with Springboot3.X.
 For version tool we are using Gitlab and same for pipeline as well.
 For code coverage and static analytics we are using plugn in for report.
@@ -23,7 +23,7 @@ We are doing the monitoring/observalabilty of application by Cloudwatch(aws aler
 All the deployment process is working through Gitlab CI/CD pipeline. 
 We are deploying our service in AWS cloud and using terraform for resource creation in aws.
 
-Description: Fulcrum is the event driven platform that supoort real time intelligence and event based integration between applications 
+Description: Ful**** is the event driven platform that supoort real time intelligence and event based integration between applications 
 and other data platform.
 ATOM: Agile target operating model with discovery, ideation and epic creation with execution.
 
