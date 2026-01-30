@@ -665,6 +665,19 @@ Partition Tolerance: Partition tolerance refers to the ability of a distributed 
 communication between nodes. This is an essential requirement for a distributed system, as it allows the system to continue functioning even if some nodes 
 or communication channels are unavailable.
 
+Strategies and techniques used to ensure a system is partition-tolerant include:
+Data Replication: Storing multiple copies of data across different nodes or geographical locations ensures that even if some nodes become unreachable, 
+others can continue to serve requests.
+Failover Mechanisms: Automatically promoting a replica node to a primary role if the original primary fails or becomes isolated due to a partition.
+Retry Logic: Implementing mechanisms for clients to automatically retry failed network requests, as network issues may be transient.
+
+During a network partition, a system must operate in one of two modes: 
+CP (Consistency and Partition Tolerance): The system ensures all clients see the same, most recent data, even during a partition. To do this, it makes 
+any non-synchronized nodes unavailable (refusing requests) until the partition is resolved and data is consistent across the cluster.
+AP (Availability and Partition Tolerance): The system ensures every request receives a response (is available), even during a partition. 
+This may mean that some responses return slightly outdated data, as nodes cannot communicate to ensure the latest updates have been received by all. 
+In such systems, conflicts are resolved later, when the network partition heals (known as eventual consistency). 
+
 Que: What is fault tolerance ?
 Ans: Fault tolerance refers to the ability of a system (computer, network, cloud cluster, etc.) to continue operating without interruption when 
 one or more of its components fail.
