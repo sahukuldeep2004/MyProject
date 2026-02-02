@@ -1,11 +1,13 @@
 Que: Difference Between Architectural Style, Architectural Patterns and Design Patterns?
-Ans: An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem 
+Ans: Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
+An Architectural Pattern is a way of solving a recurring architectural problem. MVC, for instance, solves the problem 
 of separating the UI from the model. Sensor-Controller-Actuator, is a pattern that will help you with the problem of 
 actuating in face of several input senses.
+
 An Architectural Pattern is a specific, reusable solution to a common problem or design issue in software architecture.
 For example: 3-tier, N-tier, MVC, Model View ViewModel, Publish-subscribe,Sensor-controller-actuator...
+Layered Architecture, Client-Server Architecture,Event-Driven Architecture,Microservices Architecture,Master-Slave
 
-Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
 Category	            Architecture styles
 Communication	        SOA, ROA, Message Bus
 Deployment	            Client/Server
