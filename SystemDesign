@@ -173,6 +173,16 @@ Example: Showing live stock prices, flagging suspicious login attempts.
  • Designing WhatsApp Messenger
  • Designing Instagram
 
+Throttling :
+API Throttling is a technique used in system design to control the rate at which API requests are processed. It temporarily limits the number of requests a client 
+can make in a given time frame to prevent sudden traffic spikes or server overload. By enforcing throttling, systems ensure that resources are used efficiently 
+and consistently, avoiding potential downtime caused by excessive demand. Throttling is typically applied to manage burst traffic, maintaining the availability 
+and performance of the API for all users while preventing a single client from consuming too many resources.
+
+Rate limiting and throttling both manage API traffic, but differ in their approach: rate limiting strictly blocks excess requests (often with a 429 error) over a 
+time period, whereas throttling delays or queues requests to smoothly handle traffic spikes. Rate limiting is ideal for enforcing usage quotas, while throttling 
+ensures service availability under heavy load. 
+
 Rate Limiting :-
 Rate limiting is a technique to limit network traffic to prevent users from exhausting system resources. Ratelimiter restricts attackers to flooding a target system 
 with requests and consuming too much network capacity, storage, and memory.APIs that use rate limiting can throttle or temporarily block any client that tries 
