@@ -290,6 +290,12 @@ Distributed caching involves storing data across multiple machines or nodes, oft
 is essential for applications that need to scale across multiple servers or are distributed geographically. Distributed 
 caching ensures that data is available close to where it’s needed, even if the original data source is remote or under 
 heavy load.
+Common Caching Patterns/startegy 
+Cache-Aside (Lazy Loading) :- App checks cache; if miss, app fetches from DB, then writes to cache.
+Read-Through :- App asks cache for data; if miss, cache fetches from DB, stores, then returns data to app.
+Write-Through:-App writes to cache, cache immediately writes to DB.
+Write-Behind (Write-Back) :-App writes to cache; cache writes to DB asynchronously later.
+Refresh-Ahead:- Proactively refreshes cache before data expires
 So Redis provides a different range of persistence options.
 RDB (Redis Database): The RDB persistence performs point-in-time snapshots of your dataset at specified intervals.
 AOF (Append Only File): The AOF persistence logs every write operation received by the server, that will be played again at server startup, 
