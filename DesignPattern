@@ -172,38 +172,38 @@ object and let the subclasses decide which class to instantiate.
 We create object without exposing the creation logic to the client and refer to newly created object using a common interface.
 This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.
 
-public interface Shape {
-   void draw();
+public interface Employee {
+   void display();
 }
-public class Rectangle implements Shape {
+public class ContractorEmp implements Employee {
 
    @Override
-   public void draw() {
-      System.out.println("Inside Rectangle::draw() method.");
+   public void display() {
+      System.out.println("Inside ContractorEmp::display() method.");
    }
 }
-public class Square implements Shape {
+public class OtherEmployee implements Employee {
 
    @Override
-   public void draw() {
-      System.out.println("Inside Square::draw() method.");
+   public void display() {
+      System.out.println("Inside OtherEmployee::display() method.");
    }
 }
-public class ShapeFactory {
+public class EmployeeFactory {
 	
-   //use getShape method to get object of type shape 
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
+   //use getEmployee method to get object of type employee 
+   public Employee getEmployee(String employeeType){
+      if(employeeType == null){
          return null;
       }		
-      if(shapeType.equalsIgnoreCase("CIRCLE")){
-         return new Circle();
+      if(employeeType.equalsIgnoreCase("ContractorEmployee")){
+         return new ContractorEmployee();
          
-      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
-         return new Rectangle();
+      } else if(employeeType.equalsIgnoreCase("PermanentEmployee")){
+         return new PermanentEmployee();
          
-      } else if(shapeType.equalsIgnoreCase("SQUARE")){
-         return new Square();
+      } else if(employeeType.equalsIgnoreCase("OtherEmployee")){
+         return new OtherEmployee();
       }
       
       return null;
@@ -212,25 +212,25 @@ public class ShapeFactory {
 public class FactoryPatternDemo {
 
    public static void main(String[] args) {
-      ShapeFactory shapeFactory = new ShapeFactory();
+      EmployeeFactory empFactory = new EmployeeFactory();
 
       //get an object of Circle and call its draw method.
-      Shape shape1 = shapeFactory.getShape("CIRCLE");
+      Employee emp1 = empFactory.getEMployee("ContractorEmployee");
 
       //call draw method of Circle
-      shape1.draw();
+      emp1.display();
 
       //get an object of Rectangle and call its draw method.
-      Shape shape2 = shapeFactory.getShape("RECTANGLE");
+      Employee emp2 = empFactory.getEMployee("PermanentEmployee");
 
       //call draw method of Rectangle
-      shape2.draw();
+      emp2.display();
 
       //get an object of Square and call its draw method.
-      Shape shape3 = shapeFactory.getShape("SQUARE");
+      Employee emp3 = empFactory.getEMployee("OtherEmployee");
 
       //call draw method of square
-      shape3.draw();
+      emp3.display();
    }
 }
 Que: Abstarct Factory Pattern ?
