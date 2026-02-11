@@ -846,6 +846,10 @@ With container technology, IP addresses are dynamically allocated to the service
 changes.A service registry needs to be created which will keep the metadata of each producer service. A service instance should register to the registry when starting 
 and should de-register when shutting down.The consumer or router should query the registry and find out the location of the service. The registry also needs to do a health 
 check of the producer service to ensure that only working instances of the services are available to be consumed through it.
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
 
 c. Authentication and Authorization: -
 Managing user identities, verifying credentials, and controlling access permissions across all services.
@@ -873,7 +877,12 @@ Syntax: @HystrixCommand(fallbackMethod = "callStudentServiceAndGetData_Fallback"
 https://blog.bitsrc.io/circuit-breaker-pattern-in-microservices-26bf6e5b21ff
 Advantage : It prevents cascading failures by temporarily halting requests to a failing service, allowing it time to recover and preventing the entire 
 system from being overwhelmed. It ensures that one service's issues don't bring down others.
-
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-spring-boot3</artifactId>
+    <version>2.2.0</version> <!-- Use the latest version -->
+</dependency>
+++++++++++++++++++++++++++++++++++++++
 Zipkin is the tool for monitoring the API fail or pass info.
 Slueth is the tool which tarck the every request from one service to another service.
 
