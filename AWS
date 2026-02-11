@@ -77,6 +77,9 @@ Workforce Productivity
 Cost avoidance
 Operational resilience
 Business agility
+Que: How to choose right cloud provider?
+Ans: Choosing the right cloud provider requires aligning business needs with technical, financial, and security requirements. Key factors include evaluating 
+service reliability, pricing models (pay-as-you-go vs. reserved), compliance standards (GDPR, HIPAA), data center locations, and support services.
 
 What is the difference between an IAM role and an IAM user?
 Ans: An IAM role is an IAM entity that defines a set of permissions for making AWS service requests, while an IAM user has permanent long-term credentials and is used to interact with the AWS services directly.
