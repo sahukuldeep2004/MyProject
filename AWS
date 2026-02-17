@@ -32,7 +32,7 @@ ALB:Provides the ability to route HTTP and HTTPS traffic based upon rules, host 
 The network load balancer just forward requests whereas the application load balancer examines the contents of the HTTP request header to determine where to route the request.
  So, the application load balancer is performing content based routing.
 
-Que: AWS type of encryption for KMS(Key Management Services) services?
+Que: AWS type of encryption for KMS(Key Management Services) services?(using for connector)
 Ans: Symmetric & Asmmetric encryption.
 Symmetric Encryption: It will use same key for encryption & decryption for text data.
 Asymmetric Encryption: It use use diffrent key which is public key for encryption & secrect key for decryption.
@@ -41,7 +41,7 @@ KMS use Symmetric encryption.
 Que: How to create a EKS services ?
 Ans: https://www.youtube.com/watch?v=VeC85k6PAY4&t=289s
 
-Que: How u encrypt data in transit in AWS?
+Que: How u encrypt data in transit in AWS? (ACM is using for TLS certificate)
 Ans: Store encryption keys and certificates securely and rotate them at appropriate time intervals while applying strict access control; 
 for example, by using a certificate management service, such as AWS Certificate Manager (ACM).
 there are many other way as well.
