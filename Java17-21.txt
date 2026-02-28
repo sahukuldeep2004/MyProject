@@ -240,3 +240,50 @@ public record Truck(int loadCapacity, String registrationNumber) implements Vehi
         return loadCapacity;
     }
 }
+==================================================
+ThreadPool : Colletion of threads which are available to perform the submitted task. Once task completed, worker thread get back to ThreadPool 
+and wait for new task to assign. Means thread can be reused.
+package java.util.concurrent
+Executor(I) ->ExecutorService(I) -> ThreadPoolExecutor(C)
+
+import java.util.concurrent.*;
+public class CustomThreadPoolExecutorExample {
+    public static void main(String[] args) {
+        // Manually configure the ThreadPoolExecutor
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+            2,       // corePoolSize
+            4,       // maximumPoolSize
+            10,      // keepAliveTime
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(2), // queue
+            new ThreadPoolExecutor.CallerRunsPolicy() // policy
+        );
+
+        // Submit tasks
+        for (int i = 1; i <= 6; i++) {
+            executor.execute(() -> System.out.println(Thread.currentThread().getName() + " running task"));
+        }
+        executor.shutdown();
+    }
+}
+===========
+The corePoolSize parameter is the number of core threads that will be instantiated and kept in the pool. When a new task comes in, if all core threads are busy and the internal queue is full, the pool is allowed to grow up to maximumPoolSize.
+
+The keepAliveTime parameter is the interval of time for which the excessive threads (instantiated in excess of the corePoolSize) are allowed to exist in the idle state. By default, the ThreadPoolExecutor only considers non-core threads for removal.
+---------------
+What is Virtaul thread.
+These resources typically explain that virtual threads are lightweight, managed by the JVM rather than the OS, and designed for I/O-intensive operations to achieve high throughput. They allow developers to maintain the traditional, simple thread-per-request programming model without the overhead of heavy platform threads.
+It is best for I/O intensive task but tomcate or paltform can be used for CPU intesive task for better performance.
+public void generateReportForRegion(String region) {
+Executor virtualThreadExecutor = Executors.newVirtualThreadPerTaskExecutor();
+        virtualThreadExecutor.execute(()->{
+            log.info("Virtual generating report for region: {} | {}", region, Thread.currentThread());
+
+            List<Customer> customers = repository.findByRegion(region);//1
+            try {
+                CsvReportUtil.writeCustomersToCsv("virtual_" + region, customers);//2
+            } catch (Exception e) {
+                System.out.println("❌ Virtual Error writing report for region: " + region);
+            }
+        });
+    }
