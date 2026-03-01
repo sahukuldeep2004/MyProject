@@ -365,6 +365,37 @@ in a microservices architecture. In microservices, a single user request might i
 making it hard to identify where issues occur. Distributed tracing provides a way to follow the path of a request, 
 helping developers see the flow of data and pinpoint any problems.
 Use jar as spring-cloud-starter-sleuth & spring-cloud-starter-zipkin
+============================================================================================
+Consistent Hashing:-Consistent Hashing is a distributed system technique used to evenly distribute data across multiple servers (or nodes) in a 
+way that minimizes data movement when nodes are added or removed.
+It is widely used in distributed databases, caching systems, and microservices architectures, Loadbalancer.
+
+Why Do We Need Consistent Hashing?
+In distributed systems (like distributed caches or databases), we need to:
+Distribute data across multiple machines
+Scale horizontally (add/remove servers)
+Maintain availability
+Minimize data reshuffling
+With traditional hashing, if you use:
+server = hash(key) % N
+When N (number of servers) changes, almost all keys get remapped.
+This causes massive data movement and cache invalidation.
+
+Consistent hashing solves this problem.
+How Consistent Hashing Works
+1️⃣ Hash Ring Concept
+Imagine a circular hash space (0 to 2³² – 1).
+Both servers and data keys are hashed into this ring.
+Each key is assigned to the next server clockwise on the ring.
+2️⃣ Node Addition
+When a new server is added:
+Only the keys between the new server and its previous neighbor are reassigned.
+Other keys remain unaffected.
+3️⃣ Node Removal
+When a server is removed:
+Only its keys move to the next server.
+Rest of the system remains unchanged.
+👉 Only about 1/N keys move, instead of almost all keys.
 ****************************************************************************
 8 Common System Design Problems and Solutions
 1. Slow Reads: Use Caching for Faster Reads
