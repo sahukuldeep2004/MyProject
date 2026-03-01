@@ -396,6 +396,33 @@ When a server is removed:
 Only its keys move to the next server.
 Rest of the system remains unchanged.
 👉 Only about 1/N keys move, instead of almost all keys.
+
+Use consistent hashing when:
+You need stable key → node mapping
+You want minimal data movement
+You have stateful routing requirements
+Avoid it when:
+Your system is fully stateless
+External storage handles state
+Simpler load balancing works
+=============================================
+What Is a Sticky Session?
+A sticky session (also called session affinity) is a load-balancing technique where:
+Once a user’s request is routed to a particular server instance, subsequent requests from that same user are sent to the same server.
+Instead of distributing every request randomly, the load balancer “sticks” a client to one backend.
+How It Works:-
+Sticky sessions are typically implemented at the load balancer layer using:
+Cookies (e.g., server inserts a session cookie)
+IP-hash routing
+Custom header–based routing
+
+Why Sticky Sessions Exist:
+Originally used when applications were stateful.
+Example:
+User logs in
+Session stored in server memory
+Next request must go to same server
+Otherwise, session is lost
 ****************************************************************************
 8 Common System Design Problems and Solutions
 1. Slow Reads: Use Caching for Faster Reads
