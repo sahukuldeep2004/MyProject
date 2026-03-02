@@ -447,3 +447,13 @@ public ResponseEntity<String> getAdminData() { ... }
 - JWT carries identity + roles.
 - Sent in Authorization: Bearer <token> header.
 - Validated on each request.
+=============================================
+Que: how an API Gateway handles Authentication & Authorization using OAuth 2.0 in Microservices Architecture?
+1. User logs in via IdP (OAuth2)
+2. Okta verifies password (hash comparison)
+2. IdP(Okta,keyclock) returns JWT
+3. Client sends JWT to API Gateway
+4. Gateway validates JWT
+5. Gateway checks roles/scopes
+6. Gateway forwards request service
+7. Microservice processes request
