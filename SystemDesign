@@ -366,6 +366,8 @@ making it hard to identify where issues occur. Distributed tracing provides a wa
 helping developers see the flow of data and pinpoint any problems.
 Use jar as spring-cloud-starter-sleuth & spring-cloud-starter-zipkin
 ============================================================================================
+Tradational Hashing :In a simple hash-based load balancing system, a user's request might be directed to a server using the formula 
+server = hash(user_id) % N (where N is the number of servers). This approach works well as long as N is constant
 Consistent Hashing:-Consistent Hashing is a distributed system technique used to evenly distribute data across multiple servers (or nodes) in a 
 way that minimizes data movement when nodes are added or removed.
 It is widely used in distributed databases, caching systems, and microservices architectures, Loadbalancer.
