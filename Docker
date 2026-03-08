@@ -14,6 +14,7 @@ COPY japp.jar /opt/app                 // copying the jar to /opt/app path
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/opt/app/japp.jar"]
 
+Docker is a software platform that allows you to build, test, and deploy applications quickly.
 
 Que: Life Cycle of Docker contaier?
 Ans:  Creating the container. Running the Docker container with the necessary images and commands. 
