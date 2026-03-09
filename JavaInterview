@@ -15,7 +15,7 @@ I have worked in many domain  like Insurance, Finance, Retail and Logistics. But
 During my past experience I have worked in Agile and Water fall methodology  project.
 
 Currently working on A*** bank account with Ful**** project. It uses event driven architecture with multiple diffrent pattern for producer/consumer.
-We are using apache Kafka(AWS MSK) for distributed event streaming platform. Using Java 17 for code development with Springboot3.X.
+We are using apache Kafka(AWS MSK managed stream for apache Kafka) for distributed event streaming platform. Using Java 17 for code development with Springboot3.X.
 For version tool we are using Gitlab and same for pipeline as well.
 For code coverage and static analytics we are using plugn in for report.
 For contaraized the app we are using docker and for managing/Orchastarion them we are usig AWS ECS with ECR. 
