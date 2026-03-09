@@ -25,6 +25,7 @@ We are deploying our service in AWS cloud and using terraform for resource creat
 
 Description: Ful**** is the event driven platform that supoort real time intelligence and event based integration between applications 
 and other data platform.
+"Ful*** is centralized messaging platform.The purpose is to facilitate communication across all LOB in a real-time manner"
 ATOM: Agile target operating model with discovery, ideation and epic creation with execution.
 
 Role: 1. Architect 2. Lead role 3. Indivisual developer.
