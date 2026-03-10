@@ -82,3 +82,38 @@ MySQL or Equivalent Database
 9. Documentation and Knowledge Transfer
 10. Compliance and Governance
 
+Cubick Corporation
+===================
+1. Java version use case and feature, why you are using java 21
+2. WHat work you have done in past 60 days
+3. which design pattern you have used in EDA
+4. In microservicesd based project which design pattern you have worked.
+5. which all design pattern you know
+6. How to trouble shhot the issue in production, what tool and steps need to use.
+7. Grabage collector
+8. class loader in java type of class loader
+
+
+T-Mobile
+----------
+How to make sure project scale
+How to deal with stack holder
+how to manage the team conflict?
+
+
+Innominds
+==========
+Consistant hashing
+EDA architecture
+Kafka/topic/partition
+Security(How oauth work)/token used
+NOSQL can have table or structure of NOSQL datatabse
+
+LTIMindtree
+================
+How to handle Performace issue  in microservices ?
+How to handle DB table locking in microservices architecture ?
+How to decide which cloud to use?
+When to use Microservices and monolithic?
+
+
