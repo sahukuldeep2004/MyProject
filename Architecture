@@ -139,10 +139,13 @@ while a cloud provider provisions servers to run their applications, databases, 
 y adopting serverless architecture, developers can offload these responsibilities to a third-party provider, enabling them to focus on writing application code.
 One of the most popular serverless architectures is Function as a Service (FaaS).
 Each function will perform a specific task when triggered by an event, such as an incoming email or an HTTP request.
+Pattern : Event driven, Published suscribred,
 
 9. Cloud Native Architecture : -
 Cloud Native Architecture = Modern way of building applications using microservices, containers, Kubernetes, automation, and cloud services to achieve 
 scalability, resilience, and rapid delivery.
+Below are the most common design patterns used in Cloud Native Architecture : Microservices design Pattern, API Gateway,
+Event Drivven, Circuit breaker, service discovery, side car
  ==========================================================================================================================
  Software Architecture charatersic
  https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
