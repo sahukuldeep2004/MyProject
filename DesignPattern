@@ -68,9 +68,10 @@ SOLID refers to five design principles in object-oriented programming, designed 
 of software. 
 The SOLID principles help the user develop less coupled code. If code is tightly coupled, a group of classes are dependent on one another.
 1.Single responsbilty:- Everything in the class should be related to that single purpose. It does not mean that your classes should only contain one method
-or property.
+or property. Eg. Emploee class should have only employee related method not other like send an email.
 2.Open-Close Principal:-The Open-Closed Principle (OCP) states that classes should be open for extension but closed for modification. 
-“Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated. 
+“Open to extension” means that you should design your classes so that new functionality can be added as new requirements are generated like implementing
+interface with new class not updating the file for new requirment.
 “Closed for modification” means that once you have developed a class you should never modify it, except to correct bugs.
 3.Liskove Substitution Pricipal:- it states that an object of a superclass should be replaceable by objects of its subclasses 
 without causing issues in the application. Therefore, a child class should never change the characteristics of its 
