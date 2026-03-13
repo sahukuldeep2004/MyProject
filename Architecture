@@ -106,20 +106,24 @@ Abstracts the details of data storage from higher layers.
 Examples: ORMs (Object-Relational Mappers) like Hibernate, raw SQL queries.
 Infrastructure Layer (Optional): Manages technical details such as logging, caching, and messaging.
 Responsibilities:Provides support services to other layers,Handles integrations with external systems like message brokers or third-party APIs.
+Design pattern are used :MVC ,Service Layer, DAO / Repository, Dependency Injection, DTO
 
 3. EventDriven Architecture:
  Approach: Components communicate through events to achieve loose coupling.
  Example: Airbnb uses Apache Kafka for realtime event processing, such as handling booking requests.
+Design pattern user are :Publisher–Subscriber Pattern (Core Pattern), Observer Pattern, Event Notification Pattern, Event Sourcing Pattern, CQRS
 
 4. ModelViewController (MVC) Architecture:
  Approach: The application is divided into Model (data), View (UI), and Controller (logic) components.
  Example: Ruby on Rails applications separate data, user interface, and user input handling.
+Pattern : Factory, Front Controller, Strategy, Observer,
 
 5. MasterSlave Architecture:
  Approach: One master coordinates tasks among multiple slaves.
  It is used for distributed systems where one node acts as a 'master' and the remaining nodes as 'slaves'. The master node controls the operations
 of the slave nodes which manage the computations and store the results.
  Example: Database replication, where the master handles writes, and slaves serve reads, widely seen in various systems.
+Pattern used: Leader–Follower(Master coordinates workers), Command Pattern(Master sends tasks), Replication Pattern(Data copied to slaves), Work Queue Pattern(Distribute workload)
 
 6. Monolithic Architecture:
  Approach: The entire application is bundled together as a single unit.
