@@ -9,7 +9,7 @@ Canary Deployment :-A canary deployment strategy gradually rolls out a new softw
 
 Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
 WHAT : A record in Java is a class that is intended to store data.Records are immutable by default, which means that their state cannot be changed once they are created. This makes them ideal for storing data that should not be modified (immutable data), such as configuration settings or values returned from a database query.
-
+Why : to move immutable data without having boiler code, in very simple, reliable, concise.
 WHEN To USE: If you want to transfer immutable data between different layers of your application, then using a record in Java can be a good choice.By default, Records are immutable in Java, which means that we can’t change their properties after they are created.
 
 WHERE TO USE : eg; DTOs, API response,
