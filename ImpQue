@@ -116,4 +116,12 @@ How to handle DB table locking in microservices architecture ?
 How to decide which cloud to use?
 When to use Microservices and monolithic?
 
+Infy
+=================
+How to architect an application if it has 1M user.
+WHich architecture need to choose.
+What are design pattern need to use in architecture. 
+How to break aplication.
+How to choose DB for an application ?
+What are tool for observalability.
 
