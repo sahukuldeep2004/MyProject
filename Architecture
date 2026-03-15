@@ -307,3 +307,17 @@ REST or GraphQL for its public web and mobile apps.
 gRPC for its internal, high speed microservice communication.
 WebSocket for its real time chat feature.
 Webhooks to receive events from its payment provider.
+=============================================================================================================================================================
+How to choose architecture of an application.
+When choosing the architecture for an application, I follow a structured approach.
+First, I understand the business requirements and identify the architecture drivers, such as expected user load, system integrations, data sensitivity, and future growth.
+Next, I analyze the non-functional requirements, including scalability, performance, availability, security, and maintainability, since these factors usually 
+drive architectural decisions.
+After that, I evaluate different architecture styles, such as layered architecture, microservices, or event-driven architecture, and perform a trade-off 
+analysis to determine which approach best meets the requirements while keeping operational complexity manageable.
+I also consider practical constraints like team expertise, existing technology stack, infrastructure capabilities, and cost.
+For example, if the system is a large customer-facing platform requiring high scalability and independent deployments, I would typically choose 
+a microservices architecture with an API Gateway, OAuth2-based authentication, and event-driven communication using a messaging platform.
+However, to avoid unnecessary complexity, I often recommend starting with a modular monolith or layered architecture and evolving toward microservices as the 
+system scales.
+Finally, I ensure the architecture supports observability, security, and resilience, using tools for monitoring, centralized logging, and automated deployments.
