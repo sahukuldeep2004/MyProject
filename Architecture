@@ -321,3 +321,24 @@ a microservices architecture with an API Gateway, OAuth2-based authentication, a
 However, to avoid unnecessary complexity, I often recommend starting with a modular monolith or layered architecture and evolving toward microservices as the 
 system scales.
 Finally, I ensure the architecture supports observability, security, and resilience, using tools for monitoring, centralized logging, and automated deployments.
+| Requirement               | Best Architecture            |
+| ------------------------- | ---------------------------- |
+| Small application         | Monolith                     |
+| Enterprise application    | Layered                      |
+| Large scalable platform   | Microservices                |
+| Real-time data processing | Event Driven                 |
+| Cloud-native system       | Microservices + Event Driven |
+
+
+| Architecture  | Pros              | Cons                   |
+| ------------- | ----------------- | ---------------------- |
+| Monolith      | Simple deployment | Hard to scale          |
+| Microservices | Highly scalable   | Operational complexity |
+
+| Requirement          | Architecture Impact |
+| -------------------- | ------------------- |
+| High scalability     | Microservices       |
+| Fast development     | Monolithic          |
+| High availability    | Cloud-native        |
+| Real-time processing | Event-driven        |
+
