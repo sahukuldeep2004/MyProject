@@ -342,3 +342,36 @@ Finally, I ensure the architecture supports observability, security, and resilie
 | High availability    | Cloud-native        |
 | Real-time processing | Event-driven        |
 
+
+Que: How to break application to have a microservices design pattern?
+Breaking a monolithic application into microservices is a very common architecture task. The key idea is to split the application based on business 
+capabilities or domains, not just technical layers.
+Below is a step-by-step approach architects use in real projects
+The first step is understanding the business domains of the application.
+A good approach is Domain-Driven Design (DDD).
+In DDD, the system is divided into bounded contexts.
+Example: Customer-based application
+| Business Capability | Possible Microservice |
+| ------------------- | --------------------- |
+| Customer profile    | Customer Service      |
+| Authentication      | Auth Service          |
+| Orders              | Order Service         |
+| Payments            | Payment Service       |
+| Notifications       | Notification Service  |
+Identify Bounded Contexts
+
+Bounded contexts define clear domain boundaries.
+Example:
+Customer Domain
+Order Domain
+Payment Domain
+Notification Domain
+
+-Each domain becomes an independent microservice:
+-Apply the Single Responsibility Principle
+-Each microservice should focus on one responsibility
+-Define Communication Between Services
+In short "To break an application into microservices, I first identify business domains using Domain-Driven Design and define bounded contexts.
+Each domain becomes an independent service responsible for a specific business capability. Each microservice owns its data and communicates with 
+other services using REST APIs or asynchronous messaging. An API Gateway is introduced for routing, security, and centralized access, ensuring
+the services remain loosely coupled and independently deployable."
