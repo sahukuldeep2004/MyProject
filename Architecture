@@ -146,6 +146,15 @@ Cloud Native Architecture = Modern way of building applications using microservi
 scalability, resilience, and rapid delivery.
 Below are the most common design patterns used in Cloud Native Architecture : Microservices design Pattern, API Gateway,
 Event Drivven, Circuit breaker, service discovery, side car
+
+| Feature    | MVC Architecture        | Layered Architecture                  |
+| ---------- | ----------------------- | ------------------------------------- |
+| Purpose    | Separate UI logic       | Organize entire application           |
+| Scope      | Presentation layer      | Whole application                     |
+| Components | Model, View, Controller | Presentation, Service, Business, Data |
+| Focus      | UI design pattern       | Application structure                 |
+| Usage      | Web applications        | Enterprise systems                    |
+
  ==========================================================================================================================
  Software Architecture charatersic
  https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
