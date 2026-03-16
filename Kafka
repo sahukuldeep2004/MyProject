@@ -13,6 +13,14 @@ This reduces CPU usage and improves performance by eliminating intermediate copi
 Append-only log:
 The append-only log structure makes writes very fast because producers only ever need to write to the end of the log.
 *********************************************************************************************************************************
+How Kafka Idempotency Works
+When idempotency is enabled, the Kafka broker and producer collaborate using specific mechanisms to prevent duplicates: 
+Producer ID (PID): Each producer instance is assigned a unique PID by the Kafka broker upon its first request.
+Sequence Numbers: The producer assigns a monotonically increasing sequence number to each message (or batch of messages) it sends to a specific topic partition.
+Broker Tracking: The broker tracks the largest sequence number successfully written for each PID and topic-partition combination. If a message with a sequence 
+number less than or equal to the last committed one is received, the broker discards it as a duplicate, but still sends a successful acknowledgment to the 
+producer
+==============================================================
 Kafka uses a binary protocol over TCP
 Kafka clinet lib is required.
 
