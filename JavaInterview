@@ -432,13 +432,14 @@ Ans: The heap is a large bulk of memory intended for allocation of objects. When
 However, the reference to this object lives on the stack.
 
 Que: Describe how Garbage Collection Works ?
-Ans:The heap is divided up into smaller spaces or generations. These spaces are Young Generation, Old or Tenured Generation, and Permanent Generation.
+Ans:The heap is divided up into smaller spaces or generations. These spaces are Young Generation, Old or Tenured Generation, and Permanent Generation(Now metaspace).
 The young generation hosts most of the newly created objects.The young generation space is further divided into three spaces: an Eden space and two 
 survivor spaces such as Survivor 1 (s1) and Survivor 2 (s2).The old generation hosts objects that have lived in memory longer than a certain “age”. 
 The objects that survived garbage collection from the young generation are promoted to this space.
-The permanent generation or more commonly called, PermGen, contains metadata required by the JVM to describe the classes and methods used in the application. 
-It also contains the string pool for storing interned strings. It is populated by the JVM at runtime based on classes in use by the application. In addition, 
-platform library classes and methods may be stored here.
+Metaspace is a memory area in Java (introduced in Java 8) used to store class metadata. Unlike earlier PermGen, it is allocated in native memory and 
+grows dynamically.”. It store Class metadata (class structure, methods, fields),Static variables (metadata, not actual objects), class loader info.
+GC cleans Metaspace when during full GC when : a.Classes are unloaded and b. ClassLoader becomes unreachable.
+Metaspace is Dynamic,Outside heap (native memory) and more flexsible.
 
 First, any new objects are allocated to the Eden space. Both survivor spaces start out empty. When the Eden space fills up, a minor garbage collection is 
 triggered. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted.During the next minor GC, the same thing happens to the 
