@@ -1,0 +1,315 @@
+page 1
+6. Spring Load Balancer usage
+Answer:
+Used for client-side load balancing in microservices.
+Distributes requests across instances using service discovery.
+Improves availability.
+Example: Calling “order-service” automatically routes to one of many instances.
+
+7. Dynamic log tracing
+
+Answer:
+Allows changing log levels at runtime without restart.
+Helps debug production issues.
+Example: Temporarily enabling DEBUG logs for a specific class to trace a bug.	
+
+9. @TransactionalEventListener
+
+Answer:
+Triggers events based on transaction phase (e.g., AFTER_COMMIT).
+Ensures data consistency.
+Example: Send email only after order is successfully saved in DB.
+10. Constructor injection vs Autowired
+
+Answer:
+Constructor injection is preferred for immutability and testability.
+Avoids null dependencies.
+Example: Inject required services via constructor for better unit testing.
+
+13. Job creation vs activation
+
+Answer:
+Job creation happens when process reaches a task.
+Activation happens when worker fetches it.
+Example: Worker polls and locks job before executing to avoid duplication.
+
+14. Choreography vs Orchestration
+
+Answer:
+Orchestration uses a central controller; choreography is event-driven.
+Orchestration is easier to manage; choreography is more scalable.
+Example: Camunda = orchestration, Kafka-based events = choreography.
+==========================
+Page 2
+1. Write a thread-safe Singleton class
+2. What is Double-Checked Locking Singleton ?
+3 .How to break Singleton pattern?
+Answer:
+Singleton can be broken using:
+Reflection
+Serialization/Deserialization
+Cloning
+Example: Reflection can call private constructor.
+Prevention: use enum or throw exception in constructor.
+
+9. When bucket will be same/different in HashMap?
+Answer:
+Same bucket → same index (hash collision).
+Different bucket → different index.
+Index depends on hashCode and capacity.
+Example: Same hash % capacity → same bucket.
+
+10. How to calculate hash key (index)?
+Answer:
+HashMap uses:
+index = (n - 1) & hash(key)
+Where n = array size (power of 2).
+Bitwise AND is faster than modulo.
+Example: hash=10, n=16 → index = 10 & 15 = 10
+========================================
+Page 3
+Data backward compatibility changes
+
+Answer:
+Ensure new changes don’t break existing consumers.
+Use schema evolution (add optional fields, avoid removing fields).
+Version APIs if needed.
+Example: Adding a new field in JSON without breaking old clients.
+
+4. Scalable and fault-tolerant system design
+
+Answer:
+Use load balancing, auto-scaling, and stateless services.
+Apply circuit breaker, retries, and fallback.
+Use caching and async processing.
+Example: If payment service fails, fallback returns “retry later” instead of crashing.
+
+7. Test Driven Development (TDD)
+
+Answer:
+Write tests before writing code.
+Follow Red → Green → Refactor cycle.
+Ensures better design and fewer bugs.
+Example: First write test for “addUser()”, then implement method to pass test.
+====================================
+Page 4
+
+1. Inventory not available but order must be placed (E-commerce)
+
+Answer:
+Show available-to-promise (ATP) instead of actual stock.
+Use warehouse/location-based inventory and safety stock.
+Allow backorders or pre-orders with expected delivery date.
+Apply caching + async inventory sync.
+Example: Product shows “Only 2 left” but allows order based on nearby warehouse stock.
+
+2. Read continuous logs & count INFO/ERROR/WARN occurrences
+
+Answer:
+Use streaming approach (BufferedReader) to process line-by-line.
+Avoid loading full file into memory.
+Use a counter map for log levels.
+Example:
+
+Map<String, Integer> count = new HashMap<>();
+BufferedReader br = new BufferedReader(new FileReader("app.log"));
+String line;
+while ((line = br.readLine()) != null) {
+    if (line.contains("INFO")) count.merge("INFO",1,Integer::sum);
+    if (line.contains("ERROR")) count.merge("ERROR",1,Integer::sum);
+    if (line.contains("WARN")) count.merge("WARN",1,Integer::sum);
+}
+3. Loyalty, Wallet, Bank payments – Monolithic vs Microservices
+Monolithic approach
+
+Answer:
+Single application handles all payment types.
+Uses single DB transaction (ACID).
+Easy consistency but tightly coupled.
+Example: One transaction updates wallet + loyalty + bank payment together.
+
+Microservices approach
+
+Answer:
+Each payment type is a separate service.
+Use Saga pattern for distributed transactions.
+Event-driven communication (Kafka).
+Ensure eventual consistency.
+Example: Order service → Wallet service → Bank service via events.
+
+How transactions are handled?
+
+Answer:
+Use Saga (orchestration/choreography) instead of 2PC.
+Each service performs local transaction + emits event.
+If failure occurs → trigger compensation.
+Ensure idempotency and retries.
+Example: Wallet deducted → bank fails → refund wallet via compensation event.
+============================
+Page 5
+
+2. Immutable class in Java
+Answer:
+Make class final, fields private final, no setters.
+Initialize via constructor and return copies for mutable objects.
+Example:
+
+final class User {
+    private final int id;
+    User(int id) { this.id = id; }
+    public int getId() { return id; }
+}
+3. Callable vs Runnable
+Answer:
+Runnable → no return value, no checked exception.
+Callable → returns value, can throw exception.
+Callable used with Future.
+Example:
+
+Callable<Integer> task = () -> 10;
+Future<Integer> result = executor.submit(task);
+4. ExecutorService in multithreading
+Answer:
+Manages thread pool and task execution.
+Improves performance vs manual threads.
+Supports submit, shutdown, scheduling.
+Example:
+ExecutorService ex = Executors.newFixedThreadPool(2);
+ex.submit(() -> System.out.println("Task"));
+ex.shutdown();
+5. Java 8 Stream coding
+(1) Lambda with stream
+list.stream().filter(x -> x > 10).forEach(System.out::println);
+(2) Character count in string
+Map<Character, Long> map = str.chars()
+    .mapToObj(c -> (char)c)
+    .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+6. Functional Interface
+Answer:
+Interface with only one abstract method.
+Used with lambda expressions.
+If more abstract methods added → not functional → compilation error.
+Example:
+
+@FunctionalInterface
+interface A { void run(); }
+7. Garbage Collection
+Answer:
+Automatically removes unused objects from heap.
+Works using reachability (GC roots).
+Types: Minor GC, Major GC.
+Example: Object without reference becomes eligible for GC.
+
+8. String Questions
+(1) Why String is immutable?
+Answer:
+Security, caching, thread safety.
+Used in string pool.
+Example: "abc" reused in pool.
+
+(2) String literal vs new keyword
+Answer:
+Literal → stored in string pool.
+new → creates new object in heap.
+Example:
+
+String a = "hi";        // pool
+String b = new String("hi"); // heap
+(3) intern() method
+Answer:
+Moves string to pool or returns existing pooled reference.
+Example:
+String s1 = new String("hi").intern();
+9. What is JMX and how used?
+Answer:
+Java Management Extensions for monitoring apps.
+Expose metrics (heap, threads).
+Used with tools like JConsole.
+Example: Monitor memory usage in production.
+
+10. How to build a rate limiter?
+Answer:
+Use algorithms like Token Bucket or Leaky Bucket.
+Store counters in Redis for distributed systems.
+Limit requests per time window.
+Example: Allow 100 requests/min per user.
+How to Build a Rate Limiter (System Design)
+🔹 1. Start with Problem Statement (How to say)
+“We need to restrict the number of requests a user/client can make in a given time window to prevent abuse and ensure system stability.”
+
+🔹 2. High-Level Architecture
+Client → API Gateway → Rate Limiter → Service ->Redis (counter store)
+🔹 3. Key Design Decisions
+Where to implement?
+API Gateway (best)
+Or middleware/service layer
+Granularity
+Per user / IP / API key
+Storage
+
+Use Redis (fast, in-memory, supports atomic ops)
+
+🔹 4. Algorithms (VERY IMPORTANT 🔥)
+1. Fixed Window
+Count requests in fixed time (e.g., 100 req/min)
+Simple but causes burst at window edges
+Example: 100 requests at 59s + 100 at 61s → spike
+
+2. Sliding Window (Better)
+Smooths traffic using rolling time window
+More accurate than fixed window
+Example: Count last 60 seconds continuously
+
+3. Token Bucket (Most used ✅)
+Tokens are added at fixed rate
+Each request consumes 1 token
+If no token → reject
+Example: Bucket=100, refill=10/sec → allows bursts + control
+
+4. Leaky Bucket
+Processes requests at constant rate
+Smooth output traffic
+Good for throttling
+
+5. Detailed Flow (Token Bucket)
+1. Request comes with userId
+2. Check Redis bucket for tokens
+3. If token available → allow & decrement
+4. Else → reject (HTTP 429)
+5. Refill tokens periodically
+
+6. Redis Data Model
+Key: rate_limit:userId
+Value: token count + last refill timestamp
+
+Example:
+rate_limit:123 → {tokens: 50, lastRefill: timestamp}
+7. Handling Distributed Systems
+Challenges:
+Multiple instances
+Race conditions
+
+Solutions:
+Use Redis atomic operations (INCR, LUA scripts)
+Use centralized cache (Redis cluster)
+Ensure idempotency
+
+🔹 8. Scaling Considerations
+Use Redis Cluster for high traffic
+Apply sharding by userId
+Use local cache + global sync (hybrid approach)
+
+9. Failure Handling
+Redis down → fallback strategy
+ Allow limited traffic (grace mode)
+ Or fail closed (strict blocking)
+
+10. Response Handling
+Return HTTP 429 (Too Many Requests)
+Add headers:
+  X-Rate-Limit-Remaining
+  Retry-After
+
+
+
+“I would implement a token bucket rate limiter at the API Gateway using Redis. Each user gets a bucket with tokens refilled at a fixed rate. Requests consume tokens, and if exhausted, we return HTTP 429. This ensures burst handling and smooth traffic control.”
