@@ -7,7 +7,7 @@ Canary Deployment :-A canary deployment strategy gradually rolls out a new softw
 
 =======================java 17 Feature==================
 
-Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
+***Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
 WHAT : A record in Java is a class that is intended to store data.Records are immutable by default, which means that their state cannot be changed once they are created. This makes them ideal for storing data that should not be modified (immutable data), such as configuration settings or values returned from a database query.
 Why : to move immutable data without having boiler code, in very simple, reliable, concise.
 WHEN To USE: If you want to transfer immutable data between different layers of your application, then using a record in Java can be a good choice.By default, Records are immutable in Java, which means that we can’t change their properties after they are created.
@@ -40,7 +40,7 @@ public record Person(String name, int age) {
 Records automatically generate boilerplate code like constructors, accessor methods for components, equals(), hashCode(), and toString() implementations.
 https://javatechonline.com/record-in-java-with-examples/#:~:text=Just%20like%20any%20other%20class,be%20specified%20as%20constructor%20parameters.
 
-Pattern Matching for SWITCH statement:
+***Pattern Matching for SWITCH statement:
 Pattern matching for switch statements and expressions, introduced as a preview feature in Java 17 and finalized in later versions, enhances the switch 
 construct by allowing it to match against types and values, not just exact constants.
 eg 1: try { }
@@ -127,7 +127,7 @@ public class EnhancedSwitchExample {
 }
 ======================================================
 
-Sealed Class & Interface:
+***Sealed Class & Interface:
 Sealed classes and interfaces offer a restriction whether classes/interfaces can extend/implement other classes/interfaces or not.
 public sealed class Shape permits Circle, Square, Triangle {
     // ...
@@ -241,6 +241,16 @@ public record Truck(int loadCapacity, String registrationNumber) implements Vehi
         return loadCapacity;
     }
 }
+*** textBlock  :-provide an easy way to define multi-line strings without the need for most escape sequences or concatenation.
+string traditionalString = "Hello world!\n" +
+                           "My multiline string is here!\n";
+
+// Text block (cleaner and more readable)
+String textBlock = """
+    Hello world!
+    My multiline string is here!
+    """;
+Text blocks are particularly useful for embedding snippets of other languages, like HTML, JSON, or SQL, while maintaining code readability 
 ==================================================
 ThreadPool : Colletion of threads which are available to perform the submitted task. Once task completed, worker thread get back to ThreadPool 
 and wait for new task to assign. Means thread can be reused.
