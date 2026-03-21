@@ -1,3 +1,13 @@
+difference between TDD vs BDD (very commonly asked)
+TDD is a development approach where we write tests before writing the actual code
+“TDD is a development approach where tests are written before the actual code. It follows the Red-Green-Refactor cycle—first writing a failing test, 
+then implementing minimal code to pass it, and finally refactoring. This ensures better design, fewer bugs, and maintainable code.”
+Red → Write a test that fails
+Green → Write minimal code to pass the test
+Refactor → Improve code without breaking tests
+
+
+=====================================================================================================================
 The Junit 4.x framework is annotation based, so let's see the annotations that can be used while writing the test cases.
 
 @Test annotation specifies that method is the test method.
