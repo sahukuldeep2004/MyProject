@@ -209,7 +209,10 @@ Data Replication:
 Data replication also known as database replication, is a method of copying data to ensure that all information stays 
 identical in real-time between all data resources.
 
-Partitioning
+“Data redundancy is unwanted duplication of data causing inconsistency, while data replication is a controlled duplication used to improve 
+availability and performance in distributed systems.”“In microservices, we avoid redundancy but use replication at database or cache level to 
+ensure scalability and fault tolerance.”
+Partitioning:-
 Split large tables into smaller, more manageable pieces to improve query performance and maintenance.
 It is the process of splitting a database table into multiple logical units, or partitions, that are stored separately on disk.
 eg. in table of employee, we can store emp_id 1 to 10,000 in table employee_partition_1 and empId 10,001 to 20,000 in table employee_partition_2.
@@ -231,6 +234,14 @@ Instead of storing all data in one monolithic database, rows are divided into su
 - Shard Key = A chosen attribute (e.g., user ID, region) that determines which shard a record belongs to.
 MongoDB, Cassandra, DynamoDB: Built‑in sharding support.
 
+| Feature    | Replication        | Sharding             | Partitioning     |
+| ---------- | ------------------ | -------------------- | ---------------- |
+| Data       | Same data copied   | Different data split | Same table split |
+| Purpose    | Availability       | Scalability          | Performance      |
+| Writes     | Mostly single node | Distributed          | Same DB          |
+| Reads      | Scalable           | Depends              | Faster queries   |
+| Complexity | Medium             | High                 | Low              |
+=========================================================================================================
 Database indexes:
 An index is a database structure that you can use to improve the performance of database activity. A database table can 
 have one or more indexes associated with it.
