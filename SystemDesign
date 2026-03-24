@@ -565,113 +565,71 @@ Order Component Classes:
 ================
 What is Consistent Hashing?
 🎯 Answer
-
-Consistent Hashing is a technique used to distribute data across multiple nodes such that when a node is added or removed, only a minimal amount of data is re-distributed.
+Consistent Hashing is a technique used to distribute data across multiple nodes such that when a node is added or removed, 
+only a minimal amount of data is re-distributed.
 
 ✅ Why do we need Consistent Hashing?
 Problem with normal hashing
 index = hash(key) % N
-
 👉 If number of servers (N) changes:
-
 Almost all keys get remapped
-
 Causes cache misses & data movement
-
 ✅ Consistent Hashing solves:
-
 Minimal data movement
-
 Better scalability
-
 High availability
 
 ✅ How it works (Simple Explanation)
-
 Imagine a circular ring (0–2³²)
-
 Servers and keys are placed on ring using hash
-
 Each key is assigned to the next clockwise server
-
 Example
 Ring:
 [Server A] ---- [Server B] ---- [Server C]
-
 Key K → goes to nearest server clockwise
-
 👉 If Server B is removed:
-
 Only keys between A → B move to C
-
 Rest unaffected ✅
 
 ✅ Virtual Nodes (Important Interview Point)
 Problem:
-
 Uneven distribution
-
 Solution:
-
 👉 Each server has multiple virtual nodes
-
 Example:
-
 Server A → A1, A2, A3
 Server B → B1, B2, B3
-
 ✔ Better load balancing
 ✔ Avoid hotspots
 
 ✅ Where is it used?
 1. Distributed Caching
-
 Redis cluster
-
 Memcached
-
 👉 Key → mapped to cache node
-
 2. Distributed Databases
-
 Apache Cassandra
-
 Amazon DynamoDB
-
 👉 Data partitioning across nodes
-
 3. Load Balancing
-
 Request routing to servers
-
 4. Microservices / API Gateway
-
 Session stickiness
-
 Request routing
 
 ✅ When to use Consistent Hashing?
-
 Use it when:
-
 Nodes are frequently added/removed
-
 Need horizontal scaling
-
 Want minimal data reshuffling
-
 Handling large distributed systems
 
 ✅ Real-world Example
 🎯 Scenario: Distributed Cache
 Users → API → Cache Cluster (3 nodes)
-
 Without Consistent Hashing:
-
 Add 1 node → 100% cache invalidated ❌
-
 With Consistent Hashing:
-
 Only ~1/N keys move ✅
 
 ✅ Code Concept (Java - simplified)
@@ -685,5 +643,6 @@ if (node == null) {
 }
 ✅ Interview One-Liner (Very Important)
 
-“Consistent Hashing is used in distributed systems to ensure minimal data movement when nodes scale up or down, making it ideal for caching, databases, and load balancing.”
+“Consistent Hashing is used in distributed systems to ensure minimal data movement when nodes scale up or down, making it ideal for
+caching, databases, and load balancing.”
 =================================
