@@ -173,6 +173,15 @@ Example: Showing live stock prices, flagging suspicious login attempts.
  • Designing WhatsApp Messenger
  • Designing Instagram
 
+
+Cache Eviction Policies:
+“Cache eviction policies determine which items to remove when cache is full, with common strategies like LRU, LFU, FIFO, and TTL depending on access patterns.”
+LRU (Least Recently Used):-Cache: A B C D  Access: A, B → D is least used → evict D
+LFU (Least Frequently Used):-Remove item with lowest access frequency. A(5), B(2), C(1) → evict C
+FIFO (First In First Out):-Remove oldest inserted item.Inserted: A → B → C → evict A
+LIFO (Last In First Out):-Remove most recently added item.i.e.Rarely used
+TTL (Time To Live):-Remove items after specific time.Cache user session → expire after 30 mins
+
 Throttling :
 API Throttling is a technique used in system design to control the rate at which API requests are processed. It temporarily limits the number of requests a client 
 can make in a given time frame to prevent sudden traffic spikes or server overload. By enforcing throttling, systems ensure that resources are used efficiently 
