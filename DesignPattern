@@ -332,9 +332,10 @@ Ans: Real java example is Java.lang.Runtime class of Singleton class.
 public class SingletonTest {
   
     // Step 1: private static variable of INSTANCE variable
+   // 1. 'volatile' ensures visibility across threads and prevents instruction reordering
     private static volatile SingletonTest INSTANCE;
   
-    // Step 2: private constructor
+    // Step 2: Private constructor to prevent external instantiation
     private SingletonTest() {
   
     }
@@ -343,11 +344,11 @@ public class SingletonTest {
     // returning INSTANCE after checking
     public static SingletonTest getInstance() {
   
-        // double-checking lock
-        if(null == INSTANCE){
+        // double-checking lock for performance and thread safety
+        if(null == INSTANCE){ // First check (no locking)
             // synchronized block
             synchronized(SingletonTest.class) {
-                if(null == INSTANCE){
+                if(null == INSTANCE){ //// Second check (with locking)
                     INSTANCE = new SingletonTest();
                 }
             }
