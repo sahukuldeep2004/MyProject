@@ -499,10 +499,18 @@ Set up a centralised logging solution like the ELK stack (Elasticsearch, Logstas
 to collect, analyse, and visualise logs in real time.
 ********************************************************************************************************
 Que : How to handle concurrent request in DB when multiple request are trying to update the same row in DB?
-Ans: Add the new field version with annotaion @Version in Entity class. Spring Boot + JPA/Hibernate microservice, optimistic locking(builtin support from hibernate) is automatic once you 
+Ans: Optimistic Locking (Detective):=
+This approach assumes conflicts are rare. It allows multiple requests to read and modify data simultaneously but checks for conflicts at the final "save" step
+Add the new field version with annotaion @Version in Entity class. Spring Boot + JPA/Hibernate microservice, optimistic locking(builtin support from hibernate) is automatic once you 
 add @Version
 Hibernate automatically: - A)Increments the version column on each update. B) Compares the version during UPDATE. C) Throws OptimisticLockException if another transaction has already updated the row.
-Sol 2 : we can also use pessimistic locking as well. In tis case row will be lock in DB by thread and during the tarnsation no other thread will get lock.
+Best for: Read-heavy systems (e.g., e-commerce product pages) where performance is more important than absolute strictness
+
+Sol 2 :  Pessimistic Locking (Preventive):=
+This approach assumes conflicts will happen and proactively locks the row so no other request can modify it until the first one is finished.
+Best for: High-contention environments (e.g., banking systems or seat booking) where data integrity is critical and you cannot afford to lose any updates.
+Trade-off: It can slow down the system because other requests must wait for the lock to be released (blocking).
+we can also use pessimistic locking as well. In tis case row will be lock in DB by thread and during the tarnsation no other thread will get lock.
 We can use annotation like @Lock(LockModeType.PESSIMISTIC_WRITE) on method which try to update the db table row.
 Note: Threadpool is for request for servlet container
 ConnectionPool is for data sql execution connection. Each request treated as new client.
