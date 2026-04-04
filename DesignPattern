@@ -337,7 +337,10 @@ public class SingletonTest {
   
     // Step 2: Private constructor to prevent external instantiation
     private SingletonTest() {
-  
+       // 3. Reflection Protection: Throw exception if constructor is called again
+        if (instance != null) {
+            throw new RuntimeException("Use getInstance() method to get the instance.");
+        }
     }
   
     // Step 3: Provide public static getInstance() method 
