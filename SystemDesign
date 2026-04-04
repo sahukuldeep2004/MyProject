@@ -203,7 +203,9 @@ preventing any given traffic source from sending too many requests.
 How : Rate limiting works within applications, not in the web server. Rate limiting typically involves tracking the IP addresses where requests originate 
 and identifying the time lapsed between requests. IP addresses are the application’s main way to identify who has made each request.
 Types of Rate Limits : user rate limit, geographics rate limit, server rate limit
-Algo used for  Ratelimit : 
+Algo used for  Ratelimit :
+Token Bucket:The Token Bucket algorithm is a flexible rate-limiting method that controls the flow of data or requests by using a metaphorical bucket filled 
+with "tokens." Unlike rigid algorithms that enforce a constant speed, it allows for bursty traffic while maintaining a controlled long-term average rate
 Fixed Window Rate limit :restrict the number of requests allowed during a given timeframe (window)
 Leaky Bucket Rate Limiting :-They focus on the fixed length of request queues without considering the time. The server will service requests on a first-come, 
 first-serve basis. New requests join the back of the queue. The server will drop a new request if it arrives when the queue is full
