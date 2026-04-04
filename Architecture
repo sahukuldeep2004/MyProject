@@ -277,12 +277,24 @@ This led to the rise of GraphQL.
 What if you could ask for exactly what you need, all in one trip?
 GraphQL is a query language for your API. The most important shift is that the client, not the server, defines the shape of the data it needs.
 
-Instead of dozens of REST endpoints, you typically have just one (like /graphql) that accepts a query. The client sends a query that precisely describes the data it wants, and the server returns a JSON object in that exact same shape.
+Instead of dozens of REST endpoints, you typically have just one (like /graphql) that accepts a query. The client sends a query that precisely describes the
+data it wants, and the server returns a JSON object in that exact same shape.
 This single query can pull from multiple sources (like a user database and a post database) and return it all in one response.
-There is no over-fetching (you only get the name and title, not the user’s email or post bodies) and no under-fetching (you get the user and their posts in one round trip).
+There is no over-fetching (you only get the name and title, not the user’s email or post bodies) and no under-fetching (you get the user and their posts in
+one round trip).
 However, GraphQL introduces its own set of challenges:
 Complex Server Implementation: Building a GraphQL server (especially with nested data) can be more complex than a simple REST API.
 Harder to Cache: The single endpoint and dynamic queries make traditional HTTP caching mechanisms less effective compared to REST.
+GraphQL supports three main operation types—queries, mutations, and subscriptions.
+eg; basic query
+query GetUser {
+  user {
+    id
+    name
+    email
+  }
+}
+
 
 4. gRPC
 Developed by Google and open-sourced in 2015, gRPC is a modern Remote Procedure Call (RPC) framework designed for high-performance, language-agnostic communication between services.
