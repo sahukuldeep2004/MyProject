@@ -128,3 +128,20 @@ What are tool for observalability, which one for what?
 How an Enterprise Architect decides architecture in real projects (step-by-step)
 Architecture diagram for a real customer application (production ready)
 How to explain architecture choice in interviews (very useful for Enterprise Architect roles).
+
+Bristlecone
+================================================
+Java 17 to 21 feature
+Record class and sealed class, virtaul therad, use cases
+write composee.yml file which use MYQSl and springboot microservices configuration
+Kafka architecture
+Microservices design pattern
+12 principles for modern microservices architecture
+CQRS design pattern
+How to troubleshoot the issue when DB in othet country and app is deployed in other country.
+Caching technique
+RateLimitter develpment
+how to get only number which strat from 1 from this list
+Kubernates life cycle
+kafka consumer group and consumer.
+How to maintain session of particulare user when he login and fecth the data from other services.
