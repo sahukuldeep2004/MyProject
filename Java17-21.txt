@@ -334,3 +334,18 @@ Executor virtualThreadExecutor = Executors.newVirtualThreadPerTaskExecutor();
             }
         });
     }
+
+Import Java.lang.Thread
+public class VirtualThreadExample {
+    public static void main(String[] args) {
+
+        Runnable task = () -> {
+            System.out.println("Running in: " + Thread.currentThread());
+        };
+
+        // Create Virtual Thread
+        Thread.startVirtualThread(task);
+    }
+}
+You cannot set the priority of a virtual thread. Virtual threads always run with a normal priority (NORM_PRIORITY or 
+), and calling setPriority() on them has no effect. They are designed to be lightweight tasks managed by the JVM, not the OS
