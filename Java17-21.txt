@@ -7,7 +7,26 @@ Canary Deployment :-A canary deployment strategy gradually rolls out a new softw
 
 =======================java 17 Feature==================
 
-***Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
+Switch Expression
+Record class
+Sealed Class/Interface
+Text Block
+Pattern Matching for instanceof
+
+
+**1**Switch Expression (Improved Switch) :-More concise and returns values
+int day = 3;
+
+String result = switch (day) {
+    case 1 -> "Monday";
+    case 2 -> "Tuesday";
+    case 3 -> "Wednesday";
+    default -> "Other";
+};
+System.out.println(result);
+No need for break.
+
+**2**Record class : It was first introduced in Java 14 as a preview feature, and finalized in Java 17. It has added new keyword 'record' in the list of java keyword.
 WHAT : A record in Java is a class that is intended to store data.Records are immutable by default, which means that their state cannot be changed once they are created. This makes them ideal for storing data that should not be modified (immutable data), such as configuration settings or values returned from a database query.
 Why : to move immutable data without having boiler code, in very simple, reliable, concise.
 WHEN To USE: If you want to transfer immutable data between different layers of your application, then using a record in Java can be a good choice.By default, Records are immutable in Java, which means that we can’t change their properties after they are created.
@@ -40,94 +59,9 @@ public record Person(String name, int age) {
 Records automatically generate boilerplate code like constructors, accessor methods for components, equals(), hashCode(), and toString() implementations.
 https://javatechonline.com/record-in-java-with-examples/#:~:text=Just%20like%20any%20other%20class,be%20specified%20as%20constructor%20parameters.
 
-***Pattern Matching for SWITCH statement:
-Pattern matching for switch statements and expressions, introduced as a preview feature in Java 17 and finalized in later versions, enhances the switch 
-construct by allowing it to match against types and values, not just exact constants.
-eg 1: try { }
-catch(final GlueException glueExcep){
-throw handleGlueexception(glueException, "querySchemaVersionMetadata")
-}
+=========================================================================================
 
-private NonRetryableException handleGlueexception(final GlueException glueException, final string method){
-final message = switch (glueException){
-case InvalidInputException ignore -> "Request was invalid while calling" + method "!"
-case AccessDeniedException ignore -> "Access was denied while calling" + method "!"
-default -> "An unknow exception occur"
-};
-return NonRetryableException.builder().message(message).cause(glueException).build();
-}
-eg 2
-public class PatternMatchingSwitchExample {
-
-    public static String describeObject(Object obj) {
-        return switch (obj) {
-            case Integer i -> "It's an Integer with value: " + i;
-            case String s -> "It's a String with length: " + s.length();
-            case Double d when d > 0 -> "It's a positive Double: " + d;
-            case Double d -> "It's a non-positive Double: " + d;
-            case null -> "It's null"; // Handling null explicitly
-            default -> "It's an unknown type: " + obj.getClass().getName();
-        };
-    }
-
-    public static void main(String[] args) {
-        System.out.println(describeObject(10));
-        System.out.println(describeObject("Hello Java"));
-        System.out.println(describeObject(3.14));
-        System.out.println(describeObject(-2.5));
-        System.out.println(describeObject(null));
-        System.out.println(describeObject(new Object()));
-    }
-}
-=====================
-public class EnhancedSwitchExample {
-
-    // Define a simple enum for demonstration
-    enum Day {
-        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
-    }
-
-    public static void main(String[] args) {
-        Day today = Day.WEDNESDAY;
-
-        // 1. Switch as an expression (returning a value)
-        String message = switch (today) {
-            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "It's a weekday.";
-            case SATURDAY, SUNDAY -> "It's the weekend!";
-        };
-        System.out.println("Message: " + message);
-
-        // 2. Using 'yield' for more complex logic within a case
-        String activity = switch (today) {
-            case MONDAY -> {
-                System.out.println("Starting the work week...");
-                yield "Planning meetings";
-            }
-            case FRIDAY -> {
-                System.out.println("Almost the weekend!");
-                yield "Finishing tasks";
-            }
-            case SATURDAY, SUNDAY -> "Relaxing";
-            default -> "Working"; // Default case is required for exhaustiveness in switch expressions
-        };
-        System.out.println("Activity: " + activity);
-
-        // 3. Pattern Matching for switch (Preview Feature in Java 17, standard in Java 21)
-        Object obj = "Hello"; // Can be any object type
-
-        String typeDescription = switch (obj) {
-            case String s -> "This is a String: " + s.toUpperCase();
-            case Integer i -> "This is an Integer: " + i * 2;
-            case Day d -> "This is a Day enum: " + d.name();
-            case null -> "This is a null object."; // Handling null explicitly
-            default -> "Unknown type.";
-        };
-        System.out.println("Type Description: " + typeDescription);
-    }
-}
-======================================================
-
-***Sealed Class & Interface:
+**3**Sealed Class & Interface:
 Sealed classes and interfaces offer a restriction whether classes/interfaces can extend/implement other classes/interfaces or not.
 public sealed class Shape permits Circle, Square, Triangle {
     // ...
@@ -241,7 +175,7 @@ public record Truck(int loadCapacity, String registrationNumber) implements Vehi
         return loadCapacity;
     }
 }
-*** textBlock  :-provide an easy way to define multi-line strings without the need for most escape sequences or concatenation.
+***4** textBlock  (Multi-line Strings)  :-provide an easy way to define multi-line strings without the need for most escape sequences or concatenation.
 string traditionalString = "Hello world!\n" +
                            "My multiline string is here!\n";
 
@@ -250,7 +184,23 @@ String textBlock = """
     Hello world!
     My multiline string is here!
     """;
-Text blocks are particularly useful for embedding snippets of other languages, like HTML, JSON, or SQL, while maintaining code readability 
+===============================================================================
+****5****. Pattern Matching for instanceof :👉 No need for explicit casting
+
+❌ Before Java 17
+Object obj = "Hello";
+
+if (obj instanceof String) {
+    String str = (String) obj;
+    System.out.println(str.length());
+}
+✅ Java 17
+Object obj = "Hello";
+
+if (obj instanceof String str) {
+    System.out.println(str.length());
+}
+✔ Cleaner and safer
 ==================================================
 ThreadPool : Colletion of threads which are available to perform the submitted task. Once task completed, worker thread get back to ThreadPool 
 and wait for new task to assign. Means thread can be reused.
@@ -281,7 +231,93 @@ public class CustomThreadPoolExecutorExample {
 The corePoolSize parameter is the number of core threads that will be instantiated and kept in the pool. When a new task comes in, if all core threads are busy and the internal queue is full, the pool is allowed to grow up to maximumPoolSize.
 
 The keepAliveTime parameter is the interval of time for which the excessive threads (instantiated in excess of the corePoolSize) are allowed to exist in the idle state. By default, the ThreadPoolExecutor only considers non-core threads for removal.
----------------
+---------------java 21----
+***Pattern Matching for SWITCH statement(java 21):
+Pattern matching for switch statements and expressions, introduced as a preview feature in Java 17 and finalized in later versions, enhances the switch 
+construct by allowing it to match against types and values, not just exact constants.
+eg 1: try { }
+catch(final GlueException glueExcep){
+throw handleGlueexception(glueException, "querySchemaVersionMetadata")
+}
+
+private NonRetryableException handleGlueexception(final GlueException glueException, final string method){
+final message = switch (glueException){
+case InvalidInputException ignore -> "Request was invalid while calling" + method "!"
+case AccessDeniedException ignore -> "Access was denied while calling" + method "!"
+default -> "An unknow exception occur"
+};
+return NonRetryableException.builder().message(message).cause(glueException).build();
+}
+eg 2
+public class PatternMatchingSwitchExample {
+
+    public static String describeObject(Object obj) {
+        return switch (obj) {
+            case Integer i -> "It's an Integer with value: " + i;
+            case String s -> "It's a String with length: " + s.length();
+            case Double d when d > 0 -> "It's a positive Double: " + d;
+            case Double d -> "It's a non-positive Double: " + d;
+            case null -> "It's null"; // Handling null explicitly
+            default -> "It's an unknown type: " + obj.getClass().getName();
+        };
+    }
+
+    public static void main(String[] args) {
+        System.out.println(describeObject(10));
+        System.out.println(describeObject("Hello Java"));
+        System.out.println(describeObject(3.14));
+        System.out.println(describeObject(-2.5));
+        System.out.println(describeObject(null));
+        System.out.println(describeObject(new Object()));
+    }
+}
+=====================
+public class EnhancedSwitchExample {
+
+    // Define a simple enum for demonstration
+    enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    public static void main(String[] args) {
+        Day today = Day.WEDNESDAY;
+
+        // 1. Switch as an expression (returning a value)
+        String message = switch (today) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "It's a weekday.";
+            case SATURDAY, SUNDAY -> "It's the weekend!";
+        };
+        System.out.println("Message: " + message);
+
+        // 2. Using 'yield' for more complex logic within a case
+        String activity = switch (today) {
+            case MONDAY -> {
+                System.out.println("Starting the work week...");
+                yield "Planning meetings";
+            }
+            case FRIDAY -> {
+                System.out.println("Almost the weekend!");
+                yield "Finishing tasks";
+            }
+            case SATURDAY, SUNDAY -> "Relaxing";
+            default -> "Working"; // Default case is required for exhaustiveness in switch expressions
+        };
+        System.out.println("Activity: " + activity);
+
+        // 3. Pattern Matching for switch (Preview Feature in Java 17, standard in Java 21)
+        Object obj = "Hello"; // Can be any object type
+
+        String typeDescription = switch (obj) {
+            case String s -> "This is a String: " + s.toUpperCase();
+            case Integer i -> "This is an Integer: " + i * 2;
+            case Day d -> "This is a Day enum: " + d.name();
+            case null -> "This is a null object."; // Handling null explicitly
+            default -> "Unknown type.";
+        };
+        System.out.println("Type Description: " + typeDescription);
+    }
+}
+
 What is Virtaul thread.
 These resources typically explain that virtual threads are lightweight, managed by the JVM rather than the OS, and designed for I/O-intensive operations to achieve high throughput. They allow developers to maintain the traditional, simple thread-per-request programming model without the overhead of heavy platform threads.
 It is best for I/O intensive task but tomcate or paltform can be used for CPU intesive task for better performance.
