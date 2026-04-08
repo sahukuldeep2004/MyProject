@@ -318,7 +318,7 @@ if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account
 intract with my credenatils to intract with Twiter. So ther is a securit breach if app misuse credenatils.
 
 Que: What is OAuth?
-Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, 
+Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization framwork. OAuth, allows third-party services, such as Facebook, 
 to use account information from an end-user without exposing the user's password.
 
 Que: How OAuth2 will work?
@@ -328,7 +328,7 @@ the request to Authorization server.
 
 Que: What are the component involve in Oauth2?
 Ans: 1.Autorization Server :The server that authorize the client to access the user resources. It will authenticate the user by valiation the details and provide 
-the token.
+the token.(eg. Okta,auth, keyClock etc)
 2.Resource srever:  It is the server which has protected resource details(diffrent microservie) like credit cards, loan, account balance info. WHen tokne is 
 provided then only they give the details.
 3. The USER / resource owner : the person who owns resources exposed by the resource server.Usually user will prove his identity with username & pwd.
