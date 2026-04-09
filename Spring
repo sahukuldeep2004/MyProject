@@ -457,3 +457,96 @@ Que: how an API Gateway handles Authentication & Authorization using OAuth 2.0 i
 5. Gateway checks roles/scopes
 6. Gateway forwards request service
 7. Microservice processes request
+=============================================================================================================================================================
+How springboot application authinticate & authorize the request using oauth2?
+
+When a request comes to a Spring Boot application, Spring Security intercepts it using the filter chain. If the request is unauthenticated, 
+it initiates the OAuth2 Authorization Code flow by redirecting the user to the authorization server like Keycloak. After successful login, 
+the authorization server returns an authorization code, which Spring exchanges for an access token using the OAuth2 token endpoint. The client 
+then uses this token in subsequent requests. Spring Security validates the token using the JWK endpoint, creates an Authentication object, and 
+performs authorization based on roles or scopes before allowing access to the resource
+
+OAuth2 is an authorization framework, not authentication itself.
+It defines:
+How client gets access token
+How services validate and use that token
+	
+Step 1: Client Requests Protected Resource
+GET /orders
+👉 No token → request intercepted by Spring Security
+
+Step 2: Spring Security Triggers OAuth2 Flow
+Spring Security detects:
+No authentication
+Protected endpoint
+👉 Redirects to OAuth2 Authorization Endpoint
+GET /oauth2/authorize
+➡️ Redirect to Auth Server (e.g., Keycloak)
+
+Step 3: OAuth2 Authorization Request
+Spring sends:
+client_id=abc
+redirect_uri=http://app/callback
+response_type=code
+scope=openid profile
+👉 This is defined by OAuth2 protocol
+
+Step 4: User Authentication (Auth Server)
+At Auth Server:
+User logs in
+Credentials validated
+👉 OAuth2 itself does NOT define login
+👉 Usually combined with OpenID Connect (OIDC)
+
+Step 5: Authorization Code Returned
+Auth server redirects back:
+http://app/callback?code=xyz123
+👉 This is OAuth2 Authorization Code
+
+Step 6: Spring Exchanges Code for Token
+Spring Security (backend) calls:
+POST /oauth2/token
+With:
+client_id
+client_secret
+authorization_code
+👉 OAuth2 Token Endpoint
+
+Step 7: Auth Server Returns Token
+Response:
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "refresh_token": "abc123",
+  "expires_in": 3600
+}
+👉 Token is usually JWT
+
+Step 8: Token Stored & Used by Client
+Client now sends:
+Authorization: Bearer <access_token>
+
+Step 9: Spring Security Validates Token
+Spring Security (Resource Server mode):
+Uses OAuth2 config
+Calls JWK endpoint:
+/.well-known/jwks.json
+✔ Validates:
+Signature
+Expiry
+Issuer
+
+Step 10: Authentication Object Created
+Spring creates:
+Authentication object
+Stored in:
+SecurityContextHolder
+
+Step 11: Authorization (Roles/Scopes)
+From token:
+"scope": "read write",
+"roles": ["ADMIN"]
+Spring checks:
+@PreAuthorize("hasRole('ADMIN')")
+
+Step 12: Controller Executes
+Request allowed → business logic runs
