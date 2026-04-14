@@ -82,7 +82,31 @@ MySQL or Equivalent Database
 9. Documentation and Knowledge Transfer
 10. Compliance and Governance
 
-Cubick Corporation
+
+LTIMindtree(29 Nov)
+================
+How to handle Performace issue  in microservices ?
+How to handle DB table locking in microservices architecture ?
+How to decide which cloud to use?
+When to use Microservices and monolithic?
+
+T-Mobile(12 Feb)
+----------
+How to make sure project scale
+How to deal with stack holder
+how to manage the team conflict?
+
+
+Innominds(18 Feb)
+==========
+Consistant hashing
+EDA architecture
+Kafka/topic/partition
+When to Retry
+Security(How oauth work)/token used
+NOSQL can have table or structure of NOSQL datatabse
+
+Cubick Corporation(9 March)
 ===================
 1. Java version use case and feature, why you are using java 21
 2. WHat work you have done in past 60 days
@@ -93,31 +117,7 @@ Cubick Corporation
 7. Grabage collector
 8. class loader in java type of class loader
 
-
-T-Mobile
-----------
-How to make sure project scale
-How to deal with stack holder
-how to manage the team conflict?
-
-
-Innominds
-==========
-Consistant hashing
-EDA architecture
-Kafka/topic/partition
-When to Retry
-Security(How oauth work)/token used
-NOSQL can have table or structure of NOSQL datatabse
-
-LTIMindtree
-================
-How to handle Performace issue  in microservices ?
-How to handle DB table locking in microservices architecture ?
-How to decide which cloud to use?
-When to use Microservices and monolithic?
-
-Infy
+Infy(14 March)
 =================
 How to architect an application if it has 1M user.
 WHich architecture need to choose.
@@ -129,7 +129,7 @@ How an Enterprise Architect decides architecture in real projects (step-by-step)
 Architecture diagram for a real customer application (production ready)
 How to explain architecture choice in interviews (very useful for Enterprise Architect roles).
 
-Bristlecone
+Bristlecone(5 April)
 ================================================
 Java 17 to 21 feature
 Record class and sealed class, virtaul therad, use cases
@@ -147,5 +147,7 @@ kafka consumer group and consumer.
 How to maintain session of particulare user when he login and fecth the data from other services.
 AWS services used in your project.
 
-MorningStar
+MorningStar(10 April)
 ==================================================
+Expriance and technology
+Architecture question with 3 usecase
