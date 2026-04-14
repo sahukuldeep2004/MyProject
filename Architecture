@@ -176,12 +176,12 @@ Event Drivven, Circuit breaker, service discovery, side car
  
  ======================================================================================================================================
  https://gist.github.com/Nj-kol/d5211ed218557a6e398212838dffa3e9
- Fault Tolerant:- The Fault Tolerant means the ability of an architecture to survive (tolerate) when an environment misbehaves by taking corrective actions, 
+ Fault Tolerant(Survival):- The Fault Tolerant means the ability of an architecture to survive (tolerate) when an environment misbehaves by taking corrective actions, 
  e.g, surviving a server crash or preventing a misbehaving API from bringing down the whole system, etc. 
  eg. If out of N instances of a microservice sitting behind a reverse proxy like nginx, one instance fails, the service is still available. However, There will be a decrease in throughput. 
  Hence the service is fault-tolerant.
  
- Fault Resilience:- The Fault Resilience is probably the capacity to recover from these type of scenarios quickly.Resiliency is a measure of the system's ability 
+ Fault Resilience(Recovery):- The Fault Resilience is probably the capacity to recover from these type of scenarios quickly.Resiliency is a measure of the system's ability 
 to self-recover from problems. eg. If we run the above example on Kubernetes, the instance that failed will be automatically brought back online (maynot be the 
 same instance) because Kubenetes automatically maintains the exact number of pods in a replica set. Hence in addition to being fault tolerance this it is also 
 resilient.
