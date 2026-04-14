@@ -67,7 +67,7 @@ Non Functional Requirmnet
 
 How to choose DB  based on structured(table), semi structured(json), non structured(audio files) ?
 If data is structured and need to work with ACID property then RDBMS.
-Data is not structured. It has too many queries and attribute. Then we need to go DOCUMENT DB like Mongo DB.
+Data is not structured. It has too many queries and attribute(JSON). It fit for content managmnet system(CMS), Sensor data(IOT).Then we need to go DOCUMENT DB like Mongo DB.
 Data is not structured. if we have to work on an extremely large scale but have few types of queries we need to run, then we go for a COLUMNAR DB like Cassandra or HBase.
 
 OLTP/OLAP
