@@ -131,6 +131,7 @@ Pattern used: Leader–Follower(Master coordinates workers), Command Pattern(Mas
 
 7. ServiceOriented Architecture (SOA):
  Approach: The application is composed of loosely coupled, reusable services.
+It is fit for Enterprise systems where integration and reusability across different business units are the priority. We use ESB over here.
  Example: Salesforce integrates or offers sales, support, and marketing services as integrated or standalone components.
 
 8. Serverless Architecture :-
