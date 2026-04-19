@@ -512,8 +512,16 @@ Best for: High-contention environments (e.g., banking systems or seat booking) w
 Trade-off: It can slow down the system because other requests must wait for the lock to be released (blocking).
 we can also use pessimistic locking as well. In tis case row will be lock in DB by thread and during the tarnsation no other thread will get lock.
 We can use annotation like @Lock(LockModeType.PESSIMISTIC_WRITE) on method which try to update the db table row.
+
+Spring Data JPA Repository: Use the @Lock annotation on a repository method.
+@Lock(LockModeType.PESSIMISTIC_WRITE)
+@Query("select p from Product p where p.id = :id")
+Optional<Product> findByIdWithLock(@Param("id") Long id);
+
 Note: Threadpool is for request for servlet container
 ConnectionPool is for data sql execution connection. Each request treated as new client.
+
+
 *****************************************************************************************
 ################################################################C4 Model###################################
 Level 1 – System Context Diagram
