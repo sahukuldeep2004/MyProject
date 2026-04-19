@@ -19,8 +19,17 @@ Producer ID (PID): Each producer instance is assigned a unique PID by the Kafka 
 Sequence Numbers: The producer assigns a monotonically increasing sequence number to each message (or batch of messages) it sends to a specific topic partition.
 Broker Tracking: The broker tracks the largest sequence number successfully written for each PID and topic-partition combination. If a message with a sequence 
 number less than or equal to the last committed one is received, the broker discards it as a duplicate, but still sends a successful acknowledgment to the 
-producer
-==============================================================
+producer.
+
+Core Mechanism:===
+The idempotency works by assigning unique identifiers to every write request: 
+Producer ID (PID): Upon initialization, the broker assigns each producer a unique internal ID.
+Sequence Numbers: For every message sent to a specific partition, the producer attaches a monotonically increasing sequence number.
+Broker Verification: The broker maintains a state table for each (PID, Topic-Partition) pair, tracking the last committed sequence number.
+New Message: If the incoming sequence number is exactly N+1  (where N is the last recorded number), the broker appends it.
+Duplicate: If the broker receives a sequence number it has already processed, it discards the message but sends a successful acknowledgment (ACK) back to the producer.
+Out of Order: If the sequence number is greater than N+1, the broker rejects it with an error, ensuring data integrity.
+======================================================================================================================
 Kafka uses a binary protocol over TCP
 Kafka clinet lib is required.
 
