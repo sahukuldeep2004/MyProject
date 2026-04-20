@@ -87,6 +87,7 @@ An architectural pattern serves as a broad and reusable solution to common archi
 1.Microservices Architecture:
  Approach: The application is divided into small, independent services with welldefined APIs.
  Example: Netflix separates user management, content streaming, and recommendations into distinct services.
+Benifit: independent Scalability,Fault Isolation & Resilience,Technology Flexibility,Easier Maintenance & Deployment
 
 2. Layered Architecture:
 Layered Architecture is a design pattern in software development that organizes a system into distinct layers, each with a specific role and responsibility.
@@ -112,11 +113,13 @@ Design pattern are used :MVC ,Service Layer, DAO / Repository, Dependency Inject
  Approach: Components communicate through events to achieve loose coupling.
  Example: Airbnb uses Apache Kafka for realtime event processing, such as handling booking requests.
 Design pattern user are :Publisher–Subscriber Pattern (Core Pattern), Observer Pattern, Event Notification Pattern, Event Sourcing Pattern, CQRS
+Benifit: Loose Coupling, High scalibility,Consistency,Extensibility: Adding new functionality is easier; you can simply add a new service that subscribes to existing events without modifying the services that produce those events.
 
 4. ModelViewController (MVC) Architecture:
  Approach: The application is divided into Model (data), View (UI), and Controller (logic) components.
  Example: Ruby on Rails applications separate data, user interface, and user input handling.
 Pattern : Factory, Front Controller, Strategy, Observer,
+Benifit:-Separation of Concerns,Faster Development Process,Multiple Views: The same model data can be presented in multiple formats (e.g., HTML, mobile app, PDF) without changing the underlying logic, allowing for easy updates to the user interface
 
 5. MasterSlave Architecture:
  Approach: One master coordinates tasks among multiple slaves.
