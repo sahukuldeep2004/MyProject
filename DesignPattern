@@ -795,6 +795,33 @@ D. SideCar Pattern
 Suppose we have 6 microservcie and talking to each other and each each microservice needs to have functionalities like observability, monitoring, logging,
 configuration, circuit breakers, and more.It is better not to replicate this in all the three services or rather build central service so that all the above services
 will interact with this central service.
+The Sidecar pattern attaches a helper component (sidecar) to a main application, running alongside it to provide supporting features like logging, monitoring,
+security, or networking—without changing the main application code.
+The sidecar runs in the same host/pod as the main app
+Communicates via localhost (same network namespace)
+Think of it as a companion container/process
+
+Real Example (Kubernetes)
+👉 Suppose you have a microservice:
+Main App → Handles business logic
+Sidecar → Sends logs to centralized logging system
+
+Both containers run in the same Pod, share:
+Network (localhost)
+Storage (volumes)
+
+When to Use :-
+->You need cross-cutting concerns
+Logging
+Monitoring
+Security
+>You don’t want to change existing code
+>You want consistent behavior across microservices
+
+When NOT to Use
+-> Simple applications (overkill)
+-> When latency is critical (extra hop)
+-> When resource usage must be minimal
 https://dzone.com/articles/sidecar-design-pattern-in-your-microservices-ecosy-1
 
 2. Integration Patterns
