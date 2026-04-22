@@ -818,6 +818,13 @@ Security
 >You don’t want to change existing code
 >You want consistent behavior across microservices
 
+Why to Use Sidecar Pattern
+✅ Separation of concerns
+✅ No need to modify application code
+✅ Reusable across services
+✅ Technology-agnostic (works with any language)
+✅ Centralized control (logging, security, etc.)
+
 When NOT to Use
 -> Simple applications (overkill)
 -> When latency is critical (extra hop)
