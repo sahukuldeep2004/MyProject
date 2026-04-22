@@ -159,6 +159,12 @@ Event Drivven, Circuit breaker, service discovery, side car
 | Focus      | UI design pattern       | Application structure                 |
 | Usage      | Web applications        | Enterprise systems                    |
 
+Real-World Analogy
+MVC = How a restaurant takes and shows orders
+(Waiter = Controller, Menu = View, Kitchen Data = Model)
+Layered Architecture = Entire restaurant system
+(Front desk, kitchen, storage, billing, etc.)
+
 10. N-tier
 N-tier architecture is a software design pattern where an application is divided into multiple physical segments. Each "tier" is a separate
 environment—often running on its own server or virtual machine—that communicates with other tiers over a network.
