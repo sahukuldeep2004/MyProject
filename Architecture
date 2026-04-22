@@ -159,7 +159,28 @@ Event Drivven, Circuit breaker, service discovery, side car
 | Focus      | UI design pattern       | Application structure                 |
 | Usage      | Web applications        | Enterprise systems                    |
 
- ==========================================================================================================================
+10. N-tier
+N-tier architecture is a software design pattern where an application is divided into multiple physical segments. Each "tier" is a separate
+environment—often running on its own server or virtual machine—that communicates with other tiers over a network.
+The most common version is the 3-Tier Architecture:
+Presentation Tier: The user interface (e.g., a web browser or mobile app).
+Application Tier (Logic): The "brain" where data is processed and business rules are applied.
+Data Tier: Where the information is stored (e.g., a SQL or NoSQL database).
+
+“The key difference is — Layered is about logical separation, while N-Tier is about physical separation.”
+
+In Layered Architecture, we organize the application into logical layers like:
+Presentation (UI)
+Business Logic
+Data Access
+All these layers typically run within the same application and same server.
+In N-Tier Architecture, these layers are physically separated and deployed across different servers:
+UI → Client machine
+Application → App server
+Database → DB server
+Communication happens over the network (HTTP, REST, RPC, messaging).
+
+==========================================================================================================================
  Software Architecture charatersic
  https://hackernoon.com/the-eleven-defining-characteristics-of-modern-software-architecture-o8113ehc
  1.Understandability: It should able to communicate easily, quickly understood by development teams and stakeholders at the same time it should meet the business requirements. 
