@@ -939,6 +939,14 @@ system from being overwhelmed. It ensures that one service's issues don't bring 
 Zipkin is the tool for monitoring the API fail or pass info.
 Slueth is the tool which tarck the every request from one service to another service.
 OpenTelemetry (OTel) is an open-source observability framework
+========================================================
+Categories of Distributed Patterns
+| Category            | Examples                         |
+| ------------------- | -------------------------------- |
+| **Resilience**      | Circuit Breaker, Retry, Bulkhead |
+| **Data Management** | Saga, CQRS                       |
+| **Communication**   | Event-driven, API Gateway        |
+| **Deployment**      | Sidecar, Service Discovery       |
 
 
 
