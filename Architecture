@@ -277,6 +277,8 @@ Compliance: Coding standards, legal issues.
 Code Review Practices: Peer review, checklists.
 
 7. Event-driven architecture component?
+Event-driven architecture (EDA) relies on three core components—event producers, event brokers, and event consumers—to create loosely coupled, asynchronous systems.
+
 Que: We have DB where our SQL query is reading the data, now it takes 20 min compared to 2 min. How to troubleshoot. What could be reason
 Ans: Analyze the Query Execution Plan
 Check for Index Utilization
