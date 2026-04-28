@@ -98,7 +98,7 @@ how to manage the team conflict?
 
 
 Innominds(18 Feb)
-==========
+============================
 Consistant hashing
 EDA architecture
 Kafka/topic/partition
@@ -170,4 +170,11 @@ Hashcode/equal method
 composit key in hibernate
 DDD architecture/pattern
 Advantage and disadvantage of microservices
+
+Cubic(27 April)
+====================
+Role & responsbility
+Sacalability
+AWS services
+
 
