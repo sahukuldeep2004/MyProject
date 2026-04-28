@@ -908,8 +908,46 @@ c. Authentication and Authorization: -
 Managing user identities, verifying credentials, and controlling access permissions across all services.
 d. Metrics and Performance Monitoring :
 Collecting and analyzing performance metrics (e.g., CPU usage, memory consumption, request latency) to identify bottlenecks and optimize resource utilization.
-
+======================================
 e. Error Handling
+Types of Errors in Microservices
+A. Business Errors (Expected)
+Examples:Invalid coupon ,Insufficient balance,Product out of stock
+B. Technical Errors (Unexpected)
+Examples:DB down,Timeout,Network issue,Service unavailable
+5. Core Error Handling Patterns
+	A. Retry Pattern
+	Use When:Temporary/transient failures (network glitch)
+	Example:
+	Payment timeout → Retry 3 times
+	Important:Use exponential backoff:
+	1s → 2s → 4s
+	Avoid:Retrying business validation errors
+	B. Circuit Breaker Pattern
+	Purpose:Stop repeated calls to failing service
+	States:
+	Closed → Normal
+	Open → Fail fast
+	Half-Open → Test recovery
+	Example:Payment service down → Open circuit → Return fallback
+	C. Fallback Pattern
+	Example: Recommendation service fails → Show popular products instead
+	D. Bulkhead Pattern
+	Purpose:Isolate failures by resource partitioning
+	Example:Payment thread pool failure should not affect inventory
+6. Synchronous Error Handling (REST)
+Common:
+@ControllerAdvice
+Global exception handler
+HTTP status standardization
+7. Asynchronous Error Handling (Kafka/RabbitMQ)
+Problem:No direct HTTP response
+Solutions:
+Dead Letter Queue (DLQ)
+Retry topics
+Poison message handling
+Idempotency
+============================================================
 f. Circuit Breaker Pattern(Hystrix/Resilience4J) or fault Tolerant
 A service generally calls other services to retrieve data, and there is the chance that the downstream service may be down. There are two problems with this: first, 
 the request will keep going to the down servics. It allows developers to prevent cascading failures in microservices architecture by invoking remote services through 
