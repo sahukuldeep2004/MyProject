@@ -1012,12 +1012,28 @@ There are two types of Sagas:
 i.) Orchestration-Based Saga:In this approach, there is a Saga orchestrator that manages all the transactions and directs the participant services to execute 
 local transactions based on events. This orchestrator can also be though of as a Saga Manager.
 We are using Camunda for Orchestraion. Camunda has work flow & decision model.
+It best for Enterprise workflows
 Springboot intergartion dependency archifect "camunda-bpm-spring-boot-starter"
 ii.) Choreography-Based Saga:In this approach, there is no central orchestrator. Each service participating in the Saga performs their transaction and publish 
 events. The other services act upon those events and perform their transactions. Also, they may or not publish other events based on the situation.
+It is best for small/simple application.
 Axon Saga – a lightweight framework and widely used with Spring Boot-based microservices.
 Saga pattern is independent, so if one step fails, it doesn't block the entire process.
 
+LRA (Long Running Action) is a Saga-style transaction model designed for business processes that take longer durations (seconds, minutes, hours, or days), 
+where locking resources for the full duration is impractical.
+Instead of locking:
+	Complete step
+	Confirm later OR compensate later
+Example :-
+Travel Booking:
+	Flight Reserved
+	Hotel Reserved
+	Payment Pending for 30 mins
+If payment fails:
+	Cancel flight
+	Cancel hotel
+=========================
 What is 2PC for Distributed Transaction Management?
 2PC (Two-Phase Commit) is a protocol used to ensure all participants in a distributed transaction either commit or abort, ensuring consistency. 
 In the first phase, the coordinator asks all participants to agree to commit, and in the second phase, participants either vote to commit or abort the 
