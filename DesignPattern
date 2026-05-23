@@ -61,6 +61,188 @@ of key1 in node B.
 Weak consistency: There is no guarantee that all nodes have the same data at any time, and there are many different implementations.
 Eventual consistency - allows for temporary inconsistencies in the data store, but eventually, all nodes converge to the same value.
 
+Que: SOLID principal
+SOLID is a set of 5 design principles used to write maintainable, scalable, loosely coupled, and clean object-oriented code.
+S — Single Responsibility Principle (SRP)
+Definition :
+A class should have only one reason to change.
+
+Bad Example
+class Employee {
+    void calculateSalary() {}
+    void saveToDB() {}
+    void generateReport() {}
+}
+
+Here one class is handling: business logic,database,reporting
+
+Good Example
+class EmployeeSalaryService {
+    void calculateSalary() {}
+}
+
+class EmployeeRepository {
+    void saveToDB() {}
+}
+
+class EmployeeReportService {
+    void generateReport() {}
+}
+Interview Line :-One class should do only one job.
+
+O — Open/Closed Principle (OCP)
+Definition:Software entities should be: Open for extension,Closed for modification.
+Bad Example
+class PaymentService {
+    void pay(String type) {
+        if(type.equals("CARD")) {
+            System.out.println("Card payment");
+        } else if(type.equals("UPI")) {
+            System.out.println("UPI payment");
+        }
+    }
+}
+
+Every new payment type requires code modification.
+Good Example
+interface Payment {
+    void pay();
+}
+
+class CardPayment implements Payment {
+    public void pay() {
+        System.out.println("Card payment");
+    }
+}
+
+class UpiPayment implements Payment {
+    public void pay() {
+        System.out.println("UPI payment");
+    }
+}
+Interview Line :We should add new functionality without changing existing code.
+
+L — Liskov Substitution Principle (LSP)
+Definition :Child class should be able to replace parent class without breaking behavior.
+
+Bad Example
+class Bird {
+    void fly() {}
+}
+
+class Ostrich extends Bird {
+    void fly() {
+        throw new UnsupportedOperationException();
+    }
+}
+
+Ostrich cannot fly, so inheritance is wrong.
+
+Good Example
+interface Bird {}
+
+interface FlyingBird {
+    void fly();
+}
+
+class Sparrow implements Bird, FlyingBird {
+    public void fly() {}
+}
+
+class Ostrich implements Bird {}
+Interview Line :Child class should properly behave like parent class.
+
+I — Interface Segregation Principle (ISP)
+Definition
+Clients should not be forced to implement methods they do not use.
+
+Bad Example
+interface Worker {
+    void work();
+    void eat();
+}
+
+class Robot implements Worker {
+    public void work() {}
+    
+    public void eat() {} // unnecessary
+}
+Good Example
+interface Workable {
+    void work();
+}
+
+interface Eatable {
+    void eat();
+}
+
+class Human implements Workable, Eatable {
+    public void work() {}
+    public void eat() {}
+}
+
+class Robot implements Workable {
+    public void work() {}
+}
+Interview Line
+
+Create small and specific interfaces.
+
+D — Dependency Inversion Principle (DIP)
+Definition:High-level modules should depend on abstractions, not concrete classes.
+
+Bad Example
+class MySQLDatabase {
+    void connect() {}
+}
+
+class UserService {
+    MySQLDatabase db = new MySQLDatabase();
+}
+
+Tightly coupled with MySQL.
+Good Example
+interface Database {
+    void connect();
+}
+
+class MySQLDatabase implements Database {
+    public void connect() {}
+}
+
+class UserService {
+    private Database db;
+
+    UserService(Database db) {
+        this.db = db;
+    }
+}
+Interview Line :Depend on interfaces, not implementation classes.
+
+Simple Real-Time Example
+Principle	              Real Example
+SRP	                     One microservice for one business capability
+OCP	                     Adding new payment mode without changing old code
+LSP	                     Any implementation should replace parent safely
+ISP	                     Separate interfaces for read/write operations
+DIP	                     Spring Dependency Injection using interfaces
+Very Short Interview Summary
+Principle	One-Line Definition
+SRP	           One class → one responsibility
+OCP	           Extend without modifying existing code
+LSP	           Child should replace parent safely
+ISP	           Small and focused interfaces
+DIP	           Depend on abstraction, not concrete class
+
+Common Interview Question
+Q: Which SOLID principle is most used in Spring Boot?
+
+Answer:
+
+DIP → through Dependency Injection (@Autowired)
+OCP → easy extension using interfaces
+SRP → service/repository/controller separation
+================
 Question: What is SOLID priciple ?
 https://www.jrebel.com/blog/solid-principles-in-java
 Ans: https://howtodoinjava.com/best-practices/5-class-design-principles-solid-in-java/
