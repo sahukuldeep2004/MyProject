@@ -935,6 +935,9 @@ Que: What is database partitioning?
 Ans: Horizontal partition also known as sharding. It is a range base sharding.You put diffrent rows in to tables, the structure of table orignal table stay 
 the same in the new tables.i.e we have same structure of table.
 Vertical partition: This type of partition the table vertically(by column), which means that the structure of the main table changes in the new ones.
+**
+Database partitioning splits the entire database across multiple servers/databases for scalability, while table partitioning splits a large table into 
+smaller partitions within the same database for performance optimization.
 
 Que: Load balancer algorithem used in that?
 Ans: Least connection b. Least response time c. Least bandwith d. round robin d. weight round robin e. IP Hash
