@@ -1,3 +1,9 @@
+*** Kafka is a distributed event streaming paltform which is designed for high throughput, fault-tpleranant, real time data pipeline.
+Scalability : multiple broker, multiple partition
+Duralability: message are persist to disk and replicated, log retention for 7 days
+falut tolerant: replication data (topic partitioned to)to multiple broker
+resilience : message do not get delted in by consumer.
+
 Que: Why KAFKA is fast ?
 Ans : 
 Sequential I/O: -
@@ -20,6 +26,8 @@ Sequence Numbers: The producer assigns a monotonically increasing sequence numbe
 Broker Tracking: The broker tracks the largest sequence number successfully written for each PID and topic-partition combination. If a message with a sequence 
 number less than or equal to the last committed one is received, the broker discards it as a duplicate, but still sends a successful acknowledgment to the 
 producer.
+
+condition : acks=all & max.in.flight.requests.per.connection=5
 
 Core Mechanism:===
 The idempotency works by assigning unique identifiers to every write request: 
