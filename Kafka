@@ -4,6 +4,25 @@ Duralability: message are persist to disk and replicated, log retention for 7 da
 falut tolerant: replication data (topic partitioned to)to multiple broker
 resilience : message do not get delted in by consumer.
 
+Kafka achieves resilience using replication, leader-follower architecture, ISR, retries, idempotent producers, consumer groups,
+offset management, retry/DLQ patterns, and multi-broker deployment.
+
+For high durability:
+Use replication factor = 3
+acks=all
+min.insync.replicas=2
+enable.idempotence=true
+
+For consumer resilience:
+Manual offset commit
+Retry + DLQ
+Consumer groups for failover
+
+For infrastructure resilience:
+Multi-AZ brokers
+Monitoring
+Disaster recovery using MirrorMaker 2.
+
 Que: Why KAFKA is fast ?
 Ans : 
 Sequential I/O: -
