@@ -11,11 +11,11 @@ renege ---vada karke mukur jana
 Issue: Apache FOP issue while writing to PDF file. I was not ale to write the some french text on PDF file ut ale to wwrite ENGLISH and other lang.
 Issue: Deployed the code in PSP having issue with keystore in .p12 certificate but same is working in lower env.
 +++++++++++++++++++++++++
-Hi, I’m Kuldeep Kumar Sahu. I have over 17 years of experience in the IT industry, with the last 4.5 years associated with my current organization.
+Hi, I’m Kuldeep Kumar Sahu. I have over 17 years of experience in the IT industry, with the last 5 years associated with my current organization.
 I have worked across multiple domains including Insurance, Finance, Retail, and Logistics. Over the past 10 years, I have primarily focused on Retail 
 and Logistics, building scalable and distributed systems.
 I have experience working in both Agile and Waterfall methodologies, and I’m comfortable adapting based on project needs.
-On the technology side, I work with Java 17 and Spring Boot 3 for backend development. We use GitLab for version control as well as CI/CD pipelines.
+On the technology side, I work with Java 17 and Spring Boot 3.x for backend development. We use GitLab for version control as well as CI/CD pipelines.
 For containerization, we use Docker, and for orchestration, we deploy services on AWS ECS with ECR. Infrastructure provisioning is managed using Terraform.
 In terms of monitoring and observability, we use AWS CloudWatch for alerts, along with Prometheus, Grafana, and Splunk for logging and metrics analysis.
 Currently, I am working on a banking project where we are building a scalable system using event-driven architecture. We use Apache Kafka (AWS MSK) as 
