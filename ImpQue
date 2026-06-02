@@ -1,3 +1,18 @@
+Que: Micro service architecture performance issue:-
+Ans : Below are some problem/solution for performace related issue.
+Fault tolerance:	
+Slow service blocks upstream thread pools -> Circuit breaker (Resilience4j) to fail fast
+Misconfigured timeouts exhaust resources  -> Bulkhead pattern isolates thread pools
+Retry storms amplify load on degraded services -> Exponential backoff with jitter prevents storms
+No isolation between downstream dependencies -> Propagate deadline budgets across calls	
+Network & latency	
+Blocking synchronous calls reduce throughput  ->  BFF pattern to fetch exactly what's needed(Graph QL)
+Chained calls accumulate latency ->	              Async messaging (Kafka, RabbitMQ) to decouple
+Central load balancer becomes a bottleneck ->     Consistent hashing to spread traffic evenly
+Data mangmnet 
+Distributed transactions are slow and complex -> Materialized views per service to avoid joins
+
+
 Que: If we need to migrate the application from C# sqlserve to Java/microservices/mysql db then what technical thing needs to consider?
 que: If we have one API call which needs to update DB A and then DB B , if DB B call is failed then how to rollback the transation?
 Ans: In a microservices architecture, ensuring data consistency across multiple services—especially when operations span different databases like DB A 
