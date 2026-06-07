@@ -1,3 +1,4 @@
+===================================================JVM ===============================================
 The Java Virtual Machine (JVM) is an abstract computing machine that serves as the core execution engine of Java, translating platform-independent bytecode 
 into machine-specific code. It acts as a bridge between your code and the underlying operating system, giving Java its famous "Write Once, Run Anywhere" (WORA) capability.
 The JVM architecture is split into three main subsystems: the ClassLoader Subsystem, the Runtime Data Areas (Memory), and the Execution Engine.
@@ -26,3 +27,45 @@ The JVM architecture is split into three main subsystems: the ClassLoader Subsys
 - `StackOverflowError` = stack full (usually infinite recursion); `OutOfMemoryError` = heap full.
 - JIT is why Java isn't as slow as interpreted languages — it warms up over time.
 - `String` literals go into the *String Pool* inside the Heap (since Java 7+).
+
+============================================Garbage Collection===========================================
+Que: What is MetadataSpace ?
+Ans: It has replaced the older PermGen memory space.
+
+Que: What Is Garbage Collection and What Are Its Advantages?
+Ans: Garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
+
+Que: Are There Any Disadvantages of Garbage Collection?
+Yes. Whenever the garbage collector runs, it has an effect on the application's performance. This is because all other threads in the application have to be 
+stopped to allow the garbage collector thread to effectively do its work.
+
+Que: What is Heap memory?
+Ans: The heap is a large bulk of memory intended for allocation of objects. When you create an object with the new keyword, it gets allocated on the heap. 
+However, the reference to this object lives on the stack.
+
+Que: Describe how Garbage Collection Works ?
+Ans: Garbage Collection (GC) in Java is an automatic memory management process executed by the Java Virtual Machine (JVM) to look for, identify, and destroy 
+dynamically allocated heap objects that are no longer referenced by the application.
+The JVM generally relies on a Mark-Sweep-Compact framework to clean up memory.
+Marking: The GC traces the object graph starting from active references called GC Roots (such as thread stacks, local variables, and static fields). 
+It marks all reachable objects as "live".
+Sweeping: The GC scans the heap memory to identify unmarked objects. It unallocates the memory spaces occupied by these "dead" objects.
+Compacting: To prevent memory fragmentation, the GC shifts the remaining live objects into contiguous blocks of memory. This makes allocating space for future objects much faster.
+
+The heap is divided up into smaller spaces or generations. These spaces are Young Generation, Old or Tenured Generation.
+The young generation hosts most of the newly created objects.The young generation space is further divided into three spaces: an Eden space and two 
+survivor spaces such as Survivor 1 (s1) and Survivor 2 (s2).The old generation hosts objects that have lived in memory longer than a certain “age”. 
+The objects that survived garbage collection from the young generation are promoted to this space.
+
+First, any new objects are allocated to the Eden space. Both survivor spaces start out empty. When the Eden space fills up, a minor garbage collection is 
+triggered. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted.During the next minor GC, the same thing happens to the 
+Eden space. Unreferenced objects are deleted and referenced objects are moved to a survivor space. However, in this case, they are moved to the second survivor
+ space (S2).
+In addition, objects from the last minor GC in the first survivor space (S1) have their age incremented and are moved to S2. Once all surviving objects have
+been moved to S2, both S1 and Eden space are cleared. At this point, S2 contains objects with different ages.
+At the next minor GC, the same process is repeated. However this time the survivor spaces switch. Referenced objects are moved to S1 from both Eden and S2. 
+Surviving objects are aged. Eden and S2 are cleared.
+After every minor garbage collection cycle, the age of each object is checked. Those that have reached a certain arbitrary age, for example, 8, are promoted 
+from the young generation to the old or tenured generation. For all subsequent minor GC cycles, objects will continue to be promoted to the old generation space.
+This pretty much exhausts the process of garbage collection in the young generation. Eventually, a major garbage collection will be performed on the old 
+generation which cleans up and compacts that space. For each major GC, there are several minor GCs.
