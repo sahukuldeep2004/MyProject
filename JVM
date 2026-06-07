@@ -1,3 +1,28 @@
 The Java Virtual Machine (JVM) is an abstract computing machine that serves as the core execution engine of Java, translating platform-independent bytecode 
 into machine-specific code. It acts as a bridge between your code and the underlying operating system, giving Java its famous "Write Once, Run Anywhere" (WORA) capability.
 The JVM architecture is split into three main subsystems: the ClassLoader Subsystem, the Runtime Data Areas (Memory), and the Execution Engine.
+
+
+**ClassLoader Subsystem** loads `.class` files into memory in three stages: Bootstrap (loads core Java libs like `rt.jar`), Extension (loads from `ext` directory), and Application (loads your project's classpath). It follows the *parent delegation model* — always asks the parent before loading itself.
+
+**Runtime Data Areas** (memory):
+
+- *Method Area* — stores class-level data: metadata, static variables, constant pool. Shared across threads.
+- *Heap* — where all objects and arrays live. Managed by the Garbage Collector. Also shared.
+- *JVM Stack* — each thread has its own stack of frames. Each frame holds local variables and the operand stack for one method call.
+- *PC Register* — per-thread pointer to the currently executing instruction.
+- *Native Method Stack* — like the JVM stack but for native (C/C++) methods.
+
+**Execution Engine** is where bytecode actually runs:
+
+- *Interpreter* — reads and executes bytecode one instruction at a time. Simple but slow.
+- *JIT Compiler* — detects "hot" code (frequently run) and compiles it to native machine code for much faster execution.
+- *Garbage Collector* — automatically reclaims heap memory from unreachable objects. Common algorithms: Serial, Parallel, G1, ZGC.
+
+**JNI (Java Native Interface)** — the bridge that allows Java to call native C/C++ libraries and vice versa.
+
+**Key interview gotchas:**
+- Stack memory is thread-safe (each thread has its own); Heap is shared and needs synchronization.
+- `StackOverflowError` = stack full (usually infinite recursion); `OutOfMemoryError` = heap full.
+- JIT is why Java isn't as slow as interpreted languages — it warms up over time.
+- `String` literals go into the *String Pool* inside the Heap (since Java 7+).
