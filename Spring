@@ -274,17 +274,24 @@ Whenever there is a request to that specific URL, That request is sent to the se
 servlet such that only authorized and authenticated user can access the servlet then we have to implement servlet filters or chain of filters which will intercept any request 
 coming to the servlet and can check if the user who has requested the response from that servlet is indeed valid.
 
-A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. So any incoming request will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there are different Authentication Filters like the BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
+A.Filter: Before the request reaches the Dispatcher Servlet, it is first intercepted by a chain of filters.These filters are responsible for Spring Security. So any incoming request
+will go through these filters and it is here that authentication and authorization takes place. Based on the type of requests there are different Authentication Filters like the 
+BasicAuthenticationFilter,UsernamePasswordAuthenticationFilter etc.
 
-B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the request and creates the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
+B. Authentication Object Creation:--When the request is intercepted by the appropriate AuthenticationFilter it retrieves the username and password from the request and creates 
+the Authentication Object. If the extracted credentials are username and password, then UsernamePasswordAuthenticationToken is created.
 
-C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. The Authentication Manager is only a interface and actual implementation of the authenticate method is provided by the ProviderManager. It call all the provided and and check which one accept the authentication object.
+C.AuthenicationManager :Using the Authentication Object created the filter will then call the authenticate method of the Authentication Manager. The Authentication Manager is 
+only a interface and actual implementation of the authenticate method is provided by the ProviderManager. It call all the provided and and check which one accept the authentication 
+object.
 
-D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like CasAuthenticationProvider, DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
+D. AuthenticationProvider :The AuthenicationProvider is an interface with a single authenticate method.It has various implementations like CasAuthenticationProvider, 
+DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used.
 E.UserDetailsService - The UserDetailsService is an interface having a single method named loadUserByUsername.
 
 Que: Diffrence between OAUTH2 and JWT?
-Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources (end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
+Ans: OAUTH2 is a framework.You can go OAUTH authentication only if you are an OAUTH provider in the cases where the resource owners (users) want to access their(your) resources 
+(end-points) via a third-party client(external app). And it is exactly created for the same purpose though you can abuse it in general.
 OAUTH token can be refresh for longer time other wise it can be expired.
 JWT is a protocol. If you just haev simeple app with one to one communication with server return the token and used it for subscuent request for same server.
 
@@ -294,18 +301,22 @@ Ans: Bcrypt algorithem is used in most of the application.
 Q: Why OAuth2?
 A: It solve prolem where we share user crediantl over network whener we send request multipe time in common basic authntication.
 If we have multiple microservcies then we have to write common authintication logic to every microservcies to validate user.
-if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account credenatils during login.TwitAnalyzer used my credenatils to intract with my credenatils to intract with Twiter. So ther is a securit breach if app misuse credenatils.
+if we want to access TwitAnalyzer appl then TwitAnalyzer will ask Twiter account credenatils during login.TwitAnalyzer used my credenatils to intract with my credenatils to intract 
+with Twiter. So ther is a securit breach if app misuse credenatils.
 
 Que: What is OAuth?
-Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, to use account information from an end-user without exposing the user's password.
+Ans:OAuth (Open Authorization) is an open standard for token-based authentication and authorization. OAuth, allows third-party services, such as Facebook, to use account information 
+from an end-user without exposing the user's password.
 
 Que: How OAuth2 will work?
 Ans: It has seprate authorixation sever where it will validate the user credtails and provide the access token. This access token is on temporary bases.
-So whenevr user try to access the protected resource from server, server will ask for token. if user wont able to provide the token then it will redirect the request to Authorization server.
+So whenevr user try to access the protected resource from server, server will ask for token. if user wont able to provide the token then it will redirect the request to Authorization 
+server.
 
 Que: What are the component involve in Oauth2?
 Ans: 1.Autorization Server :The server that authorize the client to access the user resources. It will authenticate the user by valiation the details and provide the token.
-2.Resource srever:  It is the server which has protected resource details(diffrent microservie) like credit cards, loan, account balance info. WHen tokne is provided then only they give the details.
+2.Resource srever:  It is the server which has protected resource details(diffrent microservie) like credit cards, loan, account balance info. WHen tokne is provided then only they 
+give the details.
 3. The USER / resource owner : the person who owns resources exposed by the resource server.Usually user will prove his identity with username & pwd.
 4. The Client: It is the medium which access the protected resources. The clent application that want to access the resources owned y the user on their behalf .
 
@@ -318,16 +329,37 @@ Ans: 1. User will login to any client app(Quara.com).2. Clinet will fwd the requ
 6. Clinet will send the auth token to resource server(where application is deployed) and ask for some info like account balance, etc.
 7. Resouce server will verify the auth token from authorization server(using APi or common DB) and provide teh details to user like account balance.
 
+Que: Token Formats
+1. Opaque token 2. Json web token (JWT)
+Opaque Token are typically random strings with no inherent meaning. used to refrence authentication information stored on the server-side.
+JWT token are self-contained tokens that consist of three parts: a header, apyload, and a signature, encoded in Base64 URL.
+It can be validted locally by verifying the token's signature using public key, without needing a server call.
 
 Que:What is OAuth2 grant type?
 Ans: An grant is a credential representing the resource owner's authorization (to access its protected resources) used by the client to obtain an access token or OAuth grant types are methods for getting tokens to make requests to a resource server..
 This specification defines four GRANT TYPE:
 1. Authorization Code : used in client app is using faceook,gmail etc and athorization servere share the authrization code and redirect 
 to client app.
+2. PKCE(Proof Key for Code Exchange):-
 2. Implicit : Not use now as it will use one way authentication & authorization.
 3. Resource Owner Password Credentials: We use it if client app, authorization server, resource server are for one organization and sharing the user credenatils to communicate to each other without redirecting to other module.
 4. Client Credentials : Mainly it use for microservices API communication where no user interfarance is required and communication can happen within more microservices using standard credenatls.
  https://www.javainuse.com/spring/springboot-oauth2-client-grant
+
+PKCE code flow:-
+When public client(eg. native and single-page applicayion) request access token, some addiotonal security concern are posted that are mitigated by the Authorization Code flow alon.
+This is becoz public clinet can not store a Clinet Secret.
+Flow: 
+1. Once user click login, clinet app created a cryptographically random code_verifier and from this genearteds a code_challenge.
+2. code challege is Base64 URL-encodeed string of the SHA256 hash of the code verifier.
+3. Redirect the user to the Authorization server along with the code_challenge.
+4. Authorization server store the code_challenge and rericts the suer back to the application with an autorization code whcih is good for one use.
+5. Client app sends the autorization code and code_verifier to the autorizer server.
+6. Authorization server verifiy the code_verifier. If they are valid it respond with ID token and Access Token.
+
+OPENIDCONNECT:- OpneIDConnect is a protocol that sits on the top of The Auth2 framwork. While OAUTH2 provides authorization via an access token conating scope, OpneID connect 
+provides authnitication by introducing anew ID token which contain a new set of information and clains specifically for identity.
+With the ID token, OpneID connect brings standard sharing identity details among the applications.
 
 Q: What is Resource Owner Password Credentials? How to implement Resource Owner Password Credentials?
 Ans: The Password grant type is a way to exchange a user's username and password for an access token. Since the client application has to collect the user's password and send it to the authorization server.
