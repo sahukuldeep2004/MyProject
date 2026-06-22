@@ -70,6 +70,20 @@ If data is structured and need to work with ACID property then RDBMS.
 Data is not structured. It has too many queries and attribute(JSON). It fit for content managmnet system(CMS), Sensor data(IOT).Then we need to go DOCUMENT DB like Mongo DB.
 Data is not structured. if we have to work on an extremely large scale but have few types of queries we need to run, then we go for a COLUMNAR DB like Cassandra or HBase.
 
+SQL                               NOSQL(MongoDB)
+FIX Schema                        No schema
+Table model                       Collection
+Record                            Document
+row/column                         key/value
+ACID compliance                      BASE
+use: data with fix formate         Data can be very, no fix schema
+eg. eployee data                    IOT data, censor data with millions of data
+
+Type of NOSQL database
+MONGO DB: Document base
+REDIS: KEY Value pair
+
+
 OLTP/OLAP
 OLAP stands for Online Analytical Processing. OLAP systems have the capability to analyze database information of multiple systems at the current time. The primary goal of OLAP Service is data analysis and not data processing. 
 OLTP stands for Online Transaction Processing. OLTP has the work to administer day-to-day transactions in any organization. The main goal of OLTP is data processing not data analysis. 
