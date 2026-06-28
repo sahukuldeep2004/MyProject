@@ -1,10 +1,11 @@
 ===================================================JVM ===============================================
-The Java Virtual Machine (JVM) is an abstract computing machine that serves as the core execution engine of Java, translating platform-independent bytecode 
-into machine-specific code. It acts as a bridge between your code and the underlying operating system, giving Java its famous "Write Once, Run Anywhere" (WORA) capability.
+The Java Virtual Machine (JVM) is  the core execution engine of Java, that translating platform-independent bytecode into machine-specific code. 
+It acts as a bridge between your code and the underlying operating system, giving Java its famous "Write Once, Run Anywhere" (WORA) capability.
 The JVM architecture is split into three main subsystems: the ClassLoader Subsystem, the Runtime Data Areas (Memory), and the Execution Engine.
 
 
-**ClassLoader Subsystem** loads `.class` files into memory in three stages: Bootstrap (loads core Java libs like `rt.jar`), Extension (loads from `ext` directory), and Application (loads your project's classpath). It follows the *parent delegation model* — always asks the parent before loading itself.
+**ClassLoader Subsystem** loads `.class` files into memory in three stages: Bootstrap (loads core Java libs like `rt.jar`), Extension (loads from `ext` directory), 
+and Application (loads your project's classpath). It follows the *parent delegation model* — always asks the parent before loading itself.
 
 **Runtime Data Areas** (memory):
 
