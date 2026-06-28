@@ -539,8 +539,8 @@ Customers interact with BookHub to search for books and make purchases.
 BookHub collects payment through the Payment Gateway.
 BookHub sends order emails via Email Service.
 BookHub notifies the Shipping Provider to fulfill deliveries.
-Level 2 – Container Diagram
 
+Level 2 – Container Diagram(indivisual microservices)
 Purpose: Show the high-level containers (applications, databases, APIs).
 Containers in BookHub:
 Web Application (React.js)
