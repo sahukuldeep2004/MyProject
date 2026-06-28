@@ -43,6 +43,10 @@ Que: What is Heap memory?
 Ans: The heap is a large bulk of memory intended for allocation of objects. When you create an object with the new keyword, it gets allocated on the heap. 
 However, the reference to this object lives on the stack.
 
+Que: Java hep in shor way?
+Ans:Java heap is split into Young Gen (Eden + two Survivors) and Old Gen. New objects start in Eden, survive GC cycles through Survivors, 
+and eventually get promoted to Old Gen. Metaspace (outside heap) holds class metadata since Java 8.
+
 Que: Describe how Garbage Collection Works ?
 Ans: Garbage Collection (GC) in Java is an automatic memory management process executed by the Java Virtual Machine (JVM) to look for, identify, and destroy 
 dynamically allocated heap objects that are no longer referenced by the application.
