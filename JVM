@@ -1,3 +1,5 @@
+Expert Java 8+ with deep JVM internals, GC, classloading, memory management, tuning
+Advanced concurrency: Executor/ForkJoin, locks, concurrent collections, Java memory model, non-blocking programming
 ===================================================JVM ===============================================
 The Java Virtual Machine (JVM) is  the core execution engine of Java, that translating platform-independent bytecode into machine-specific code.
 JVM is a runtime engine that converts Java bytecode into machine-specific instructions, providing platform independence, memory management, and security.
