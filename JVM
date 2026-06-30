@@ -1,5 +1,15 @@
 Expert Java 8+ with deep JVM internals, GC, classloading, memory management, tuning
 Advanced concurrency: Executor/ForkJoin, locks, concurrent collections, Java memory model, non-blocking programming
+
+What is non-blocking programming:-
+Instead of putting a thread to sleep while waiting for an external system, the thread is immediately released to handle other tasks, and it
+receives a notification or callback once the operation concludes.
+How to achive non-blocking programmimg:-
+1. Java NIO (New I/O) – System LevelIntroduced in Java 1.4, Java NIO shifts away from byte streams to buffer-oriented, channel-based data transfers.
+2. Introduced in Java 8, CompletableFuture provides functional, event-driven methods to chain asynchronous tasks without calling blocking operations like .get() or .join()
+3.Reactive Programming Frameworks – Architecture Level :-Spring WebFlux / Project Reactor: Instead of returning raw objects, endpoints return 
+Mono<T> (0 or 1 item) or Flux<T> (0 to N items). The application acts as an event-driven loop.
+4. Java 21 Virtual thread
 ===================================================JVM ===============================================
 The Java Virtual Machine (JVM) is  the core execution engine of Java, that translating platform-independent bytecode into machine-specific code.
 JVM is a runtime engine that converts Java bytecode into machine-specific instructions, providing platform independence, memory management, and security.
