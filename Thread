@@ -12,3 +12,21 @@ Que: How to boost API performance with asynchrosulnly?
 Ans: We can process the request asysnchrously by using CompletableFuture class. We can process multiple request concurrntly using @async and at last add the all the response in single
 while doing the aggegarting the result.
 https://www.youtube.com/watch?v=gMmN7wZZezI
+Que: when to choose ThreadPoolTaskExecutor and ExecutorService.
+Choose ThreadPoolTaskExecutor if you are working within a Spring Boot or Spring Framework application. It makes configuration cleaner, manages the bean lifecycle 
+automatically, and natively drives annotations like @Async.
+@Bean
+public Executor asyncExecutor() {
+   ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+   executor.setCorePoolSize(1000);
+   executor.setMaxPoolSize(1000);
+   executor.setQueueCapacity(1000);
+   executor.setThreadNamePrefix("Async-");
+   executor.initialize();
+   return executor;
+}
+Choose ExecutorService if you are developing a lightweight, standalone Java application or building a core Java library that should not depend on external frameworks like Spring.
+
+ExecutorService :
+The ExecutorService in Java is a framework provided by the java.util.concurrent package that simplifies asynchronous task execution by automatically managing a pool of 
+threads. Instead of manually instantiating new Thread() for every task, you submit tasks to the ExecutorService, which reuses existing worker threads to optimize performance.
