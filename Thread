@@ -1,1 +1,14 @@
+What is non-blocking programming:-
+Instead of putting a thread to sleep while waiting for an external system, the thread is immediately released to handle other tasks, and it
+receives a notification or callback once the operation concludes.
+How to achive non-blocking programmimg:-
+1. Java NIO (New I/O) – System LevelIntroduced in Java 1.4, Java NIO shifts away from byte streams to buffer-oriented, channel-based data transfers.
+2. Introduced in Java 8, CompletableFuture provides functional, event-driven methods to chain asynchronous tasks without calling blocking operations like .get() or .join()
+3.Reactive Programming Frameworks – Architecture Level :-Spring WebFlux / Project Reactor: Instead of returning raw objects, endpoints return 
+Mono<T> (0 or 1 item) or Flux<T> (0 to N items). The application acts as an event-driven loop.
+4. Java 21 Virtual thread
 
+Que: How to boost API performance with asynchrosulnly?
+Ans: We can process the request asysnchrously by using CompletableFuture class. We can process multiple request concurrntly using @async and at last add the all the response in single
+while doing the aggegarting the result.
+https://www.youtube.com/watch?v=gMmN7wZZezI
