@@ -10,7 +10,7 @@ Mono<T> (0 or 1 item) or Flux<T> (0 to N items). The application acts as an even
 
 Que: How to boost API performance with asynchrosulnly?
 Ans: We can process the request asysnchrously by using CompletableFuture class. We can process multiple request concurrntly using @async and at last add the all the response in single
-while doing the aggegarting the result.
+while doing the aggegarting the result using join() method. 
 https://www.youtube.com/watch?v=gMmN7wZZezI
 Que: when to choose ThreadPoolTaskExecutor and ExecutorService.
 Choose ThreadPoolTaskExecutor if you are working within a Spring Boot or Spring Framework application. It makes configuration cleaner, manages the bean lifecycle 
