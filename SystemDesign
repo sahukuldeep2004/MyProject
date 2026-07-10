@@ -5,6 +5,52 @@ Parallelism = Doing many tasks literally at the same time.
 Think: Multiple workers doing tasks simultaneously.
 Requires multiple CPU cores or processors.
 
+Here are 30 system design concepts worth mastering:
+
+→ Client-server architecture
+→ IP address
+→ DNS
+→ Proxy and reverse proxy
+→ Latency
+→ HTTP and HTTPS
+→ APIs
+→ REST API
+→ GraphQL
+→ Databases
+→ SQL vs NoSQL
+→ Vertical scaling
+→ Horizontal scaling
+→ Load balancers
+→ Indexing
+→ Replication
+→ Sharding
+→ Vertical partitioning
+→ Caching
+→ Denormalization
+→ CAP theorem
+→ Blob storage
+→ CDN
+→ WebSockets
+→ Webhooks
+→ Microservices
+→ Message queues
+→ Rate limiting
+→ API gateways
+→ Idempotency
+
+The goal is not to memorize definitions.
+
+The goal is to understand what problem each concept solves.
+
+Caching improves speed.
+Load balancers distribute traffic.
+Replication improves availability.
+Sharding helps scale data.
+Queues handle async processing.
+Rate limiting protects systems.
+Idempotency prevents duplicate actions.
+CDNs reduce content delivery latency.
+
 https://www.designgurus.io/blog/high-availability-system-design-basics
 No matter your programming language, start by understanding the basics of how systems are designed.
 
