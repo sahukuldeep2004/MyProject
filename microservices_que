@@ -124,3 +124,96 @@ Example scenario: Order Service creates an order, and Payment Service charges th
 5. When would you NOT use microservices?
 This separates experience from hype. Don't use them when your team is < 5 engineers, you're building an MVP, you don't have CI/CD and monitoring in place, or you can't articulate 
 clear service boundaries yet. Start with a well-structured monolith. Extract when you have a concrete reason
+===============================
+1. How do you handle idempotency when multiple microservices are trying to access the same block of code?
+Idempotency ensures that repeated calls with the same input produce the same result without side effects (duplicate charges, duplicate records, etc.). Common techniques:
+
+Idempotency keys: Client generates a unique key (UUID) per request; the server stores processed keys (in Redis/DB) and returns the cached result if the same key is seen again, 
+instead of reprocessing.
+Database constraints: Use unique constraints (e.g., on order_id) so duplicate inserts fail gracefully and can be caught/ignored.
+Distributed locks: Use Redis (Redlock) or ZooKeeper to ensure only one instance processes a given resource/request at a time.
+Optimistic locking: Use a version column; concurrent updates fail if the version doesn't match, forcing a retry.
+Conditional writes: Use "update where status = X" style queries so only one caller successfully transitions state.
+Combining an idempotency key with a unique DB constraint is the most common, reliable approach in production systems, especially for payment/order processing flows.
+
+2. Two instances pick up the same request, one is still processing — how do you handle this at the concurrency level?
+This is a classic race condition / duplicate processing problem, solved with:
+
+Distributed locking: Use Redis (SETNX/Redlock) or ZooKeeper/Curator to acquire a lock on the resource/request ID before processing; other instances skip or wait if the lock is held.
+Database-level locking: Use SELECT ... FOR UPDATE (pessimistic locking) so only one transaction can modify the row at a time, or optimistic locking with a version column where the 
+second writer's update fails and must retry.
+Message queue with single consumer semantics: If requests come via a queue (Kafka/RabbitMQ), ensure only one consumer in a group processes a given partition/message 
+(Kafka's partition-per-consumer model naturally prevents this).
+Idempotency keys: Even if both instances process it, deduplication logic ensures only one actually commits the final result.
+
+The combination of a distributed lock (to prevent duplicate work) plus idempotency (as a safety net) is the most robust production approach.
+
+3.How do you ensure transactions succeed or fail consistently across different microservices?
+Since microservices have separate databases, you can't rely on a single ACID transaction. Instead:
+
+Saga Pattern: Break the transaction into a series of local transactions, each with a compensating action to undo it if a later step fails (e.g., cancel order if payment fails). 
+Implemented via choreography (event-driven) or orchestration (central coordinator).
+Two-Phase Commit (2PC): A prepare phase (all services vote "ready" or "abort") followed by a commit phase — rarely used in microservices due to blocking behavior and poor 
+scalability/availability trade-offs.
+Outbox Pattern: Ensures DB update and event publishing happen atomically within a service, preventing lost or inconsistent events during failures.
+Eventual consistency: Accept that all services converge to a consistent state within a short time window rather than instantly.
+
+4.How do you ensure transactions succeed or fail consistently across different microservices?
+Since microservices have separate databases, you can't rely on a single ACID transaction. Instead:
+Saga Pattern: Break the transaction into a series of local transactions, each with a compensating action to undo it if a later step fails (e.g., cancel order if payment fails).
+Implemented via choreography (event-driven) or orchestration (central coordinator).
+Two-Phase Commit (2PC): A prepare phase (all services vote "ready" or "abort") followed by a commit phase — rarely used in microservices due to blocking behavior and poor 
+scalability/availability trade-offs.
+Outbox Pattern: Ensures DB update and event publishing happen atomically within a service, preventing lost or inconsistent events during failures.
+Eventual consistency: Accept that all services converge to a consistent state within a short time window rather than instantly.
+
+Saga is the industry-standard choice for microservices due to its non-blocking, scalable nature compared to 2PC.
+
+5. What design pattern do you use when two transactions must either both succeed or both fail?
+This describes atomicity across distributed systems, addressed primarily by two patterns:
+
+Two-Phase Commit (2PC): A coordinator asks all participants to "prepare" (lock resources, vote yes/no); if all vote yes, it sends "commit"; if any votes no, it sends "abort" to 
+roll back everyone. Guarantees strict atomicity but is blocking — if the coordinator crashes mid-process, participants can be stuck holding locks, hurting availability and scalability.
+Saga Pattern (with compensation): Instead of guaranteeing atomicity synchronously, each transaction commits independently, and if a later step fails, compensating transactions 
+undo the earlier ones asynchronously. This trades strict atomicity for availability and eventual consistency.
+
+In practice, microservices favor the Saga pattern because 2PC's blocking nature and tight coupling don't scale well in distributed, high-availability systems. 2PC is more appropriate 
+in tightly coupled systems like a single database with multiple resource managers (e.g., XA transactions), not loosely coupled microservices.
+
+Saga is the industry-standard choice for microservices due to its non-blocking, scalable nature compared to 2PC.
+
+6. How does service discovery work end to end in a microservices architecture?
+Service discovery allows services to find and communicate with each other dynamically, without hardcoded IPs, since instances scale up/down and change addresses frequently.
+End-to-end flow:
+
+Registration: When a service instance starts, it registers itself (host, port, health status) with a service registry — e.g., Eureka, Consul, or Kubernetes' built-in DNS/Service objects.
+Health checks: The registry periodically checks instance health (heartbeats or health endpoints) and removes unhealthy/dead instances automatically.
+Discovery: When Service A needs to call Service B, it queries the registry (or uses a client-side load balancer like Spring Cloud LoadBalancer/Ribbon) to get a list of healthy Service 
+B instances.
+Load balancing: The client (or a server-side proxy/API Gateway) picks an instance using a load-balancing strategy (round-robin, least-connections) and routes the request.
+Dynamic updates: As instances scale or fail, the registry updates in real time, so callers always get current, healthy endpoints — no manual reconfiguration needed.
+
+In Kubernetes, this is largely handled natively via kube-proxy and internal DNS, abstracting away manual registry management.
+===============================================================
+Que: You're getting a timeout error from an API — walk me through your full debugging approach.
+First, identify scope: is it one endpoint or all endpoints, one instance or all? Check API Gateway/load balancer logs for the exact 
+timeout point (client-side, gateway, or backend). Check the target service's health and thread pool status — is it stuck processing, 
+or not responding at all? Look at downstream dependencies (DB, external APIs) the endpoint calls — a slow DB query or a hung external call is the most common cause.
+Check connection pool exhaustion (DB/HTTP client pools maxed out). Verify network issues (DNS, firewall, latency between services). Check recent deployments/config changes as a
+likely trigger. If it's a distributed call, use trace IDs (Zipkin/Jaeger) to pinpoint exactly which hop is timing out. Once found, apply a quick fix (restart, scale, kill stuck thread) 
+to restore service, then root-cause it properly afterward.
+
+Que: 2. Your microservice is slow under high load — how do you find the bottleneck?
+Start with metrics: check CPU, memory, thread pool usage, and GC activity — resource saturation is the most common cause. Check DB query performance and connection pool size — 
+slow queries or pool exhaustion under load is a frequent culprit. Look at downstream/external API calls — a slow dependency without a timeout can back up the entire request chain. 
+Check thread dumps for blocked/waiting threads to spot lock contention or synchronous bottlenecks. Review caching — missing or expired caches under high load increase DB pressure. 
+Check if the service is stateless and horizontally scalable, or if a single instance is a bottleneck. Use APM tools (New Relic, Dynatrace) for code-level profiling to find the 
+slowest method/query. Load test with the same traffic pattern in staging to reproduce and confirm the fix before deploying to production.
+
+Que: 3. Production bug, no monitoring tools allowed, logs only — but multiple concurrent users are hitting at the same time. How do you isolate the issue?
+Without APM, rely entirely on structured, correlated logs. First, ensure each request has a unique correlation/trace ID propagated across all log statements and services — this is
+essential to separate one user's request flow from another's in concurrent traffic. Grep logs by that trace ID to reconstruct the exact sequence of events for a specific failing 
+request. Filter by timestamp range around when the bug was reported to narrow the window. Look for stack traces, error codes, or unusual patterns (repeated retries, timeouts) near 
+the failure point. Check log levels — temporarily bump to DEBUG for the affected service if possible, without restarting others. Cross-reference logs across services in the request 
+chain (API Gateway → Service A → Service B) to find where the flow breaks. This log-only approach depends heavily on having consistent, structured logging (JSON with trace IDs) 
+already in place before the incident.
