@@ -50,6 +50,33 @@ Queues handle async processing.
 Rate limiting protects systems.
 Idempotency prevents duplicate actions.
 CDNs reduce content delivery latency.
+=========================================================================================================================================================================================================
+Good system design starts with questions.
+Before designing anything, I like to clarify:
+✅ What are the main features?
+✅ Who are the users?
+✅ What is the expected traffic?
+✅ Is the system read-heavy or write-heavy?
+✅ What data needs to be stored?
+✅ What are the latency expectations?
+✅ What failures should the system handle?
+✅ Do we need strong consistency or eventual consistency?
+Once the requirements are clear, the design becomes much easier.
+A simple backend system design flow:
+1️⃣ Clarify requirements
+2️⃣ Define APIs
+3️⃣ Design the data model
+4️⃣ Choose database/storage
+5️⃣ Add caching if needed
+6️⃣ Add async processing if needed
+7️⃣ Handle scaling and failures
+8️⃣ Add monitoring, logging, and security
+backend design is not about using every tool.
+It is about choosing the right tool for the right problem.
+Sometimes REST + PostgreSQL is enough.
+Sometimes Kafka, Redis, S3, and distributed workers are needed.
+The key is explaining why.
+=====================================================================================================================================
 
 https://www.designgurus.io/blog/high-availability-system-design-basics
 No matter your programming language, start by understanding the basics of how systems are designed.
