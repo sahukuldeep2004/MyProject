@@ -217,3 +217,16 @@ request. Filter by timestamp range around when the bug was reported to narrow th
 the failure point. Check log levels — temporarily bump to DEBUG for the affected service if possible, without restarting others. Cross-reference logs across services in the request 
 chain (API Gateway → Service A → Service B) to find where the flow breaks. This log-only approach depends heavily on having consistent, structured logging (JSON with trace IDs) 
 already in place before the incident.
+===============
+How do you improve performance of a slow SQL query — end-to-end approach?
+1. Identify the slow query: Use slow query logs, APM tools, or pg_stat_statements/MySQL slow query log to find queries exceeding acceptable latency.
+2. Analyze the execution plan: Run EXPLAIN ANALYZE to see how the DB engine executes the query — look for full table scans, missing index usage, expensive joins, or sort operations.
+3. Add/optimize indexes: Create indexes on columns used in WHERE, JOIN, and ORDER BY clauses. Use composite indexes for multi-column filters, but avoid over-indexing since it slows writes.
+4. Rewrite the query: Avoid SELECT *, reduce unnecessary joins/subqueries, replace correlated subqueries with joins, and use EXISTS instead of IN for large datasets.
+5. Optimize schema: Normalize/denormalize as appropriate, partition large tables, and ensure proper data types.
+6. Reduce data volume: Add pagination (LIMIT/OFFSET or keyset pagination), filter early, and avoid pulling unnecessary rows/columns.
+7. Caching: Cache frequent read results in Redis/Memcached to avoid repeated DB hits.
+8. Connection pooling: Ensure HikariCP or similar is tuned to avoid connection contention under load.
+9. Database-level tuning: Update statistics (ANALYZE), adjust query planner settings, and consider read replicas for read-heavy workloads to distribute load.
+10. Monitor and validate: Re-run EXPLAIN ANALYZE after changes, benchmark under realistic load, and continuously monitor via slow query logs/dashboards to catch regressions early.
+This layered approach — from indexing to caching to architecture — ensures both immediate fixes and long-term scalability.
