@@ -230,3 +230,14 @@ How do you improve performance of a slow SQL query — end-to-end approach?
 9. Database-level tuning: Update statistics (ANALYZE), adjust query planner settings, and consider read replicas for read-heavy workloads to distribute load.
 10. Monitor and validate: Re-run EXPLAIN ANALYZE after changes, benchmark under realistic load, and continuously monitor via slow query logs/dashboards to catch regressions early.
 This layered approach — from indexing to caching to architecture — ensures both immediate fixes and long-term scalability.
+
+Que: How to Check If Your Database Connections Are Exhausted, and How to Add More?
+1. Detect Connection Pool Exhaustion
+Application-level (Spring Boot + HikariCP):
+- Enable HikariCP metrics via Actuator: /actuator/metrics/hikaricp.connections.active, hikaricp.connections.idle, hikaricp.connections.pending
+- If active ≈ maximum-pool-size and pending (threads waiting) is growing → pool is exhausted.
+- Watch logs for: HikariPool-1 - Connection is not available, request timed out after 30000ms — this is the classic exhaustion error.
+Database-level (MySQL/PostgreSQL): MySQL: SHOW STATUS LIKE 'Threads_connected'; and compare against SHOW VARIABLES LIKE 'max_connections';
+Monitoring tools: Grafana dashboards on Prometheus metrics (hikaricp_connections_active), or DB-native tools (AWS RDS Performance Insights, pgAdmin) to visualize connection trends over time.
+2. Root Cause Before Just Adding More;-Long-running or slow queries holding connections too long (optimize the query first — see earlier answer on slow SQL)
+3. How to Add More Connections: update the application.yml file datasource.hikari preperty.
