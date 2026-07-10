@@ -238,6 +238,58 @@ Application-level (Spring Boot + HikariCP):
 - If active ≈ maximum-pool-size and pending (threads waiting) is growing → pool is exhausted.
 - Watch logs for: HikariPool-1 - Connection is not available, request timed out after 30000ms — this is the classic exhaustion error.
 Database-level (MySQL/PostgreSQL): MySQL: SHOW STATUS LIKE 'Threads_connected'; and compare against SHOW VARIABLES LIKE 'max_connections';
-Monitoring tools: Grafana dashboards on Prometheus metrics (hikaricp_connections_active), or DB-native tools (AWS RDS Performance Insights, pgAdmin) to visualize connection trends over time.
+Monitoring tools: Grafana dashboards on Prometheus metrics (hikaricp_connections_active), or DB-native tools (AWS RDS Performance Insights, pgAdmin) to visualize 
+connection trends over time.
 2. Root Cause Before Just Adding More;-Long-running or slow queries holding connections too long (optimize the query first — see earlier answer on slow SQL)
 3. How to Add More Connections: update the application.yml file datasource.hikari preperty.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Performance & Troubleshooting Q&A
+1. Your API response time suddenly increases from 200ms to 5 seconds. How would you investigate the root cause?
+Check monitoring dashboards (Grafana/APM) first to see if it's affecting all endpoints/users or just one — this narrows scope immediately. Correlate the spike timing with 
+recent deployments, config changes, or traffic surges. Check CPU/memory/GC metrics for resource saturation. Check DB query performance and connection pool stats — slow 
+queries or pool exhaustion are common culprits. Check downstream/external service calls for added latency. Take a thread dump if threads appear stuck. Review logs with 
+trace IDs to pinpoint exactly where time is being spent in the request lifecycle. Once the layer (app, DB, network, downstream) is identified, drill deeper — e.g., 
+EXPLAIN ANALYZE for slow queries, or circuit breaker metrics for a failing dependency. Fix immediate cause, then add alerting to catch it earlier next time.
+
+2. A downstream microservice is slow. How do you prevent it from affecting your entire application?
+Use resilience patterns: set aggressive timeouts so calls don't hang indefinitely; add a circuit breaker (Resilience4j) to stop calling the failing service once error/latency 
+thresholds are breached, allowing it to recover; use bulkheads to isolate thread pools per downstream dependency so one slow service doesn't exhaust all available threads; 
+implement fallbacks (cached data, default response) to degrade gracefully instead of failing completely; add retries with exponential backoff + jitter for transient 
+failures only, capped to avoid overload. Combined, these ensure the slowness is contained to that one dependency rather than cascading into a full outage of your application.
+
+3. An API works perfectly with 100 users but fails with 10,000 concurrent users. What would you check first?
+First check connection pool sizes (DB, HTTP clients) — under low load they're sufficient, but at scale they get exhausted, causing timeouts/failures. 
+Check thread pool configuration (Tomcat's max-threads) — may be too small for the concurrency level. Check database performance — locking, slow queries, or 
+connection saturation under concurrent writes. Check rate limiting/throttling at the gateway — might be silently dropping requests. Check memory/GC behavior — 
+high concurrency can cause memory pressure and long GC pauses. Check downstream dependencies for their own capacity limits. Also verify the app is stateless and 
+horizontally scalable — if not, a single instance is likely the bottleneck. Load testing (JMeter/Gatling) in a staging environment helps reproduce and pinpoint the 
+exact breaking point before fixing in production.
+
+4. CPU usage is normal, but API latency is very high. What could be happening?
+If CPU isn't the bottleneck, latency is likely caused by waiting, not computing. Common causes: slow database queries or lock contention (threads waiting on DB, 
+not burning CPU). Connection pool exhaustion — requests queued waiting for an available DB/HTTP connection. Slow downstream/external API calls with no timeout, blocking 
+threads. Thread pool saturation — requests queued behind a limited thread pool even though individual threads are idle-waiting. I/O bottlenecks — disk or 
+network latency (e.g., slow disk writes, high network round-trip time). GC pauses — occasional long stop-the-world pauses that spike latency without raising average CPU. 
+Take a thread dump during a latency spike — if threads show WAITING/BLOCKED states rather than RUNNABLE, it confirms an I/O or lock-based bottleneck rather than a CPU-bound one.
+
+5. How would you identify whether a performance issue is caused by application code, the database, network latency, or a downstream service?
+Use distributed tracing (Zipkin/Jaeger/OpenTelemetry) — it breaks down a single request's total time into spans per component (app logic, DB call, downstream call), 
+immediately showing where time is spent. If no tracing exists, correlate logs with a trace ID and log timestamps at each stage (before/after DB call, before/after 
+downstream call) to manually compute time spent per layer. Check DB-level metrics (query execution time, EXPLAIN ANALYZE) to rule in/out the database. 
+Check APM code-level profiling to see if time is in application logic (loops, serialization). Check network metrics (latency, packet loss) between services, especially 
+cross-region calls. This systematic, layer-by-layer isolation — rather than guessing — is the fastest way to correctly attribute the bottleneck.
+
+6. One SQL query takes 10 seconds in production but runs quickly in the development environment. How would you investigate?
+The most common cause is data volume difference — production has far more rows, exposing missing indexes or inefficient query plans that don't show up on small dev datasets. 
+Run EXPLAIN ANALYZE on the production query (not dev) to see the actual execution plan — look for full table scans or index misses. Check if production statistics are 
+stale (ANALYZE not run recently), causing the query planner to choose a bad plan. Check for lock contention in production from concurrent writes that don't exist in dev. 
+Check hardware/resource differences (disk I/O, CPU, memory allocated to the DB) between environments. Check if production has different indexes than dev (schema drift).
+Also verify if production is under concurrent load competing for I/O/connections at query time, unlike an idle dev DB.
+7. A production issue happens only under heavy traffic and cannot be reproduced locally. What is your debugging approach?
+Since it's not reproducible locally, rely on production observability: analyze APM traces and metrics (latency, error rate, resource usage) captured during the incident 
+window to spot patterns — timeouts, GC pauses, connection pool exhaustion. Use distributed tracing with trace IDs to inspect actual failing requests from that time. 
+Review logs (structured, with trace IDs) for errors/warnings correlated with the traffic spike. Check for race conditions or concurrency bugs that only manifest 
+with many simultaneous threads (deadlocks, shared mutable state issues) — these are the classic causes of "works with 1 user, fails with 10,000." Attempt to reproduce with 
+load testing (JMeter/Gatling) simulating similar concurrency in a staging environment. If still elusive, add targeted logging/feature flags to capture more detail on the 
+next occurrence without a full redeploy.
