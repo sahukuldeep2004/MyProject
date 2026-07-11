@@ -415,3 +415,44 @@ Database unique constraints: Enforce uniqueness on the event ID at the DB level 
 Transactional outbox + exactly-once semantics: Use Kafka's idempotent producer and transactional API (enable.idempotence=true, read-process-write transactions) to achieve effectively 
 exactly-once processing within Kafka itself.
 Combining idempotent design with a deduplication check is the most reliable, practical approach in production.
+
+==========================================================================================
+Kubernetes & Containerization Q&A
+19. Your Kubernetes pod keeps restarting, but application logs show no clear error. How would you debug it?
+Run kubectl describe pod <pod-name> to check events — look for OOMKilled, CrashLoopBackOff, or Liveness probe failed reasons, which often explain restarts that don't appear in app logs. 
+Check kubectl get pod <pod-name> -o yaml for exit codes (137 = OOM killed, 143 = SIGTERM). Check resource limits — if memory limits are too low, Kubernetes kills the container before 
+the app logs an error. Review liveness/readiness probe configuration — a misconfigured probe (too aggressive timeout) can cause healthy pods to be killed. Check previous container 
+logs with kubectl logs <pod> --previous. Also check node-level issues (disk pressure, node resource exhaustion) via kubectl describe node.
+
+20. How would you deploy a new version of a Spring Boot service without downtime?
+Use a rolling update (Kubernetes default Deployment strategy) — new pods with the updated version are gradually started while old pods are terminated, ensuring some instances are always
+available to serve traffic. Configure readiness probes so Kubernetes only routes traffic to new pods once they're fully initialized (Spring context loaded, DB connections ready). 
+Set maxUnavailable and maxSurge appropriately to control rollout pace. For safer releases, use blue-green deployment (switch traffic entirely once the new version is verified) or 
+canary deployment (route a small % of traffic to the new version first, monitor, then gradually increase). Combine with backward-compatible DB migrations so old and new versions can 
+coexist briefly during rollout.
+
+21. What happens to in-flight requests during pod termination, and how would you handle graceful shutdown?
+When Kubernetes terminates a pod, it sends a SIGTERM signal and starts a grace period (default 30s) before force-killing with SIGKILL. Without proper handling, in-flight requests can 
+be abruptly cut off, causing errors for users.
+Graceful shutdown approach:
+Enable Spring Boot's graceful shutdown: server.shutdown=graceful with spring.lifecycle.timeout-per-shutdown-phase=30s — this lets the app stop accepting new requests but finish processing 
+existing ones.
+Add a preStop hook in the pod spec to delay SIGTERM slightly, allowing the load balancer/service to deregister the pod first (avoiding new traffic being routed to a terminating pod).
+Ensure the app closes DB connections, flushes logs, and completes in-progress transactions before fully exiting, all within the grace period.
+
+22. How would you handle distributed transactions across multiple microservices?
+Since each microservice owns its own database, a single ACID transaction can't span all of them. The standard solution is the Saga pattern — breaking the transaction into a sequence of 
+local transactions, each committed independently and coordinated via events (choreography) or a central coordinator (orchestration). If a step fails, compensating transactions undo the 
+preceding steps to restore consistency. Supplement this with the Outbox pattern (atomically persisting DB changes and events together) to avoid lost events, and idempotent consumers to 
+safely handle retries/duplicates. Two-Phase Commit (2PC) is generally avoided in microservices due to its blocking nature and poor scalability.
+
+23. When would you use the Saga pattern, and how would you handle compensation failures?
+Use the Saga pattern whenever a business transaction spans multiple microservices with separate databases and needs eventual consistency without tightly coupling services — e.g., 
+order → payment → inventory → shipping flows.
+Handling compensation failures (when the rollback itself fails):
+
+Retry with backoff: Compensating actions should be retried automatically, since failures are often transient.
+Idempotent compensations: Design them so repeated execution is safe.
+Dead Letter Queue: If compensation keeps failing, route it to a DLQ for manual intervention rather than leaving the system silently inconsistent.
+Alerting: Notify ops immediately so a human can resolve the stuck state.
+Persistent saga state: Track each step's status (via an orchestrator/state machine) so failed compensations can be resumed reliably after a restart, rather than lost.
