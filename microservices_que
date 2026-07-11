@@ -450,9 +450,24 @@ safely handle retries/duplicates. Two-Phase Commit (2PC) is generally avoided in
 Use the Saga pattern whenever a business transaction spans multiple microservices with separate databases and needs eventual consistency without tightly coupling services — e.g., 
 order → payment → inventory → shipping flows.
 Handling compensation failures (when the rollback itself fails):
-
 Retry with backoff: Compensating actions should be retried automatically, since failures are often transient.
 Idempotent compensations: Design them so repeated execution is safe.
 Dead Letter Queue: If compensation keeps failing, route it to a DLQ for manual intervention rather than leaving the system silently inconsistent.
 Alerting: Notify ops immediately so a human can resolve the stuck state.
 Persistent saga state: Track each step's status (via an orchestrator/state machine) so failed compensations can be resumed reliably after a restart, rather than lost.
+
+24. How would you investigate a memory leak in production when memory keeps increasing slowly and eventually crashes after several days?
+1. Confirm the trend
+Check heap usage metrics over time (Grafana/Prometheus with JVM metrics via Micrometer) to confirm a steady upward trend across GC cycles — not just normal sawtooth usage, but a rising baseline even after full GC runs.
+2. Monitor GC behavior
+Enable GC logging (-Xlog:gc*) and check if full GCs are becoming more frequent and reclaiming less memory each time — a strong sign of a genuine leak rather than normal churn.
+3. Take heap dumps over time
+Capture heap dumps at intervals (jmap -dump:live,format=b,file=heap.hprof <pid>) — ideally one early and one closer to the crash — and compare object counts/sizes using Eclipse MAT or VisualVM to find growing collections/objects that aren't being garbage collected.
+4. Identify the leak source
+Look for common culprits: static collections/caches growing unbounded, unclosed resources (DB connections, streams, listeners), ThreadLocal variables not cleared, or event listeners/subscribers never unregistered.
+5. Use the Dominator Tree
+In MAT, use the "Leak Suspects" report and dominator tree to trace which objects are retaining the most memory and their reference chains back to GC roots.
+6. Reproduce in staging
+Run a long soak test with production-like traffic in staging while monitoring heap growth, to confirm and safely test the fix without needing to wait days in production.
+7. Fix and validate
+Apply the fix (bound the cache, close resources properly, clear ThreadLocals), then monitor the heap trend in production over several days to confirm memory stabilizes.
