@@ -286,6 +286,7 @@ Run EXPLAIN ANALYZE on the production query (not dev) to see the actual executio
 stale (ANALYZE not run recently), causing the query planner to choose a bad plan. Check for lock contention in production from concurrent writes that don't exist in dev. 
 Check hardware/resource differences (disk I/O, CPU, memory allocated to the DB) between environments. Check if production has different indexes than dev (schema drift).
 Also verify if production is under concurrent load competing for I/O/connections at query time, unlike an idle dev DB.
+
 7. A production issue happens only under heavy traffic and cannot be reproduced locally. What is your debugging approach?
 Since it's not reproducible locally, rely on production observability: analyze APM traces and metrics (latency, error rate, resource usage) captured during the incident 
 window to spot patterns — timeouts, GC pauses, connection pool exhaustion. Use distributed tracing with trace IDs to inspect actual failing requests from that time. 
@@ -293,3 +294,66 @@ Review logs (structured, with trace IDs) for errors/warnings correlated with the
 with many simultaneous threads (deadlocks, shared mutable state issues) — these are the classic causes of "works with 1 user, fails with 10,000." Attempt to reproduce with 
 load testing (JMeter/Gatling) simulating similar concurrency in a staging environment. If still elusive, add targeted logging/feature flags to capture more detail on the 
 next occurrence without a full redeploy.
+
+Fault Tolerance & Resilience Q&A
+8. When would you use a Circuit Breaker, Retry, Timeout, and Bulkhead pattern?
+Timeout: Always use as the first line of defense — set on every network call (HTTP, DB) so a thread never waits indefinitely for a slow/unresponsive dependency.
+Retry: Use for transient, short-lived failures (network blip, momentary unavailability) where the same request is likely to succeed on a second attempt. Pair with 
+exponential backoff + jitter, and only retry idempotent operations to avoid duplicate side effects.
+Circuit Breaker: Use when a dependency is repeatedly failing or consistently slow — it stops sending requests after a failure threshold, giving the downstream service
+time to recover, and periodically tests recovery (half-open state) instead of hammering it with retries.
+Bulkhead: Use to isolate resources (thread pools/connection pools) per dependency, so a slow/failing downstream service can't exhaust all threads and take down calls to
+unrelated, healthy services.
+Typically all four are combined: timeout bounds each call, retry handles blips, circuit breaker handles sustained failures, and bulkhead contains the blast radius — 
+together forming a full resilience strategy.
+
+9. Redis is down. Should your application also go down? How would you design the fallback?
+No — the application should degrade gracefully, not go down entirely, unless Redis is absolutely critical to core functionality (e.g., session store with no alternative).
+Design approach:
+Circuit breaker around Redis calls: detect failures quickly and stop hammering a down Redis instance.
+Fallback to source of truth: if Redis is used as a cache, fall back to querying the database directly (with a short timeout) instead of failing the request — accept higher 
+latency temporarily rather than an outage.
+Fallback to default/stale data: for non-critical reads, serve last-known-good or default values instead of failing.
+Local in-memory cache (Caffeine) as a secondary cache layer to reduce DB load during Redis downtime.
+Async/non-blocking calls: don't let Redis unavailability block the main thread — timeout fast and move on.
+High availability: use Redis Sentinel or Redis Cluster to minimize the chance of full downtime in the first place.
+
+Database & Data Consistency Q&A
+10. Your database connection pool is exhausted in production. What could be the possible reasons?
+
+Slow/long-running queries holding connections longer than expected (missing indexes, large scans, lock waits).
+Connection leaks — code not closing/releasing connections properly (missing try-with-resources, exceptions skipping close()).
+Undersized pool for actual traffic/concurrency — pool size not scaled with instance count or load.
+Long transactions — connections held open across multiple operations, business logic, or external calls instead of being scoped tightly.
+Sudden traffic spike exceeding normal capacity, especially without rate limiting.
+Downstream slowness — a slow external call inside a transaction holds the DB connection idle while waiting.
+Deadlocks/lock contention — transactions blocked waiting on locks, occupying connections without progressing.
+Connections not returned after failures — exceptions during query execution not properly releasing the connection back to the pool.
+
+Fix: identify via HikariCP metrics/leak detection, optimize slow queries, tighten transaction scope, and right-size the pool based on load testing.
+
+11. How would you handle duplicate payment requests caused by retries or multiple button clicks?
+Use an idempotency key — the client generates a unique key (UUID) per logical payment attempt and sends it in the request header. The server checks if that key
+has already been processed: if yes, it returns the original cached response instead of reprocessing the payment; if no, it processes the payment and stores the 
+result against that key. Enforce this with a unique DB constraint on the idempotency key so concurrent duplicate requests can't both succeed — the second insert 
+fails and the response is fetched from the first. On the frontend, also disable the submit button after the first click as a UX-level safeguard (not a substitute 
+for backend idempotency). Set an expiry on stored keys (e.g., 24 hours) to bound storage growth while covering realistic retry windows.
+
+12. Where would you store an idempotency key, and how would you handle concurrent requests with the same key?
+Storage: Store idempotency keys in a fast, shared store like Redis (with TTL for auto-expiry) for quick lookups, or in a database table with a unique constraint on 
+the key column if you need strong durability/consistency (common for payments). Redis is preferred for speed; DB is preferred when the key's outcome must survive Redis failures.
+Handling concurrent requests with the same key:
+Use SETNX in Redis (set-if-not-exists) as an atomic lock — the first request acquires it and proceeds; concurrent duplicates see the key already exists and either wait (poll) or 
+immediately return a "processing" status.
+In DB, the unique constraint ensures only one insert succeeds; the second gets a constraint violation, catches it, and fetches/returns the first request's stored result.
+Once processing completes, store the response against the key so subsequent duplicate calls (even after completion) return the same cached result instead of reprocessing.
+
+13. Your service receives the same request twice because of a network retry. How would you guarantee consistent results?
+This is solved by making the operation idempotent, so processing it twice produces the same end state as processing it once:
+
+Idempotency key: Client sends a unique request ID; server checks if it's already been processed and returns the stored result for duplicates instead of re-executing business logic.
+Unique constraints: At the DB level, use unique keys (e.g., on order_id + request_id) so a duplicate insert fails safely and can be handled gracefully rather than creating a 
+second record.
+Conditional updates: Use "update where status = X" patterns so a second identical request finds the state already changed and becomes a safe no-op.
+Natural idempotency: Design operations to be idempotent by nature where possible — e.g., "set balance to $100" instead of "add $10," so repeating it doesn't compound the effect.
+Combined, these ensure that regardless of how many times a request is retried over the network, the final system state remains correct and consistent.
