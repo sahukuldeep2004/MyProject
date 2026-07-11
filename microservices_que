@@ -370,6 +370,48 @@ TTL-based expiry: Set a reasonable time-to-live on cache entries as a safety net
 Write-through/Cache-aside pattern: Update the cache (or invalidate it) in the same transaction/step as the DB write, ensuring consistency at the point of change rather than relying 
 on background sync.
 Versioned cache keys: Include a version/timestamp in the cache key (e.g., user:123:v5); on update, bump the version so old cached entries are naturally bypassed without explicit deletion.
-
 In practice, a shared Redis cache combined with a short TTL covers most cases simply and reliably; Pub/Sub invalidation is added only when local caching is required for extreme 
 low-latency needs.
+
+15. How would you process a 5GB CSV file without causing an Out Of Memory Error?
+The core principle: never load the entire file into memory at once — stream and process it incrementally so memory usage stays constant (O(1)) regardless of file size, instead of growing 
+with the file (O(n)).
+1. Stream the file, don't load it fully
+Use a buffered reader (BufferedReader in Java, or similar streaming APIs) to read one line at a time, process it, and discard it — rather than loading all rows into a List or 
+in-memory collection.
+2. Use streaming CSV parsers
+Use libraries like Apache Commons CSV or OpenCSV in streaming mode, which parse records one at a time instead of loading the whole file into memory (avoid loading it fully into 
+a DataFrame for the same reason).
+3. Process in batches
+Process records in small batches (e.g., 1,000 rows at a time) and write/commit each batch incrementally to the database, instead of accumulating everything before writing.
+4. Use a framework built for this
+For large-scale or repeatable jobs, use Spring Batch — it natively handles:
+Chunk-oriented processing (ItemReader → ItemProcessor → ItemWriter)
+Checkpointing (resume from where it failed)
+Restart on failure without reprocessing everything
+5. Parallelize if needed
+Split the file into smaller parts and process them concurrently across multiple threads or worker instances to speed up processing.
+6. Tune the JVM (secondary measure)
+Increasing JVM heap size can help as a buffer, but it's not the fix — streaming is what actually solves the OOM problem, not more memory.
+
+----------------
+16. When would you choose synchronous communication over asynchronous messaging between microservices?
+Choose synchronous (REST/gRPC) when the caller needs an immediate response to proceed — e.g., validating a user during login, checking inventory availability before confirming an order,
+or any real-time query where the result directly drives the next UI/logic step. It's simpler to implement, debug, and trace, and suits low-latency, request-response interactions between 
+tightly coupled internal services.
+Choose asynchronous (Kafka/RabbitMQ) when operations can be decoupled and processed independently — e.g., sending notifications, updating analytics, or triggering downstream
+workflows — improving resilience, scalability, and fault tolerance since services aren't blocked waiting on each other.
+
+17. What happens if a Kafka consumer processes a message successfully but crashes before committing the offset?
+Since the offset wasn't committed, Kafka still considers that message unacknowledged. When the consumer restarts (or a new consumer in the group takes over the partition), it resumes 
+from the last committed offset, causing the already-processed message to be redelivered and reprocessed — this is Kafka's at-least-once delivery guarantee in action. This is why 
+consumers must be designed to be idempotent: reprocessing the same message shouldn't cause incorrect side effects (e.g., duplicate charges). Using manual offset commits after successful 
+processing (not before) minimizes this window, but can't eliminate it entirely — idempotency at the application level is the real safeguard.
+18. How would you prevent the same Kafka event from being processed twice?
+
+Idempotent consumers: Design processing logic so reprocessing has no additional effect — e.g., use upserts instead of inserts, or check a unique event ID before applying changes.
+Deduplication store: Track processed message IDs (Kafka message key or a custom unique ID) in Redis/DB; before processing, check if the ID was already handled, and skip if so.
+Database unique constraints: Enforce uniqueness on the event ID at the DB level so duplicate inserts fail safely and can be caught/ignored.
+Transactional outbox + exactly-once semantics: Use Kafka's idempotent producer and transactional API (enable.idempotence=true, read-process-write transactions) to achieve effectively 
+exactly-once processing within Kafka itself.
+Combining idempotent design with a deduplication check is the most reliable, practical approach in production.
