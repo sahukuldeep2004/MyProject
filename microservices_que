@@ -357,3 +357,15 @@ second record.
 Conditional updates: Use "update where status = X" patterns so a second identical request finds the state already changed and becomes a safe no-op.
 Natural idempotency: Design operations to be idempotent by nature where possible — e.g., "set balance to $100" instead of "add $10," so repeating it doesn't compound the effect.
 Combined, these ensure that regardless of how many times a request is retried over the network, the final system state remains correct and consistent.
+
+Caching Q&A
+14. How would you solve the cache invalidation problem when multiple service instances are running?
+The core issue: if each instance uses a local in-memory cache (Caffeine/Guava), invalidating on one instance doesn't clear it on the others, causing stale data across the fleet.
+Solutions:
+Centralized cache (Redis): Use a shared distributed cache instead of local caches — all instances read/write the same cache, so a single invalidation (delete/update) is instantly visible to everyone. This is the most common and simplest fix.
+Cache invalidation via Pub/Sub: If local caches are still needed for speed, use Redis Pub/Sub or Kafka to broadcast an "invalidate key X" event to all instances when data changes, so each instance clears its local entry.
+TTL-based expiry: Set a reasonable time-to-live on cache entries as a safety net, ensuring stale data self-corrects within a bounded window even if an explicit invalidation is missed.
+Write-through/Cache-aside pattern: Update the cache (or invalidate it) in the same transaction/step as the DB write, ensuring consistency at the point of change rather than relying on background sync.
+Versioned cache keys: Include a version/timestamp in the cache key (e.g., user:123:v5); on update, bump the version so old cached entries are naturally bypassed without explicit deletion.
+
+In practice, a shared Redis cache combined with a short TTL covers most cases simply and reliably; Pub/Sub invalidation is added only when local caching is required for extreme low-latency needs.
