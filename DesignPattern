@@ -1,5 +1,6 @@
 All design pattern with question which one need?
 https://medium.com/womenintechnology/stop-memorizing-design-patterns-use-this-decision-tree-instead-e84f22fca9fa
+https://medium.com/womenintechnology/stop-memorizing-design-patterns-use-this-decision-tree-instead-e84f22fca9fa
 
 Que: Difference Between Architectural Style, Architectural Patterns and Design Patterns?
 Ans: Architectural Style style refers to a set of guidelines or principles for designing and building software systems.
@@ -24,6 +25,10 @@ rather than the overall structure of a system.
 For example: Factory, Singleton, Prototype.
 How to instantiate an object when we only know what type needs to be instantiated at run time (maybe a Factory Class?);
 How to make an object behave differently according to its state (maybe a state machine, or a Strategy Pattern?).
+Too many arguments -> builder pattern
+API mismatch -> Adopter
+If else grow -> Startegy
+pipeline steps -> Chain 
 
 ======================================================================================================================
 
