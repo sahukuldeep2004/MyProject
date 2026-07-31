@@ -320,7 +320,9 @@ public class EnhancedSwitchExample {
 
 What is Virtaul thread.
 These resources typically explain that virtual threads are lightweight, managed by the JVM rather than the OS, and designed for I/O-intensive operations to achieve high throughput. They allow developers to maintain the traditional, simple thread-per-request programming model without the overhead of heavy platform threads.
-It is best for I/O intensive task but tomcate or paltform can be used for CPU intesive task for better performance.
+It is best for I/O intensive task but tomcat or platform can be used for CPU intensive task for better performance.
+eg.: Executing thousands of remote database queries, REST API calls, or file reads concurrently without running out of operating system threads
+
 public void generateReportForRegion(String region) {
 Executor virtualThreadExecutor = Executors.newVirtualThreadPerTaskExecutor();
         virtualThreadExecutor.execute(()->{
