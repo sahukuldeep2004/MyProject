@@ -149,13 +149,13 @@ Producer config value:
 2.value.serializer
 3.acks= acks=0 If set to zero then the producer will not wait for any acknowledgment from the server at all.acks=1 This will mean the leader will write the record to its local log but will respond without awaiting full acknowledgement from all followers.acks=all This means the leader will wait for the full set of in-sync replicas to acknowledge the record. This guarantees that the record will not be lost as long as at least one in-sync replica remains alive. This is the strongest available guarantee. This is equivalent to the acks=-1 setting.
 4.bootstrap.servers=
-5.batch.size
+5.batch.size:- a producer-side configuration that dictates how many bytes of data to group together before sending them to a Kafka broker
 6.delivery.timeout.ms=An upper bound on the time to report success or failure after a call to send() returns.120000 (2 minutes)
 7. The linger.ms= setting adds a delay to wait for more records to build up, so larger batches get sent.
 8. retry.backoff.ms=The amount of time to wait before attempting to retry a failed request to a given topic partition. This avoids repeatedly sending requests in a tight loop under some failure scenarios.
 9. max.in.flight.request.per.connection=1  //how many request are allow which are still not acknowledge?
 
-10. flush.size : max no. of message to be send to target
+10. flush.size : max no. of message to be send to target like s3 from sink connector
 
 Consumer config value::
 key.deserializer
