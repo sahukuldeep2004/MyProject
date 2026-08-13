@@ -1,3 +1,24 @@
+        Kafka architecture 
+=====================================
+[ Producers ] 
+        │ (Publish events)
+        ▼
+┌────────────────────────────────────────┐
+│             KAFKA CLUSTER              │
+│  ┌──────────────────────────────────┐  │
+│  │             Broker               │  │
+│  │  ┌────────────────────────────┐  │  │
+│  │  │           Topic            │  │  │
+│  │  │ ┌───────────┐┌───────────┐ │  │  │
+│  │  │ │Partition0││Partition1│ │  │  │
+│  │  │ └───────────┘└───────────┘ │  │  │
+│  │  └────────────────────────────┘  │  │
+│  └──────────────────────────────────┘  │
+└────────────────────────────────────────┘
+        │ (Subscribe & consume)
+        ▼
+  [ Consumers / Stream Processing Apps ]
+
 *** Kafka is a distributed event streaming paltform which is designed for high throughput, fault-tpleranant, real time data pipeline.
 Scalability : multiple broker, multiple partition
 Duralability: message are persist to disk and replicated, log retention for 7 days
