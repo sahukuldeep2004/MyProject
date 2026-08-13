@@ -337,3 +337,54 @@ IBM MQ has multiple modes of operation, including point-to-point, publish/subscr
 
 Kafka theory short cut
 https://codingnconcepts.com/post/apache-kafka-ccdak-exam-notes/
+=================================================================
+KStram, KTable, GlobalKTable.
+KStream for independent events you never want overwritten,
+KTable for state you're building yourself via aggregation, 
+GlobalKTable for small lookup data keyed differently than your main stream
+
+KStream — processing every event independently (fraud alert on high-value transactions).
+example: Reading data from one topic and checking some condition and baased on that sending data to other topic. There is no overwritten.
+
+@Bean
+public KStream<String, Transaction> transactionStream(StreamsBuilder streamsBuilder) {
+        KStream<String, Transaction> transactions = streamsBuilder.stream(
+                transactionsTopic,
+                Consumed.with(Serdes.String(), new JsonSerde<>(Transaction.class))
+        );
+        // Every single record is inspected — nothing is "latest value", every transaction is a fact
+        transactions
+                .filter((accountId, txn) -> txn.amount() > 10_000)
+                .mapValues(txn -> new FraudAlert(
+                        txn.txnId(), txn.accountId(), txn.amount(), "amount exceeds threshold"))
+                .to(alertsTopic, Produced.with(Serdes.String(), new JsonSerde<>(FraudAlert.class)));
+        return transactions;
+    }
+
+
+KTable — running state built from your own aggregation (account balance).
+@Bean
+public KTable<String, Double> accountBalance(StreamsBuilder streamsBuilder) {
+  KStream<String, Transaction> transactions = streamsBuilder.stream(
+                transactionsTopic,
+                Consumed.with(Serdes.String(), new JsonSerde<>(Transaction.class))
+    );
+   // groupBy + aggregate ALWAYS produces a KTable: "latest running balance per accountId"
+  KTable<String, Double> balances = transactions
+                .groupBy((key, txn) -> txn.accountId(), Grouped.with(Serdes.String(), new JsonSerde<>(Transaction.class)))
+                .aggregate(
+                        () -> 0.0,                                   // initializer
+                        (accountId, txn, currentBalance) -> currentBalance + txn.amount(), // adder
+                        Materialized.<String, Double, org.apache.kafka.streams.state.KeyValueStore<org.apache.kafka.common.utils.Bytes, byte[]>>as("balance-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
+
+        // Publish current balance per account — each account's row is overwritten as new txns arrive
+        balances.toStream().to(balancesTopic, Produced.with(Serdes.String(), Serdes.Double()));
+        return balances;
+    }
+Why KTable: only the latest balance per account matters downstream — a new transaction naturally supersedes the previous balance for that key. This also gives you a
+queryable state store (balance-store) you can hit with an interactive query REST endpoint if you want to expose "current balance" via an API.
+
+GlobalKTable — enriching a stream with small reference data keyed differently (currency conversion)
