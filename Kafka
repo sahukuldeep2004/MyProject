@@ -403,3 +403,16 @@ ReplaceField: Rename, include, or exclude specific fields inside the record valu
 MaskField: Replace sensitive data or PII with null or static values.
 InsertField: Append static metadata or timestamp information into records.
 RegexRouter / TimestampRouter: Dynamically reroute records to different Kafka topics.
+
+json{
+  "name": "my-source-connector",
+  "config": {
+    "connector.class": "org.apache.kafka.connect.file.FileStreamSourceConnector",
+    "file": "/path/to/input.txt",
+    "topic": "original-topic",
+    "transforms": "InsertTs,RenameCol",
+    "transforms.InsertTs.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.InsertTs.timestamp.field": "processed_timestamp",
+    "transforms.RenameCol.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+    "transforms.RenameCol.renames": "oldName:newName"
+  }
