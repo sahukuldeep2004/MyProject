@@ -383,12 +383,23 @@ public KTable<String, Double> accountBalance(StreamsBuilder streamsBuilder) {
         // Publish current balance per account — each account's row is overwritten as new txns arrive
         balances.toStream().to(balancesTopic, Produced.with(Serdes.String(), Serdes.Double()));
         return balances;
+}
+Why KTable: only the latest balance per account matters downstream — a new transaction naturally supersedes the previous balance for that key. This also gives you a
+queryable state store (balance-store) you can hit with an interactive query REST endpoint if you want to expose "current balance" via an API.
+GlobalKTable — enriching a stream with small reference data keyed differently (currency conversion)
+
 ============================================================================
 SMTs (Single Message Transform): Kafka data transformations use Single Message Transforms (SMTs). SMTs are pluggable, lightweight components configured directly inside a connector's properties file. 
 They modify individual records inline—either on source connectors before writing to Kafka, or on sink connectors before writing to external systems.
 
-    }
-Why KTable: only the latest balance per account matters downstream — a new transaction naturally supersedes the previous balance for that key. This also gives you a
-queryable state store (balance-store) you can hit with an interactive query REST endpoint if you want to expose "current balance" via an API.
+Configuring SMTs in a Connector:
+To apply a transformation, define the transforms chain sequence in your connector's JSON configuration. Each named transform requires a specified type class and step-specific parameters.
+Define the execution order: List the comma-separated alias names in the transforms property.Set transformation classes: Provide the fully qualified Java class name 
+for each alias via transforms.<alias>.type.Pass parameters: Configure specific transformation rules (such as field renaming or masking) scoped to that alias
 
-GlobalKTable — enriching a stream with small reference data keyed differently (currency conversion)
+Common Built-in SMT Examples:
+Apache Kafka provides several out-of-the-box transformations for frequent tasks:
+ReplaceField: Rename, include, or exclude specific fields inside the record value.
+MaskField: Replace sensitive data or PII with null or static values.
+InsertField: Append static metadata or timestamp information into records.
+RegexRouter / TimestampRouter: Dynamically reroute records to different Kafka topics.
