@@ -383,6 +383,10 @@ public KTable<String, Double> accountBalance(StreamsBuilder streamsBuilder) {
         // Publish current balance per account — each account's row is overwritten as new txns arrive
         balances.toStream().to(balancesTopic, Produced.with(Serdes.String(), Serdes.Double()));
         return balances;
+============================================================================
+SMTs (Single Message Transform): Kafka data transformations use Single Message Transforms (SMTs). SMTs are pluggable, lightweight components configured directly inside a connector's properties file. 
+They modify individual records inline—either on source connectors before writing to Kafka, or on sink connectors before writing to external systems.
+
     }
 Why KTable: only the latest balance per account matters downstream — a new transaction naturally supersedes the previous balance for that key. This also gives you a
 queryable state store (balance-store) you can hit with an interactive query REST endpoint if you want to expose "current balance" via an API.
