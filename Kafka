@@ -276,6 +276,8 @@ public void listenToPartition(
         + "from partition: " + partition);
 }
 
+auto.offset.reset = latest(fetches messages produced after the consumer starts) or earliest(It fetches all historical records still stored in the partition from the beginning)
+
 Workflow in Kafka:
 1.Producers send message to a topic at regular intervals.
 2. Kafka broker stores all messages in the partitions configured for that particular topic. It ensures the messages are equally 
