@@ -32,7 +32,8 @@ System Design road map
 3. data model storage
 4. API's (API architecture style like REST,SOAP,webhook,gRPC,Text/Binary)
 5. high level component (datase,server, ALB,gateway,cdn,message queue,analytic service,cache layer,promothis for monitor)
-6. draw architecture with component /follow architecture pattern like microservices ,event driven,monolothi,SOA,layered) or deployemnet uses K8s, container or need cloud with services.
+6. draw architecture with component /follow architecture pattern like microservices ,event driven,monolothi,SOA,layered) or deployemnet uses K8s, container or 
+need cloud with services.
 7. Low level design -focus on each service and tink of it how it communicate with other.
 
 
@@ -48,7 +49,8 @@ Domain driven design/ TDD --
 Container/Orchestarion/Cloud Computing/CICD/serverless --Ok
 FindBug(static analysis on Java code)/checkstyle(Checkstyle is an open source tool that checks code against a configurable set of rules)/
 PMD(PMD Plugin allows you to automatically run the PMD code analysis tool on your project's source code and generate a site report with its results)/
-SONAR(SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells)/Junkin/JMETER/Splunk/ELK/
+SONAR(SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code 
+smells)/Junkin/JMETER/Splunk/ELK/
 Flow Diag/Architeture Diag/
 Messaing System(Kafka/MQ) --Ok
 
@@ -67,8 +69,10 @@ Non Functional Requirmnet
 
 How to choose DB  based on structured(table), semi structured(json), non structured(audio files) ?
 If data is structured and need to work with ACID property then RDBMS.
-Data is not structured. It has too many queries and attribute(JSON). It fit for content managmnet system(CMS), Sensor data(IOT).Then we need to go DOCUMENT DB like Mongo DB.
-Data is not structured. if we have to work on an extremely large scale but have few types of queries we need to run, then we go for a COLUMNAR DB like Cassandra or HBase.
+Data is not structured. It has too many queries and attribute(JSON). It fit for content managmnet system(CMS), Sensor data(IOT).Then we need to go 
+DOCUMENT DB like Mongo DB.
+Data is not structured. if we have to work on an extremely large scale but have few types of queries we need to run, then we go for a COLUMNAR DB
+like Cassandra or HBase.
 
 SQL                               NOSQL(MongoDB)
 FIX Schema                        No schema
@@ -85,8 +89,10 @@ REDIS: KEY Value pair
 
 
 OLTP/OLAP
-OLAP stands for Online Analytical Processing. OLAP systems have the capability to analyze database information of multiple systems at the current time. The primary goal of OLAP Service is data analysis and not data processing. 
-OLTP stands for Online Transaction Processing. OLTP has the work to administer day-to-day transactions in any organization. The main goal of OLTP is data processing not data analysis. 
+OLAP stands for Online Analytical Processing. OLAP systems have the capability to analyze database information of multiple systems at the current time. 
+The primary goal of OLAP Service is data analysis and not data processing. 
+OLTP stands for Online Transaction Processing. OLTP has the work to administer day-to-day transactions in any organization. The main goal of OLTP is 
+data processing not data analysis. 
 
 Diffrence between Monolithic, Service oriented architecture (SOA) and Microservices. Why need API gateway
 https://api7.ai/blog/why-do-microservices-need-an-api-gateway
@@ -96,11 +102,13 @@ and alarm, tracing analysis, load balancing, rate limiting, isolation, and circu
 =================================================================================
 
 Top  8 Architectural Patterns
-An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in software design. It offers a highlevel conceptual framework for structuring and organizing software systems to effectively address specific concerns, such as scalability, maintainability, flexibility, and efficiency.
+An architectural pattern serves as a broad and reusable solution to common architectural challenges encountered in software design. It offers a highlevel 
+conceptual framework for structuring and organizing software systems to effectively address specific concerns, such as scalability, maintainability, 
+flexibility, and efficiency.
 
 1.Microservices Architecture:
- Approach: The application is divided into small, independent services with welldefined APIs.
- Example: Netflix separates user management, content streaming, and recommendations into distinct services.
+Approach: The application is divided into small, independent services with welldefined APIs.
+Example: Netflix separates user management, content streaming, and recommendations into distinct services.
 Benifit: independent Scalability,Fault Isolation & Resilience,Technology Flexibility,Easier Maintenance & Deployment
 
 2. Layered Architecture:
