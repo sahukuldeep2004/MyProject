@@ -492,6 +492,35 @@ public class TestBuilderPattern {
 		Student student = new Student.Builder(101, "Kuldeep").setAddress("Jaipur").build();
 	}
 }
+
+option 2 : If your Spring Boot project uses Lombok, you don't need to write hundreds of lines of boilerplate code. You can simply 
+use the @Builder annotation.
+eg:
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+@Builder(setterPrefix = "with") // 'with' prefix is optional but makes it highly readable
+public class Employee {
+    // A snapshot of your 30 fields
+    private final String firstName;
+    private final String lastName;
+   .....
+Employee emp = Employee.builder()
+        .withFirstName("John")
+        .withLastName("Doe")
+        .withAge(30)
+        .withSalary(85000.00)
+        .withDepartment("Engineering")
+        .withCity("New York")
+        .build();
+
+Note: Lombok’s standard @Builder doesn't support mandatory fields natively out of the box because it exposes a 
+completely empty .builder() method.To fix this, you can write a custom, minimal builder method inside your class to 
+intercept the creation step and enforce validation inside a custom build() method
+
 Que: What is Prototype Design Pattern ?
 Ans: Prototype design pattern is used when the Object creation is a costly affair and requires a lot of time and resources
 and you have a similar object already existing. Prototype pattern provides a mechanism to copy the original object to a 
