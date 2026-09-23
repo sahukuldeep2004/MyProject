@@ -557,7 +557,7 @@ public class Employee implements Prototype<Employee> {
 ===========
 
 Que: Where we can use the Singleton class?
-Ans: we can use in Logger, Configuration file, Caching,Dataase connection.
+Ans: we can use in Logger, Configuration file, Caching,Dataase pool connection.
 https://www.benchresources.net/how-to-construct-a-singleton-class-in-a-multi-threaded-environment-in-java/
 Que: Write a Singleton class with all consider scenario?
 Ans: Real java example is Java.lang.Runtime class of Singleton class.
